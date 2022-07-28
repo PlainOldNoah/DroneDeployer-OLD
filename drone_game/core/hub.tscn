@@ -14,8 +14,13 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-[node name="IndicatorPoint" type="Position2D" parent="."]
-
-[node name="YellowArrow" type="Sprite" parent="IndicatorPoint"]
-position = Vector2( 47, 0 )
+[node name="YellowArrow" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+offset = Vector2( 48, 0 )
+
+[node name="DeployPoint" type="Position2D" parent="YellowArrow"]
+position = Vector2( 51, 0 )
+
+[node name="DeployCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="DeployCooldown" to="." method="_on_DeployCooldown_timeout"]

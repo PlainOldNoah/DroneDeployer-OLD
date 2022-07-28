@@ -11,3 +11,5 @@ script = ExtResource( 1 )
 position = Vector2( 510, 300 )
 
 [node name="LevelManager" parent="." instance=ExtResource( 2 )]
+
+[editable path="Hub"]
