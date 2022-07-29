@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://core/hub.gd" type="Script" id=1]
 [ext_resource path="res://assets/yellow_arrow.png" type="Texture" id=2]
+[ext_resource path="res://assets/hub.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
@@ -16,6 +17,9 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.38419e-07, 2.38419e-07 )
+scale = Vector2( 1.82813, 1.82813 )
+texture = ExtResource( 3 )
 
 [node name="YellowArrow" type="Sprite" parent="."]
 texture = ExtResource( 2 )

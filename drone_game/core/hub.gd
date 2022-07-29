@@ -9,8 +9,13 @@ var drone = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
 
 
+func _ready():
+	Global.hub_scene = self
+	GroupMan.add_to_groups(self, ["HUB"])
+
+
 func _input(event):
-	if event is InputEventMouseButton and can_deploy:
+	if event.is_action("deploy") and can_deploy:
 		can_deploy = false
 		spawn_drone()
 		deploy_cooldown.start()
