@@ -24,9 +24,16 @@ func _process(_delta):
 func spawn_drone():
 	var drone_inst:KinematicBody2D = drone.instance()
 	self.add_child(drone_inst)
-	drone_inst.global_position = deploy_point.global_position # Spawn at the deploy point
-	drone_inst.global_rotation = deploy_point.global_rotation
+	drone_inst.init(deploy_point.global_position, deploy_point.global_rotation)
 
 
+# Limits drone spamming
 func _on_DeployCooldown_timeout():
 	can_deploy = true
+
+
+# Aura around the HUB that collects deployed drones
+func _on_PickUpZone_body_entered(body):
+	print(body, ": ", body.bounce_count)
+	if body.bounce_count > 0:
+		body.queue_free()

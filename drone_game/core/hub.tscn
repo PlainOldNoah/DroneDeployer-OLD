@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://core/hub.gd" type="Script" id=1]
 [ext_resource path="res://assets/yellow_arrow.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 34.1321
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 60.0
 
 [node name="Hub" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -22,5 +25,14 @@ offset = Vector2( 48, 0 )
 position = Vector2( 51, 0 )
 
 [node name="DeployCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="PickUpZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpZone"]
+shape = SubResource( 2 )
 
 [connection signal="timeout" from="DeployCooldown" to="." method="_on_DeployCooldown_timeout"]
+[connection signal="body_entered" from="PickUpZone" to="." method="_on_PickUpZone_body_entered"]
