@@ -8,7 +8,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		for i in 1000:
+		for i in 1:
 			spawn_enemy(get_rand_pos())
 
 func spawn_enemy(pos:Vector2):

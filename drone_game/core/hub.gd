@@ -22,7 +22,14 @@ func _input(event):
 
 
 func _process(_delta):
-	yellow_arrow.look_at(get_global_mouse_position()) # Rotate arrow
+	rotate_arrow()
+
+
+func rotate_arrow():
+	yellow_arrow.look_at(get_global_mouse_position())
+	if Input.is_action_pressed("deploy_snap"):
+		yellow_arrow.rotation_degrees = stepify(yellow_arrow.rotation_degrees, 45)
+
 
 
 # Create a drone instance and set it's pos and rot to that of the arrow
@@ -39,6 +46,6 @@ func _on_DeployCooldown_timeout():
 
 # Aura around the HUB that collects deployed drones
 func _on_PickUpZone_body_entered(body):
-	print(body, ": ", body.bounce_count)
+#	print(body, ": ", body.bounce_count)
 	if body.bounce_count > 0:
 		body.queue_free()

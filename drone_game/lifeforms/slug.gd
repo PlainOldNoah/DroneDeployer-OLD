@@ -16,11 +16,14 @@ func init(pos:Vector2):
 func handle_collision(collision:KinematicCollision2D):
 	if collision.collider.is_in_group("HUB"):
 		queue_free()
-#	elif collision.collider.is_in_group("DRONE"):
+	elif collision.collider.is_in_group("DRONE"):
+#		collision.collider.queue_free()
+		velocity = velocity.bounce(collision.normal) # This is where slug hits a drone
 #		set_vel_to_hub()
 #	else:
 #		pass
 #		print("ERROR")
+	print(self.name, " hit ", collision.collider.name)
 
 func set_vel_to_hub():
 	velocity = (Global.hub_scene.position - self.position).normalized() * speed
