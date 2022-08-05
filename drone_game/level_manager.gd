@@ -22,7 +22,9 @@ func get_rand_pos() -> Vector2:
 	var map_size:Vector2 = OS.window_size
 	
 	var rand_num:int = rng.randi_range(1, 4)
-
+	
+	print("Spawning")
+	
 	match rand_num:
 		1: #Left
 			return(Vector2(0, rng.randi_range(0, map_size.y)))

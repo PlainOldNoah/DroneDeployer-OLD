@@ -22,7 +22,7 @@ func handle_collision(collision:KinematicCollision2D):
 #	print(self.name, " hit ", collision.collider.name)
 	
 	# IF/ELSE Statement
-
-	collision.collider.queue_free()
+#	collision.collider.queue_free()
+	
 	velocity = velocity.bounce(collision.normal)
 	rotation_degrees = rad2deg(velocity.angle())
