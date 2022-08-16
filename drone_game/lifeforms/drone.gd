@@ -15,7 +15,7 @@ func init(start_pos:Vector2, start_rot:float):
 	global_position = start_pos
 	rotation = start_rot
 	velocity = Vector2(cos(rotation), sin(rotation)) * speed
-	$StaticLineController/Line2D.add_point(position)
+	$StaticLineController/Line2D.add_point(start_pos)
 
 # Drones bounce off of objects and change their heading
 func handle_collision(collision:KinematicCollision2D):
@@ -27,4 +27,4 @@ func handle_collision(collision:KinematicCollision2D):
 	
 	velocity = velocity.bounce(collision.normal)
 	rotation_degrees = rad2deg(velocity.angle())
-	$StaticLineController/Line2D.add_point(position, 0)
+	$StaticLineController/Line2D.add_point(global_position, 0)
