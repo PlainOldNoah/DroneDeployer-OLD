@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed:float = 100.0
+export var speed:float = 300.0
 var velocity:Vector2 = Vector2.ZERO
 
 

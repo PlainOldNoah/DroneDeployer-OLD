@@ -5,13 +5,12 @@ onready var yellow_arrow:Sprite = $YellowArrow
 onready var deploy_point = $YellowArrow/DeployPoint
 onready var deploy_cooldown:Timer = $DeployCooldown
 
-onready var ray:RayCast2D = $YellowArrow/RayCast2D
-onready var trajectory:Line2D = $YellowArrow/Line2D
-onready var test_ray:RayCast2D = $YellowArrow/RayCast2D2
+onready var ray:RayCast2D = $YellowArrow/TrajectoryRay
+onready var trajectory:Line2D = $YellowArrow/TrajectoryLine
+onready var trajectory_pt:Position2D = $YellowArrow/TrajectoryPoint
 
 var drone = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
-
 
 func _ready():
 	Global.hub_scene = self
@@ -19,7 +18,7 @@ func _ready():
 	
 	trajectory.add_point(Vector2(0,0))
 	trajectory.add_point(Vector2(0,0))
-	ray.cast_to.x = 600#OS.window_size.x / 2
+	ray.cast_to.x = OS.window_size.x / 2
 
 
 func _input(event):
@@ -59,12 +58,15 @@ func _on_PickUpZone_body_entered(body):
 	if body.bounce_count > 0:
 		body.queue_free()
 
-onready var trajectory_pt:Position2D = $YellowArrow/Trajectory_1
+
 # Creates a line from the arrow to a collider
 func emit_ray():
 	if ray.is_colliding():
 		trajectory_pt.global_position = ray.get_collision_point()
 		trajectory.set_point_position(1, trajectory_pt.position - yellow_arrow.offset)
-#		$YellowArrow/RayCast2D2.global_position = ray.get_collision_point()
-#		$YellowArrow/RayCast2D2.cast_to = ray.cast_to.bounce($YellowArrow/RayCast2D2.get_collision_normal())
-		
+
+
+# Handles drone given in parameter
+func collect_drone(drone:Drone):
+	drone.disable()
+	print("Collected: ", drone.name)
