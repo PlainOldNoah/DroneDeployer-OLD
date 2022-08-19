@@ -13,10 +13,13 @@ func _ready():
 #	queue_free()
 
 
-func enable():
-	$CollisionShape2D.set_deferred("disabled", false)
-	velocity = Vector2(cos(rotation), sin(rotation)) * speed
 
+#func enable():
+#	$CollisionShape2D.set_deferred("disabled", false)
+#	velocity = Vector2(cos(rotation), sin(rotation)) * speed
+
+
+# Turns off drone's collision and sets velocity to zero
 func disable():
 	$CollisionShape2D.set_deferred("disabled", true)
 	

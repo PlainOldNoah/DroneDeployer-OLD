@@ -8,8 +8,20 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		for i in 1:
-			spawn_enemy(get_rand_pos())
+#		for i in 100:
+		spawn_enemy_cell(100)
+#			spawn_enemy(get_rand_pos())
+
+
+# Gets the list of spawnable tiles and randomly selects one to spawn an enemy 'count' number of times
+func spawn_enemy_cell(count:int):
+	var tile_map:TileMap = get_parent().get_node("TestingMap")
+	var tiles:Array = tile_map.get_used_cells_by_id(0)
+	for i in count:
+		var rand_key:int = rng.randi_range(0, tiles.size() - 1)
+		var spawn_point:Vector2 = tile_map.map_to_world(tiles[rand_key]) + (Vector2.ONE * (Global.tile_size / 2))
+		spawn_enemy(spawn_point)
+
 
 func spawn_enemy(pos:Vector2):
 	var enemy_scene:Node = slug_path.instance()
