@@ -9,7 +9,7 @@ onready var ray:RayCast2D = $YellowArrow/TrajectoryRay
 onready var trajectory:Line2D = $YellowArrow/TrajectoryLine
 onready var trajectory_pt:Position2D = $YellowArrow/TrajectoryPoint
 
-var drone = preload("res://lifeforms/drone.tscn")
+var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
 
 export var max_drones:int = 5
@@ -45,7 +45,7 @@ func rotate_arrow():
 
 # Create a drone instance and set it's pos and rot to that of the arrow
 func spawn_drone():
-	var drone_inst:KinematicBody2D = drone.instance()
+	var drone_inst:KinematicBody2D = drone_scene.instance()
 	self.add_child(drone_inst)
 	drone_inst.init(deploy_point.global_position, deploy_point.global_rotation)
 	return drone_inst
@@ -58,9 +58,10 @@ func _on_DeployCooldown_timeout():
 
 # Aura around the HUB that collects deployed drones
 func _on_PickUpZone_body_entered(body):
-#	print(body, ": ", body.bounce_count)
-	if body.bounce_count > 0:
-		body.queue_free()
+	if body.is_in_group("DRONE"):
+		if body.bounce_count > 0:
+			collect_drone(body)
+#			body.queue_free()
 
 
 # Creates a line from the arrow to a collider
@@ -74,7 +75,7 @@ func emit_ray():
 func collect_drone(drone:Drone):
 	drone.disable()
 	drone.global_position = Vector2(864, drone_list.find(drone)*32)
-	print("Collected: ", drone.name)
+#	print("Collected: ", drone.name)
 
 
 var drone_list:Array

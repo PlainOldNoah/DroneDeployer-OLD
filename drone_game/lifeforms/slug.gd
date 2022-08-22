@@ -1,10 +1,13 @@
 extends "res://lifeforms/generic_lifeform.gd"
 
+export var max_health:int = 3
+var health:int = max_health setget set_health
+
+onready var immune_timer:Timer = $ImmunityTimer
+var immune:bool = false
 
 func _ready():
 	GroupMan.add_to_groups(self, ["SLUG", "ENEMY"])
-	yield(get_tree().create_timer(5), "timeout")
-	queue_free()
 
 
 func init(pos:Vector2):
@@ -12,18 +15,29 @@ func init(pos:Vector2):
 	set_vel_to_hub()
 
 
-# Different behavior for hitting drone or the hub
+# Sets the health to the new value
+func set_health(value:int):
+	health = clamp(value, 0, max_health)
+	if health == 0:
+		queue_free()
+
+
+# Reduces health damage
+func take_hit(damage:int=1):
+	if not immune:
+		set_health(health - damage)
+		immune = true
+		immune_timer.start()
+		stop()
+
+
+# OVERRIDE Different behavior for hitting drone or the hub
 func handle_collision(collision:KinematicCollision2D):
 	if collision.collider.is_in_group("HUB"):
 		queue_free()
-	elif collision.collider.is_in_group("DRONE"):
-#		collision.collider.queue_free()
-		velocity = velocity.bounce(collision.normal) # This is where slug hits a drone
-#		set_vel_to_hub()
-#	else:
-#		pass
-#		print("ERROR")
-	print(self.name, " hit ", collision.collider.name)
 
-func set_vel_to_hub():
-	velocity = (Global.hub_scene.position - self.position).normalized() * speed
+
+# Turns off immunity when timer is finished
+func _on_ImmunityTimer_timeout():
+	immune = false
+	set_vel_to_hub()

@@ -7,7 +7,7 @@ enum DRONE_STATES {MOVING, IDLE}
 var state = DRONE_STATES.IDLE
 
 var bounce_count:int = 0
-
+export var max_bounce_to_home:int = 0
 
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
@@ -17,7 +17,14 @@ func _ready():
 func init(start_pos:Vector2, start_rot:float):
 	global_position = start_pos
 	rotation = start_rot
+	bounce_count = 0
 	enable()
+
+
+# OVERRIDE so drones correct their rotation
+func set_velocity(value:Vector2):
+	.set_velocity(value)
+	rotation_degrees = rad2deg(velocity.angle())
 
 
 # Removes all current points and then starts a new line
@@ -40,27 +47,38 @@ func disable():
 	stop()
 
 
-# Sets the drones velocity to moving
+# OVERRIDE Sets the drones velocity to moving
 func start():
 	state = DRONE_STATES.MOVING
-	velocity = Vector2(cos(rotation), sin(rotation)) * speed
+	set_velocity(Vector2(cos(rotation), sin(rotation)) * speed)
 
 
-# Sets velocity to zero while mantaining rotation
+# OVERRIDE Sets velocity to zero while mantaining rotation
 func stop():
 	state = DRONE_STATES.IDLE
 	var curr_rot = global_rotation_degrees
-	velocity = Vector2.ZERO
+	.stop()
 	set_deferred("global_rotation_degrees", curr_rot)
 
 
-# Drones bounce off of objects and change their heading
+# OVERRIDE Drones bounce off of objects and change their heading
 func handle_collision(collision:KinematicCollision2D):
 	bounce_count += 1
 	
-	if collision.collider.is_in_group("HUB"):
-		collision.collider.collect_drone(self)
+	var collider:Node = collision.collider
 	
-	velocity = velocity.bounce(collision.normal)
-	rotation_degrees = rad2deg(velocity.angle())
+	if collider.is_in_group("HUB"):
+		collider.collect_drone(self)
+	elif collider.is_in_group("ENEMY"):
+		print("hit: ", bounce_count)
+		if collider.health > 1:
+			set_velocity(velocity.bounce(collision.normal))
+		collider.take_hit()
+	else:
+		set_velocity(velocity.bounce(collision.normal))
+		
+#	rotation_degrees = rad2deg(velocity.angle())
 	traveled_line.add_point(global_position, 0)
+	
+	if max_bounce_to_home > 0 and bounce_count >= max_bounce_to_home:
+		set_vel_to_hub()

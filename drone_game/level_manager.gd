@@ -9,8 +9,14 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 #		for i in 100:
-		spawn_enemy_cell(100)
+#		spawn_enemy_cell(1)
+		start_spawn_clock(2)
 #			spawn_enemy(get_rand_pos())
+
+func start_spawn_clock(seconds:int):
+	yield(get_tree().create_timer(seconds), "timeout")
+	spawn_enemy_cell(1)
+	start_spawn_clock(seconds)
 
 
 # Gets the list of spawnable tiles and randomly selects one to spawn an enemy 'count' number of times
