@@ -1,5 +1,7 @@
 extends "res://lifeforms/generic_lifeform.gd"
 
+signal died()
+
 export var max_health:int = 3
 var health:int = max_health setget set_health
 
@@ -8,6 +10,7 @@ var immune:bool = false
 
 func _ready():
 	GroupMan.add_to_groups(self, ["SLUG", "ENEMY"])
+	connect("died", get_parent(), "lifeform_died")
 
 
 func init(pos:Vector2):
@@ -19,6 +22,7 @@ func init(pos:Vector2):
 func set_health(value:int):
 	health = clamp(value, 0, max_health)
 	if health == 0:
+		emit_signal("died", self)
 		queue_free()
 
 

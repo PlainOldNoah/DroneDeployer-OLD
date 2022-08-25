@@ -9,6 +9,8 @@ var state = DRONE_STATES.IDLE
 var bounce_count:int = 0
 export var max_bounce_to_home:int = 0
 
+var exp_held:int = 0
+
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
 
@@ -42,9 +44,9 @@ func enable():
 
 # Turns off drone's collision, movement, and traveled line
 func disable():
+	stop()
 	$CollisionShape2D.set_deferred("disabled", true)
 	traveled_line.clear_points()
-	stop()
 
 
 # OVERRIDE Sets the drones velocity to moving
@@ -70,7 +72,6 @@ func handle_collision(collision:KinematicCollision2D):
 	if collider.is_in_group("HUB"):
 		collider.collect_drone(self)
 	elif collider.is_in_group("ENEMY"):
-		print("hit: ", bounce_count)
 		if collider.health > 1:
 			set_velocity(velocity.bounce(collision.normal))
 		collider.take_hit()

@@ -12,7 +12,9 @@ onready var trajectory_pt:Position2D = $YellowArrow/TrajectoryPoint
 var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
 
-export var max_drones:int = 5
+export var max_drones:int = 10
+
+var current_exp:int = 0
 
 func _ready():
 	Global.hub_scene = self
@@ -20,13 +22,12 @@ func _ready():
 	
 	trajectory.add_point(Vector2(0,0))
 	trajectory.add_point(Vector2(0,0))
-	ray.cast_to.x = OS.window_size.x / 2
+	ray.cast_to.x = max(OS.window_size.x, OS.window_size.y)
 
 
 func _input(event):
-	if event.is_action("deploy") and can_deploy:
+	if event.is_action_pressed("deploy") and can_deploy:
 		can_deploy = false
-#		spawn_drone()
 		get_or_create_drone()
 		deploy_cooldown.start()
 
@@ -74,8 +75,11 @@ func emit_ray():
 # Handles drone given in parameter
 func collect_drone(drone:Drone):
 	drone.disable()
-	drone.global_position = Vector2(864, drone_list.find(drone)*32)
-#	print("Collected: ", drone.name)
+	# Have to set deferred or else drones will randomly slide across the map
+	drone.set_deferred("global_position", Vector2(16, drone_list.find(drone)*32 + 16))
+	current_exp += drone.exp_held
+	drone.exp_held = 0
+	print("EXP: ", current_exp)
 
 
 var drone_list:Array
