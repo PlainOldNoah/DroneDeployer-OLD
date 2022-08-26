@@ -24,23 +24,25 @@ scale = Vector2( 1.82813, 1.82813 )
 texture = ExtResource( 3 )
 
 [node name="YellowArrow" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
-offset = Vector2( 48, 0 )
+offset = Vector2( 38, 0 )
 
 [node name="DeployPoint" type="Position2D" parent="YellowArrow"]
-position = Vector2( 50, 0 )
+position = Vector2( 38, 0 )
 
 [node name="TrajectoryRay" type="RayCast2D" parent="YellowArrow"]
-position = Vector2( 50, 0 )
+position = Vector2( 38, 0 )
 enabled = true
 cast_to = Vector2( 0, 0 )
 collision_mask = 7
 
 [node name="TrajectoryPoint" type="Position2D" parent="YellowArrow"]
+position = Vector2( 38, 0 )
 
 [node name="TrajectoryLine" type="Line2D" parent="YellowArrow"]
 show_behind_parent = true
-position = Vector2( 50, 0 )
+position = Vector2( 38, 0 )
 width = 3.0
 default_color = Color( 0.568627, 0.0470588, 0.0470588, 0.235294 )
 begin_cap_mode = 2

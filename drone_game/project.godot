@@ -37,8 +37,8 @@ GroupMan="*res://core/group_manager.gd"
 
 [display]
 
-window/size/width=960
-window/size/height=960
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -68,4 +68,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"
