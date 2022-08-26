@@ -1,6 +1,10 @@
 class_name Hub
 extends StaticBody2D
 
+signal exp_retrieved()
+
+export var max_drones:int = 10
+
 onready var yellow_arrow:Sprite = $YellowArrow
 onready var deploy_point = $YellowArrow/DeployPoint
 onready var deploy_cooldown:Timer = $DeployCooldown
@@ -11,18 +15,21 @@ onready var trajectory_pt:Position2D = $YellowArrow/TrajectoryPoint
 
 var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
+#var current_exp:int = 0
+var drone_list:Array
 
-export var max_drones:int = 10
-
-var current_exp:int = 0
 
 func _ready():
+	yield(get_tree().root, "ready")
 	Global.hub_scene = self
 	GroupMan.add_to_groups(self, ["HUB"])
 	
 	trajectory.add_point(Vector2(0,0))
 	trajectory.add_point(Vector2(0,0))
 	ray.cast_to.x = max(OS.window_size.x, OS.window_size.y)
+	
+	if is_instance_valid(Global.game_manager):
+		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
 
 
 func _input(event):
@@ -62,7 +69,6 @@ func _on_PickUpZone_body_entered(body):
 	if body.is_in_group("DRONE"):
 		if body.bounce_count > 0:
 			collect_drone(body)
-#			body.queue_free()
 
 
 # Creates a line from the arrow to a collider
@@ -77,12 +83,11 @@ func collect_drone(drone:Drone):
 	drone.disable()
 	# Have to set deferred or else drones will randomly slide across the map
 	drone.set_deferred("global_position", Vector2(16, drone_list.find(drone)*32 + 16))
-	current_exp += drone.exp_held
+	emit_signal("exp_retrieved", drone.exp_held)
 	drone.exp_held = 0
-	print("EXP: ", current_exp)
 
 
-var drone_list:Array
+
 
 func get_or_create_drone():
 	if drone_list.size() < max_drones:

@@ -1,15 +1,16 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
-onready var traveled_line:Line2D = $StaticLineController/TraveledPath
-
 enum DRONE_STATES {MOVING, IDLE}
 var state = DRONE_STATES.IDLE
 
-var bounce_count:int = 0
 export var max_bounce_to_home:int = 0
+var bounce_count:int = 0
+
+onready var traveled_line:Line2D = $StaticLineController/TraveledPath
 
 var exp_held:int = 0
+
 
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
@@ -78,7 +79,6 @@ func handle_collision(collision:KinematicCollision2D):
 	else:
 		set_velocity(velocity.bounce(collision.normal))
 		
-#	rotation_degrees = rad2deg(velocity.angle())
 	traveled_line.add_point(global_position, 0)
 	
 	if max_bounce_to_home > 0 and bounce_count >= max_bounce_to_home:
