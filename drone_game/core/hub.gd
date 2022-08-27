@@ -3,7 +3,7 @@ extends StaticBody2D
 
 signal exp_retrieved()
 
-export var max_drones:int = 10
+export var max_drones:int = 10 # Overridden by game manager
 
 onready var yellow_arrow:Sprite = $YellowArrow
 onready var deploy_point = $YellowArrow/DeployPoint
@@ -15,7 +15,6 @@ onready var trajectory_pt:Position2D = $YellowArrow/TrajectoryPoint
 
 var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
-#var current_exp:int = 0
 var drone_list:Array
 
 
@@ -87,10 +86,8 @@ func collect_drone(drone:Drone):
 	drone.exp_held = 0
 
 
-
-
 func get_or_create_drone():
-	if drone_list.size() < max_drones:
+	if drone_list.size() < Global.game_manager.max_drones:
 		drone_list.append(spawn_drone())
 	else:
 		for i in drone_list.size():

@@ -4,7 +4,7 @@
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://core/hub.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/testing_map.tscn" type="PackedScene" id=4]
-[ext_resource path="res://core/GUI.gd" type="Script" id=5]
+[ext_resource path="res://core/gui.gd" type="Script" id=5]
 [ext_resource path="res://core/GameManager.gd" type="Script" id=6]
 
 [node name="Main" type="Node2D"]
@@ -30,6 +30,7 @@ position = Vector2( 512, 64 )
 
 [node name="Hub" parent="GameManager/LevelManager" instance=ExtResource( 3 )]
 position = Vector2( 992, 544 )
+max_drones = 3
 
 [node name="GUI" type="CanvasLayer" parent="GameManager"]
 script = ExtResource( 5 )
@@ -80,4 +81,5 @@ text = "Build Drone"
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 
+[connection signal="pressed" from="GameManager/GUI/MarginContainer/NewDroneBtn" to="GameManager" method="_on_NewDroneBtn_pressed"]
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]
