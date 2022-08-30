@@ -10,8 +10,7 @@ onready var deploy_point = $YellowArrow/DeployPoint
 onready var deploy_cooldown:Timer = $DeployCooldown
 
 onready var ray:RayCast2D = $YellowArrow/TrajectoryRay
-onready var trajectory:Line2D = $YellowArrow/TrajectoryLine
-onready var trajectory_pt:Position2D = $YellowArrow/TrajectoryPoint
+onready var trajectory:Line2D = $TrajectoryLine
 
 var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
@@ -78,8 +77,8 @@ func _on_PickUpZone_body_entered(body):
 # Creates a line from the arrow to a collider
 func emit_ray():
 	if ray.is_colliding():
-		trajectory_pt.global_position = ray.get_collision_point()
-		trajectory.set_point_position(1, trajectory_pt.position - yellow_arrow.offset)
+		trajectory.set_point_position(0, to_local(deploy_point.global_position))
+		trajectory.set_point_position(1, to_local(ray.get_collision_point()))
 
 
 # Handles drone given in parameter
