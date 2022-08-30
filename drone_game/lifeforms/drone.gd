@@ -1,8 +1,8 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
-enum DRONE_STATES {MOVING, IDLE}
-var state = DRONE_STATES.IDLE
+#enum DRONE_STATES {MOVING, IDLE}
+#var state = DRONE_STATES.IDLE
 
 export var max_bounce_to_home:int = 0
 var bounce_count:int = 0
@@ -10,6 +10,14 @@ var bounce_count:int = 0
 onready var traveled_line:Line2D = $StaticLineController/TraveledPath
 
 var exp_held:int = 0
+
+
+# TEMPORARY
+func _input(event):
+	if event.is_action_pressed("ui_down"):
+		stop()
+	elif event.is_action_pressed("ui_up"):
+		start()
 
 
 func _ready():
@@ -48,20 +56,14 @@ func disable():
 	stop()
 	$CollisionShape2D.set_deferred("disabled", true)
 	traveled_line.clear_points()
-
-
-# OVERRIDE Sets the drones velocity to moving
-func start():
-	state = DRONE_STATES.MOVING
-	set_velocity(Vector2(cos(rotation), sin(rotation)) * speed)
+	state = STATES.IDLE
 
 
 # OVERRIDE Sets velocity to zero while mantaining rotation
 func stop():
-	state = DRONE_STATES.IDLE
-	var curr_rot = global_rotation_degrees
+	var stored_rotation = global_rotation_degrees
 	.stop()
-	set_deferred("global_rotation_degrees", curr_rot)
+	set_deferred("global_rotation_degrees", stored_rotation)
 
 
 # OVERRIDE Drones bounce off of objects and change their heading
@@ -74,12 +76,22 @@ func handle_collision(collision:KinematicCollision2D):
 		collider.collect_drone(self)
 	elif collider.is_in_group("ENEMY"):
 		if collider.health > 1:
-			set_velocity(velocity.bounce(collision.normal))
+			set_velocity_from_vector(get_bounce_direction(collision))
 		collider.take_hit()
 	else:
-		set_velocity(velocity.bounce(collision.normal))
+		set_velocity_from_vector(get_bounce_direction(collision))
 		
 	traveled_line.add_point(global_position, 0)
 	
 	if max_bounce_to_home > 0 and bounce_count >= max_bounce_to_home:
 		set_vel_to_hub()
+
+
+# Returns the direction of the bounce as an angle in degrees
+func get_bounce_angle(collision:KinematicCollision2D) -> float:
+	return rad2deg(velocity.bounce(collision.normal).angle())
+
+
+# Returns the direction of the bounce as a normalized vector
+func get_bounce_direction(collision:KinematicCollision2D) -> Vector2:
+	return velocity.bounce(collision.normal).normalized()

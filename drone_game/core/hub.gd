@@ -36,6 +36,11 @@ func _input(event):
 		can_deploy = false
 		get_or_create_drone()
 		deploy_cooldown.start()
+	
+	elif event.is_action_pressed("ui_left"):
+		global_position += Vector2(-10, 0)
+	elif event.is_action_pressed("ui_right"):
+		global_position += Vector2(10, 0)
 
 
 func _process(_delta):
@@ -53,7 +58,7 @@ func rotate_arrow():
 # Create a drone instance and set it's pos and rot to that of the arrow
 func spawn_drone():
 	var drone_inst:KinematicBody2D = drone_scene.instance()
-	self.add_child(drone_inst)
+	Global.level_manager.add_child(drone_inst)
 	drone_inst.init(deploy_point.global_position, deploy_point.global_rotation)
 	return drone_inst
 
@@ -91,6 +96,6 @@ func get_or_create_drone():
 		drone_list.append(spawn_drone())
 	else:
 		for i in drone_list.size():
-			if drone_list[i].state == 1:
+			if drone_list[i].state == 3: # 3 == STATES.IDLE from drone
 				drone_list[i].init(deploy_point.global_position, deploy_point.global_rotation)
 				break

@@ -23,6 +23,6 @@ rotation = 1.57079
 shape = SubResource( 1 )
 
 [node name="ImmunityTimer" type="Timer" parent="." index="2"]
-wait_time = 0.05
+wait_time = 0.5
 
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]

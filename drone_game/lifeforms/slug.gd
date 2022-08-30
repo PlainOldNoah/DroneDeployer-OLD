@@ -13,6 +13,12 @@ func _ready():
 	connect("died", get_parent(), "lifeform_died")
 
 
+# OVERRIDE to have slugs follow the HUB should it happen to move
+func _physics_process(delta):
+	set_vel_to_hub()
+	._physics_process(delta)
+
+
 func init(pos:Vector2):
 	global_position = pos
 	set_vel_to_hub()
@@ -23,6 +29,7 @@ func set_health(value:int):
 	health = clamp(value, 0, max_health)
 	if health == 0:
 		emit_signal("died", self)
+		state = STATES.DEAD
 		queue_free()
 
 
@@ -44,4 +51,5 @@ func handle_collision(collision:KinematicCollision2D):
 # Turns off immunity when timer is finished
 func _on_ImmunityTimer_timeout():
 	immune = false
-	set_vel_to_hub()
+	start()
+#	set_vel_to_hub()
