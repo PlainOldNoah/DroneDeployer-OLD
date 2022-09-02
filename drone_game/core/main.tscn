@@ -1,17 +1,32 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://core/hub.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/testing_map.tscn" type="PackedScene" id=4]
-[ext_resource path="res://core/gui.gd" type="Script" id=5]
+[ext_resource path="res://ui/gui.gd" type="Script" id=5]
 [ext_resource path="res://core/GameManager.gd" type="Script" id=6]
 [ext_resource path="res://assets/small_drone.png" type="Texture" id=7]
 [ext_resource path="res://assets/industrial_9_square.png" type="Texture" id=8]
-[ext_resource path="res://core/fabricator_menu.gd" type="Script" id=9]
+[ext_resource path="res://ui/fabricator_menu.gd" type="Script" id=9]
+[ext_resource path="res://assets/red_x.png" type="Texture" id=10]
+[ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=11]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="GameBackground" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 32, 32 )
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
 __meta__ = {
 "_editor_description_": ""
 }
@@ -21,10 +36,6 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "Parent of all gameplay related features"
 }
-
-[node name="Camera2D" type="Camera2D" parent="GameManager"]
-visible = false
-anchor_mode = 0
 
 [node name="LevelManager" parent="GameManager" instance=ExtResource( 2 )]
 
@@ -45,8 +56,8 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI"]
-anchor_bottom = 1.0
-margin_right = 128.0
+margin_right = 83.0
+margin_bottom = 102.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -55,38 +66,29 @@ custom_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 108.0
-margin_bottom = 1060.0
+margin_right = 63.0
+margin_bottom = 82.0
 custom_constants/separation = 10
 
 [node name="CurrentExp" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 88.0
+margin_right = 43.0
 margin_bottom = 14.0
 text = "Exp: "
 
 [node name="Score" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 24.0
-margin_right = 88.0
+margin_right = 43.0
 margin_bottom = 38.0
 text = "Score: "
 
 [node name="Time" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 48.0
-margin_right = 88.0
+margin_right = 43.0
 margin_bottom = 62.0
 text = "Time: "
-
-[node name="NewDroneBtn" type="Button" parent="GameManager/GUI/MarginContainer"]
-margin_left = 20.0
-margin_top = 1040.0
-margin_right = 108.0
-margin_bottom = 1060.0
-size_flags_horizontal = 3
-size_flags_vertical = 8
-text = "Build Drone"
 
 [node name="FabricatorMenu" type="Control" parent="GameManager/GUI"]
 anchor_left = 0.5
@@ -145,56 +147,109 @@ margin_bottom = 698.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Queue" type="HBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body"]
+[node name="Queue" type="VBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body"]
 margin_right = 362.0
 margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
+custom_constants/separation = 10
 
-[node name="ColorRect" type="ColorRect" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue"]
+[node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue"]
 margin_right = 362.0
-margin_bottom = 680.0
-size_flags_horizontal = 3
-color = Color( 0, 0, 0, 1 )
+margin_bottom = 42.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body"]
+[node name="Label" type="Label" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue/MarginContainer"]
+margin_top = 14.0
+margin_right = 362.0
+margin_bottom = 28.0
+text = "Crafting Item"
+
+[node name="LineEdit" type="LineEdit" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue/MarginContainer"]
+margin_right = 362.0
+margin_bottom = 42.0
+text = "Crafting Item"
+right_icon = ExtResource( 10 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue"]
+margin_top = 52.0
+margin_right = 362.0
+margin_bottom = 94.0
+
+[node name="Label" type="Label" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue/MarginContainer2"]
+margin_top = 14.0
+margin_right = 362.0
+margin_bottom = 28.0
+text = "Crafting Item"
+
+[node name="LineEdit" type="LineEdit" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue/MarginContainer2"]
+margin_right = 362.0
+margin_bottom = 42.0
+text = "Crafting Item"
+right_icon = ExtResource( 10 )
+
+[node name="MarginContainer3" type="MarginContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue"]
+margin_top = 104.0
+margin_right = 362.0
+margin_bottom = 146.0
+
+[node name="Label" type="Label" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue/MarginContainer3"]
+margin_top = 14.0
+margin_right = 362.0
+margin_bottom = 28.0
+text = "Crafting Item"
+
+[node name="LineEdit" type="LineEdit" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/Queue/MarginContainer3"]
+margin_right = 362.0
+margin_bottom = 42.0
+text = "Crafting Item"
+right_icon = ExtResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body"]
 margin_left = 366.0
 margin_right = 1272.0
 margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/HBoxContainer"]
+[node name="CraftingCoreContainer" type="GridContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer"]
+margin_right = 906.0
+margin_bottom = 376.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="CraftingCore" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 11 )]
+margin_right = 300.0
+margin_bottom = 376.0
+
+[node name="CraftingCore2" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 11 )]
+margin_left = 304.0
+margin_right = 603.0
+margin_bottom = 376.0
+
+[node name="CraftingCore3" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 11 )]
+margin_left = 607.0
+margin_right = 906.0
+margin_bottom = 376.0
+
+[node name="CraftingOptions" type="GridContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer"]
+margin_top = 380.0
 margin_right = 906.0
 margin_bottom = 680.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="CraftingCore" type="HBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/HBoxContainer/VBoxContainer"]
-margin_right = 906.0
-margin_bottom = 338.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CraftingOptions" type="HBoxContainer" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/HBoxContainer/VBoxContainer"]
-margin_top = 342.0
-margin_right = 906.0
-margin_bottom = 680.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="DroneBtn" type="TextureButton" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/HBoxContainer/VBoxContainer/CraftingOptions"]
-margin_right = 906.0
-margin_bottom = 338.0
-size_flags_horizontal = 7
-size_flags_vertical = 7
+[node name="DroneBtn" type="TextureButton" parent="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
+margin_left = 303.0
+margin_right = 603.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture_normal = ExtResource( 7 )
 expand = true
 stretch_mode = 4
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 
-[connection signal="pressed" from="GameManager/GUI/MarginContainer/NewDroneBtn" to="GameManager" method="_on_NewDroneBtn_pressed"]
-[connection signal="pressed" from="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/HBoxContainer/VBoxContainer/CraftingOptions/DroneBtn" to="GameManager/GUI/FabricatorMenu" method="_on_DroneBtn_pressed"]
+[connection signal="pressed" from="GameManager/GUI/FabricatorMenu/MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/DroneBtn" to="GameManager/GUI/FabricatorMenu" method="_on_DroneBtn_pressed"]
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]
