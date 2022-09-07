@@ -47,11 +47,6 @@ max_drones = 3
 pause_mode = 2
 script = ExtResource( 5 )
 
-[node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.392157 )
-
 [node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI"]
 margin_right = 83.0
 margin_bottom = 102.0
@@ -64,7 +59,7 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 63.0
-margin_bottom = 82.0
+margin_bottom = 106.0
 custom_constants/separation = 10
 
 [node name="CurrentExp" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
@@ -86,6 +81,17 @@ margin_top = 48.0
 margin_right = 43.0
 margin_bottom = 62.0
 text = "Time: "
+
+[node name="DroneCount" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 72.0
+margin_right = 43.0
+margin_bottom = 86.0
+
+[node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
 
 [node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource( 7 )]
 

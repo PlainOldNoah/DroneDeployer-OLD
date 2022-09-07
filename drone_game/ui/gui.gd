@@ -6,6 +6,7 @@ var current_menu:int = MENUS.NONE
 onready var curr_exp_label:Label = get_node("%CurrentExp")
 onready var score_label:Label = get_node("%Score")
 onready var time_label:Label = get_node("%Time")
+onready var drone_count_label:Label = get_node("%DroneCount")
 
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
@@ -51,7 +52,7 @@ func reset():
 	update_curr_exp(0)
 	update_score(0)
 	update_time(0)
-
+	update_drone_cnt(0)
 
 func update_curr_exp(new_exp:int):
 	curr_exp_label.text = "Exp: " + str(new_exp)
@@ -65,3 +66,7 @@ func update_time(new_seconds:int):
 	var minutes:int = new_seconds / 60
 	var seconds:int = new_seconds % 60
 	time_label.text = "Time: " + str(minutes) + ":" + str(seconds).pad_zeros(2)
+
+
+func update_drone_cnt(count:int):
+	drone_count_label.text = "Drones: " + str(count)
