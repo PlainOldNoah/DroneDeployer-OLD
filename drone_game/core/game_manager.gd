@@ -3,7 +3,8 @@ extends Node
 signal game_paused()
 
 onready var level_manager := $LevelManager
-onready var gui:CanvasLayer = $GUI
+onready var gui := $GUI
+onready var fabrication := $GUI/FabricatorMenu
 onready var play_time_clock:Timer = $PlayTimeClock
 
 var running:bool = false
@@ -32,9 +33,18 @@ func toggle_pause(value:bool):
 	emit_signal("game_paused", value)
 
 
+# Changes the max number of drones to count
 func set_max_drones(count:int):
 	max_drones = max(0, count)
 	$GUI.call_deferred("update_drone_cnt", max_drones) # TODO: Make this more dynamic
+
+
+# Adds value to the current exp and emits a signal
+func set_curr_exp(value:int):
+	curr_exp += value
+	if curr_exp < 0:
+		print_debug("INVALID VALUE: exp is a negative")
+	fabrication.queue_2_core()
 
 
 # Calls the reset function for children nodes and puts variables to starting values
@@ -63,7 +73,7 @@ func stop_game():
 # Add the 'value' to the total gathered exp
 func exp_retrieved(value:int):
 	score += value
-	curr_exp += value
+	set_curr_exp(value)
 	gui.update_curr_exp(curr_exp)
 	gui.update_score(score)
 

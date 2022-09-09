@@ -12,5 +12,6 @@ var crafting_options:Dictionary = {
 		"scene":"res://lifeforms/drone.tscn",
 		"icon":"res://assets/small_drone.png",
 		"craft_time":3,
+		"craft_cost":1
 	}
 }

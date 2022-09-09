@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://core/game_manager.gd" type="Script" id=6]
 [ext_resource path="res://ui/fabricator_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/industrial_9_square.png" type="Texture" id=8]
+[ext_resource path="res://assets/small_drone.png" type="Texture" id=9]
+[ext_resource path="res://assets/caution_9_square.png" type="Texture" id=10]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -37,10 +39,10 @@ __meta__ = {
 [node name="LevelManager" parent="GameManager" instance=ExtResource( 2 )]
 
 [node name="TestingMap" parent="GameManager/LevelManager" instance=ExtResource( 4 )]
-position = Vector2( 512, 64 )
+position = Vector2( 480, 24 )
 
 [node name="Hub" parent="GameManager/LevelManager" instance=ExtResource( 3 )]
-position = Vector2( 992, 544 )
+position = Vector2( 992, 536 )
 max_drones = 3
 
 [node name="GUI" type="CanvasLayer" parent="GameManager"]
@@ -48,45 +50,204 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI"]
-margin_right = 83.0
-margin_bottom = 102.0
+anchor_left = 0.788889
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
+custom_constants/margin_top = 50
 custom_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 63.0
-margin_bottom = 106.0
+margin_top = 50.0
+margin_right = 398.0
+margin_bottom = 1060.0
 custom_constants/separation = 10
 
 [node name="CurrentExp" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 43.0
+margin_right = 398.0
 margin_bottom = 14.0
 text = "Exp: "
 
 [node name="Score" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 24.0
-margin_right = 43.0
+margin_right = 398.0
 margin_bottom = 38.0
 text = "Score: "
 
 [node name="Time" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 48.0
-margin_right = 43.0
+margin_right = 398.0
 margin_bottom = 62.0
 text = "Time: "
 
 [node name="DroneCount" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 72.0
-margin_right = 43.0
+margin_right = 398.0
 margin_bottom = 86.0
+
+[node name="LaunchQueue" type="Control" parent="GameManager/GUI"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 289.625
+margin_top = 24.0
+margin_right = 457.625
+margin_bottom = -24.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameManager/GUI/LaunchQueue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 32, 32 )
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameManager/GUI/LaunchQueue/NinePatchRect"]
+margin_left = 13.0
+margin_top = 12.0
+margin_right = 153.0
+margin_bottom = 117.0
+texture = ExtResource( 10 )
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/LaunchQueue"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 80.0
+margin_bottom = 480.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="TextureRect" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 9.0
+margin_right = 47.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 61.0
+margin_right = 47.0
+margin_bottom = 91.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 113.0
+margin_right = 47.0
+margin_bottom = 143.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect4" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 165.0
+margin_right = 47.0
+margin_bottom = 195.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect5" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 217.0
+margin_right = 47.0
+margin_bottom = 247.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect6" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 269.0
+margin_right = 47.0
+margin_bottom = 299.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect7" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 321.0
+margin_right = 47.0
+margin_bottom = 351.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect8" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 373.0
+margin_right = 47.0
+margin_bottom = 403.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="TextureRect9" type="TextureRect" parent="GameManager/GUI/LaunchQueue/VBoxContainer"]
+margin_left = 17.0
+margin_top = 425.0
+margin_right = 47.0
+margin_bottom = 455.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 9 )
+stretch_mode = 6
 
 [node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
 anchor_right = 1.0
@@ -96,5 +257,8 @@ color = Color( 0, 0, 0, 0.392157 )
 [node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource( 7 )]
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 990, 540 )
 
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]

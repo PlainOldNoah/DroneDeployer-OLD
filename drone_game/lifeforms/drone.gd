@@ -13,11 +13,11 @@ var exp_held:int = 0
 
 
 # TEMPORARY
-func _input(event):
-	if event.is_action_pressed("ui_down"):
-		stop()
-	elif event.is_action_pressed("ui_up"):
-		start()
+#func _input(event):
+#	if event.is_action_pressed("ui_down"):
+#		stop()
+#	elif event.is_action_pressed("ui_up"):
+#		start()
 
 
 func _ready():

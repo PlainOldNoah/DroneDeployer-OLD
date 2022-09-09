@@ -1,10 +1,11 @@
 extends Control
 
+export var exp_enabled:bool = true
+
 onready var crafting_core_container := $MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer
 onready var queue := $MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer/QueueItemContainer
-var queue_item_scene:String = "res://components/queue_item.tscn"
 
-var crafting_queue:Array = []
+var queue_item_scene:String = "res://components/queue_item.tscn"
 
 
 var temp_clicks:int = 0
@@ -32,14 +33,25 @@ func queue_2_core():
 	if queue.get_child_count() == 0:
 		return
 	
-	for core in crafting_core_container.get_children():
+	for core in crafting_core_container.get_children(): # Check each core
 		if core.running == false:
-			for child in queue.get_children():
-				if child.craftable:
+			for child in queue.get_children(): # Check each child
+				if child.craftable and verify_cost(child.item_details.craft_cost):
 					child.craftable = false
 					core.craft(child.ref_item, child.text)
 					child.queue_free()
 					break
+
+
+# Checks if player has enough xp for the current craft
+func verify_cost(cost:int) -> bool:
+	if exp_enabled:
+		if Global.game_manager.curr_exp >= cost:
+			Global.game_manager.curr_exp -= cost
+			return true
+		else:
+			return false
+	return true
 
 
 # When a core is freed up check if anything in the queue can be processed

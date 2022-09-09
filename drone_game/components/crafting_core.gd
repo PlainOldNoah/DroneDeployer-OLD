@@ -15,8 +15,8 @@ var running:bool = false
 func _ready():
 	yield(get_tree().root, "ready")
 	reset_core()
-	self.connect("core_freed", get_owner(), "core_freed")
-	Global.game_manager.connect("game_paused", self, "pause_core")
+	var _ok = self.connect("core_freed", get_owner(), "core_freed")
+	_ok = Global.game_manager.connect("game_paused", self, "pause_core")
 
 
 # Sets the core's info to default values

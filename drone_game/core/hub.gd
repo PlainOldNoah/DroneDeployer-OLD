@@ -4,6 +4,7 @@ extends StaticBody2D
 signal exp_retrieved()
 
 export var max_drones:int = 10 # Overridden by game manager
+export var rotation_weight:float = 0.2
 
 onready var yellow_arrow:Sprite = $YellowArrow
 onready var deploy_point = $YellowArrow/DeployPoint
@@ -35,16 +36,22 @@ func _input(event):
 		can_deploy = false
 		get_or_create_drone()
 		deploy_cooldown.start()
-	
-	elif event.is_action_pressed("ui_left"):
-		global_position += Vector2(-10, 0)
-	elif event.is_action_pressed("ui_right"):
-		global_position += Vector2(10, 0)
 
 
 func _process(_delta):
-	rotate_arrow()
+#	rotate_arrow()
+#	rotate_arrow_degree()
+	rotate_arrow_smooth()
 	emit_ray()
+
+
+# Rotate the arrow to use arrow keys
+func rotate_arrow_degree():
+	var direction:float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	if Input.is_action_pressed("deploy_snap"):
+		yellow_arrow.rotation_degrees = lerp(yellow_arrow.rotation_degrees, stepify(yellow_arrow.rotation_degrees, 45), 0.1)
+	else:
+		yellow_arrow.rotation_degrees += direction * 3
 
 
 # Rotate the deployment arrow to look at the cursor
@@ -52,6 +59,15 @@ func rotate_arrow():
 	yellow_arrow.look_at(get_global_mouse_position())
 	if Input.is_action_pressed("deploy_snap"):
 		yellow_arrow.rotation_degrees = stepify(yellow_arrow.rotation_degrees, 45)
+
+
+# Deploy vector follows the mouse but rotates smoothly
+func rotate_arrow_smooth():
+	if Input.is_action_pressed("deploy_snap"):
+		yellow_arrow.rotation_degrees = lerp(yellow_arrow.rotation_degrees, stepify(yellow_arrow.rotation_degrees, 45), rotation_weight)
+	else:
+		var angle = (get_global_mouse_position() - self.global_position).angle()
+		yellow_arrow.global_rotation = lerp_angle(yellow_arrow.global_rotation, angle, rotation_weight)
 
 
 # Create a drone instance and set it's pos and rot to that of the arrow
