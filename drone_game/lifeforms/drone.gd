@@ -1,23 +1,12 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
-#enum DRONE_STATES {MOVING, IDLE}
-#var state = DRONE_STATES.IDLE
-
 export var max_bounce_to_home:int = 0
 var bounce_count:int = 0
 
 onready var traveled_line:Line2D = $StaticLineController/TraveledPath
 
 var exp_held:int = 0
-
-
-# TEMPORARY
-#func _input(event):
-#	if event.is_action_pressed("ui_down"):
-#		stop()
-#	elif event.is_action_pressed("ui_up"):
-#		start()
 
 
 func _ready():
@@ -95,3 +84,8 @@ func get_bounce_angle(collision:KinematicCollision2D) -> float:
 # Returns the direction of the bounce as a normalized vector
 func get_bounce_direction(collision:KinematicCollision2D) -> Vector2:
 	return velocity.bounce(collision.normal).normalized()
+
+
+# Returns the sprite texture
+func get_sprite() -> Texture:
+	return $Sprite.texture

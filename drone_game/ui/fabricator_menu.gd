@@ -5,7 +5,7 @@ export var exp_enabled:bool = true
 onready var crafting_core_container := $MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer
 onready var queue := $MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer/QueueItemContainer
 
-var queue_item_scene:String = "res://components/queue_item.tscn"
+var queue_item_scene:String = "res://components/craft_queue_item.tscn"
 
 
 var temp_clicks:int = 0
