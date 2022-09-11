@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/industrial_9_square.png" type="Texture" id=8]
 [ext_resource path="res://assets/small_drone.png" type="Texture" id=9]
 [ext_resource path="res://assets/caution_9_square.png" type="Texture" id=10]
+[ext_resource path="res://core/launch_queue.gd" type="Script" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -95,6 +96,7 @@ margin_left = 288.0
 margin_top = 24.0
 margin_right = 458.0
 margin_bottom = -24.0
+script = ExtResource( 11 )
 
 [node name="Background" type="NinePatchRect" parent="GameManager/GUI/LaunchQueue"]
 anchor_right = 1.0
@@ -166,9 +168,10 @@ __meta__ = {
 margin_top = 171.0
 margin_right = 146.0
 margin_bottom = 1008.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 15
+custom_constants/separation = 10
 
 [node name="LaunchQueueItem" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_left = 33.0
@@ -187,9 +190,9 @@ __meta__ = {
 
 [node name="LaunchQueueItem2" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_left = 33.0
-margin_top = 95.0
+margin_top = 90.0
 margin_right = 113.0
-margin_bottom = 175.0
+margin_bottom = 170.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 80, 80 )
@@ -200,9 +203,9 @@ stretch_mode = 5
 
 [node name="LaunchQueueItem3" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_left = 33.0
-margin_top = 190.0
+margin_top = 180.0
 margin_right = 113.0
-margin_bottom = 270.0
+margin_bottom = 260.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 80, 80 )
@@ -213,9 +216,74 @@ stretch_mode = 5
 
 [node name="LaunchQueueItem4" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_left = 33.0
-margin_top = 285.0
+margin_top = 270.0
 margin_right = 113.0
-margin_bottom = 365.0
+margin_bottom = 350.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 6
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="LaunchQueueItem5" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_left = 33.0
+margin_top = 360.0
+margin_right = 113.0
+margin_bottom = 440.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 6
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="LaunchQueueItem6" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_left = 33.0
+margin_top = 450.0
+margin_right = 113.0
+margin_bottom = 530.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 6
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="LaunchQueueItem7" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_left = 33.0
+margin_top = 540.0
+margin_right = 113.0
+margin_bottom = 620.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 6
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="LaunchQueueItem8" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_left = 33.0
+margin_top = 630.0
+margin_right = 113.0
+margin_bottom = 710.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 6
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="LaunchQueueItem9" type="TextureRect" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_left = 33.0
+margin_top = 720.0
+margin_right = 113.0
+margin_bottom = 800.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 80, 80 )
