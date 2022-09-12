@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://components/craft_queue_item.gd" type="Script" id=1]
+
+[node name="QueueItem" type="LineEdit"]
+margin_right = 328.0
+margin_bottom = 24.0
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+script = ExtResource( 1 )
