@@ -18,6 +18,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Items are crafted here. All items are added to the queue first and then are moved to a core"
 }
+exp_enabled = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0

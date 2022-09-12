@@ -52,7 +52,7 @@ func reset():
 	update_curr_exp(0)
 	update_score(0)
 	update_time(0)
-	update_drone_cnt(0)
+	update_drone_cnt(0, 0)
 
 func update_curr_exp(new_exp:int):
 	curr_exp_label.text = "Exp: " + str(new_exp)
@@ -68,5 +68,5 @@ func update_time(new_seconds:int):
 	time_label.text = "Time: " + str(minutes) + ":" + str(seconds).pad_zeros(2)
 
 
-func update_drone_cnt(count:int):
-	drone_count_label.text = "Drones: " + str(count)
+func update_drone_cnt(current:int, max_drones:int):
+	drone_count_label.text = "Drones: " + str(current) + "/" + str(max_drones)

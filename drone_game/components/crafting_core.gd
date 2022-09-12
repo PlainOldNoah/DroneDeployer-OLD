@@ -58,7 +58,7 @@ func craft(item:String, temp_name:String):
 # When a craft is complete call this function
 func craft_complete():
 	if item_to_craft == "drone":
-		Global.game_manager.build_new_drone()
+		Global.game_manager.increment_max_drones(1)
 	reset_core()
 
 
