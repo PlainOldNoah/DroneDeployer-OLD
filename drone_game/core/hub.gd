@@ -35,6 +35,8 @@ func _input(event):
 		can_deploy = false
 		deploy_drone()
 		deploy_cooldown.start()
+	elif event.is_action_pressed("deploy_skip") and can_deploy:
+		skip_drone()
 
 
 func _process(_delta):
@@ -72,6 +74,10 @@ func rotate_arrow_smooth():
 # Retrieves the first drone from the queue and deploys it
 func deploy_drone():
 	Global.game_manager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
+
+
+func skip_drone():
+	Global.game_manager.skip_up_next()
 
 
 # Handles drone given in parameter

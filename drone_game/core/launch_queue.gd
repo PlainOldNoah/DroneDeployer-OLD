@@ -1,5 +1,8 @@
 extends Control
 
+# Shows the "up next" child in the queue
+export var debug_show_up_next_in_queue:bool = false
+
 onready var up_next_position := $MarginContainer/VBoxContainer/CautionRect/MarginContainer/UpNext
 onready var queue_item_container := $MarginContainer/VBoxContainer/VBoxContainer
 onready var launch_queue_item_scene := "res://components/launch_queue_item.tscn"
@@ -15,7 +18,7 @@ func launch_up_next():
 func set_up_next_texture(child_idx:int):
 	if queue_item_container.get_child_count() > child_idx:
 		var focused_child := queue_item_container.get_child(child_idx)
-		focused_child.hide()
+		focused_child.visible = debug_show_up_next_in_queue
 		up_next_position.texture = focused_child.texture
 		up_next_position.modulate = focused_child.modulate
 
@@ -28,6 +31,15 @@ func add_to_queue(drone:Drone):
 	
 	queue_item_inst.modulate = drone.modulate # TEMP: Take the modulation with itself
 	set_up_next_texture(0) # Uses the first childs texture
+
+
+# Moves child in position idx and sends it to the back of the queue
+func move_to_back(idx:int):
+	var temp_child:Node = queue_item_container.get_child(idx)
+	queue_item_container.remove_child(temp_child)
+	queue_item_container.add_child(temp_child)
+	temp_child.show()
+	set_up_next_texture(0)
 
 
 # Clears the queue item texture and moves it to the end

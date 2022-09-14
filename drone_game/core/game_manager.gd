@@ -21,6 +21,7 @@ var drone_queue:Array = []
 
 func _ready():
 	Global.game_manager = self
+	set_max_drones(5)
 	reset()
 
 
@@ -76,6 +77,12 @@ func deploy_next_up(position:Vector2, rotation:float):
 	drone_queue.remove(0)
 
 
+# Puts the current drone to the back of the queue
+func skip_up_next():
+	drone_queue.push_back(drone_queue.pop_front())
+	launch_queue.move_to_back(0)
+
+
 # Return the idx drone from the queue
 func get_drone_from_queue(idx:int=0) -> Drone:
 	return null if drone_queue.size() == 0 else drone_queue[idx]
@@ -98,7 +105,6 @@ func set_curr_exp(value:int):
 # Calls the reset function for children nodes and puts variables to starting values
 func reset():
 	gui.reset()
-	set_max_drones(4)
 
 
 # Beings enemy spawning and play clock
