@@ -40,12 +40,11 @@ func _input(event):
 
 
 func _process(_delta):
-#	rotate_arrow()
-#	rotate_arrow_degree()
 	rotate_arrow_smooth()
 	emit_ray()
 
 
+# DEPRECIATED
 # Rotate the arrow to use arrow keys
 func rotate_arrow_degree():
 	var direction:float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -55,6 +54,7 @@ func rotate_arrow_degree():
 		yellow_arrow.rotation_degrees += direction * 3
 
 
+# DEPRECIATED
 # Rotate the deployment arrow to look at the cursor
 func rotate_arrow():
 	yellow_arrow.look_at(get_global_mouse_position())

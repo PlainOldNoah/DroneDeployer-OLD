@@ -48,25 +48,32 @@ func dismiss_menu():
 	current_menu = MENUS.NONE
 
 
+# TODO: Move this to 
+# Sets all labels to default state
 func reset():
 	update_curr_exp(0)
 	update_score(0)
 	update_time(0)
 	update_drone_cnt(0, 0)
 
+
+# Changes the current exp label
 func update_curr_exp(new_exp:int):
 	curr_exp_label.text = "Exp: " + str(new_exp)
 
 
+# Changes the score label
 func update_score(new_score:int):
 	score_label.text = "Score: " + str(new_score)
 
 
+# Converts time to minutes and seconds and changes the label
 func update_time(new_seconds:int):
 	var minutes:int = new_seconds / 60
 	var seconds:int = new_seconds % 60
 	time_label.text = "Time: " + str(minutes) + ":" + str(seconds).pad_zeros(2)
 
 
+# Changes the drone count label
 func update_drone_cnt(current:int, max_drones:int):
 	drone_count_label.text = "Drones: " + str(current) + "/" + str(max_drones)
