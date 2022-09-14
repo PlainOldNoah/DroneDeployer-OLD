@@ -3,7 +3,6 @@ extends StaticBody2D
 
 signal exp_retrieved()
 
-export var max_drones:int = 10 # Overridden by game manager
 export var rotation_weight:float = 0.2
 
 onready var yellow_arrow:Sprite = $YellowArrow
@@ -34,17 +33,18 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("deploy") and can_deploy:
 		can_deploy = false
-		get_or_create_drone()
+		deploy_drone()
 		deploy_cooldown.start()
+	elif event.is_action_pressed("deploy_skip") and can_deploy:
+		skip_drone()
 
 
 func _process(_delta):
-#	rotate_arrow()
-#	rotate_arrow_degree()
 	rotate_arrow_smooth()
 	emit_ray()
 
 
+# DEPRECIATED
 # Rotate the arrow to use arrow keys
 func rotate_arrow_degree():
 	var direction:float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -54,6 +54,7 @@ func rotate_arrow_degree():
 		yellow_arrow.rotation_degrees += direction * 3
 
 
+# DEPRECIATED
 # Rotate the deployment arrow to look at the cursor
 func rotate_arrow():
 	yellow_arrow.look_at(get_global_mouse_position())
@@ -70,14 +71,24 @@ func rotate_arrow_smooth():
 		yellow_arrow.global_rotation = lerp_angle(yellow_arrow.global_rotation, angle, rotation_weight)
 
 
-# Create a drone instance and set it's pos and rot to that of the arrow
-func spawn_drone():
-	var drone_inst:KinematicBody2D = drone_scene.instance()
-	Global.level_manager.add_child(drone_inst)
-	drone_inst.init(deploy_point.global_position, deploy_point.global_rotation)
-	return drone_inst
+# Retrieves the first drone from the queue and deploys it
+func deploy_drone():
+	Global.game_manager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
 
 
+func skip_drone():
+	Global.game_manager.skip_up_next()
+
+
+# Handles drone given in parameter
+func collect_drone(drone:Drone):
+	drone.disable()
+	drone.global_position = Vector2.ONE * 100
+	emit_signal("exp_retrieved", drone.exp_held)
+	drone.exp_held = 0
+	Global.game_manager.add_drone_to_queue(drone)
+	
+	
 # Limits drone spamming
 func _on_DeployCooldown_timeout():
 	can_deploy = true
@@ -95,22 +106,3 @@ func emit_ray():
 	if ray.is_colliding():
 		trajectory.set_point_position(0, to_local(deploy_point.global_position))
 		trajectory.set_point_position(1, to_local(ray.get_collision_point()))
-
-
-# Handles drone given in parameter
-func collect_drone(drone:Drone):
-	drone.disable()
-	# Have to set deferred or else drones will randomly slide across the map
-	drone.set_deferred("global_position", Vector2(16, drone_list.find(drone)*32 + 16))
-	emit_signal("exp_retrieved", drone.exp_held)
-	drone.exp_held = 0
-
-
-func get_or_create_drone():
-	if drone_list.size() < Global.game_manager.max_drones:
-		drone_list.append(spawn_drone())
-	else:
-		for i in drone_list.size():
-			if drone_list[i].state == 3: # 3 == STATES.IDLE from drone
-				drone_list[i].init(deploy_point.global_position, deploy_point.global_rotation)
-				break

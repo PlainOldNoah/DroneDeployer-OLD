@@ -11,6 +11,12 @@ var exp_held:int = 0
 
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
+	debug_color_shift()
+
+
+func debug_color_shift():
+	randomize()
+	modulate = Color(randf(), randf(), randf())
 
 
 # Sets the current position and rotation before enabling
@@ -35,15 +41,17 @@ func restart_travel_path():
 
 # Turns collision on and starts movement
 func enable():
-	$CollisionShape2D.set_deferred("disabled", false)
+	show()
+	set_physics_process(true)
 	restart_travel_path()
 	start()
 
 
 # Turns off drone's collision, movement, and traveled line
 func disable():
+	hide()
 	stop()
-	$CollisionShape2D.set_deferred("disabled", true)
+	set_physics_process(false)
 	traveled_line.clear_points()
 	state = STATES.IDLE
 
