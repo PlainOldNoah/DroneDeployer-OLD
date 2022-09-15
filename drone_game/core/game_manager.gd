@@ -2,8 +2,12 @@ extends Node
 
 signal game_paused()
 
+export var max_health:int = 3
+export var max_drones:int = 0
+
 onready var level_manager := $LevelManager
 onready var gui := $GUI
+onready var stats_bar := $GUI/StatsBar
 onready var launch_queue := $GUI/LaunchQueue
 onready var fabrication := $GUI/FabricatorMenu
 onready var play_time_clock:Timer = $PlayTimeClock
@@ -11,8 +15,8 @@ onready var play_time_clock:Timer = $PlayTimeClock
 var drone_scene = preload("res://lifeforms/drone.tscn")
 
 var running:bool = false
-var max_drones:int = 0
 var curr_drone_count:int = 0
+var curr_health:int = 0
 var curr_exp:int = 0
 var score:int = 0
 var curr_survived_sec:int = 0
@@ -33,6 +37,36 @@ func _input(event):
 			start_game()
 
 
+# Calls the reset function for children nodes and puts variables to starting values
+func reset():
+	if running:
+		stop_game()
+	modify_health(max_health)
+	stats_bar.reset()
+	stats_bar.update_health(curr_health, max_health)
+	stats_bar.update_drone_cnt(curr_drone_count, max_drones)
+
+
+# Beings enemy spawning and play clock
+func start_game():
+	reset()
+	print("Starting Game...")
+	play_time_clock.start()
+	running = true
+	level_manager.start_spawn_clock(2)
+
+
+# Stops enemy spawning and play clock
+func stop_game():
+	print("Stopping Game...")
+	play_time_clock.stop()
+	running = false
+	level_manager.stop_spawn_clock()
+	
+	for i in get_tree().get_nodes_in_group("ENEMY"):
+		i.queue_free()
+
+
 # Unpauses if paused; pauses if unpaused
 func toggle_pause(value:bool):
 	get_tree().paused = value
@@ -42,7 +76,7 @@ func toggle_pause(value:bool):
 # Changes the max number of drones to count and builds the necessary amount
 func set_max_drones(count:int):
 	max_drones = max(0, count)
-	$GUI.call_deferred("update_drone_cnt", curr_drone_count, max_drones) # TODO: Make this more dynamic
+	stats_bar.update_drone_cnt(curr_drone_count, max_drones)
 	
 	var drones_2_make:int = max_drones - curr_drone_count
 	for i in drones_2_make:
@@ -57,7 +91,7 @@ func increment_max_drones(value:int):
 # Creates a new drone scene and appends it to the queue
 func create_new_drone():
 	curr_drone_count += 1
-	$GUI.call_deferred("update_drone_cnt", curr_drone_count, max_drones)
+	stats_bar.update_drone_cnt(curr_drone_count, max_drones)
 	
 	var drone_inst:KinematicBody2D = drone_scene.instance()
 	Global.level_manager.add_child(drone_inst)
@@ -102,39 +136,31 @@ func set_curr_exp(value:int):
 	fabrication.queue_2_core()
 
 
-# Calls the reset function for children nodes and puts variables to starting values
-func reset():
-	gui.reset()
-
-
-# Beings enemy spawning and play clock
-func start_game():
-	reset()
-	print("Starting Game...")
-	play_time_clock.start()
-	running = true
-	level_manager.start_spawn_clock(2)
-
-
-# Stops enemy spawning and play clock
-func stop_game():
-	print("Stopping Game...")
-	play_time_clock.stop()
-	running = false
-	level_manager.stop_spawn_clock()
-
-
 # Add the 'value' to the total gathered exp
 func exp_retrieved(value:int):
 	score += value
 	set_curr_exp(value)
-	gui.update_curr_exp(curr_exp)
-	gui.update_score(score)
+	
+	stats_bar.update_curr_exp(curr_exp)
+	stats_bar.update_score(score)
+
+
+# Changes the current health. + to heal, - to hurt
+func modify_health(value:int):
+	curr_health = clamp(curr_health + value, 0, max_health)
+	if curr_health <= 0:
+		print("DEAD")
+		stop_game()
+	stats_bar.update_health(curr_health, max_health)
+
+
+# Takes a positive damage value and negates it for modify health
+func take_hit(damage:int):
+	modify_health(-damage)
 
 
 # Increments the amount of time by a second
 func _on_PlayTimeClock_timeout():
 	curr_survived_sec += 1
-	gui.update_time(curr_survived_sec)
+	stats_bar.update_time(curr_survived_sec)
 	play_time_clock.start()
-

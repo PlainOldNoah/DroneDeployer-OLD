@@ -2,6 +2,7 @@ class_name Hub
 extends StaticBody2D
 
 signal exp_retrieved()
+signal hit_taken()
 
 export var rotation_weight:float = 0.2
 
@@ -28,6 +29,7 @@ func _ready():
 	
 	if is_instance_valid(Global.game_manager):
 		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
+		_ok = self.connect("hit_taken", Global.game_manager, "take_hit")
 
 
 func _input(event):
@@ -87,8 +89,8 @@ func collect_drone(drone:Drone):
 	emit_signal("exp_retrieved", drone.exp_held)
 	drone.exp_held = 0
 	Global.game_manager.add_drone_to_queue(drone)
-	
-	
+
+
 # Limits drone spamming
 func _on_DeployCooldown_timeout():
 	can_deploy = true
@@ -106,3 +108,8 @@ func emit_ray():
 	if ray.is_colliding():
 		trajectory.set_point_position(0, to_local(deploy_point.global_position))
 		trajectory.set_point_position(1, to_local(ray.get_collision_point()))
+
+
+func _on_Hitbox_body_entered(body):
+	if body.is_in_group("ENEMY"):
+		emit_signal("hit_taken", 1)

@@ -4,13 +4,15 @@ extends "res://lifeforms/generic_lifeform.gd"
 export var max_bounce_to_home:int = 0
 var bounce_count:int = 0
 
-onready var traveled_line:Line2D = $StaticLineController/TraveledPath
+onready var traveled_line:Line2D = $TraveledPath
 
 var exp_held:int = 0
 
 
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
+	traveled_line.set_as_toplevel(true)
+	disable()
 	debug_color_shift()
 
 

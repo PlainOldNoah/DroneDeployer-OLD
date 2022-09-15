@@ -21,9 +21,7 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="StaticLineController" type="Node" parent="." index="2"]
-
-[node name="TraveledPath" type="Line2D" parent="StaticLineController" index="0"]
+[node name="TraveledPath" type="Line2D" parent="." index="2"]
 width = 26.0
 default_color = Color( 0, 0.882353, 1, 0.137255 )
 joint_mode = 2

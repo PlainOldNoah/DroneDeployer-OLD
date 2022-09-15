@@ -52,4 +52,3 @@ func handle_collision(collision:KinematicCollision2D):
 func _on_ImmunityTimer_timeout():
 	immune = false
 	start()
-#	set_vel_to_hub()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://components/launch_queue_item.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/caution_9_square.png" type="Texture" id=10]
 [ext_resource path="res://core/launch_queue.gd" type="Script" id=11]
+[ext_resource path="res://ui/stats_bar.gd" type="Script" id=12]
+[ext_resource path="res://ui/stats_bar.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -36,6 +38,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "Parent of all gameplay related features"
 }
+max_drones = 3
 
 [node name="LevelManager" parent="GameManager" instance=ExtResource( 2 )]
 
@@ -49,45 +52,8 @@ position = Vector2( 992, 536 )
 pause_mode = 2
 script = ExtResource( 5 )
 
-[node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI"]
-anchor_left = 0.788889
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 50
-custom_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer"]
-margin_top = 50.0
-margin_right = 397.0
-margin_bottom = 1060.0
-custom_constants/separation = 10
-
-[node name="CurrentExp" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_right = 397.0
-margin_bottom = 14.0
-text = "Exp: "
-
-[node name="Score" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_top = 24.0
-margin_right = 397.0
-margin_bottom = 38.0
-text = "Score: "
-
-[node name="Time" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_top = 48.0
-margin_right = 397.0
-margin_bottom = 62.0
-text = "Time: "
-
-[node name="DroneCount" type="Label" parent="GameManager/GUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_top = 72.0
-margin_right = 397.0
-margin_bottom = 86.0
+[node name="StatsBar" parent="GameManager/GUI" instance=ExtResource( 13 )]
+script = ExtResource( 12 )
 
 [node name="LaunchQueue" type="Control" parent="GameManager/GUI"]
 anchor_bottom = 1.0
