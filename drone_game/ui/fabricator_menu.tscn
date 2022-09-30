@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/fabricator_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/industrial_9_square.png" type="Texture" id=2]
 [ext_resource path="res://assets/small_drone.png" type="Texture" id=3]
+[ext_resource path="res://assets/health_plus.png" type="Texture" id=4]
 [ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=5]
 
 [node name="FabricatorMenu" type="Control"]
@@ -134,10 +135,11 @@ margin_bottom = 376.0
 margin_top = 380.0
 margin_right = 906.0
 margin_bottom = 680.0
+columns = 2
 
 [node name="DroneBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_left = 303.0
-margin_right = 603.0
+margin_left = 75.0
+margin_right = 375.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 300, 300 )
 size_flags_horizontal = 6
@@ -146,4 +148,19 @@ texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 4
 
+[node name="HealthBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
+margin_left = 530.0
+margin_right = 830.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_editor_description_": ""
+}
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/DroneBtn" to="." method="_on_DroneBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn" to="." method="_on_HealthBtn_pressed"]

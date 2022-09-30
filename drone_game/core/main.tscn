@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://components/launch_queue_item.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/caution_9_square.png" type="Texture" id=10]
 [ext_resource path="res://core/launch_queue.gd" type="Script" id=11]
-[ext_resource path="res://ui/stats_bar.gd" type="Script" id=12]
 [ext_resource path="res://ui/stats_bar.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node"]
@@ -53,7 +52,6 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="StatsBar" parent="GameManager/GUI" instance=ExtResource( 13 )]
-script = ExtResource( 12 )
 
 [node name="LaunchQueue" type="Control" parent="GameManager/GUI"]
 anchor_bottom = 1.0

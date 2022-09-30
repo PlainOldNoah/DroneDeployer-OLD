@@ -12,6 +12,7 @@ onready var fabricator_menu:Control = get_node("FabricatorMenu")
 func _ready():
 	yield(get_tree().root, "ready")
 	stats_bar.reset()
+	fabricator_menu.reset()
 	dismiss_menu()
 
 

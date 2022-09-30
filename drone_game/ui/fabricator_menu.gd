@@ -7,11 +7,19 @@ onready var queue := $MarginContainer/VBoxContainer/Body/CraftingQueue/MarginCon
 
 var queue_item_scene:String = "res://components/craft_queue_item.tscn"
 
+var craft_history:Dictionary = {}
 
-var temp_clicks:int = 0
-func _on_DroneBtn_pressed():
-	temp_clicks += 1
-	add_item_2_queue("drone")
+
+func reset():
+	craft_history = {}
+
+
+# Keeps a record of how many times each item was crafted
+func update_craft_history(item:String):
+	if craft_history.has(item):
+		craft_history[item] = craft_history[item] + 1
+	else:
+		craft_history[item] = 1
 
 
 # Adds a new LineEdit node to the queue
@@ -22,7 +30,8 @@ func add_item_2_queue(value:String=""):
 		return
 	
 	var queue_item:Node = load(queue_item_scene).instance()
-	queue_item.initialize(value, temp_clicks)
+	update_craft_history(value)
+	queue_item.initialize(value, craft_history[value])
 	queue.add_child(queue_item)
 	
 	queue_2_core()
@@ -57,3 +66,11 @@ func verify_cost(cost:int) -> bool:
 # When a core is freed up check if anything in the queue can be processed
 func core_freed():
 	queue_2_core()
+
+
+func _on_DroneBtn_pressed():
+	add_item_2_queue("drone")
+
+
+func _on_HealthBtn_pressed():
+	add_item_2_queue("health")

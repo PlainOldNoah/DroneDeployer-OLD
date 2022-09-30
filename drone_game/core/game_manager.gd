@@ -44,7 +44,6 @@ func reset():
 	modify_health(max_health)
 	stats_bar.reset()
 	stats_bar.update_health(curr_health, max_health)
-	stats_bar.update_drone_cnt(curr_drone_count, max_drones)
 
 
 # Beings enemy spawning and play clock
@@ -76,7 +75,6 @@ func toggle_pause(value:bool):
 # Changes the max number of drones to count and builds the necessary amount
 func set_max_drones(count:int):
 	max_drones = max(0, count)
-	stats_bar.update_drone_cnt(curr_drone_count, max_drones)
 	
 	var drones_2_make:int = max_drones - curr_drone_count
 	for i in drones_2_make:
@@ -91,7 +89,6 @@ func increment_max_drones(value:int):
 # Creates a new drone scene and appends it to the queue
 func create_new_drone():
 	curr_drone_count += 1
-	stats_bar.update_drone_cnt(curr_drone_count, max_drones)
 	
 	var drone_inst:KinematicBody2D = drone_scene.instance()
 	Global.level_manager.add_child(drone_inst)
@@ -105,7 +102,9 @@ func deploy_next_up(position:Vector2, rotation:float):
 	
 	if drone_2_deploy == null:
 		return
-		
+	
+	stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
+	
 	drone_2_deploy.init(position, rotation)
 	launch_queue.launch_up_next()
 	drone_queue.remove(0)
@@ -126,6 +125,8 @@ func get_drone_from_queue(idx:int=0) -> Drone:
 func add_drone_to_queue(drone:Drone):
 	drone_queue.append(drone)
 	launch_queue.add_to_queue(drone)
+	
+	stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
 
 
 # Adds value to the current exp and emits a signal
@@ -145,7 +146,7 @@ func exp_retrieved(value:int):
 	stats_bar.update_score(score)
 
 
-# Changes the current health. + to heal, - to hurt
+# Increases or decreases the current health. + to heal, - to hurt
 func modify_health(value:int):
 	curr_health = clamp(curr_health + value, 0, max_health)
 	if curr_health <= 0:

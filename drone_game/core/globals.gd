@@ -13,5 +13,11 @@ var crafting_options:Dictionary = {
 		"icon":"res://assets/small_drone.png",
 		"craft_time":3,
 		"craft_cost":1
+	},
+	"health":{
+		"name":"Health",
+		"icon":"res://assets/health_plus.png",
+		"craft_time":5,
+		"craft_cost":3,
 	}
 }
