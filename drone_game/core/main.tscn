@@ -42,22 +42,30 @@ max_drones = 3
 [node name="LevelManager" parent="GameManager" instance=ExtResource( 2 )]
 
 [node name="TestingMap" parent="GameManager/LevelManager" instance=ExtResource( 4 )]
-position = Vector2( 480, 24 )
+position = Vector2( 496, 14 )
 
 [node name="Hub" parent="GameManager/LevelManager" instance=ExtResource( 3 )]
-position = Vector2( 992, 536 )
+position = Vector2( 960, 478 )
+scale = Vector2( 1.5, 1.5 )
 
 [node name="GUI" type="CanvasLayer" parent="GameManager"]
 pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="StatsBar" parent="GameManager/GUI" instance=ExtResource( 13 )]
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 304.0
+margin_bottom = 960.0
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
 
 [node name="LaunchQueue" type="Control" parent="GameManager/GUI"]
 anchor_bottom = 1.0
-margin_left = 288.0
+margin_left = 304.0
 margin_top = 24.0
-margin_right = 458.0
+margin_right = 474.0
 margin_bottom = -24.0
 script = ExtResource( 11 )
 
@@ -88,7 +96,7 @@ custom_constants/margin_bottom = 12
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 158.0
-margin_bottom = 1020.0
+margin_bottom = 900.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 25

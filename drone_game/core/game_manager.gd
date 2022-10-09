@@ -64,6 +64,9 @@ func stop_game():
 	
 	for i in get_tree().get_nodes_in_group("ENEMY"):
 		i.queue_free()
+	
+	for i in get_tree().get_nodes_in_group("DRONE"):
+		i.set_vel_to_hub()
 
 
 # Unpauses if paused; pauses if unpaused

@@ -1,7 +1,7 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
-export var max_bounce_to_home:int = 0
+export var max_bounce_to_home:int = 0 # If 0 then ignore
 var bounce_count:int = 0
 
 onready var traveled_line:Line2D = $TraveledPath

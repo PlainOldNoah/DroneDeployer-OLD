@@ -1,16 +1,16 @@
 class_name Hub
-extends StaticBody2D
+extends Node2D
 
 signal exp_retrieved()
 signal hit_taken()
 
 export var rotation_weight:float = 0.2
 
-onready var yellow_arrow:Sprite = $YellowArrow
-onready var deploy_point = $YellowArrow/DeployPoint
+onready var deployer:Sprite = $Deployer
+onready var deploy_point = $Deployer/DeployPoint
 onready var deploy_cooldown:Timer = $DeployCooldown
 
-onready var ray:RayCast2D = $YellowArrow/TrajectoryRay
+onready var ray:RayCast2D = $Deployer/TrajectoryRay
 onready var trajectory:Line2D = $TrajectoryLine
 
 var drone_scene = preload("res://lifeforms/drone.tscn")
@@ -51,26 +51,26 @@ func _process(_delta):
 func rotate_arrow_degree():
 	var direction:float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	if Input.is_action_pressed("deploy_snap"):
-		yellow_arrow.rotation_degrees = lerp(yellow_arrow.rotation_degrees, stepify(yellow_arrow.rotation_degrees, 45), 0.1)
+		deployer.rotation_degrees = lerp(deployer.rotation_degrees, stepify(deployer.rotation_degrees, 45), 0.1)
 	else:
-		yellow_arrow.rotation_degrees += direction * 3
+		deployer.rotation_degrees += direction * 3
 
 
 # DEPRECIATED
 # Rotate the deployment arrow to look at the cursor
 func rotate_arrow():
-	yellow_arrow.look_at(get_global_mouse_position())
+	deployer.look_at(get_global_mouse_position())
 	if Input.is_action_pressed("deploy_snap"):
-		yellow_arrow.rotation_degrees = stepify(yellow_arrow.rotation_degrees, 45)
+		deployer.rotation_degrees = stepify(deployer.rotation_degrees, 45)
 
 
 # Deploy vector follows the mouse but rotates smoothly
 func rotate_arrow_smooth():
 	if Input.is_action_pressed("deploy_snap"):
-		yellow_arrow.rotation_degrees = lerp(yellow_arrow.rotation_degrees, stepify(yellow_arrow.rotation_degrees, 45), rotation_weight)
+		deployer.rotation_degrees = lerp(deployer.rotation_degrees, stepify(deployer.rotation_degrees, 45), rotation_weight)
 	else:
 		var angle = (get_global_mouse_position() - self.global_position).angle()
-		yellow_arrow.global_rotation = lerp_angle(yellow_arrow.global_rotation, angle, rotation_weight)
+		deployer.global_rotation = lerp_angle(deployer.global_rotation, angle, rotation_weight)
 
 
 # Retrieves the first drone from the queue and deploys it

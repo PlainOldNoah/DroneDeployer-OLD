@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://lifeforms/drone.gd"
 }, {
-"base": "StaticBody2D",
+"base": "Node2D",
 "class": "Hub",
 "language": "GDScript",
 "path": "res://core/hub.gd"
@@ -37,8 +37,8 @@ GroupMan="*res://core/group_manager.gd"
 
 [display]
 
-window/size/width=1980
-window/size/height=1080
+window/size/width=1440
+window/size/height=960
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
