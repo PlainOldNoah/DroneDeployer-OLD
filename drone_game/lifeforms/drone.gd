@@ -1,6 +1,7 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
+export var show_path:bool = false
 export var max_bounce_to_home:int = 0 # If 0 then ignore
 var bounce_count:int = 0
 
@@ -79,8 +80,9 @@ func handle_collision(collision:KinematicCollision2D):
 		collider.take_hit()
 	else:
 		set_velocity_from_vector(get_bounce_direction(collision))
-		
-	traveled_line.add_point(global_position, 0)
+	
+	if show_path:
+		traveled_line.add_point(global_position, 0)
 	
 	if max_bounce_to_home > 0 and bounce_count >= max_bounce_to_home:
 		set_vel_to_hub()
