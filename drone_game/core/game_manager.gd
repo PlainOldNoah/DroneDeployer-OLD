@@ -20,7 +20,7 @@ var curr_health:int = 0
 var curr_exp:int = 0
 var score:int = 0
 var curr_survived_sec:int = 0
-var drone_queue:Array = []
+var drone_queue:Array = [] # Holds Drone datatype
 
 
 func _ready():
@@ -93,7 +93,7 @@ func increment_max_drones(value:int):
 func create_new_drone():
 	curr_drone_count += 1
 	
-	var drone_inst:KinematicBody2D = drone_scene.instance()
+	var drone_inst:Drone = drone_scene.instance()
 	Global.level_manager.add_child(drone_inst)
 	add_drone_to_queue(drone_inst)
 	return drone_inst
