@@ -81,7 +81,6 @@ vframes = 5
 frame = 4
 
 [node name="DeployCooldown" type="Timer" parent="."]
-wait_time = 0.15
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_entered" from="PickUpZone" to="." method="_on_PickUpZone_body_entered"]

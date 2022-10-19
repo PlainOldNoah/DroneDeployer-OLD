@@ -10,6 +10,13 @@ onready var traveled_line:Line2D = $TraveledPath
 var exp_held:int = 0
 
 
+func _input(event): #DEBUG
+	if event.is_action_pressed("ui_page_up"):
+		self.scale += Vector2.ONE
+	elif event.is_action_pressed("ui_page_down"):
+		self.scale -= Vector2.ONE
+
+
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
 	traveled_line.set_as_toplevel(true)

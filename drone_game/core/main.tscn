@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://core/game_manager.gd" type="Script" id=6]
 [ext_resource path="res://ui/fabricator_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/industrial_9_square.png" type="Texture" id=8]
-[ext_resource path="res://assets/caution_9_square.png" type="Texture" id=10]
-[ext_resource path="res://core/launch_queue.gd" type="Script" id=11]
+[ext_resource path="res://ui/launch_queue.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/stats_bar.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node"]
@@ -36,7 +35,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "Parent of all gameplay related features"
 }
-max_drones = 3
+max_drones = 8
 
 [node name="LevelManager" parent="GameManager" instance=ExtResource( 2 )]
 
@@ -60,69 +59,7 @@ margin_bottom = 960.0
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 
-[node name="LaunchQueue" type="Control" parent="GameManager/GUI"]
-anchor_bottom = 1.0
-margin_left = 378.0
-margin_top = 24.0
-margin_right = 474.0
-margin_bottom = -24.0
-script = ExtResource( 11 )
-
-[node name="Background" type="NinePatchRect" parent="GameManager/GUI/LaunchQueue"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 8 )
-region_rect = Rect2( 0, 0, 32, 32 )
-patch_margin_left = 15
-patch_margin_top = 15
-patch_margin_right = 15
-patch_margin_bottom = 15
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI/LaunchQueue"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
-
-[node name="CautionRect" type="NinePatchRect" parent="GameManager/GUI/LaunchQueue/MarginContainer"]
-visible = false
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 84.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 0
-texture = ExtResource( 10 )
-patch_margin_left = 14
-patch_margin_top = 14
-patch_margin_right = 14
-patch_margin_bottom = 14
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/LaunchQueue/MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 84.0
-margin_bottom = 900.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/LaunchQueue/MarginContainer/VBoxContainer"]
-margin_right = 72.0
-size_flags_horizontal = 3
-size_flags_vertical = 2
-custom_constants/separation = 15
-
-[node name="Tween" type="Tween" parent="GameManager/GUI/LaunchQueue"]
+[node name="LaunchQueue" parent="GameManager/GUI" instance=ExtResource( 9 )]
 
 [node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
 visible = false

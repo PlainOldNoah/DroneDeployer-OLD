@@ -1,18 +1,22 @@
 extends Control
 
-onready var queue_item_container := $MarginContainer/VBoxContainer/VBoxContainer
-onready var launch_queue_item_scene := "res://components/launch_queue_item.tscn"
-onready var tween:Tween = $Tween
-
-var queue_locked:bool = false # Bool to check if tween is currently doing something
-
 const offset:int = 65
 
-func launch_up_next():
-	tween_move_first()
-	
-	remove_from_queue(0)
-	increment_queue()
+var tween_time:float = 0
+
+onready var queue_item_container := $MarginContainer/QueueItemContainer
+onready var launch_queue_item_scene := "res://components/launch_queue_item.tscn"
+onready var tween:Tween = $Tween
+onready var entry_timer:Timer = $EntryTimer
+
+#var queue_locked:bool = false # Bool to check if tween is currently doing something
+var pre_queue:Array = [] # Holds nodes waiting to enter the queue, pre-queue
+
+
+func _ready():
+	yield(get_tree().root, "ready")
+	tween_time = Global.game_manager.deploy_cooldown
+	entry_timer.wait_time = Global.game_manager.deploy_cooldown
 
 
 # Creates a new launch queue item and adds it to the container
@@ -23,54 +27,65 @@ func add_to_queue(drone:Drone):
 	
 	queue_item_inst.modulate = drone.modulate # TEMP: Take the modulation with itself
 	
-	tween_append_back(queue_item_inst)
+	queue_item_inst.rect_position.y = (queue_item_container.get_child_count() - 1) * offset #DEBUG: Fast Mode
+#	enter_queue(queue_item_inst)
 
 
-func tween_append_back(queue_item_inst:Node):
-	var starting_pos:Vector2 = Vector2(0, 800)
-	var target_pos:Vector2 = Vector2(0, (queue_item_container.get_child_count() - 1) * offset)
-	tween.interpolate_property(queue_item_inst, "rect_position", starting_pos, target_pos, 1, Tween.TRANS_LINEAR)
-	tween.start()
-	yield(tween, "tween_completed")
-	reconcile_queue()
-
-func tween_move_first():
-	tween.interpolate_property(queue_item_container.get_child(0), "rect_position", queue_item_container.get_child(0).rect_position, Vector2(0, -100), 0.25, Tween.TRANS_LINEAR)
-	tween.start()
-	yield(tween, "tween_completed")
-	reconcile_queue()
-
-func increment_queue():
-	for i in queue_item_container.get_child_count() - 1:
-		var focused_child:Node = queue_item_container.get_child(i)
-		if focused_child.rect_position != Vector2(0, i * offset): # Check for drones in the wrong position
-			tween.interpolate_property(focused_child, "rect_position", focused_child.rect_position, Vector2(0, (i + 1) * offset), 1, Tween.TRANS_LINEAR)
-			tween.start()
-			yield(tween, "tween_completed")
+func launch_up_next():
+	pop_up_next()
+	remove_from_queue(0)
 
 
-func reconcile_queue():
-	for i in queue_item_container.get_child_count():
-		var focused_child:Node = queue_item_container.get_child(i)
-		if focused_child.rect_position != Vector2(0, i * offset): # Check for drones in the wrong position
-			tween.interpolate_property(focused_child, "rect_position", focused_child.rect_position, Vector2(0, i * offset), 1, Tween.TRANS_LINEAR)
-			tween.start()
-			yield(tween, "tween_completed")
-
-
-# Moves child in position idx and sends it to the back of the queue
+# Moves drone at front to back and stages it for reentry
 func move_to_back(idx:int):
-	var temp_child:Node = queue_item_container.get_child(idx)
-	queue_item_container.remove_child(temp_child)
-	queue_item_container.add_child(temp_child)
+	pop_up_next()
 	
-	var starting_pos:Vector2 = Vector2(0, 800)
-	var target_pos:Vector2 = Vector2(0, (queue_item_container.get_child_count() - 1) * offset)
-	tween.interpolate_property(temp_child, "rect_position", starting_pos, target_pos, 1, Tween.TRANS_LINEAR)
+	yield(tween, "tween_all_completed")
+	
+	var focus_child:Node = queue_item_container.get_child(idx)
+	focus_child.rect_position = Vector2(focus_child.rect_position.x, 1000)
+	enter_queue(focus_child)
+	
+	queue_item_container.move_child(focus_child, queue_item_container.get_child_count())
+
+
+# Up next drone travels forwards off of the screen
+func pop_up_next():
+	for i in queue_item_container.get_child_count():
+		var focus_child:LaunchQueueItem = queue_item_container.get_child(i)
+		match i:
+			0: 
+				tween.interpolate_property(focus_child, "rect_position", focus_child.rect_position, Vector2(focus_child.rect_position.x, -100), tween_time, Tween.TRANS_SINE)
+			_: 
+				if not pre_queue.has(focus_child):
+					tween.interpolate_property(focus_child, "rect_position", focus_child.rect_position, Vector2(focus_child.rect_position.x, (focus_child.get_index() - 1) * offset), tween_time, Tween.TRANS_LINEAR)
 	tween.start()
+
+
+# Places queue item off screen preparing to tween into the queue
+func enter_queue(q_item_inst:LaunchQueueItem):
+	q_item_inst.rect_position = Vector2(q_item_inst.rect_position.x, 1000)
+	pre_queue.append(q_item_inst)
+	entry_timer.start()
+
+
+# Puts nodes in their place
+#func condense_queue():
+#	for i in queue_item_container.get_child_count():
+#		var focus_child:LaunchQueueItem = queue_item_container.get_child(i)
+#		tween.interpolate_property(focus_child, "rect_position", focus_child.rect_position, Vector2(focus_child.rect_position.x, focus_child.get_index() * offset), 0.5, Tween.TRANS_LINEAR)
+#		tween.start()
 
 
 # Clears the queue item texture and moves it to the end
 func remove_from_queue(idx:int):
 	if queue_item_container.get_child(idx) != null:
 		queue_item_container.get_child(idx).queue_free()
+
+
+func _on_EntryTimer_timeout():
+	tween.interpolate_property(pre_queue[0], "rect_position", pre_queue[0].rect_position, Vector2(pre_queue[0].rect_position.x, pre_queue[0].get_index() * offset), tween_time, Tween.TRANS_LINEAR)
+	tween.start()
+	pre_queue.pop_front()
+	if not pre_queue.empty():
+		entry_timer.start()

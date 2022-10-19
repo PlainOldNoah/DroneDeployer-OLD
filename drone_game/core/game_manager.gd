@@ -1,9 +1,11 @@
+class_name GameManager
 extends Node
 
 signal game_paused()
 
 export var max_health:int = 3
 export var max_drones:int = 0
+export var deploy_cooldown:float = 0.5
 
 onready var level_manager := $LevelManager
 onready var gui := $GUI
@@ -25,7 +27,7 @@ var drone_queue:Array = [] # Holds Drone datatype
 
 func _ready():
 	Global.game_manager = self
-	set_max_drones(5)
+	set_max_drones(max_drones)
 	reset()
 
 
