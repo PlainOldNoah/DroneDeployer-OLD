@@ -3,7 +3,7 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR}
 var current_menu:int = MENUS.NONE
 
-onready var stats_bar:MarginContainer = get_node("StatsBar")
+onready var stats_bar:MarginContainer = $VBoxContainer/StatsBar
 
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")

@@ -9,7 +9,7 @@ export var deploy_cooldown:float = 0.5
 
 onready var level_manager := $LevelManager
 onready var gui := $GUI
-onready var stats_bar := $GUI/StatsBar
+onready var stats_bar := $GUI/VBoxContainer/StatsBar
 onready var launch_queue := $GUI/LaunchQueue
 onready var fabrication := $GUI/FabricatorMenu
 onready var play_time_clock:Timer = $PlayTimeClock
@@ -43,9 +43,11 @@ func _input(event):
 func reset():
 	if running:
 		stop_game()
+		
 	modify_health(max_health)
 	stats_bar.reset()
 	stats_bar.update_health(curr_health, max_health)
+	Logger.clear()
 
 
 # Beings enemy spawning and play clock

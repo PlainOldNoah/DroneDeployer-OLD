@@ -40,17 +40,17 @@ _global_script_class_icons={
 
 config/name="Drone Game"
 run/main_scene="res://core/main.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://core/globals.gd"
 GroupMan="*res://core/group_manager.gd"
+Logger="*res://core/logger.gd"
 
 [display]
 
-window/size/width=1440
-window/size/height=960
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

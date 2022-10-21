@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://lifeforms/generic_lifeform.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/slug.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/slug.png" type="Texture" id=2]
 [ext_resource path="res://lifeforms/slug.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -12,8 +12,8 @@ height = 19.9999
 collision_layer = 4
 collision_mask = 10
 script = ExtResource( 3 )
+max_health = 3
 speed = 40.0
-max_health = 1
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

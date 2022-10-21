@@ -91,6 +91,9 @@ func collect_drone(drone:Drone):
 	drone.disable()
 	drone.global_position = Vector2.ONE * 100
 	emit_signal("exp_retrieved", drone.exp_held)
+	
+	Logger.create("Drone collected with " + str(drone.exp_held) + " exp")
+	
 	drone.exp_held = 0
 	Global.game_manager.add_drone_to_queue(drone)
 

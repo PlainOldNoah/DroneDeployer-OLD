@@ -1,20 +1,16 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
-export var show_path:bool = false
-export var max_bounce_to_home:int = 0 # If 0 then ignore
-var bounce_count:int = 0
-
 onready var traveled_line:Line2D = $TraveledPath
 
+export var max_bounce_to_home:int = 0 # If 0 then ignore
+export var pickup_range:int = 1
+export var crit_chance:int = 0
+export var crit_damage_mod:int = 1
+export var show_path:bool = false
+
+var bounce_count:int = 0
 var exp_held:int = 0
-
-
-func _input(event): #DEBUG
-	if event.is_action_pressed("ui_page_up"):
-		self.scale += Vector2.ONE
-	elif event.is_action_pressed("ui_page_down"):
-		self.scale -= Vector2.ONE
 
 
 func _ready():
@@ -22,6 +18,13 @@ func _ready():
 	traveled_line.set_as_toplevel(true)
 	disable()
 	debug_color_shift()
+
+
+func _input(event): #DEBUG
+	if event.is_action_pressed("ui_page_up"):
+		self.scale += Vector2.ONE
+	elif event.is_action_pressed("ui_page_down"):
+		self.scale -= Vector2.ONE
 
 
 func debug_color_shift():

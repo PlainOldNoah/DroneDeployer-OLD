@@ -2,8 +2,8 @@ extends "res://lifeforms/generic_lifeform.gd"
 
 signal died()
 
-export var max_health:int = 3
-var health:int = max_health setget set_health
+#export var max_health:int = 3
+#var health:int = max_health setget set_health
 
 onready var immune_timer:Timer = $ImmunityTimer
 var immune:bool = false
@@ -24,17 +24,18 @@ func init(pos:Vector2):
 	set_vel_to_hub()
 
 
-# Sets the health to the new value
-func set_health(value:int):
-	health = clamp(value, 0, max_health)
-	if health == 0:
-		emit_signal("died", self)
-		state = STATES.DEAD
-		queue_free()
+## Sets the health to the new value
+#func set_health(value:int):
+#	health = clamp(value, 0, max_health)
+#	if health == 0:
+#		emit_signal("died", self)
+#		state = STATES.DEAD
+#		queue_free()
 
 
 # Reduces health damage
 func take_hit(damage:int=1):
+	print(health, ", ", damage)
 	if not immune:
 		set_health(health - damage)
 		immune = true
