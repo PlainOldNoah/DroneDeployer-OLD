@@ -9,6 +9,7 @@ onready var drone_info:MarginContainer = $VBoxContainer/DroneInfoView
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
 
+
 func _ready():
 	yield(get_tree().root, "ready")
 	stats_bar.reset()

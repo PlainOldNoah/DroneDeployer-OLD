@@ -37,7 +37,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "Parent of all gameplay related features"
 }
-max_drones = 8
+max_drones = 3
 
 [node name="LevelManager" parent="GameManager" instance=ExtResource( 2 )]
 

@@ -2,6 +2,7 @@ class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
 onready var traveled_line:Line2D = $TraveledPath
+onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 export var max_bounce_to_home:int = 0 # If 0 then ignore
 export var pickup_range:int = 1
@@ -17,7 +18,8 @@ func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
 	traveled_line.set_as_toplevel(true)
 	disable()
-	debug_color_shift()
+	
+	randomize_drone_stats()
 
 
 func _input(event): #DEBUG
@@ -27,8 +29,16 @@ func _input(event): #DEBUG
 		self.scale -= Vector2.ONE
 
 
-func debug_color_shift():
-	randomize()
+func randomize_drone_stats():
+	rng.randomize()
+	custom_name = self.name
+	health = rng.randi_range(1, 10)
+	speed = rng.randi_range(250, 500)
+	damage = rng.randi_range(1, 5)
+	pickup_range = rng.randi_range(1, 3)
+	crit_chance = rng.randi_range(0, 100)
+	crit_damage_mod = rng.randi_range(1, 5)
+	max_bounce_to_home = rng.randi_range(1, 5)
 	modulate = Color(randf(), randf(), randf())
 
 

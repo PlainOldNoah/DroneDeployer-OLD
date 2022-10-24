@@ -3,6 +3,7 @@ extends KinematicBody2D
 enum STATES {SPAWNING, MOVING, STOPPED, IDLE, DEAD}
 export(STATES) var state = STATES.SPAWNING
 
+export var custom_name:String = ""
 export var damage:int = 1
 export var max_health:int = 1
 export var speed:float = 100.0

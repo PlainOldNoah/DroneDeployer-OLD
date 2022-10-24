@@ -63,8 +63,6 @@ func craft_complete():
 		"health":
 			Global.game_manager.modify_health(1)
 	
-#	if item_to_craft == "drone":
-		
 	reset_core()
 
 

@@ -2,6 +2,7 @@ class_name GameManager
 extends Node
 
 signal game_paused()
+signal drone_order_changed()
 
 export var max_health:int = 3
 export var max_drones:int = 0
@@ -22,13 +23,14 @@ var curr_health:int = 0
 var curr_exp:int = 0
 var score:int = 0
 var curr_survived_sec:int = 0
+
 var drone_queue:Array = [] # Holds Drone datatype
 
 
 func _ready():
 	Global.game_manager = self
 	set_max_drones(max_drones)
-	reset()
+	call_deferred("reset")
 
 
 func _input(event):
@@ -47,6 +49,7 @@ func reset():
 	modify_health(max_health)
 	stats_bar.reset()
 	stats_bar.update_health(curr_health, max_health)
+	emit_signal("drone_order_changed", get_drone_from_queue(0))
 	Logger.clear()
 
 
@@ -115,12 +118,16 @@ func deploy_next_up(position:Vector2, rotation:float):
 	drone_2_deploy.init(position, rotation)
 	launch_queue.launch_up_next()
 	drone_queue.remove(0)
+	
+	emit_signal("drone_order_changed", get_drone_from_queue(0))
 
 
 # Puts the current drone to the back of the queue
 func skip_up_next():
 	drone_queue.push_back(drone_queue.pop_front())
 	launch_queue.move_to_back(0)
+	
+	emit_signal("drone_order_changed", get_drone_from_queue(0))
 
 
 # Return the idx drone from the queue
@@ -134,6 +141,8 @@ func add_drone_to_queue(drone:Drone):
 	launch_queue.add_to_queue(drone)
 	
 	stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
+	
+	emit_signal("drone_order_changed", get_drone_from_queue(0))
 
 
 # Adds value to the current exp and emits a signal
