@@ -14,31 +14,43 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://lifeforms/drone.gd"
 }, {
+"base": "Node",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://core/game_manager.gd"
+}, {
 "base": "Node2D",
 "class": "Hub",
 "language": "GDScript",
 "path": "res://core/hub.gd"
+}, {
+"base": "TextureRect",
+"class": "LaunchQueueItem",
+"language": "GDScript",
+"path": "res://components/launch_queue_item.gd"
 } ]
 _global_script_class_icons={
 "Drone": "",
-"Hub": ""
+"GameManager": "",
+"Hub": "",
+"LaunchQueueItem": ""
 }
 
 [application]
 
 config/name="Drone Game"
 run/main_scene="res://core/main.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://core/globals.gd"
 GroupMan="*res://core/group_manager.gd"
+Logger="*res://core/logger.gd"
 
 [display]
 
-window/size/width=1440
-window/size/height=960
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

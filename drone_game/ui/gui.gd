@@ -3,7 +3,8 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR}
 var current_menu:int = MENUS.NONE
 
-onready var stats_bar:MarginContainer = get_node("StatsBar")
+onready var stats_bar:MarginContainer = $VBoxContainer/StatsBar
+onready var drone_info:MarginContainer = $VBoxContainer/DroneInfoView
 
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
@@ -12,6 +13,7 @@ onready var fabricator_menu:Control = get_node("FabricatorMenu")
 func _ready():
 	yield(get_tree().root, "ready")
 	stats_bar.reset()
+	drone_info.reset()
 	fabricator_menu.reset()
 	dismiss_menu()
 

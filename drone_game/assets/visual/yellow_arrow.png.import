@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Test_Tiles.png-fa6326a8298fc7e479dd6297461ce94b.stex"
+path="res://.import/yellow_arrow.png-9b67307e33012bdcdc6fd050d9a9dae5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Test_Tiles.png"
-dest_files=[ "res://.import/Test_Tiles.png-fa6326a8298fc7e479dd6297461ce94b.stex" ]
+source_file="res://assets/visual/yellow_arrow.png"
+dest_files=[ "res://.import/yellow_arrow.png-9b67307e33012bdcdc6fd050d9a9dae5.stex" ]
 
 [params]
 

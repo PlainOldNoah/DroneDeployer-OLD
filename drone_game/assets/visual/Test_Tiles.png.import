@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/caution_9_square.png-ab1cec3a6156426b523ca9b7f75601f8.stex"
+path="res://.import/Test_Tiles.png-d2989585c23efa59266e2116fc9066ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/caution_9_square.png"
-dest_files=[ "res://.import/caution_9_square.png-ab1cec3a6156426b523ca9b7f75601f8.stex" ]
+source_file="res://assets/visual/Test_Tiles.png"
+dest_files=[ "res://.import/Test_Tiles.png-d2989585c23efa59266e2116fc9066ca.stex" ]
 
 [params]
 

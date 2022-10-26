@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/fabricator_menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/industrial_9_square.png" type="Texture" id=2]
-[ext_resource path="res://assets/small_drone.png" type="Texture" id=3]
-[ext_resource path="res://assets/health_plus.png" type="Texture" id=4]
+[ext_resource path="res://assets/visual/industrial_9_square.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/small_drone.png" type="Texture" id=3]
+[ext_resource path="res://assets/visual/health_plus.png" type="Texture" id=4]
 [ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=5]
 
 [node name="FabricatorMenu" type="Control"]

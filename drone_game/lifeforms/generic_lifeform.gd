@@ -3,8 +3,13 @@ extends KinematicBody2D
 enum STATES {SPAWNING, MOVING, STOPPED, IDLE, DEAD}
 export(STATES) var state = STATES.SPAWNING
 
+export var custom_name:String = ""
+export var damage:int = 1
+export var max_health:int = 1
 export var speed:float = 100.0
+
 var velocity:Vector2 = Vector2.ZERO setget set_velocity
+onready var health:int = max_health setget set_health
 
 
 func _physics_process(delta):
@@ -15,6 +20,21 @@ func _physics_process(delta):
 
 func handle_collision(collision:KinematicCollision2D):
 	print_debug(collision, " was not handled by ", name)
+
+
+# Sets the health to the new value
+func set_health(value:int):
+	print(value)
+	health = clamp(value, 0, max_health)
+	if health == 0:
+		emit_signal("died", self)
+		state = STATES.DEAD
+		queue_free()
+
+
+# Reduces health damage
+func take_hit(damage:int=1):
+	pass
 
 
 # Changes the velocity to the parameterized value

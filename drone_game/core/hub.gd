@@ -30,6 +30,8 @@ func _ready():
 	if is_instance_valid(Global.game_manager):
 		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
 		_ok = self.connect("hit_taken", Global.game_manager, "take_hit")
+	
+	deploy_cooldown.wait_time = Global.game_manager.deploy_cooldown
 
 
 func _input(event):
@@ -38,7 +40,9 @@ func _input(event):
 		deploy_drone()
 		deploy_cooldown.start()
 	elif event.is_action_pressed("deploy_skip") and can_deploy:
+		can_deploy = false
 		skip_drone()
+		deploy_cooldown.start()
 
 
 func _process(_delta):
@@ -87,6 +91,9 @@ func collect_drone(drone:Drone):
 	drone.disable()
 	drone.global_position = Vector2.ONE * 100
 	emit_signal("exp_retrieved", drone.exp_held)
+	
+	Logger.create("Drone collected with " + str(drone.exp_held) + " exp")
+	
 	drone.exp_held = 0
 	Global.game_manager.add_drone_to_queue(drone)
 

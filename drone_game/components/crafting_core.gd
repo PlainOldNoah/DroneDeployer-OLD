@@ -22,7 +22,7 @@ func _ready():
 # Sets the core's info to default values
 func reset_core():
 	timer.stop()
-	item_icon.texture = load("res://assets/red_x.png")
+	item_icon.texture = load("res://assets/visual/red_x.png")
 	item_label.text = "Idle"
 	item_craft_time.text = "0:00"
 	item_to_craft = ""
@@ -63,8 +63,6 @@ func craft_complete():
 		"health":
 			Global.game_manager.modify_health(1)
 	
-#	if item_to_craft == "drone":
-		
 	reset_core()
 
 
