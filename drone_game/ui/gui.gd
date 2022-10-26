@@ -11,6 +11,7 @@ onready var fabricator_menu:Control = get_node("FabricatorMenu")
 
 
 func _ready():
+	Global.gui = self
 	yield(get_tree().root, "ready")
 	stats_bar.reset()
 	drone_info.reset()
@@ -26,6 +27,20 @@ func _input(event):
 			request_menu(MENUS.FABRICATOR)
 	elif event.is_action_pressed("ui_cancel"):
 		dismiss_menu()
+
+
+# Returns a child menu
+func get_menu(menu:String) -> Node:
+	match menu:
+		"stats_bar":
+			return stats_bar
+		"drone_info_view":
+			return drone_info
+		"launch_queue":
+			return $LaunchQueue
+		_:
+			print_debug("ERROR: Menu <", menu, "> does not exist")
+			return null
 
 
 # Middle function to connect GUI to stats bar

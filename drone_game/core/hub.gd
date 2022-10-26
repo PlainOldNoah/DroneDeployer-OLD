@@ -1,7 +1,7 @@
 class_name Hub
 extends Node2D
 
-signal exp_retrieved()
+#signal exp_retrieved()
 signal hit_taken()
 
 export var rotation_weight:float = 0.2
@@ -13,9 +13,9 @@ onready var deploy_cooldown:Timer = $DeployCooldown
 onready var ray:RayCast2D = $Deployer/TrajectoryRay
 onready var trajectory:Line2D = $TrajectoryLine
 
-var drone_scene = preload("res://lifeforms/drone.tscn")
+#var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
-var drone_list:Array
+#var drone_list:Array
 
 
 func _ready():
@@ -28,8 +28,8 @@ func _ready():
 	ray.cast_to.x = max(OS.window_size.x, OS.window_size.y)
 	
 	if is_instance_valid(Global.game_manager):
-		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
-		_ok = self.connect("hit_taken", Global.game_manager, "take_hit")
+#		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
+		var _ok = self.connect("hit_taken", Global.game_manager, "take_hit")
 	
 	deploy_cooldown.wait_time = Global.game_manager.deploy_cooldown
 
@@ -79,23 +79,25 @@ func rotate_arrow_smooth():
 
 # Retrieves the first drone from the queue and deploys it
 func deploy_drone():
-	Global.game_manager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
+	Global.drone_manager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
 
 
 func skip_drone():
-	Global.game_manager.skip_up_next()
+	Global.drone_manager.skip_up_next()
 
 
 # Handles drone given in parameter
 func collect_drone(drone:Drone):
-	drone.disable()
-	drone.global_position = Vector2.ONE * 100
-	emit_signal("exp_retrieved", drone.exp_held)
+	Global.drone_manager.collect_drone(drone)
 	
-	Logger.create("Drone collected with " + str(drone.exp_held) + " exp")
-	
-	drone.exp_held = 0
-	Global.game_manager.add_drone_to_queue(drone)
+#	drone.disable()
+#	drone.global_position = Vector2.ONE * 100
+#	emit_signal("exp_retrieved", drone.exp_held)
+#
+#	Logger.create("Drone collected with " + str(drone.exp_held) + " exp")
+#
+#	drone.exp_held = 0
+#	Global.drone_manager.add_drone_to_queue(drone)
 
 
 # Limits drone spamming
