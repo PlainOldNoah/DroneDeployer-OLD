@@ -9,7 +9,7 @@ var messages:PoolStringArray = []
 func create(message:String):
 	messages.append(message)
 	emit_signal("message_created", message)
-	print_msg(message)
+#	print_msg(message)
 
 
 # Removes all messages from the logger
