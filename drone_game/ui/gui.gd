@@ -3,8 +3,9 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR}
 var current_menu:int = MENUS.NONE
 
-onready var stats_bar:MarginContainer = $VBoxContainer/StatsBar
-onready var drone_info:MarginContainer = $VBoxContainer/DroneInfoView
+onready var stats_bar:MarginContainer = $HBoxContainer/VBoxContainer/StatsBar
+onready var drone_info:MarginContainer = $HBoxContainer/VBoxContainer/DroneInfoView
+onready var launch_queue:Control = $HBoxContainer/LaunchQueue
 
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
@@ -37,7 +38,9 @@ func get_menu(menu:String) -> Node:
 		"drone_info_view":
 			return drone_info
 		"launch_queue":
-			return $LaunchQueue
+			return launch_queue
+		"fabricator":
+			return fabricator_menu
 		_:
 			print_debug("ERROR: Menu <", menu, "> does not exist")
 			return null
