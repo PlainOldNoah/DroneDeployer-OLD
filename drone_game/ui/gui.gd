@@ -3,9 +3,9 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR}
 var current_menu:int = MENUS.NONE
 
-onready var stats_bar:MarginContainer = $HBoxContainer/VBoxContainer/StatsBar
-onready var drone_info:MarginContainer = $HBoxContainer/VBoxContainer/DroneInfoView
-onready var launch_queue:Control = $HBoxContainer/LaunchQueue
+onready var stats_bar:MarginContainer = find_node("StatsBar")
+onready var drone_info:MarginContainer = find_node("DroneInfoView")
+onready var launch_queue:Control = find_node("LaunchQueue")
 
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
@@ -69,3 +69,11 @@ func dismiss_menu():
 	background.hide()
 	fabricator_menu.hide()
 	current_menu = MENUS.NONE
+
+
+func adjust_gui_scales(): # DEBUG FUNCTION
+	var scale_factor:int = $GameBackground.rect_scale.x
+	$MarginContainer.add_constant_override("margin_bottom", scale_factor * 8) # Scale factor times number of pixles that make up the border
+	$MarginContainer.add_constant_override("margin_left", scale_factor * 8)
+	$MarginContainer.add_constant_override("margin_right", scale_factor * 8)
+	$MarginContainer.add_constant_override("margin_top", scale_factor * 8)
