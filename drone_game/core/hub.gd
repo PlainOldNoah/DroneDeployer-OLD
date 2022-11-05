@@ -89,15 +89,6 @@ func skip_drone():
 # Handles drone given in parameter
 func collect_drone(drone:Drone):
 	Global.drone_manager.collect_drone(drone)
-	
-#	drone.disable()
-#	drone.global_position = Vector2.ONE * 100
-#	emit_signal("exp_retrieved", drone.exp_held)
-#
-#	Logger.create("Drone collected with " + str(drone.exp_held) + " exp")
-#
-#	drone.exp_held = 0
-#	Global.drone_manager.add_drone_to_queue(drone)
 
 
 # Limits drone spamming

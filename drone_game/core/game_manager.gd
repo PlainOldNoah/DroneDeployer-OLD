@@ -8,15 +8,15 @@ export var max_health:int = 3
 export var max_drones:int = 0
 export var deploy_cooldown:float = 0.5
 
-onready var level_manager := $LevelManager
-onready var drone_manager := $DroneManager
-onready var gui := $GUI
-onready var stats_bar := $GUI/VBoxContainer/StatsBar
-onready var launch_queue := $GUI/LaunchQueue
-onready var fabrication := $GUI/FabricatorMenu
 onready var play_time_clock:Timer = $PlayTimeClock
 
 var drone_scene = preload("res://lifeforms/drone.tscn")
+
+var level_manager = null
+var drone_manager = null
+var gui = null
+var stats_bar = null
+var fabrication = null
 
 var running:bool = false
 var curr_drone_count:int = 0
@@ -31,6 +31,13 @@ var drone_queue:Array = [] # Holds Drone datatype
 func _ready():
 	Global.game_manager = self
 	yield(get_tree().root, "ready")
+	
+	level_manager = Global.level_manager
+	drone_manager = Global.drone_manager
+	gui = Global.gui
+	stats_bar = gui.get_menu("stats_bar")
+	fabrication = gui.get_menu("fabricator")
+	
 	drone_manager.set_max_drones(max_drones)
 	call_deferred("reset")
 

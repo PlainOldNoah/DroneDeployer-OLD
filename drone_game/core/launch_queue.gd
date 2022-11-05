@@ -10,18 +10,32 @@ onready var tween:Tween = $Tween
 onready var entry_timer:Timer = $EntryTimer
 
 #var queue_locked:bool = false # Bool to check if tween is currently doing something
-var pre_queue:Array = [] # Holds nodes waiting to enter the queue, pre-queue
+var drone_manager:DroneManager = null
 var queue:Array = []
 var launch_enabled:bool = true # TODO: Work on this later. Needs to talk to HUB?
+var condensing:bool = false
+
+var off_screen_top:int = 0
+var off_screen_bottom:int = 0
+
 
 func _ready():
 	yield(get_tree().root, "ready")
 	tween_time = Global.game_manager.deploy_cooldown
 	entry_timer.wait_time = Global.game_manager.deploy_cooldown
+	drone_manager = Global.drone_manager
+	
+	off_screen_top = -self.rect_global_position.y - (2 * offset)
+	off_screen_bottom = self.rect_global_position.y + rect_size.y + offset
+	
+	var _ok := drone_manager.connect("drone_added_to_queue", self, "create_queue_item")
+	_ok = drone_manager.connect("drone_launched", self, "deploy_up_next")
 
 
 # Makes a new queue item for the given drone
 func create_queue_item(drone:Drone):
+	print("STACK: create_queue_item")
+	
 	var queue_item_inst = load(launch_queue_item_scene).instance()
 	queue_item_container.add_child(queue_item_inst)
 	queue_item_inst.texture = drone.get_sprite()
@@ -31,56 +45,53 @@ func create_queue_item(drone:Drone):
 	enter_queue(queue_item_inst)
 
 
-# Adds the q_item_inst into an array to await further processing
-func enter_queue(q_item_inst:LaunchQueueItem):
-	q_item_inst.rect_position = Vector2(q_item_inst.rect_position.x, 500)
-	queue.append(q_item_inst)
+# Adds the queue_item_inst into an array
+func enter_queue(queue_item_inst:LaunchQueueItem):
+	queue_item_inst.rect_position = Vector2(queue_item_inst.rect_position.x, off_screen_bottom)
+	queue.append(queue_item_inst)
 	
 	condense_queue()
 
 
 # Moves all queue items to their correct positions
 func condense_queue():
-	if queue.empty():
-		return
+	if queue.empty() or condensing:
+		return self
+	
+#	condensing = true
 	
 	for i in queue.size():
-		tween.interpolate_property(queue[i], "rect_position", null, Vector2(queue[i].rect_position.x, i * offset), 0.5, Tween.TRANS_SINE)
-		tween.start()
-#		yield(tween, "tween_completed")
+		queue[i].rect_position.y = i * offset
+#		tween.interpolate_property(queue[i], "rect_position", null, Vector2(queue[i].rect_position.x, i * offset), 0.5, Tween.TRANS_SINE)
+#	tween.start()
+	
+
+#	condensing = false
+#	return
 
 
-# Removes the first node
-func deploy_up_next():
+# Pops the next drone in line, either deletes it or has it reenter the queue
+func deploy_up_next(delete_up_next:bool=true):
+	print("STACK: deploy_up_next")
 	if not launch_enabled:
-		print("Cannot launch")
 		return
 	
 	var up_next:LaunchQueueItem = queue[0]
 	
-	tween.interpolate_property(up_next, "rect_position", null, Vector2(up_next.rect_position.x, -100), 0.5, Tween.TRANS_SINE)
+	tween.interpolate_property(up_next, "rect_position", null, Vector2(up_next.rect_position.x, off_screen_top), 0.5, Tween.TRANS_SINE)
 	tween.start()
 	yield(tween, "tween_completed")
 	
 	queue.pop_front()
-	condense_queue()
-	up_next.queue_free()
-
-
-# Removes the first node and replaces it in the back
-func skip_up_next():
-	if not launch_enabled:
-		print("Cannot launch")
-		return
 	
-	var up_next:LaunchQueueItem = queue[0]
+	if delete_up_next:
+		up_next.queue_free()
+		call_deferred("condense_queue")
+	else:
+		up_next.rect_position.y = off_screen_bottom
+		call_deferred("enter_queue", up_next)
 	
-	tween.interpolate_property(up_next, "rect_position", null, Vector2(up_next.rect_position.x, -100), 0.5, Tween.TRANS_SINE)
-	tween.start()
-	yield(tween, "tween_completed")
-	
-	queue.pop_front()
-	enter_queue(up_next)
+	print("deploy_up_next finished")
 
 
 func _on_Tween_tween_completed(object, key):
