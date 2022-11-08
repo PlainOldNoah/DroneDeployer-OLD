@@ -1,6 +1,6 @@
-extends MarginContainer
+extends Control
 
-onready var message_container:VBoxContainer = $ScrollContainer/VBoxContainer
+onready var message_container:VBoxContainer = $MarginContainer/ScrollContainer/MessageContainer
 
 
 func _ready():
@@ -11,9 +11,6 @@ func _ready():
 func add_new_msg(message:String):
 	var msg_label:Label = Label.new()
 	msg_label.autowrap = true
-#	msg_label.size_flags_horizontal = SIZE_EXPAND_FILL
 
 	msg_label.text = message
 	message_container.add_child(msg_label)
-
-#	$ScrollContainer/VBoxContainer/Label.text = message

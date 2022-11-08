@@ -3,8 +3,8 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR}
 var current_menu:int = MENUS.NONE
 
-onready var stats_bar:MarginContainer = find_node("StatsBar")
-onready var drone_info:MarginContainer = find_node("DroneInfoView")
+onready var stats_bar:Control = find_node("StatsBar")
+onready var drone_info:Control = find_node("DroneInfoView")
 onready var launch_queue:Control = find_node("LaunchQueue")
 
 onready var background:ColorRect = get_node("BackgroundFade")

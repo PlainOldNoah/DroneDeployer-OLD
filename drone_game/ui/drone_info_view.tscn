@@ -1,80 +1,106 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/drone_info_view.gd" type="Script" id=2]
 
-[node name="DroneInfoView" type="MarginContainer"]
-margin_right = 224.0
-margin_bottom = 198.0
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/industrial_9_square.png-196870362c9792539ff214f864a5a97f.stex"
+
+[node name="DroneInfoView" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 1 )
+region_rect = Rect2( 0, 0, 32, 32 )
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 1 )
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
-script = ExtResource( 2 )
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
 __meta__ = {
 "_editor_description_": "Displays specific stats of a given drone, usually the first one in the launch queue"
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 244.0
-margin_bottom = 218.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 1908.0
+margin_bottom = 1068.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="NameLabel" type="Label" parent="VBoxContainer"]
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 16.0
 text = "Name: "
 
-[node name="BatteryLabel" type="Label" parent="VBoxContainer"]
+[node name="BatteryLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 26.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 42.0
 text = "Battery: "
 
-[node name="SpeedLabel" type="Label" parent="VBoxContainer"]
+[node name="SpeedLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 52.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 68.0
 text = "Speed: "
 
-[node name="DamageLabel" type="Label" parent="VBoxContainer"]
+[node name="DamageLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 78.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 94.0
 text = "Damage: "
 
-[node name="PickupLabel" type="Label" parent="VBoxContainer"]
+[node name="PickupLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 104.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 120.0
 text = "Pickup Range: "
 
-[node name="CritChanceLabel" type="Label" parent="VBoxContainer"]
+[node name="CritChanceLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 130.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 146.0
 text = "Crit Chance: "
 
-[node name="CritDamageLabel" type="Label" parent="VBoxContainer"]
+[node name="CritDamageLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 156.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 172.0
 text = "Crit Damage: "
 
-[node name="MaxBounceLabel" type="Label" parent="VBoxContainer"]
+[node name="MaxBounceLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 182.0
-margin_right = 224.0
+margin_right = 1896.0
 margin_bottom = 198.0
 text = "Max Bounces: "
