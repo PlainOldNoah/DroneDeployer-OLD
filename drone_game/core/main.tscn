@@ -1,9 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
-[ext_resource path="res://core/hub.tscn" type="PackedScene" id=3]
-[ext_resource path="res://levels/testing_map.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/gui.gd" type="Script" id=5]
 [ext_resource path="res://core/game_manager.gd" type="Script" id=6]
 [ext_resource path="res://ui/fabricator_menu.tscn" type="PackedScene" id=7]
@@ -14,7 +12,7 @@
 [ext_resource path="res://core/drone_manager.gd" type="Script" id=12]
 [ext_resource path="res://ui/stats_bar.tscn" type="PackedScene" id=13]
 [ext_resource path="res://core/playing_viewport.gd" type="Script" id=14]
-[ext_resource path="res://levels/grass_map.tscn" type="PackedScene" id=15]
+[ext_resource path="res://gameboard.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/visual/industrial_9_square_joined.png" type="Texture" id=16]
 
 [node name="Main" type="Node"]
@@ -139,7 +137,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 16 )
-region_rect = Rect2( 32, 0, 32, 32 )
+region_rect = Rect2( 64, 0, 32, 32 )
 patch_margin_left = 11
 patch_margin_top = 21
 patch_margin_right = 11
@@ -153,21 +151,11 @@ size = Vector2( 1360, 1016 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="GrassMap" parent="GameManager/GUI/MarginContainer/HBoxContainer/PlayingViewport/ViewportContainer/Viewport" instance=ExtResource( 15 )]
-
 [node name="Camera2D" type="Camera2D" parent="GameManager/GUI/MarginContainer/HBoxContainer/PlayingViewport/ViewportContainer/Viewport"]
-current = true
+
+[node name="Gameboard" parent="GameManager/GUI/MarginContainer/HBoxContainer/PlayingViewport/ViewportContainer/Viewport" instance=ExtResource( 15 )]
 
 [node name="LevelManager" parent="GameManager/GUI/MarginContainer/HBoxContainer/PlayingViewport/ViewportContainer/Viewport" instance=ExtResource( 2 )]
-__meta__ = {
-"_editor_description_": "Handles all level and map related functions"
-}
-
-[node name="TestingMap" parent="GameManager/GUI/MarginContainer/HBoxContainer/PlayingViewport/ViewportContainer/Viewport/LevelManager" instance=ExtResource( 4 )]
-visible = false
-
-[node name="Hub" parent="GameManager/GUI/MarginContainer/HBoxContainer/PlayingViewport/ViewportContainer/Viewport/LevelManager" instance=ExtResource( 3 )]
-scale = Vector2( 2, 2 )
 
 [node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
 visible = false
