@@ -33,7 +33,7 @@ func set_health(value:int):
 
 
 # Reduces health damage
-func take_hit(damage:int=1):
+func take_hit(value:int=1):
 	pass
 
 

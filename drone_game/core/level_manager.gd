@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var map := $TestingMap
+onready var map = null
 onready var spawn_clock:Timer = $SpawnClock
 
 var slug_path := preload("res://lifeforms/slug.tscn")

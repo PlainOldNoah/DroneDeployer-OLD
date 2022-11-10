@@ -59,7 +59,7 @@ func craft(item:String, temp_name:String):
 func craft_complete():
 	match item_to_craft:
 		"drone":
-			Global.game_manager.increment_max_drones(1)
+			Global.drone_manager.increment_max_drones(1)
 		"health":
 			Global.game_manager.modify_health(1)
 	

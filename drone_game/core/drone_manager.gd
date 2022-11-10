@@ -3,7 +3,7 @@ extends Node
 
 signal drone_added_to_queue()
 signal drone_launched()
-signal queue_unordered()
+#signal queue_unordered()
 
 var max_drones:int = 0
 var curr_drone_count:int = 0

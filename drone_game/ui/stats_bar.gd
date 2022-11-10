@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 onready var curr_exp_label:Label = get_node("%CurrentExp")
 onready var score_label:Label = get_node("%Score")

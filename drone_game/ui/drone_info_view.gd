@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 onready var name_label:Label = get_node("%NameLabel")
 onready var battery_label:Label = get_node("%BatteryLabel")

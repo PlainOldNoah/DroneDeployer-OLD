@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 onready var message_container:VBoxContainer = $MarginContainer/ScrollContainer/MessageContainer
 

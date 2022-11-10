@@ -14,6 +14,7 @@
 
 [node name="Gameboard" type="Node2D"]
 script = ExtResource( 1 )
+barrier_width = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -27,6 +28,9 @@ current = true
 
 [node name="ScreenEdgeBarrier" type="StaticBody2D" parent="."]
 collision_mask = 0
+__meta__ = {
+"_editor_description_": "Through script expands and forms a barrier around the edge of the screen"
+}
 
 [node name="BarrierTop" type="CollisionShape2D" parent="ScreenEdgeBarrier"]
 shape = SubResource( 1 )
@@ -39,5 +43,3 @@ shape = SubResource( 3 )
 
 [node name="BarrierLeft" type="CollisionShape2D" parent="ScreenEdgeBarrier"]
 shape = SubResource( 4 )
-
-[node name="CanvasLayer" type="Node" parent="."]

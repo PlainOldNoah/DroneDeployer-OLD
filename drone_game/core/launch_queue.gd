@@ -94,11 +94,11 @@ func deploy_up_next(delete_up_next:bool=true):
 	print("deploy_up_next finished")
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(object, _key):
 	if queue[0] == object:
 		launch_enabled = true
 
 
-func _on_Tween_tween_started(object, key):
+func _on_Tween_tween_started(object, _key):
 	if queue[0] == object:
 		launch_enabled = false
