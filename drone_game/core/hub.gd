@@ -51,16 +51,6 @@ func _process(_delta):
 
 
 # DEPRECIATED
-# Rotate the arrow to use arrow keys
-func rotate_arrow_degree():
-	var direction:float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if Input.is_action_pressed("deploy_snap"):
-		deployer.rotation_degrees = lerp(deployer.rotation_degrees, stepify(deployer.rotation_degrees, 45), 0.1)
-	else:
-		deployer.rotation_degrees += direction * 3
-
-
-# DEPRECIATED
 # Rotate the deployment arrow to look at the cursor
 func rotate_arrow():
 	deployer.look_at(get_global_mouse_position())

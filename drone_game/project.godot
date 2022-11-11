@@ -50,9 +50,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://core/globals.gd"
-GroupMan="*res://core/group_manager.gd"
-Logger="*res://core/logger.gd"
+Global="*res://core/globals/globals.gd"
+GroupMan="*res://core/globals/group_manager.gd"
+Logger="*res://core/globals/logger.gd"
 
 [display]
 
