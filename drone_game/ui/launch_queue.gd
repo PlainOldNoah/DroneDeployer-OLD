@@ -78,9 +78,9 @@ func deploy_up_next(delete_up_next:bool=true):
 	
 	var up_next:LaunchQueueItem = queue[0]
 	
-	tween.interpolate_property(up_next, "rect_position", null, Vector2(up_next.rect_position.x, off_screen_top), 0.5, Tween.TRANS_SINE)
-	tween.start()
-	yield(tween, "tween_completed")
+#	tween.interpolate_property(up_next, "rect_position", null, Vector2(up_next.rect_position.x, off_screen_top), 0.5, Tween.TRANS_SINE)
+#	tween.start()
+#	yield(tween, "tween_completed")
 	
 	queue.pop_front()
 	

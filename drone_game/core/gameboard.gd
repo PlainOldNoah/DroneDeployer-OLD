@@ -11,9 +11,9 @@ onready var barrier_bottom:CollisionShape2D = $ScreenEdgeBarrier/BarrierBottom
 onready var barrier_left:CollisionShape2D = $ScreenEdgeBarrier/BarrierLeft
 onready var barrier_right:CollisionShape2D = $ScreenEdgeBarrier/BarrierRight
 
+
 func _ready():
 	var view_rect:Rect2 = get_viewport_rect()
-	
 	fill_cells(view_rect)
 
 
@@ -25,7 +25,6 @@ func move_barriers(area:Rect2):
 	# DEBUG: TESTING NUMBERS
 #	height *= 0.95
 #	width *= 0.95
-	
 	
 	barrier_top.shape.extents = Vector2(width, barrier_width)
 	barrier_top.position = Vector2(0, -height)
