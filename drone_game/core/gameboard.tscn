@@ -1,7 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://core/gameboard.gd" type="Script" id=1]
-[ext_resource path="res://core/hub.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tile_sets/testing_tileset.tres" type="TileSet" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -13,18 +11,11 @@
 [sub_resource type="RectangleShape2D" id=4]
 
 [node name="Gameboard" type="Node2D"]
-script = ExtResource( 1 )
-barrier_width = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
-
-[node name="Hub" parent="." instance=ExtResource( 2 )]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="ScreenEdgeBarrier" type="StaticBody2D" parent="."]
 collision_mask = 0

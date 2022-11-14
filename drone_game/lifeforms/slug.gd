@@ -45,6 +45,7 @@ func take_hit(damage:int=1):
 
 # OVERRIDE Different behavior for hitting drone or the hub
 func handle_collision(collision:KinematicCollision2D):
+#	print("SLUG: ", collision.collider.name)
 	if collision.collider.is_in_group("HUB"):
 		queue_free()
 

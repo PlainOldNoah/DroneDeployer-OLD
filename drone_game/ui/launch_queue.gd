@@ -34,7 +34,7 @@ func _ready():
 
 # Makes a new queue item for the given drone
 func create_queue_item(drone:Drone):
-	print("STACK: create_queue_item")
+#	print("STACK: create_queue_item")
 	
 	var queue_item_inst = load(launch_queue_item_scene).instance()
 	queue_item_container.add_child(queue_item_inst)
@@ -72,7 +72,7 @@ func condense_queue():
 
 # Pops the next drone in line, either deletes it or has it reenter the queue
 func deploy_up_next(delete_up_next:bool=true):
-	print("STACK: deploy_up_next")
+#	print("STACK: deploy_up_next")
 	if not launch_enabled:
 		return
 	

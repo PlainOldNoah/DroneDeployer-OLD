@@ -76,7 +76,7 @@ func stop_game():
 	print("Stopping Game...")
 	play_time_clock.stop()
 	running = false
-	level_manager.stop_spawn_clock()
+#	level_manager.stop_spawn_clock()
 	
 	for i in get_tree().get_nodes_in_group("ENEMY"):
 		i.queue_free()

@@ -31,7 +31,7 @@ func _ready():
 #		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
 		var _ok = self.connect("hit_taken", Global.game_manager, "take_hit")
 	
-	deploy_cooldown.wait_time = Global.game_manager.deploy_cooldown
+#	deploy_cooldown.wait_time = Global.game_manager.deploy_cooldown
 
 
 func _input(event):
@@ -103,3 +103,4 @@ func emit_ray():
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("ENEMY"):
 		emit_signal("hit_taken", 1)
+		body.queue_free() # TODO: If I want to make this more fancy later
