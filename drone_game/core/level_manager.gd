@@ -1,3 +1,4 @@
+class_name LevelManager
 extends Node2D
 
 export var barrier_width:int = 3
@@ -8,10 +9,14 @@ onready var barrier_bottom:CollisionShape2D = $LevelEdgeBarrier/BarrierBottom
 onready var barrier_left:CollisionShape2D = $LevelEdgeBarrier/BarrierLeft
 onready var barrier_right:CollisionShape2D = $LevelEdgeBarrier/BarrierRight
 
+
+
 var area:Vector2 = Vector2.ZERO
 var perimeter:int = 0
 var corners:Array = [0]
 
+var slug_path := preload("res://lifeforms/slug.tscn")
+var exp_path := preload("res://objects/exp.tscn")
 var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 
@@ -26,9 +31,6 @@ func _ready():
 		corners.append(corners.back() + area.x)
 		corners.append(corners.back() + area.y)
 	
-	
-	test()
-	
 	move_barriers(area)
 	generate_tiles()
 
@@ -38,11 +40,9 @@ func _input(event): #DEBUG
 		scale *= 1.25
 	elif event.is_action_pressed("ui_page_down"):
 		scale /= 1.25
-	elif event.is_action_pressed("debug"):
-		spawn_enemy()
 	
-#	move_barriers(area)
-#	generate_tiles()
+	move_barriers(area)
+	generate_tiles()
 
 
 # Adjusts the size of the barriers to fit the current screen size and moves them into place
@@ -93,12 +93,17 @@ func select_point() -> Vector2:
 
 
 func spawn_enemy():
-	var enemy_inst:Node = load("res://lifeforms/slug.tscn").instance()
 	var spawn_point:Vector2 = select_point()
-	
+	var enemy_inst:Node = slug_path.instance()
 	enemy_inst.set_position(spawn_point)
-	add_child(enemy_inst)
-	
+	self.add_child(enemy_inst)
+
+
+# Places exp where lifeform died at
+func lifeform_died(lifeform:Node):
+	var exp_scene:Node = exp_path.instance()
+	self.add_child(exp_scene)
+	exp_scene.global_position = lifeform.global_position
 
 
 func test(): # DEBUG

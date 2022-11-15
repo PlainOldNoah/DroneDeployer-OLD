@@ -15,6 +15,7 @@ onready var trajectory:Line2D = $TrajectoryLine
 
 #var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
+var debug_invincible:bool = false
 #var drone_list:Array
 
 
@@ -102,5 +103,5 @@ func emit_ray():
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("ENEMY"):
-		emit_signal("hit_taken", 1)
+		if not debug_invincible: emit_signal("hit_taken", 1)
 		body.queue_free() # TODO: If I want to make this more fancy later

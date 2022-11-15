@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 
 func handle_collision(collision:KinematicCollision2D):
-	print_debug(collision, " was not handled by ", name)
+	print_debug("ERROR: ", collision, " was not handled by ", name)
 
 
 # Sets the health to the new value

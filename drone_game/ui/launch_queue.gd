@@ -91,7 +91,7 @@ func deploy_up_next(delete_up_next:bool=true):
 		up_next.rect_position.y = off_screen_bottom
 		call_deferred("enter_queue", up_next)
 	
-	print("deploy_up_next finished")
+#	print("deploy_up_next finished")
 
 
 func _on_Tween_tween_completed(object, _key):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://core/level_manager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/debug_menu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/gui.gd" type="Script" id=5]
 [ext_resource path="res://core/game_manager.gd" type="Script" id=6]
 [ext_resource path="res://ui/fabricator_menu.tscn" type="PackedScene" id=7]
@@ -172,6 +173,16 @@ __meta__ = {
 
 [node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource( 7 )]
 visible = false
+
+[node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource( 3 )]
+visible = false
+anchor_left = 0.158333
+anchor_top = 0.158333
+anchor_right = 0.841667
+anchor_bottom = 0.841667
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 
