@@ -10,7 +10,7 @@ var immune:bool = false
 
 func _ready():
 	GroupMan.add_to_groups(self, ["SLUG", "ENEMY"])
-	var _ok = connect("died", get_parent(), "lifeform_died")
+	var _ok = connect("died", Global.level_manager, "lifeform_died")
 
 
 # OVERRIDE to have slugs follow the HUB should it happen to move
@@ -35,7 +35,7 @@ func init(pos:Vector2):
 
 # Reduces health damage
 func take_hit(damage:int=1):
-	print(health, ", ", damage)
+#	print(health, ", ", damage)
 	if not immune:
 		set_health(health - damage)
 		immune = true
@@ -45,6 +45,7 @@ func take_hit(damage:int=1):
 
 # OVERRIDE Different behavior for hitting drone or the hub
 func handle_collision(collision:KinematicCollision2D):
+#	print("SLUG: ", collision.collider.name)
 	if collision.collider.is_in_group("HUB"):
 		queue_free()
 

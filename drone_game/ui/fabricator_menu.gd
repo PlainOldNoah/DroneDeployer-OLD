@@ -26,7 +26,7 @@ func update_craft_history(item:String):
 func add_item_2_queue(value:String=""):
 # Verify item is in crafting options
 	if not Global.crafting_options.has(value):
-		print_debug(value, " does not exist as an option")
+		print_debug("ERROR: ", value, " does not exist as an option")
 		return
 	
 	var queue_item:Node = load(queue_item_scene).instance()

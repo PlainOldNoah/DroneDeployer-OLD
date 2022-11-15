@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-enum MENUS {NONE, FABRICATOR}
+enum MENUS {NONE, FABRICATOR, DEBUG}
 var current_menu:int = MENUS.NONE
 
 onready var stats_bar:Control = find_node("StatsBar")
@@ -9,6 +9,7 @@ onready var launch_queue:Control = find_node("LaunchQueue")
 
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
+onready var debug_menu:Control = get_node("DebugMenu")
 
 
 func _ready():
@@ -26,8 +27,38 @@ func _input(event):
 			dismiss_menu()
 		else:
 			request_menu(MENUS.FABRICATOR)
+	elif event.is_action_pressed("toggle_debug"):
+		if current_menu == MENUS.DEBUG:
+			dismiss_menu()
+		else:
+			request_menu(MENUS.DEBUG)
 	elif event.is_action_pressed("ui_cancel"):
 		dismiss_menu()
+
+
+# Shows the requested menu
+func request_menu(menu:int):
+	dismiss_menu()
+	Global.game_manager.toggle_pause(true)
+	
+	match menu:
+		MENUS.FABRICATOR:
+			fabricator_menu.show()
+			current_menu = MENUS.FABRICATOR
+		MENUS.DEBUG:
+			debug_menu.show()
+			current_menu = MENUS.DEBUG
+	background.show()
+
+
+# Hides all GUI menus
+func dismiss_menu():
+	Global.game_manager.toggle_pause(false)
+	
+	background.hide()
+	fabricator_menu.hide()
+	debug_menu.hide()
+	current_menu = MENUS.NONE
 
 
 # Returns a child menu
@@ -49,26 +80,6 @@ func get_menu(menu:String) -> Node:
 # Middle function to connect GUI to stats bar
 func update_stats(label:String, values:Array):
 	stats_bar.update_label(label, values)
-
-
-# Makes requested menu visible
-func request_menu(menu:int):
-	Global.game_manager.toggle_pause(true)
-	
-	match menu:
-		MENUS.FABRICATOR:
-			fabricator_menu.show()
-			current_menu = MENUS.FABRICATOR
-	background.show()
-
-
-# Hides all GUI menus
-func dismiss_menu():
-	Global.game_manager.toggle_pause(false)
-	
-	background.hide()
-	fabricator_menu.hide()
-	current_menu = MENUS.NONE
 
 
 func adjust_gui_scales(): # DEBUG FUNCTION

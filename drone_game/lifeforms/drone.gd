@@ -17,16 +17,17 @@ var exp_held:int = 0
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
 	traveled_line.set_as_toplevel(true)
+	z_index += 1
 	disable()
 	
 	randomize_drone_stats()
 
 
-func _input(event): #DEBUG
-	if event.is_action_pressed("ui_page_up"):
-		self.scale += Vector2.ONE
-	elif event.is_action_pressed("ui_page_down"):
-		self.scale -= Vector2.ONE
+#func _input(event): #DEBUG
+#	if event.is_action_pressed("ui_page_up"):
+#		self.scale += Vector2.ONE
+#	elif event.is_action_pressed("ui_page_down"):
+#		self.scale -= Vector2.ONE
 
 
 func randomize_drone_stats():
