@@ -1,7 +1,6 @@
 class_name Hub
 extends Node2D
 
-#signal exp_retrieved()
 signal hit_taken()
 
 export var rotation_weight:float = 0.2
@@ -13,15 +12,13 @@ onready var deploy_cooldown:Timer = $DeployCooldown
 onready var ray:RayCast2D = $Deployer/TrajectoryRay
 onready var trajectory:Line2D = $TrajectoryLine
 
-#var drone_scene = preload("res://lifeforms/drone.tscn")
 var can_deploy:bool = true
 var debug_invincible:bool = false
-#var drone_list:Array
 
 
 func _ready():
-	yield(get_tree().root, "ready")
 	Global.hub_scene = self
+	yield(get_tree().root, "ready")
 	GroupMan.add_to_groups(self, ["HUB"])
 	
 	trajectory.add_point(Vector2(0,0))
@@ -29,10 +26,7 @@ func _ready():
 	ray.cast_to.x = max(OS.window_size.x, OS.window_size.y)
 	
 	if is_instance_valid(Global.game_manager):
-#		var _ok := self.connect("exp_retrieved", Global.game_manager, "exp_retrieved")
 		var _ok = self.connect("hit_taken", Global.game_manager, "take_hit")
-	
-#	deploy_cooldown.wait_time = Global.game_manager.deploy_cooldown
 
 
 func _input(event):
@@ -61,10 +55,10 @@ func rotate_arrow():
 
 # Deploy vector follows the mouse but rotates smoothly
 func rotate_arrow_smooth():
+	var angle = (get_global_mouse_position() - self.global_position).angle()
 	if Input.is_action_pressed("deploy_snap"):
-		deployer.rotation_degrees = lerp(deployer.rotation_degrees, stepify(deployer.rotation_degrees, 45), rotation_weight)
+		deployer.global_rotation = lerp_angle(deployer.global_rotation, stepify(angle, PI/4), rotation_weight)
 	else:
-		var angle = (get_global_mouse_position() - self.global_position).angle()
 		deployer.global_rotation = lerp_angle(deployer.global_rotation, angle, rotation_weight)
 
 
