@@ -9,8 +9,6 @@ onready var barrier_bottom:CollisionShape2D = $LevelEdgeBarrier/BarrierBottom
 onready var barrier_left:CollisionShape2D = $LevelEdgeBarrier/BarrierLeft
 onready var barrier_right:CollisionShape2D = $LevelEdgeBarrier/BarrierRight
 
-
-
 var area:Vector2 = Vector2.ZERO
 var perimeter:int = 0
 var corners:Array = [0]
@@ -36,10 +34,10 @@ func _ready():
 
 
 func _input(event): #DEBUG
-	if event.is_action_pressed("ui_page_up"):
-		scale *= 1.25
-	elif event.is_action_pressed("ui_page_down"):
-		scale /= 1.25
+	if event.is_action("ui_page_up"):
+		scale *= 1.025
+	elif event.is_action("ui_page_down"):
+		scale /= 1.025
 	
 	move_barriers(area)
 	generate_tiles()
@@ -77,23 +75,28 @@ func generate_tiles():
 
 
 # Finds a point around the edge of the map
-func select_point() -> Vector2:
-	var point:int = rng.randi_range(corners.front(), corners.back())
-	if point <= corners[1]: # TOP
-		return (Vector2(point, 0) - position) / scale
-	elif point <= corners[2]: # RIGHT
-		return (Vector2(area.x, point - corners[1]) - position) / scale
-	elif point <= corners[3]: # BOTTOM
-		return (Vector2(point - corners[2], area.y) - position) / scale
-	elif point <= corners[4]: # LEFT
-		return (Vector2(0, point - corners[3]) - position) / scale
-	else:
-		print_debug("ERROR: point not found on perimeter")
-		return Vector2.ZERO
+#func select_point() -> Vector2:
+#	var point:int = rng.randi_range(corners.front(), corners.back())
+#	if point <= corners[1]: # TOP
+#		return (Vector2(point, 0) - position) / scale
+#	elif point <= corners[2]: # RIGHT
+#		return (Vector2(area.x, point - corners[1]) - position) / scale
+#	elif point <= corners[3]: # BOTTOM
+#		return (Vector2(point - corners[2], area.y) - position) / scale
+#	elif point <= corners[4]: # LEFT
+#		return (Vector2(0, point - corners[3]) - position) / scale
+#	else:
+#		print_debug("ERROR: point not found on perimeter")
+#		return Vector2.ZERO
 
 
+# Creates an enemy instance somewhere along the edge of the level
 func spawn_enemy():
-	var spawn_point:Vector2 = select_point()
+	var spawn_point:Vector2 = Vector2(rng.randi_range(0, area.x), rng.randi_range(0, area.y))
+	
+	spawn_point = spawn_point.snapped(Vector2(10, area.y)) if randf() > 0.5 else spawn_point.snapped(Vector2(area.x, 10))
+	spawn_point -= position
+	
 	var enemy_inst:Node = slug_path.instance()
 	enemy_inst.set_position(spawn_point)
 	self.add_child(enemy_inst)
@@ -106,9 +109,9 @@ func lifeform_died(lifeform:Node):
 	exp_scene.global_position = lifeform.global_position
 
 
-func test(): # DEBUG
-	var test_obj = preload("res://objects/exp.tscn")
-	for i in 500:
-		var new_scn:Node = test_obj.instance()
-		add_child(new_scn)
-		new_scn.position = select_point()
+#func test(): # DEBUG
+#	var test_obj = preload("res://objects/exp.tscn")
+#	for i in 500:
+#		var new_scn:Node = test_obj.instance()
+#		add_child(new_scn)
+#		new_scn.position = select_point()

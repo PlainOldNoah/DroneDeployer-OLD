@@ -42,7 +42,7 @@ func _ready():
 	call_deferred("reset")
 
 
-func _input(event):
+func _input(event): # DEBUG
 	if event.is_action_pressed("ui_accept"):
 		if running:
 			stop_game()
@@ -68,7 +68,7 @@ func start_game():
 	print("Starting Game...")
 	play_time_clock.start()
 	running = true
-	level_manager.start_spawn_clock(2)
+#	level_manager.start_spawn_clock(2)
 
 
 # Stops enemy spawning and play clock

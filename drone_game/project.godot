@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "DroneManager",
 "language": "GDScript",
-"path": "res://core/drone_manager.gd"
+"path": "res://core/managers/drone_manager.gd"
 }, {
 "base": "Node",
 "class": "GameManager",
 "language": "GDScript",
-"path": "res://core/game_manager.gd"
+"path": "res://core/managers/game_manager.gd"
 }, {
 "base": "Node2D",
 "class": "Hub",
@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "LevelManager",
 "language": "GDScript",
-"path": "res://core/level_manager.gd"
+"path": "res://core/managers/level_manager.gd"
 } ]
 _global_script_class_icons={
 "DebugMenu": "",
