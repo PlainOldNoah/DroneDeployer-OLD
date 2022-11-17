@@ -40,3 +40,7 @@ shape = SubResource( 3 )
 
 [node name="BarrierLeft" type="CollisionShape2D" parent="LevelEdgeBarrier"]
 shape = SubResource( 4 )
+
+[node name="EnemySpawnClock" type="Timer" parent="."]
+
+[connection signal="timeout" from="EnemySpawnClock" to="." method="_on_EnemySpawnClock_timeout"]

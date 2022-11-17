@@ -2,12 +2,15 @@ class_name LevelManager
 extends Node2D
 
 export var barrier_width:int = 3
+export var enemy_level_edge_offset:int = 1
+export var enemy_spawn_subdivisions:int = 1
 
 onready var current_map:TileMap = $CurrentMap
 onready var barrier_top:CollisionShape2D = $LevelEdgeBarrier/BarrierTop
 onready var barrier_bottom:CollisionShape2D = $LevelEdgeBarrier/BarrierBottom
 onready var barrier_left:CollisionShape2D = $LevelEdgeBarrier/BarrierLeft
 onready var barrier_right:CollisionShape2D = $LevelEdgeBarrier/BarrierRight
+onready var enemy_spawn_clock:Timer = $EnemySpawnClock
 
 var area:Vector2 = Vector2.ZERO
 var perimeter:int = 0
@@ -74,28 +77,25 @@ func generate_tiles():
 			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, 1)
 
 
-# Finds a point around the edge of the map
-#func select_point() -> Vector2:
-#	var point:int = rng.randi_range(corners.front(), corners.back())
-#	if point <= corners[1]: # TOP
-#		return (Vector2(point, 0) - position) / scale
-#	elif point <= corners[2]: # RIGHT
-#		return (Vector2(area.x, point - corners[1]) - position) / scale
-#	elif point <= corners[3]: # BOTTOM
-#		return (Vector2(point - corners[2], area.y) - position) / scale
-#	elif point <= corners[4]: # LEFT
-#		return (Vector2(0, point - corners[3]) - position) / scale
-#	else:
-#		print_debug("ERROR: point not found on perimeter")
-#		return Vector2.ZERO
+func get_lvl_edge_point(edge_offset:int=0, sub_divisions:int=0) -> Vector2:
+	var point:Vector2 = Vector2(rng.randi_range(edge_offset, area.x), rng.randi_range(edge_offset, area.y))
+	sub_divisions = max(1, sub_divisions - 1)
+	
+	if randf() > 0.5:
+		# Top and Bottom
+		point = point.snapped(Vector2((area.x/sub_divisions), area.y))
+		point.y = point.y + edge_offset if sign(point.y) == 1 else point.y - edge_offset
+	else:
+		# Left and Right
+		point = point.snapped(Vector2(area.x, area.y/sub_divisions))
+		point.x = point.x + edge_offset if sign(point.x) == 1 else point.x - edge_offset
+	
+	return point - position
 
 
 # Creates an enemy instance somewhere along the edge of the level
 func spawn_enemy():
-	var spawn_point:Vector2 = Vector2(rng.randi_range(0, area.x), rng.randi_range(0, area.y))
-	
-	spawn_point = spawn_point.snapped(Vector2(10, area.y)) if randf() > 0.5 else spawn_point.snapped(Vector2(area.x, 10))
-	spawn_point -= position
+	var spawn_point:Vector2 = get_lvl_edge_point(enemy_level_edge_offset, enemy_spawn_subdivisions)
 	
 	var enemy_inst:Node = slug_path.instance()
 	enemy_inst.set_position(spawn_point)
@@ -109,9 +109,16 @@ func lifeform_died(lifeform:Node):
 	exp_scene.global_position = lifeform.global_position
 
 
-#func test(): # DEBUG
-#	var test_obj = preload("res://objects/exp.tscn")
-#	for i in 500:
-#		var new_scn:Node = test_obj.instance()
-#		add_child(new_scn)
-#		new_scn.position = select_point()
+# Starts the timer that spawns enemies
+func start_enemy_spawning(wave_delay:int):
+	enemy_spawn_clock.wait_time = wave_delay
+	enemy_spawn_clock.start()
+
+
+# Stops the timer that spawns enemies
+func stop_enemy_spawning():
+	enemy_spawn_clock.stop()
+
+
+func _on_EnemySpawnClock_timeout():
+	spawn_enemy()

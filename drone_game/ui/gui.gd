@@ -1,3 +1,4 @@
+class_name GUI
 extends CanvasLayer
 
 enum MENUS {NONE, FABRICATOR, DEBUG}

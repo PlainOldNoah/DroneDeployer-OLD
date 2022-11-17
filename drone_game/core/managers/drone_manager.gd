@@ -95,7 +95,7 @@ func collect_drone(drone:Drone):
 	drone.disable()
 	drone.global_position = Vector2.ONE * 100
 	
-	Logger.create("Drone collected " + str(drone.exp_held) + " exp")
+	Logger.create(self, "drone", "Drone collected " + str(drone.exp_held) + " exp")
 	
 	drone.exp_held = 0
 	add_drone_to_queue(drone)

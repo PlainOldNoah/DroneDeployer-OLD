@@ -7,6 +7,10 @@ onready var drone_count_label:Label = get_node("%DroneCount")
 onready var health_label:Label = get_node("%Health")
 
 
+func _ready():
+	Global.stats_bar = self
+
+
 func update_label(stat:String, values:Array):
 	match stat:
 		"HEALTH": 

@@ -3,10 +3,12 @@ extends Node
 var tile_size:int = 32
 
 var game_manager:GameManager = null
-var drone_manager:Node = null
-var level_manager:Node = null
-var gui:CanvasLayer = null
 var hub_scene:Hub = null
+var drone_manager:DroneManager = null
+var level_manager:LevelManager = null
+var gui:GUI = null
+var stats_bar:MarginContainer = null
+
 
 var crafting_options:Dictionary = {
 	"drone": {

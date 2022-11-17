@@ -12,12 +12,6 @@ onready var play_time_clock:Timer = $PlayTimeClock
 
 var drone_scene = preload("res://lifeforms/drone.tscn")
 
-var level_manager = null
-var drone_manager = null
-var gui = null
-var stats_bar = null
-var fabrication = null
-
 var running:bool = false
 var curr_drone_count:int = 0
 var curr_health:int = 0
@@ -32,13 +26,13 @@ func _ready():
 	Global.game_manager = self
 	yield(get_tree().root, "ready")
 	
-	level_manager = Global.level_manager
-	drone_manager = Global.drone_manager
-	gui = Global.gui
-	stats_bar = gui.get_menu("stats_bar")
-	fabrication = gui.get_menu("fabricator")
+#	level_manager = Global.level_manager
+#	drone_manager = Global.drone_manager
+#	gui = Global.gui
+#	stats_bar = gui.get_menu("stats_bar")
+#	fabrication = gui.get_menu("fabricator")
 	
-	drone_manager.set_max_drones(max_drones)
+	Global.drone_manager.set_max_drones(max_drones)
 	call_deferred("reset")
 
 
@@ -56,8 +50,8 @@ func reset():
 		stop_game()
 		
 	modify_health(max_health)
-	stats_bar.reset()
-	stats_bar.update_health(curr_health, max_health)
+	Global.stats_bar.reset()
+	Global.stats_bar.update_health(curr_health, max_health)
 #	emit_signal("drone_order_changed", get_drone_from_queue(0))
 	Logger.clear()
 
@@ -65,18 +59,18 @@ func reset():
 # Beings enemy spawning and play clock
 func start_game():
 	reset()
-	print("Starting Game...")
+	Logger.create(self, "system", "Starting Game")
 	play_time_clock.start()
 	running = true
-#	level_manager.start_spawn_clock(2)
+	Global.level_manager.start_enemy_spawning(2)
 
 
 # Stops enemy spawning and play clock
 func stop_game():
-	print("Stopping Game...")
+	Logger.create(self, "system", "Game Ending")
 	play_time_clock.stop()
 	running = false
-#	level_manager.stop_spawn_clock()
+	Global.level_manager.stop_enemy_spawning()
 	
 	for i in get_tree().get_nodes_in_group("ENEMY"):
 		i.queue_free()
@@ -96,7 +90,7 @@ func set_curr_exp(value:int):
 	curr_exp += value
 	if curr_exp < 0:
 		print_debug("INVALID VALUE: exp is a negative")
-	fabrication.queue_2_core()
+	Global.gui.get_menu("fabrication").fabrication.queue_2_core()
 
 
 # Add the 'value' to the total gathered exp
@@ -104,17 +98,17 @@ func exp_retrieved(value:int):
 	score += value
 	set_curr_exp(value)
 	
-	stats_bar.update_curr_exp(curr_exp)
-	stats_bar.update_score(score)
+	Global.stats_bar.update_curr_exp(curr_exp)
+	Global.stats_bar.update_score(score)
 
 
 # Increases or decreases the current health. + to heal, - to hurt
 func modify_health(value:int):
 	curr_health = clamp(curr_health + value, 0, max_health)
 	if curr_health <= 0:
-		print("DEAD")
+		Logger.create(self, "hub", "Dead")
 		stop_game()
-	stats_bar.update_health(curr_health, max_health)
+	Global.stats_bar.update_health(curr_health, max_health)
 
 
 # Takes a positive damage value and negates it for modify health
@@ -125,5 +119,5 @@ func take_hit(damage:int):
 # Increments the amount of time by a second
 func _on_PlayTimeClock_timeout():
 	curr_survived_sec += 1
-	stats_bar.update_time(curr_survived_sec)
+	Global.stats_bar.update_time(curr_survived_sec)
 	play_time_clock.start()
