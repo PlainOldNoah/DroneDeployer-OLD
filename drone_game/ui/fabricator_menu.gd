@@ -74,3 +74,7 @@ func _on_DroneBtn_pressed():
 
 func _on_HealthBtn_pressed():
 	add_item_2_queue("health")
+
+
+func _on_ModBtn_pressed():
+	add_item_2_queue("mod")

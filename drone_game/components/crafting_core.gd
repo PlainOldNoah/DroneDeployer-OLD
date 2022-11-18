@@ -62,6 +62,8 @@ func craft_complete():
 			Global.drone_manager.increment_max_drones(1)
 		"health":
 			Global.game_manager.modify_health(1)
+		"mod":
+			print_debug("Mod doesn't do anything yet")
 	
 	Logger.create(self, "fabrication", "Fabrication Completed")
 	reset_core()

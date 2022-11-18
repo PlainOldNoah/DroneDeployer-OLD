@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/fabricator_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/visual/industrial_9_square.png" type="Texture" id=2]
-[ext_resource path="res://assets/visual/small_drone.png" type="Texture" id=3]
+[ext_resource path="res://assets/visual/pcb_rect_plus.png" type="Texture" id=3]
 [ext_resource path="res://assets/visual/health_plus.png" type="Texture" id=4]
 [ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/visual/drone_plus.png" type="Texture" id=7]
 
 [node name="FabricatorMenu" type="Control"]
 anchor_left = 0.5
@@ -64,7 +65,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CraftingQueue" type="MarginContainer" parent="MarginContainer/VBoxContainer/Body"]
-margin_right = 362.0
+margin_right = 360.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -72,7 +73,7 @@ size_flags_stretch_ratio = 0.4
 custom_constants/margin_right = 10
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Body/CraftingQueue"]
-margin_right = 352.0
+margin_right = 350.0
 margin_bottom = 656.0
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
@@ -85,7 +86,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue"]
-margin_right = 352.0
+margin_right = 350.0
 margin_bottom = 656.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
@@ -95,25 +96,25 @@ custom_constants/margin_bottom = 12
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 340.0
+margin_right = 338.0
 margin_bottom = 644.0
 
 [node name="QueueItemContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer"]
-margin_right = 328.0
+margin_right = 326.0
 margin_bottom = 632.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Body"]
-margin_left = 366.0
+margin_left = 364.0
 margin_right = 1272.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CraftingCoreContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer"]
-margin_right = 906.0
+margin_right = 908.0
 margin_bottom = 346.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -125,34 +126,33 @@ margin_bottom = 346.0
 
 [node name="CraftingCore2" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
 margin_left = 304.0
-margin_right = 603.0
+margin_right = 604.0
 margin_bottom = 346.0
 
 [node name="CraftingCore3" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
-margin_left = 607.0
-margin_right = 906.0
+margin_left = 608.0
+margin_right = 908.0
 margin_bottom = 346.0
 
 [node name="CraftingOptions" type="GridContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer"]
 margin_top = 356.0
-margin_right = 906.0
+margin_right = 908.0
 margin_bottom = 656.0
-columns = 2
+columns = 3
 
 [node name="DroneBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_left = 75.0
-margin_right = 375.0
+margin_right = 300.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 300, 300 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 7 )
 expand = true
 stretch_mode = 4
 
 [node name="HealthBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_left = 530.0
-margin_right = 830.0
+margin_left = 304.0
+margin_right = 604.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 300, 300 )
 size_flags_horizontal = 6
@@ -164,5 +164,20 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="ModBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
+margin_left = 608.0
+margin_right = 908.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_editor_description_": ""
+}
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/DroneBtn" to="." method="_on_DroneBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn" to="." method="_on_HealthBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/ModBtn" to="." method="_on_ModBtn_pressed"]

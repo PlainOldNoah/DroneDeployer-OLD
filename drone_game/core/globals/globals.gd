@@ -14,13 +14,19 @@ var crafting_options:Dictionary = {
 	"drone": {
 		"name":"Drone",
 		"scene":"res://lifeforms/drone.tscn",
-		"icon":"res://assets/visual/small_drone.png",
+		"icon":"res://assets/visual/drone_plus.png",
 		"craft_time":3,
 		"craft_cost":1
 	},
 	"health":{
 		"name":"Health",
 		"icon":"res://assets/visual/health_plus.png",
+		"craft_time":5,
+		"craft_cost":3,
+	},
+	"mod":{
+		"name":"Mod",
+		"icon":"res://assets/visual/pcb_rect_plus.png",
 		"craft_time":5,
 		"craft_cost":3,
 	}
