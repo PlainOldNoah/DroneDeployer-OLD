@@ -133,7 +133,7 @@ margin_bottom = 1008.0
 
 [node name="LevelManager" parent="GameManager/GUI/MarginContainer/HBoxContainer/Gameboard/MarginContainer/Control" index="0" instance=ExtResource( 4 )]
 enemy_level_edge_offset = 20
-enemy_spawn_subdivisions = 10
+enemy_spawn_subdivisions = 100
 
 [node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
 visible = false

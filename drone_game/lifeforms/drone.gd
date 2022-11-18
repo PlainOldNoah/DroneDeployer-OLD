@@ -23,13 +23,6 @@ func _ready():
 	randomize_drone_stats()
 
 
-#func _input(event): #DEBUG
-#	if event.is_action_pressed("ui_page_up"):
-#		self.scale += Vector2.ONE
-#	elif event.is_action_pressed("ui_page_down"):
-#		self.scale -= Vector2.ONE
-
-
 func randomize_drone_stats():
 	rng.randomize()
 	custom_name = self.name

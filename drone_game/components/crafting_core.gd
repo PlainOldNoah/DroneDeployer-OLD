@@ -63,6 +63,7 @@ func craft_complete():
 		"health":
 			Global.game_manager.modify_health(1)
 	
+	Logger.create(self, "fabrication", "Fabrication Completed")
 	reset_core()
 
 

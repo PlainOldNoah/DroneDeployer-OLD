@@ -2,11 +2,9 @@ extends "res://lifeforms/generic_lifeform.gd"
 
 signal died()
 
-#export var max_health:int = 3
-#var health:int = max_health setget set_health
-
 onready var immune_timer:Timer = $ImmunityTimer
 var immune:bool = false
+
 
 func _ready():
 	GroupMan.add_to_groups(self, ["SLUG", "ENEMY"])
@@ -24,13 +22,11 @@ func init(pos:Vector2):
 	set_vel_to_hub()
 
 
-## Sets the health to the new value
-#func set_health(value:int):
-#	health = clamp(value, 0, max_health)
-#	if health == 0:
-#		emit_signal("died", self)
-#		state = STATES.DEAD
-#		queue_free()
+# OVERRIDE: Flips the sprite, then calls parent function
+func set_velocity(value:Vector2):
+	$Sprite.flip_h = (value.x < 0)
+		
+	.set_velocity(value)
 
 
 # Reduces health damage
