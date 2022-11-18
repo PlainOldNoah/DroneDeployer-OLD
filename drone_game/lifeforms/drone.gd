@@ -25,7 +25,7 @@ func _ready():
 
 func randomize_drone_stats():
 	rng.randomize()
-	custom_name = self.name
+	custom_name = name
 	health = rng.randi_range(1, 10)
 	speed = rng.randi_range(250, 500)
 	damage = rng.randi_range(1, 5)

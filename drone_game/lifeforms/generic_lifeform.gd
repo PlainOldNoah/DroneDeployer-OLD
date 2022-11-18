@@ -24,7 +24,6 @@ func handle_collision(collision:KinematicCollision2D):
 
 # Sets the health to the new value
 func set_health(value:int):
-	print(value)
 	health = clamp(value, 0, max_health)
 	if health == 0:
 		emit_signal("died", self)

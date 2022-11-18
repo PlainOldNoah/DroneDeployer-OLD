@@ -2,7 +2,6 @@ class_name GameManager
 extends Node
 
 signal game_paused()
-signal drone_order_changed()
 
 export var max_health:int = 3
 export var max_drones:int = 0
@@ -26,12 +25,6 @@ func _ready():
 	Global.game_manager = self
 	yield(get_tree().root, "ready")
 	
-#	level_manager = Global.level_manager
-#	drone_manager = Global.drone_manager
-#	gui = Global.gui
-#	stats_bar = gui.get_menu("stats_bar")
-#	fabrication = gui.get_menu("fabricator")
-	
 	Global.drone_manager.set_max_drones(max_drones)
 	call_deferred("reset")
 
@@ -52,7 +45,6 @@ func reset():
 	modify_health(max_health)
 	Global.stats_bar.reset()
 	Global.stats_bar.update_health(curr_health, max_health)
-#	emit_signal("drone_order_changed", get_drone_from_queue(0))
 	Logger.clear()
 
 

@@ -3,7 +3,7 @@ extends Node
 
 signal drone_added_to_queue()
 signal drone_launched()
-#signal queue_unordered()
+signal drone_queue_changed()
 
 var max_drones:int = 0
 var curr_drone_count:int = 0
@@ -11,7 +11,6 @@ var curr_drone_count:int = 0
 var stats_bar:Node = null
 var launch_queue:Node = null
 var drone_scene = preload("res://lifeforms/drone.tscn")
-#export var launch_queue_scene:NodePath = ""
 
 var drone_queue:Array = [] # Holds Drone datatype
 
@@ -58,11 +57,11 @@ func deploy_next_up(position:Vector2, rotation:float):
 	drone_2_deploy.init(position, rotation)
 	
 	stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
-	emit_signal("drone_launched")
 	
 	drone_queue.remove(0)
 	
-#	emit_signal("queue_unordered")
+	emit_signal("drone_launched")
+	emit_signal("drone_queue_changed", get_drone_from_queue(0))
 
 
 # Puts the current drone to the back of the queue
@@ -71,14 +70,14 @@ func skip_up_next():
 		return
 	
 	drone_queue.push_back(drone_queue.pop_front())
-#	launch_queue.deploy_up_next(false)
+	
+	emit_signal("drone_queue_changed", get_drone_from_queue(0))
 	emit_signal("drone_launched", false)
-#	emit_signal("queue_unordered")
 
 
 # Return the idx drone from the queue
 func get_drone_from_queue(idx:int=0) -> Drone:
-	return null if drone_queue.size() == 0 else drone_queue[idx]
+	return null if drone_queue.empty() else drone_queue[idx]
 
 
 # Adds the drone to the end of the drone queue
@@ -86,6 +85,7 @@ func add_drone_to_queue(drone:Drone):
 	drone_queue.append(drone)
 	
 	emit_signal("drone_added_to_queue", drone)
+	emit_signal("drone_queue_changed", get_drone_from_queue(0))
 	
 	stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
 

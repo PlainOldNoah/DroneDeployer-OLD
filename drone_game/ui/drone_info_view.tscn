@@ -49,12 +49,12 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="NameLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_right = 197.0
 margin_bottom = 32.0
 text = "Name: "
 
 [node name="NameValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_right = 1896.0
 margin_bottom = 32.0
@@ -64,13 +64,13 @@ align = 2
 valign = 1
 
 [node name="BatteryLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 36.0
 margin_right = 197.0
 margin_bottom = 68.0
 text = "Battery: "
 
 [node name="BatteryValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 36.0
 margin_right = 1896.0
@@ -81,13 +81,13 @@ align = 2
 valign = 1
 
 [node name="SpeedLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 72.0
 margin_right = 197.0
 margin_bottom = 104.0
 text = "Speed: "
 
 [node name="SpeedValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 72.0
 margin_right = 1896.0
@@ -98,13 +98,13 @@ align = 2
 valign = 1
 
 [node name="DamageLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 108.0
 margin_right = 197.0
 margin_bottom = 140.0
 text = "Damage: "
 
 [node name="DamageValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 108.0
 margin_right = 1896.0
@@ -115,13 +115,13 @@ align = 2
 valign = 1
 
 [node name="PickupLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 144.0
 margin_right = 197.0
 margin_bottom = 176.0
 text = "Pickup Range: "
 
 [node name="PickupValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 144.0
 margin_right = 1896.0
@@ -132,13 +132,13 @@ align = 2
 valign = 1
 
 [node name="CritChanceLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 180.0
 margin_right = 197.0
 margin_bottom = 212.0
 text = "Crit Chance: "
 
 [node name="CritChanceValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 180.0
 margin_right = 1896.0
@@ -149,13 +149,13 @@ align = 2
 valign = 1
 
 [node name="CritDamageLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 216.0
 margin_right = 197.0
 margin_bottom = 248.0
 text = "Crit Damage: "
 
 [node name="CritDamageValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 216.0
 margin_right = 1896.0
@@ -166,13 +166,13 @@ align = 2
 valign = 1
 
 [node name="MaxBounceLabel" type="Label" parent="MarginContainer/LabelContainer"]
-unique_name_in_owner = true
 margin_top = 252.0
 margin_right = 197.0
 margin_bottom = 284.0
 text = "Max Bounces: "
 
-[node name="MaxBouceValue" type="Label" parent="MarginContainer/LabelContainer"]
+[node name="MaxBounceValue" type="Label" parent="MarginContainer/LabelContainer"]
+unique_name_in_owner = true
 margin_left = 201.0
 margin_top = 252.0
 margin_right = 1896.0
