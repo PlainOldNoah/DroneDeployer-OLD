@@ -64,7 +64,6 @@ _global_script_class_icons={
 
 config/name="Drone Game"
 run/main_scene="res://core/main.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 

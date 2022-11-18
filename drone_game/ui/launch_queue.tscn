@@ -47,23 +47,10 @@ patch_margin_bottom = 14
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="QueueItemContainer" type="Control" parent="MarginContainer"]
+[node name="QueueItemContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 12.0
 margin_bottom = 1068.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Tween" type="Tween" parent="."]
-
-[node name="EntryTimer" type="Timer" parent="."]
-wait_time = 0.46
-one_shot = true
-__meta__ = {
-"_editor_description_": "Drip feeds nodes back into the queue instead of a bum rush"
-}
-
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
-[connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
-[connection signal="timeout" from="EntryTimer" to="." method="_on_EntryTimer_timeout"]
