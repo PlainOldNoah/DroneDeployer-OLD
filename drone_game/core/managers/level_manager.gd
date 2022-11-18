@@ -1,6 +1,8 @@
 class_name LevelManager
 extends Node2D
 
+const AUTO_FILL_TILE:int = 0
+
 export var barrier_width:int = 3
 export var enemy_level_edge_offset:int = 1
 export var enemy_spawn_subdivisions:int = 1
@@ -32,7 +34,7 @@ func _ready():
 		corners.append(corners.back() + area.x)
 		corners.append(corners.back() + area.y)
 	
-	move_barriers(area)
+	move_barriers()
 	generate_tiles()
 
 
@@ -42,12 +44,12 @@ func _input(event): #DEBUG
 	elif event.is_action("ui_page_down"):
 		scale /= 1.025
 	
-	move_barriers(area)
+	move_barriers()
 	generate_tiles()
 
 
 # Adjusts the size of the barriers to fit the current screen size and moves them into place
-func move_barriers(area:Vector2):
+func move_barriers():
 	var height:int = (area.y / scale.y) / 2 # Top to bottom
 	var width:int = (area.x / scale.x) / 2 # Left to Right
 
@@ -66,15 +68,16 @@ func move_barriers(area:Vector2):
 
 # Places tiles to fill up the current visiable area
 func generate_tiles():
-	var num_tiles_x:int = ceil(area.x / (32.0 * scale.x))
-	var num_tiles_y:int = ceil(area.y / (32.0 * scale.y))
+	var tilemap_scale:Vector2 = current_map.scale
+	var num_tiles_x:int = ceil(area.x / (32.0 * scale.x * tilemap_scale.x))
+	var num_tiles_y:int = ceil(area.y / (32.0 * scale.y * tilemap_scale.y))
 	
 	num_tiles_x = num_tiles_x + 1 if num_tiles_x % 2 == 1 else num_tiles_x
 	num_tiles_y = num_tiles_y + 1 if num_tiles_y % 2 == 1 else num_tiles_y
 	
 	for i in num_tiles_x:
 		for j in num_tiles_y:
-			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, 1)
+			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, AUTO_FILL_TILE)
 
 
 func get_lvl_edge_point(edge_offset:int=0, sub_divisions:int=0) -> Vector2:

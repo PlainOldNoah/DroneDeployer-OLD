@@ -71,6 +71,11 @@ Global="*res://core/globals/globals.gd"
 GroupMan="*res://core/globals/group_manager.gd"
 Logger="*res://core/globals/logger.gd"
 
+[debug]
+
+gdscript/warnings/narrowing_conversion=false
+gdscript/warnings/integer_division=false
+
 [display]
 
 window/size/width=1920

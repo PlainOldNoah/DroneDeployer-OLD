@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal died()
+
 enum STATES {SPAWNING, MOVING, STOPPED, IDLE, DEAD}
 export(STATES) var state = STATES.SPAWNING
 
@@ -10,6 +12,10 @@ export var speed:float = 100.0
 
 var velocity:Vector2 = Vector2.ZERO setget set_velocity
 onready var health:int = max_health setget set_health
+
+
+func _ready():
+	var _ok = connect("died", Global.level_manager, "lifeform_died")
 
 
 func _physics_process(delta):
@@ -32,7 +38,7 @@ func set_health(value:int):
 
 
 # Reduces health damage
-func take_hit(value:int=1):
+func take_hit(_value:int=1):
 	pass
 
 

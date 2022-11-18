@@ -8,7 +8,7 @@ func _ready():
 	_ok = Logger.connect("messages_cleared", self, "clear_messages")
 
 # Creates a new label and adds it to the message container
-func add_new_msg(sender:Node, type:String, contents:String):
+func add_new_msg(_sender:Node, _type:String, contents:String):
 	var msg_label:Label = Label.new()
 	msg_label.autowrap = true
 
