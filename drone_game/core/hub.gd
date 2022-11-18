@@ -8,11 +8,13 @@ export var rotation_weight:float = 0.2
 onready var deployer:Sprite = $Deployer
 onready var deploy_point = $Deployer/DeployPoint
 onready var deploy_cooldown:Timer = $DeployCooldown
+onready var skip_cooldown:Timer = $SkipCooldown
 
 onready var ray:RayCast2D = $Deployer/TrajectoryRay
 onready var trajectory:Line2D = $TrajectoryLine
 
 var can_deploy:bool = true
+var can_skip:bool = true
 var debug_invincible:bool = false
 
 
@@ -33,11 +35,11 @@ func _input(event):
 	if event.is_action_pressed("deploy") and can_deploy:
 		can_deploy = false
 		deploy_drone()
-		deploy_cooldown.start()
-	elif event.is_action_pressed("deploy_skip") and can_deploy:
-		can_deploy = false
+		deploy_cooldown.start(1)
+	elif event.is_action_pressed("deploy_skip") and can_skip:
+		can_skip = false
 		skip_drone()
-		deploy_cooldown.start()
+		skip_cooldown.start(0.25)
 
 
 func _process(_delta):
@@ -79,6 +81,10 @@ func collect_drone(drone:Drone):
 # Limits drone spamming
 func _on_DeployCooldown_timeout():
 	can_deploy = true
+
+
+func _on_SkipCooldown_timeout():
+	can_skip = true
 
 
 # Aura around the HUB that collects deployed drones

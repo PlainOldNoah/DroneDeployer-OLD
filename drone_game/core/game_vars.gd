@@ -1,12 +1,12 @@
 extends Node
 
 # Mod = multiplier, bonus = addition
-
-var default_vars:Dictionary = {
+var initial:Dictionary = {
 	# Hub
 	"starting_drone_count":3,
 	"starting_health":3,
 	"drone_launch_cooldown":0.5,
+	"drone_skip_cooldown":0.25,
 	
 	# Lifeforms
 	"global_speed_modifier":1,
@@ -26,3 +26,8 @@ var default_vars:Dictionary = {
 	"global_drone_pickup_rng_mod":1,
 	"global_drone_pickup_rng_bonus":0,
 }
+
+var runtime:Dictionary = {}
+
+func reset():
+	runtime = initial
