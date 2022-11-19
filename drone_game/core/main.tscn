@@ -146,6 +146,7 @@ __meta__ = {
 }
 
 [node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource( 7 )]
+visible = false
 
 [node name="EngineeringMenu" parent="GameManager/GUI" instance=ExtResource( 8 )]
 
