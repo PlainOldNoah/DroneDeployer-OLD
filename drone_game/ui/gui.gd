@@ -1,15 +1,15 @@
 class_name GUI
 extends CanvasLayer
 
-enum MENUS {NONE, FABRICATOR, DEBUG}
+enum MENUS {NONE, FABRICATOR, DEBUG, ENGR}
 var current_menu:int = MENUS.NONE
 
 onready var stats_bar:Control = find_node("StatsBar")
 onready var drone_info:Control = find_node("DroneInfoView")
 onready var launch_queue:Control = find_node("LaunchQueue")
-
 onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
+onready var engineering_menu:Control = get_node("EngineeringMenu")
 onready var debug_menu:Control = get_node("DebugMenu")
 
 
@@ -33,6 +33,11 @@ func _input(event):
 			dismiss_menu()
 		else:
 			request_menu(MENUS.DEBUG)
+	elif event.is_action_pressed("engr_menu"):
+		if current_menu == MENUS.ENGR:
+			dismiss_menu()
+		else:
+			request_menu(MENUS.ENGR)
 	elif event.is_action_pressed("ui_cancel"):
 		dismiss_menu()
 
@@ -49,6 +54,9 @@ func request_menu(menu:int):
 		MENUS.DEBUG:
 			debug_menu.show()
 			current_menu = MENUS.DEBUG
+		MENUS.ENGR:
+			engineering_menu.show()
+			current_menu = MENUS.ENGR
 	background.show()
 
 
@@ -59,6 +67,7 @@ func dismiss_menu():
 	background.hide()
 	fabricator_menu.hide()
 	debug_menu.hide()
+	engineering_menu.hide()
 	current_menu = MENUS.NONE
 
 
