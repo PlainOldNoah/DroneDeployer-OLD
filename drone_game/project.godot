@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://core/managers/drone_manager.gd"
 }, {
+"base": "TextureRect",
+"class": "DroneMirror",
+"language": "GDScript",
+"path": "res://components/drone_mirror.gd"
+}, {
 "base": "CanvasLayer",
 "class": "GUI",
 "language": "GDScript",
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "DebugMenu": "",
 "Drone": "",
 "DroneManager": "",
+"DroneMirror": "",
 "GUI": "",
 "GameManager": "",
 "Hub": "",

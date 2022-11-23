@@ -1,6 +1,7 @@
 class_name DroneManager
 extends Node
 
+signal drone_created()
 signal drone_added_to_queue()
 signal drone_launched()
 signal drone_queue_changed()
@@ -45,7 +46,7 @@ func create_new_drone():
 	Global.level_manager.add_child(drone_inst)
 	add_drone_to_queue(drone_inst)
 	
-	return drone_inst
+	emit_signal("drone_created", drone_inst)
 
 
 # Deploys the next drone in the queue
@@ -99,3 +100,7 @@ func collect_drone(drone:Drone):
 	
 	drone.exp_held = 0
 	add_drone_to_queue(drone)
+
+
+func get_drone_queue():
+	return drone_queue
