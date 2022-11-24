@@ -61,7 +61,7 @@ func deploy_next_up(position:Vector2, rotation:float):
 	
 	drone_queue.remove(0)
 	
-	emit_signal("drone_launched")
+	emit_signal("drone_launched", true)
 	emit_signal("drone_queue_changed", get_drone_from_queue(0))
 
 

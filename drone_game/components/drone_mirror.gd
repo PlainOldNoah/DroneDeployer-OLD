@@ -18,5 +18,20 @@ func set_rect_size(factor:int):
 	rect_size = rect_min_size
 
 
-#func _on_DroneMirror_gui_input(event):
-#	print(event)
+# Grays out the drone and turns off clickability
+func disable():
+	modulate.a = 0.2
+#	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mouse_default_cursor_shape = Control.CURSOR_FORBIDDEN
+
+
+# Returns alpha to normal and allows cursor input
+func enable():
+	modulate.a = 1
+#	mouse_filter = Control.MOUSE_FILTER_STOP
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+
+func _on_DroneMirror_gui_input(event):
+	if event is InputEventMouseButton:
+		print("Clicked")

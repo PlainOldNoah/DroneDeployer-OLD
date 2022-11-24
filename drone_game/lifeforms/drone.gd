@@ -17,7 +17,7 @@ var exp_held:int = 0
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
 	traveled_line.set_as_toplevel(true)
-	z_index += 1
+#	z_index += 1
 	disable()
 	
 	randomize_drone_stats()

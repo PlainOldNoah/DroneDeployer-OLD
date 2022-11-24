@@ -6,23 +6,30 @@ var drone_mirror_path:String = "res://components/drone_mirror.tscn"
 
 func _ready():
 	yield(get_tree().root, "ready")
+	
 	var _ok = Global.drone_manager.connect("drone_created", self, "add_drone_mirror")
-	_ok = null # Connect to fabricator(?) to get crafted upgrades & enhancements
-	update_drone_display()
+	_ok = Global.drone_manager.connect("drone_launched", self, "update_drone_display")
+	_ok = Global.drone_manager.connect("drone_added_to_queue", self, "update_drone_display")
 
 
+# Creates a new drone mirror and adds it to the drone display
 func add_drone_mirror(drone:Drone):
 	var drone_mirror = load(drone_mirror_path).instance()
 	drone_mirror.init(drone)
 	drone_display.add_child(drone_mirror)
-	drone_mirror.set_rect_size(100)
+	drone_mirror.set_rect_size(100) # TODO: Make sure this isn't hardcoded
 
 
-func update_drone_display():
+# Grays out currently deployed drones
+func update_drone_display(_drone:Drone):
 	for mirror in drone_display.get_children():
-		print(mirror.drone_ref.state)
-	yield(get_tree().create_timer(0.5), "timeout")
-	update_drone_display()
+		match mirror.drone_ref.state:
+			1: # moving
+				mirror.disable()
+			3: # idle
+				mirror.enable()
+			_:
+				print_debug("WARNING: Drone state <", mirror.drone_ref.state, "> not handled")
 
 
 # Show the stats of the drone currently in the workbench
