@@ -6,9 +6,10 @@ signal drone_added_to_queue()
 signal drone_launched()
 signal drone_queue_changed()
 
+onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
+
 var max_drones:int = 0
 var curr_drone_count:int = 0
-
 var stats_bar:Node = null
 var launch_queue:Node = null
 var drone_scene = preload("res://lifeforms/drone.tscn")
@@ -19,6 +20,7 @@ var drone_queue:Array = [] # Holds Drone datatype
 func _ready():
 	Global.drone_manager = self
 	yield(get_tree().root, "ready")
+	var _ok = connect("drone_queue_changed", drone_info_view, "display_new_drone")
 	
 	stats_bar = Global.gui.get_menu("stats_bar")
 	launch_queue = Global.gui.get_menu("launch_queue")

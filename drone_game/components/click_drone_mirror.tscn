@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://components/base_drone_mirror.tscn" type="PackedScene" id=1]
+[ext_resource path="res://components/click_drone_mirror.gd" type="Script" id=2]
+
+[node name="ClickableDroneMirror" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+shortcut_in_tooltip = false
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

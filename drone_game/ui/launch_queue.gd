@@ -1,7 +1,7 @@
 extends Control
 
 onready var queue_item_container := $MarginContainer/QueueItemContainer
-onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
+onready var drone_mirror_scene := "res://components/click_drone_mirror.tscn"
 
 #var queue_locked:bool = false # Bool to check if tween is currently doing something
 var drone_manager:DroneManager = null

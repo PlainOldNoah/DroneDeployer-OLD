@@ -10,12 +10,6 @@ onready var crit_damage_label:Label = get_node("%CritDamageValue")
 onready var max_bounce_label:Label = get_node("%MaxBounceValue")
 
 
-func _ready():
-	yield(get_tree().root, "ready")
-	var _ok = Global.drone_manager.connect("drone_queue_changed", self, "display_new_drone")
-
-
-# Gets the first drone in the game manager's array and displays it's info
 func display_new_drone(d:Drone):
 	if d == null:
 		reset()
