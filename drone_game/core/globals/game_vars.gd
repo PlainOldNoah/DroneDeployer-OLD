@@ -1,5 +1,7 @@
 extends Node
 
+const DEFAULT_DRONE_STATS:Dictionary = {"max_battery":1, "battery":1, "speed":200, "damage":1, "crit_chance":0, "crit_dmg_mult":1, "bounce":1}
+
 # Mod = multiplier, bonus = addition
 var initial:Dictionary = {
 	# Hub

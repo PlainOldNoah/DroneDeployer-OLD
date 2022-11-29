@@ -10,8 +10,20 @@ export var crit_chance:int = 0
 export var crit_damage_mod:int = 1
 export var show_path:bool = false
 
+var stats:Dictionary = {}
+#var stats:Dictionary = {"max_battery":1, "battery":1, "speed":200, "damage":1, "crit_chance":0, "crit_dmg_mult":1}
+
 var bounce_count:int = 0
 var exp_held:int = 0
+var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
+
+
+func calculate_stats():
+	stats = GameVars.DEFAULT_DRONE_STATS
+	for i in equipped_mods:
+		print(i)
+	# stats = default_stats + mod_bonuses
+	print_debug("New Stats: ", stats)
 
 
 func _ready():

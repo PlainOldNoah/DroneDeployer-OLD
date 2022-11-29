@@ -95,6 +95,8 @@ func add_drone_to_queue(drone:Drone):
 
 # Handles drones returning from deployment and prepares them for relaunching
 func collect_drone(drone:Drone):
+	drone.calculate_stats()
+	
 	drone.disable()
 	drone.global_position = Vector2.ONE * 100
 	

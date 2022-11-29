@@ -6,6 +6,11 @@ onready var btn:Button = $Button
 
 var enabled:bool = true
 
+
+func _ready():
+	enable()
+
+
 # Grays out the drone and turns off clickability
 func disable():
 	enabled = false

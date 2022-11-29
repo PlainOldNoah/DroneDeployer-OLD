@@ -3,9 +3,10 @@ extends Node
 var tile_size:int = 32
 
 var game_manager:GameManager = null
-var hub_scene:Hub = null
 var drone_manager:DroneManager = null
+var mod_manager = null
 var level_manager:LevelManager = null
+var hub_scene:Hub = null
 var gui:GUI = null
 var stats_bar:MarginContainer = null
 

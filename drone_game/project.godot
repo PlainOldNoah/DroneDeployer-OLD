@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://core/hub.gd"
 }, {
-"base": "Reference",
+"base": "TextureRect",
 "class": "LaunchQueueItem",
 "language": "GDScript",
 "path": "res://components/OLD_launch_queue_item.gd"
@@ -76,6 +76,7 @@ run/main_scene="res://core/main.tscn"
 Global="*res://core/globals/globals.gd"
 GroupMan="*res://core/globals/group_manager.gd"
 Logger="*res://core/globals/logger.gd"
+GameVars="*res://core/globals/game_vars.gd"
 
 [debug]
 
