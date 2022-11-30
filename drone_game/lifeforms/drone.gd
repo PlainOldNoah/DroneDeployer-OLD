@@ -1,13 +1,15 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
+signal stats_updated()
+
 onready var traveled_line:Line2D = $TraveledPath
 onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 export var max_bounce_to_home:int = 0 # If 0 then ignore
-export var pickup_range:int = 1
-export var crit_chance:int = 0
-export var crit_damage_mod:int = 1
+#export var pickup_range:int = 1
+#export var crit_chance:int = 0
+#export var crit_damage_mod:int = 1
 export var show_path:bool = false
 
 var stats:Dictionary = {}
@@ -19,19 +21,22 @@ var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
 
 
 func calculate_stats():
-	stats = GameVars.DEFAULT_DRONE_STATS
-	for i in equipped_mods:
-		print(i)
-	# stats = default_stats + mod_bonuses
+	stats = GameVars.DEFAULT_DRONE_STATS.duplicate()
+	for mod in equipped_mods:
+#		print(mod, " -> ", stats) # DEBUG
+		if (stats.has(mod.stat)):
+			stats[mod.stat] += mod.value
+	
+	max_bounce_to_home = stats.bounce
+	emit_signal("stats_updated")
 	print_debug("New Stats: ", stats)
 
 
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
 	traveled_line.set_as_toplevel(true)
-#	z_index += 1
 	disable()
-	
+	calculate_stats()
 	randomize_drone_stats()
 
 
@@ -41,9 +46,9 @@ func randomize_drone_stats():
 	health = rng.randi_range(1, 10)
 	speed = rng.randi_range(250, 500)
 	damage = rng.randi_range(1, 5)
-	pickup_range = rng.randi_range(1, 3)
-	crit_chance = rng.randi_range(0, 100)
-	crit_damage_mod = rng.randi_range(1, 5)
+#	pickup_range = rng.randi_range(1, 3)
+#	crit_chance = rng.randi_range(0, 100)
+#	crit_damage_mod = rng.randi_range(1, 5)
 	max_bounce_to_home = rng.randi_range(1, 5)
 	modulate = Color(randf(), randf(), randf())
 
@@ -122,6 +127,21 @@ func get_bounce_angle(collision:KinematicCollision2D) -> float:
 # Returns the direction of the bounce as a normalized vector
 func get_bounce_direction(collision:KinematicCollision2D) -> Vector2:
 	return velocity.bounce(collision.normal).normalized()
+
+
+# Adds the mod to the equipped_mods array
+func add_mod(mod:Dictionary):
+	equipped_mods.append(mod)
+	calculate_stats()
+
+
+# Removes the mod from equipped_mods if it exists
+func remove_mod(mod:Dictionary):
+	if equipped_mods.has(mod):
+		equipped_mods.erase(mod)
+		calculate_stats()
+	else:
+		print_debug("ERROR: <", mod, "> could not be removed")
 
 
 # Returns the sprite texture

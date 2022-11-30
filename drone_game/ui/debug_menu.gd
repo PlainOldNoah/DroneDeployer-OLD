@@ -19,6 +19,6 @@ func _on_SpawnSlug_pressed():
 
 # Creates an enhancement
 func _on_CreateEnhancement_pressed():
-	Global.mod_manager.create_enhancement("bounce", randi())
+	Global.mod_manager.create_enhancement("bounce", 1)
 	print("DEBUG| Enhancement Created")
 #	print("DEBUG| Enhancement Created [", Global.mod_manager.free_enhancements.size(), "]")

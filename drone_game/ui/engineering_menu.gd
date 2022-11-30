@@ -36,6 +36,8 @@ func on_close():
 	selected_drone = null
 	for i in equipped_mods_view.get_children():
 		i.queue_free()
+	for i in available_mods_view.get_children():
+		i.toggle_popup(false)
 
 
 # Creates a new drone mirror and adds it to the drone display
@@ -113,12 +115,14 @@ func change_mod_equip_state(mod:Node):
 
 # Adds the mod to the selected drones equipped_mod dictionary
 func equip_mod_onto_drone(mod:Dictionary):
-	selected_drone.equipped_mods.append(mod)
+	selected_drone.add_mod(mod)
+#	selected_drone.equipped_mods.append(mod)
 
 
 # Erases the mod from the selected drones equipped_mod dictionary
 func remove_mod_from_drone(mod:Dictionary):
-	selected_drone.equipped_mods.erase(mod)
+	selected_drone.remove_mod(mod)
+#	selected_drone.equipped_mods.erase(mod)
 
 
 func _on_EngineeringMenu_visibility_changed():
