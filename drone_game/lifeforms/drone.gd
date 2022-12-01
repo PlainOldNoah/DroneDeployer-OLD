@@ -28,8 +28,7 @@ func calculate_stats():
 			stats[mod.stat] += mod.value
 	
 	max_bounce_to_home = stats.bounce
-	emit_signal("stats_updated")
-	print_debug("New Stats: ", stats)
+	emit_signal("stats_updated", self)
 
 
 func _ready():
@@ -37,9 +36,10 @@ func _ready():
 	traveled_line.set_as_toplevel(true)
 	disable()
 	calculate_stats()
-	randomize_drone_stats()
+	randomize_drone_stats() # WARNING
 
 
+# DEBUG: This conflicts with the game_vars default stats
 func randomize_drone_stats():
 	rng.randomize()
 	custom_name = name

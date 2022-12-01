@@ -1,6 +1,16 @@
 extends Node
 
-const DEFAULT_DRONE_STATS:Dictionary = {"max_battery":1, "battery":1, "speed":200, "damage":1, "crit_chance":0, "crit_dmg_mult":1, "bounce":1}
+const DEFAULT_DRONE_STATS:Dictionary = {
+	"display_name":"Drone", # Drones name in game
+	"max_battery":1, # Maximum battery level
+	"battery":1, # Current battery level
+	"battery_drain":1, # How much battery is lost per second while active
+	"speed":200, # How fast drone moves
+	"damage":1, # Attack damage against enemies
+	"crit_chance":0, # Percentage chance of dealing a critical hit
+	"crit_dmg_mult":1, # Normal damage multiplier when dealing crit hit
+	"bounce":1, # How many bounces drone can make before going home
+	}
 
 # Mod = multiplier, bonus = addition
 var initial:Dictionary = {
@@ -29,7 +39,7 @@ var initial:Dictionary = {
 	"global_drone_pickup_rng_bonus":0,
 }
 
-var runtime:Dictionary = {}
-
-func reset():
-	runtime = initial
+#var runtime:Dictionary = {}
+#
+#func reset():
+#	runtime = initial

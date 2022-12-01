@@ -16,6 +16,7 @@ var available_mods:Array = []
 
 
 func _ready():
+	Global.engr_menu = self
 	yield(get_tree().root, "ready")
 	
 	var _ok = Global.drone_manager.connect("drone_created", self, "add_drone_mirror")
@@ -123,6 +124,12 @@ func equip_mod_onto_drone(mod:Dictionary):
 func remove_mod_from_drone(mod:Dictionary):
 	selected_drone.remove_mod(mod)
 #	selected_drone.equipped_mods.erase(mod)
+
+
+# drone -> drone_manager -> self; Update gui if selected drones stat's changed
+func _on_drone_stats_changed(d:Drone):
+	if selected_drone == d:
+		update_drone_stats()
 
 
 func _on_EngineeringMenu_visibility_changed():

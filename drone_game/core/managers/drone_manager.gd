@@ -5,6 +5,7 @@ signal drone_created()
 signal drone_added_to_queue()
 signal drone_launched()
 signal drone_queue_changed()
+signal relay_drone_stats_changed()
 
 onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
 
@@ -20,7 +21,9 @@ var drone_queue:Array = [] # Holds Drone datatype
 func _ready():
 	Global.drone_manager = self
 	yield(get_tree().root, "ready")
-	var _ok = connect("drone_queue_changed", drone_info_view, "display_new_drone")
+	var _ok := connect("drone_queue_changed", drone_info_view, "display_new_drone")
+	_ok = connect("relay_drone_stats_changed", drone_info_view, "_on_drone_stats_changed")
+	_ok = connect("relay_drone_stats_changed", Global.engr_menu, "_on_drone_stats_changed")
 	
 	stats_bar = Global.gui.get_menu("stats_bar")
 	launch_queue = Global.gui.get_menu("launch_queue")
@@ -42,12 +45,12 @@ func increment_max_drones(value:int):
 
 # Creates a new drone scene and appends it to the queue
 func create_new_drone():
-	curr_drone_count += 1
-	
 	var drone_inst:Drone = drone_scene.instance()
+	var _ok := drone_inst.connect("stats_updated", self, "relay_drone_stats_updated")
 	Global.level_manager.add_child(drone_inst)
 	add_drone_to_queue(drone_inst)
 	
+	curr_drone_count += 1
 	emit_signal("drone_created", drone_inst)
 
 
@@ -106,5 +109,11 @@ func collect_drone(drone:Drone):
 	add_drone_to_queue(drone)
 
 
+# Returns the drone queue
 func get_drone_queue():
 	return drone_queue
+
+
+# When a drones stat's change it emits the "stats_changed" signal, this relays it more broadly
+func relay_drone_stats_updated(d:Drone):
+	emit_signal("relay_drone_stats_changed", d)
