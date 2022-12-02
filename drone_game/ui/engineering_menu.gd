@@ -1,18 +1,16 @@
 extends Control
 
-#signal mirror_clicked()
-
-onready var drone_display := $MarginContainer/HBoxContainer/UIPanel/MarginContainer/DroneDisplay
-onready var selected_drone_mirror:DroneMirror = $MarginContainer/HBoxContainer/WorkArea/UIPanel2/MarginContainer/SelectedDrone/DroneMirror
+onready var drone_display := $MarginContainer/HBoxContainer/DronePanel/MarginContainer/DroneDisplay
+onready var selected_drone_mirror:DroneMirror = $MarginContainer/HBoxContainer/WorkArea/SelectedDrone/MarginContainer/SelectedDrone/DroneMirror
 onready var drone_info_view := $MarginContainer/HBoxContainer/WorkArea/DroneInfoView
-onready var available_mods_view := $MarginContainer/HBoxContainer/UIPanel2/MarginContainer/AvailableMods
+onready var available_mods_view := $MarginContainer/HBoxContainer/ModPanel/MarginContainer/AvailableMods
 onready var equipped_mods_view := $MarginContainer/HBoxContainer/WorkArea/UIPanel3/MarginContainer/EquippedMods
 
 var drone_mirror_path:String = "res://components/click_drone_mirror.tscn"
 var mod_display_path:String = "res://components/mod_display.tscn"
 
 var selected_drone:Drone = null
-var available_mods:Array = []
+#var available_mods:Array = []
 
 
 func _ready():
@@ -89,7 +87,6 @@ func update_equipped_mods():
 
 # Called when a new enhancement is made and adds it to the 'free mods' window
 func add_free_enhancement(new_enhance:Dictionary):
-#	available_mods.append(new_enhance)
 	var mod_disp:Node = load(mod_display_path).instance()
 	available_mods_view.add_child(mod_disp)
 	mod_disp.init(new_enhance)
@@ -117,13 +114,11 @@ func change_mod_equip_state(mod:Node):
 # Adds the mod to the selected drones equipped_mod dictionary
 func equip_mod_onto_drone(mod:Dictionary):
 	selected_drone.add_mod(mod)
-#	selected_drone.equipped_mods.append(mod)
 
 
 # Erases the mod from the selected drones equipped_mod dictionary
 func remove_mod_from_drone(mod:Dictionary):
 	selected_drone.remove_mod(mod)
-#	selected_drone.equipped_mods.erase(mod)
 
 
 # drone -> drone_manager -> self; Update gui if selected drones stat's changed
