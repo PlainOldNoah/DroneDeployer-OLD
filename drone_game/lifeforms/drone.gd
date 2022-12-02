@@ -3,23 +3,59 @@ extends "res://lifeforms/generic_lifeform.gd"
 
 signal stats_updated()
 
+onready var battery_controller:Timer = $BatteryController
 onready var traveled_line:Line2D = $TraveledPath
 onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
-export var max_bounce_to_home:int = 0 # If 0 then ignore
-#export var pickup_range:int = 1
-#export var crit_chance:int = 0
-#export var crit_damage_mod:int = 1
 export var show_path:bool = false
 
 var stats:Dictionary = {}
-#var stats:Dictionary = {"max_battery":1, "battery":1, "speed":200, "damage":1, "crit_chance":0, "crit_dmg_mult":1}
-
+var battery:float = 0.0 # Current battery level
 var bounce_count:int = 0
 var exp_held:int = 0
 var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
 
 
+func _ready():
+	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
+	traveled_line.set_as_toplevel(true)
+	disable()
+	
+	calculate_stats()
+	battery = stats.max_battery
+	randomize_drone_stats() # WARNING
+
+
+func _process(delta):
+	battery_calculation(delta)
+
+
+# OVERRIDE: Setter function for state var
+func set_state(new_state:int):
+	# Turn process back on to (dis)charge battery
+	if state == STATES.IDLE or state == STATES.MOVING:
+		set_process(true)
+		
+	.set_state(new_state)
+
+
+func battery_calculation(delta:float):
+	if state == 1: # Moving
+		battery = clamp(battery - (stats.battery_drain * delta), 0.0, stats.max_battery)
+	elif state == 3: # Idle
+		battery = clamp(battery + (stats.battery_drain * 2 * delta), 0.0, stats.max_battery)
+	
+	if battery <= 0:
+		set_process(false)
+		# Drone is dead in the water, can turn off function for now
+	elif battery >= stats.max_battery:
+		set_process(false)
+		# Fully charaged, can turn off function for now
+	
+#	print("Battery: ", battery)
+
+
+# Applies each enhancements bonus to the default stats to get new stats
 func calculate_stats():
 	stats = GameVars.DEFAULT_DRONE_STATS.duplicate()
 	for mod in equipped_mods:
@@ -27,29 +63,20 @@ func calculate_stats():
 		if (stats.has(mod.stat)):
 			stats[mod.stat] += mod.value
 	
-	max_bounce_to_home = stats.bounce
 	emit_signal("stats_updated", self)
-
-
-func _ready():
-	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
-	traveled_line.set_as_toplevel(true)
-	disable()
-	calculate_stats()
-	randomize_drone_stats() # WARNING
 
 
 # DEBUG: This conflicts with the game_vars default stats
 func randomize_drone_stats():
 	rng.randomize()
 	custom_name = name
-	health = rng.randi_range(1, 10)
-	speed = rng.randi_range(250, 500)
-	damage = rng.randi_range(1, 5)
+#	health = rng.randi_range(1, 10)
+#	speed = rng.randi_range(250, 500)
+#	damage = rng.randi_range(1, 5)
 #	pickup_range = rng.randi_range(1, 3)
 #	crit_chance = rng.randi_range(0, 100)
 #	crit_damage_mod = rng.randi_range(1, 5)
-	max_bounce_to_home = rng.randi_range(1, 5)
+#	max_bounce_to_home = rng.randi_range(1, 5)
 	modulate = Color(randf(), randf(), randf())
 
 
@@ -106,7 +133,7 @@ func handle_collision(collision:KinematicCollision2D):
 	if collider.is_in_group("HUB"):
 		collider.collect_drone(self)
 	elif collider.is_in_group("ENEMY"):
-		if collider.health > 1:
+		if collider.health > stats.damage:
 			set_velocity_from_vector(get_bounce_direction(collision))
 		collider.take_hit()
 	else:
@@ -115,7 +142,7 @@ func handle_collision(collision:KinematicCollision2D):
 	if show_path:
 		traveled_line.add_point(global_position, 0)
 	
-	if max_bounce_to_home > 0 and bounce_count >= max_bounce_to_home:
+	if stats.bounce > 0 and bounce_count >= stats.bounce:
 		set_vel_to_hub()
 
 

@@ -2,9 +2,9 @@ extends Node
 
 const DEFAULT_DRONE_STATS:Dictionary = {
 	"display_name":"Drone", # Drones name in game
-	"max_battery":1, # Maximum battery level
-	"battery":1, # Current battery level
-	"battery_drain":1, # How much battery is lost per second while active
+	"max_battery":100, # Maximum battery level
+#	"battery":100, # Current battery level
+	"battery_drain":5, # How much battery is lost per second while active
 	"speed":200, # How fast drone moves
 	"damage":1, # Attack damage against enemies
 	"crit_chance":0, # Percentage chance of dealing a critical hit

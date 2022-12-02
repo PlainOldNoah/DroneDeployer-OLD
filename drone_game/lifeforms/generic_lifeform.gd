@@ -24,6 +24,11 @@ func _physics_process(delta):
 		handle_collision(collision)
 
 
+# Setter function for state var
+func set_state(new_state:int):
+	state = new_state
+
+
 func handle_collision(collision:KinematicCollision2D):
 	print_debug("ERROR: ", collision, " was not handled by ", name)
 
@@ -33,7 +38,7 @@ func set_health(value:int):
 	health = clamp(value, 0, max_health)
 	if health == 0:
 		emit_signal("died", self)
-		state = STATES.DEAD
+		set_state(STATES.DEAD)
 		queue_free()
 
 
@@ -60,13 +65,13 @@ func set_velocity_from_angle(degrees:float, speed_override:float=speed):
 # Sets the velocity to the current rotation times speed
 func start():
 	set_velocity_from_angle(rotation, speed)
-	state = STATES.MOVING
+	set_state(STATES.MOVING)
 
 
 # Sets the current speed to 0 but maintains direction
 func stop():
 	set_velocity_from_angle(rotation, 0)
-	state = STATES.STOPPED
+	set_state(STATES.STOPPED)
 
 
 # Sets the current heading to that of the HUB

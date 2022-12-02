@@ -26,7 +26,7 @@ func display_new_drone(d:Drone):
 #	update_pickup(d.pickup_range)
 #	update_crit_chance(d.crit_chance)
 #	update_crit_damage(d.crit_damage_mod)
-	update_max_bounce(d.max_bounce_to_home)
+	update_max_bounce(d.stats.bounce)
 
 
 # Sets all labels to default values
@@ -50,7 +50,7 @@ func _on_drone_stats_changed(d:Drone):
 #const DEFAULT_DRONE_STATS:Dictionary = {"max_battery":1, "battery":1, "speed":200, "damage":1, "crit_chance":0, "crit_dmg_mult":1, "bounce":1}
 func update_all_stat_labels(d:Drone):
 	name_label.text = d.stats.display_name
-	battery_label.text = str(d.stats.battery)
+	battery_label.text = str(d.battery)
 	speed_label.text = str(d.stats.speed)
 	damage_label.text = str(d.stats.damage)
 	max_bounce_label.text = str(d.stats.bounce)
