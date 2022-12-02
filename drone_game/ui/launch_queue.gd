@@ -1,7 +1,7 @@
 extends Control
 
 onready var queue_item_container := $MarginContainer/QueueItemContainer
-onready var drone_mirror_scene := "res://components/click_drone_mirror.tscn"
+onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
 
 #var queue_locked:bool = false # Bool to check if tween is currently doing something
 var drone_manager:DroneManager = null
@@ -20,8 +20,11 @@ func _ready():
 # Makes a new queue item for the given drone
 func create_queue_item(drone:Drone):
 	var drone_mirror = load(drone_mirror_scene).instance()
-	drone_mirror.init(drone)
 	queue_item_container.add_child(drone_mirror)
+	
+	drone_mirror.init(64, false, true)
+	drone_mirror.set_drone(drone)
+	
 	queue.append(drone_mirror)
 
 
@@ -44,3 +47,9 @@ func _on_QueueItemContainer_resized():
 	var limit_factor:int = queue_item_container.rect_size.x
 	for mirror in queue_item_container.get_children():
 		mirror.set_rect_size(limit_factor)
+
+
+# Hides the popup from each child drone mirror
+func dismiss_popups():
+	for i in queue_item_container.get_children():
+		i.toggle_popup(false)

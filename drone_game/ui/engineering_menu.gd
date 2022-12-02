@@ -4,9 +4,9 @@ onready var drone_display := $MarginContainer/HBoxContainer/DronePanel/MarginCon
 onready var selected_drone_mirror:DroneMirror = $MarginContainer/HBoxContainer/WorkArea/SelectedDrone/MarginContainer/SelectedDrone/DroneMirror
 onready var drone_info_view := $MarginContainer/HBoxContainer/WorkArea/DroneInfoView
 onready var available_mods_view := $MarginContainer/HBoxContainer/ModPanel/MarginContainer/AvailableMods
-onready var equipped_mods_view := $MarginContainer/HBoxContainer/WorkArea/UIPanel3/MarginContainer/EquippedMods
+onready var equipped_mods_view := $MarginContainer/HBoxContainer/WorkArea/EquippedMods/MarginContainer/EquippedMods
 
-var drone_mirror_path:String = "res://components/click_drone_mirror.tscn"
+var drone_mirror_path:String = "res://components/drone_mirror.tscn"
 var mod_display_path:String = "res://components/mod_display.tscn"
 
 var selected_drone:Drone = null
@@ -37,14 +37,19 @@ func on_close():
 		i.queue_free()
 	for i in available_mods_view.get_children():
 		i.toggle_popup(false)
+	for i in drone_display.get_children():
+		i.toggle_popup(false)
 
 
 # Creates a new drone mirror and adds it to the drone display
 func add_drone_mirror(drone:Drone):
 	var drone_mirror = load(drone_mirror_path).instance()
-	drone_mirror.init(drone)
 	drone_display.add_child(drone_mirror)
-	drone_mirror.set_rect_size(100) # TODO: Make sure this isn't hardcoded
+	
+	drone_mirror.init(80, true, true)
+	drone_mirror.set_drone(drone)
+	
+#	drone_mirror.set_rect_size(100) # TODO: Make sure this isn't hardcoded
 	var _ok = drone_mirror.connect("relay_btn_pressed", self, "drone_selected")
 
 
@@ -63,7 +68,7 @@ func update_drone_display(_drone:Drone):
 # Sets the selected drone and calls related funcs to display needed info
 func drone_selected(d_mirror:DroneMirror):
 	selected_drone = d_mirror.drone_ref
-	selected_drone_mirror.init(selected_drone)
+	selected_drone_mirror.set_drone(selected_drone)
 	update_drone_stats()
 	update_equipped_mods()
 

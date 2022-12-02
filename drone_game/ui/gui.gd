@@ -69,6 +69,8 @@ func dismiss_menu():
 	debug_menu.hide()
 	engineering_menu.hide()
 	current_menu = MENUS.NONE
+	
+	launch_queue.dismiss_popups()
 
 
 # Returns a child menu
