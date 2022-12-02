@@ -1,9 +1,10 @@
+class_name DroneMirror
 extends Control
 
 signal relay_btn_pressed()
 
 onready var texture_rect:TextureRect = $TextureRect
-onready var popup_window := $CanvasLayer/UIPanel
+onready var popup_window := $CanvasLayer/DroneStatsPopup
 onready var btn:Button = $Button
 
 var drone_ref:Drone = null
@@ -16,7 +17,8 @@ var cursor_disabled := CURSOR_FORBIDDEN
 var cursor_default := CURSOR_ARROW
 
 
-#func _ready():
+func _ready():
+	popup_window.visible = false
 #	init(128, false, false)
 
 
@@ -30,7 +32,8 @@ func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
 	if hover_stats:
 		var _ok := connect("mouse_entered", self, "_on_DroneMirror_mouse_entered")
 		_ok = connect("mouse_exited", self, "_on_DroneMirror_mouse_exited")
-	popup_window.visible = hover_stats
+	
+#	popup_window.visible = false
 
 
 # Base Functions

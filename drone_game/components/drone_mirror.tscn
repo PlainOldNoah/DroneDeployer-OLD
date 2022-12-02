@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://components/ui_panel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://components/drone_mirror.gd" type="Script" id=2]
-[ext_resource path="res://assets/visual/health_plus.png" type="Texture" id=3]
 [ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=4]
 
 [node name="DroneMirror" type="Control"]
 rect_min_size = Vector2( 16, 16 )
 mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": "Displays a drones sprite in GUI form. Can have clickability with relay_btn_pressed() signal and can display linked drones stat's."
@@ -18,14 +19,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="UIPanel" parent="CanvasLayer" instance=ExtResource( 1 )]
+[node name="DroneStatsPopup" parent="CanvasLayer" instance=ExtResource( 1 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0

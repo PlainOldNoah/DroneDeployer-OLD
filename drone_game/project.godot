@@ -24,10 +24,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://core/managers/drone_manager.gd"
 }, {
-"base": "TextureRect",
+"base": "Control",
 "class": "DroneMirror",
 "language": "GDScript",
-"path": "res://components/base_drone_mirror.gd"
+"path": "res://components/drone_mirror.gd"
 }, {
 "base": "CanvasLayer",
 "class": "GUI",
