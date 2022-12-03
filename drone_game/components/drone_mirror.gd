@@ -19,7 +19,6 @@ var cursor_default := CURSOR_ARROW
 
 func _ready():
 	popup_window.visible = false
-#	init(128, false, false)
 
 
 func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
@@ -32,8 +31,6 @@ func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
 	if hover_stats:
 		var _ok := connect("mouse_entered", self, "_on_DroneMirror_mouse_entered")
 		_ok = connect("mouse_exited", self, "_on_DroneMirror_mouse_exited")
-	
-#	popup_window.visible = false
 
 
 # Base Functions
@@ -42,6 +39,7 @@ func set_drone(drone:Drone):
 	drone_ref = drone
 	texture_rect.texture = drone.get_sprite()
 	modulate = drone.modulate
+	popup_window.display_new_drone(drone)
 
 
 # Clears all non-init data
@@ -63,7 +61,6 @@ func set_rect_size(factor:int):
 func enable():
 	enabled = true
 	modulate.a = 1
-#	mouse_filter = Control.MOUSE_FILTER_STOP
 	mouse_default_cursor_shape = cursor_clickable
 
 
@@ -71,7 +68,6 @@ func enable():
 func disable():
 	enabled = false
 	modulate.a = 0.2
-#	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	mouse_default_cursor_shape = cursor_disabled
 
 

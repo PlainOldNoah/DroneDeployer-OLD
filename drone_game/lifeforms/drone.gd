@@ -1,7 +1,7 @@
 class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
-signal stats_updated()
+signal stats_updated() #stats_updated(self, stat)
 
 onready var battery_controller:Timer = $BatteryController
 onready var traveled_line:Line2D = $TraveledPath
@@ -45,14 +45,14 @@ func battery_calculation(delta:float):
 	elif state == 3: # Idle
 		battery = clamp(battery + (stats.battery_drain * 2 * delta), 0.0, stats.max_battery)
 	
+	emit_signal("stats_updated", self, "battery")
+	
 	if battery <= 0:
 		set_process(false)
 		# Drone is dead in the water, can turn off function for now
 	elif battery >= stats.max_battery:
 		set_process(false)
 		# Fully charaged, can turn off function for now
-	
-#	print("Battery: ", battery)
 
 
 # Applies each enhancements bonus to the default stats to get new stats
@@ -63,7 +63,7 @@ func calculate_stats():
 		if (stats.has(mod.stat)):
 			stats[mod.stat] += mod.value
 	
-	emit_signal("stats_updated", self)
+	emit_signal("stats_updated", self) # Update all stats
 
 
 # DEBUG: This conflicts with the game_vars default stats

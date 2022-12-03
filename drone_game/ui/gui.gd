@@ -70,7 +70,7 @@ func dismiss_menu():
 	engineering_menu.hide()
 	current_menu = MENUS.NONE
 	
-	launch_queue.dismiss_popups()
+#	launch_queue.dismiss_popups()
 
 
 # Returns a child menu

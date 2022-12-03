@@ -10,7 +10,6 @@ var drone_mirror_path:String = "res://components/drone_mirror.tscn"
 var mod_display_path:String = "res://components/mod_display.tscn"
 
 var selected_drone:Drone = null
-#var available_mods:Array = []
 
 
 func _ready():
@@ -69,13 +68,8 @@ func update_drone_display(_drone:Drone):
 func drone_selected(d_mirror:DroneMirror):
 	selected_drone = d_mirror.drone_ref
 	selected_drone_mirror.set_drone(selected_drone)
-	update_drone_stats()
-	update_equipped_mods()
-
-
-# Show the stats of the drone currently in the workbench
-func update_drone_stats():
 	drone_info_view.display_new_drone(selected_drone)
+	update_equipped_mods()
 
 
 # Populate the equipped mods box with the selected drones equipped mods
@@ -127,9 +121,9 @@ func remove_mod_from_drone(mod:Dictionary):
 
 
 # drone -> drone_manager -> self; Update gui if selected drones stat's changed
-func _on_drone_stats_changed(d:Drone):
+func _on_drone_stats_changed(d:Drone, targeted_stat:String=""):
 	if selected_drone == d:
-		update_drone_stats()
+		drone_info_view._on_drone_stats_changed(d, targeted_stat)
 
 
 func _on_EngineeringMenu_visibility_changed():
