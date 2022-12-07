@@ -36,7 +36,6 @@ margin_bottom = 200.0
 [node name="MarginContainer" parent="CanvasLayer/UIPanel" index="1"]
 margin_right = 400.0
 margin_bottom = 200.0
-mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIPanel/MarginContainer" index="0"]
 margin_left = 8.0

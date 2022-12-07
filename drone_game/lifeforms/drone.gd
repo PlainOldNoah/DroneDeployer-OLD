@@ -62,6 +62,12 @@ func calculate_stats():
 #		print(mod, " -> ", stats) # DEBUG
 		if (stats.has(mod.stat)):
 			stats[mod.stat] += mod.value
+		else:
+			print_debug("ERROR: ", mod.stat, " does not exisit within drone")
+	
+	set_process(true)
+	if battery > stats.max_battery:
+		battery = stats.max_battery
 	
 	emit_signal("stats_updated", self) # Update all stats
 

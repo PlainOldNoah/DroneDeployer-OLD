@@ -11,6 +11,7 @@ var hub_scene:Hub = null
 var gui:GUI = null
 var stats_bar:MarginContainer = null
 var engr_menu:Control = null
+var fabricator:Control = null
 
 
 var crafting_options:Dictionary = {
@@ -30,7 +31,7 @@ var crafting_options:Dictionary = {
 	"mod":{
 		"name":"Mod",
 		"icon":"res://assets/visual/pcb_rect_plus.png",
-		"craft_time":5,
+		"craft_time":2,
 		"craft_cost":3,
 	}
 }

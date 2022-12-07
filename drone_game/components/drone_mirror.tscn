@@ -28,6 +28,7 @@ stretch_mode = 6
 layer = 2
 
 [node name="DroneStatsPopup" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 320.0

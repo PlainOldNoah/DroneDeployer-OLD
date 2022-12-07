@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "LevelManager",
 "language": "GDScript",
 "path": "res://core/managers/level_manager.gd"
+}, {
+"base": "Node",
+"class": "ModManager",
+"language": "GDScript",
+"path": "res://core/managers/mod_manager.gd"
 } ]
 _global_script_class_icons={
 "DebugMenu": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "GUI": "",
 "GameManager": "",
 "Hub": "",
-"LevelManager": ""
+"LevelManager": "",
+"ModManager": ""
 }
 
 [application]

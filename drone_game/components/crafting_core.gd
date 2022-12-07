@@ -1,6 +1,7 @@
 extends MarginContainer
 
-signal core_freed() # Emit when a core stops being in use
+signal core_freed() # Lets the fabricator know that this core is no longer being used
+signal craft_completed()
 
 onready var item_icon := $NinePatchRect/InnerMargin/VBoxContainer/CraftingIcon
 onready var item_label := $NinePatchRect/InnerMargin/VBoxContainer/CraftingNameLabel
@@ -15,8 +16,9 @@ var running:bool = false
 func _ready():
 	yield(get_tree().root, "ready")
 	reset_core()
-	var _ok = self.connect("core_freed", get_owner(), "core_freed")
+	var _ok = connect("core_freed", Global.fabricator, "queue_2_core")
 	_ok = Global.game_manager.connect("game_paused", self, "pause_core")
+	_ok = connect("craft_completed", Global.fabricator, "_on_craft_complete")
 
 
 # Sets the core's info to default values
@@ -27,18 +29,12 @@ func reset_core():
 	item_craft_time.text = "0:00"
 	item_to_craft = ""
 	seconds = 0
-	free_core()
-
-
-# Sets the core to not running and emits the signal
-func free_core():
 	running = false
 	emit_signal("core_freed")
 
 
 func pause_core(value:bool):
 	timer.set_paused(value)
-	pass
 
 
 # Sets core to running and populates with needed info
@@ -55,24 +51,11 @@ func craft(item:String, temp_name:String):
 	timer.start()
 
 
-# When a craft is complete call this function
-func craft_complete():
-	match item_to_craft:
-		"drone":
-			Global.drone_manager.increment_max_drones(1)
-		"health":
-			Global.game_manager.modify_health(1)
-		"mod":
-			print_debug("Mod doesn't do anything yet")
-	
-	Logger.create(self, "fabrication", "Fabrication Completed")
-	reset_core()
-
-
 # Each second update the time label and verify if it's 0
 func update_time():
 	if seconds <= 0:
-		craft_complete()
+		emit_signal("craft_completed", item_to_craft)
+		reset_core()
 	item_craft_time.text = (str(seconds / 60) + ":" + str(seconds % 60).pad_zeros(2))
 
 

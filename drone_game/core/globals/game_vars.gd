@@ -11,6 +11,69 @@ const DEFAULT_DRONE_STATS:Dictionary = {
 	"bounce":1, # How many bounces drone can make before going home
 	}
 
+const DEFAULT_ENHANCEMENTS:Dictionary = {
+	"max_battery": {
+		"values": [10, 30, 50, 100],
+	},
+	"battery_drain": {
+		"values": [-0.25, -0.5, -1, -2],
+	},
+	"speed": {
+		"values": [25, 50, 100, 200],
+	},
+	"damage": {
+		"values": [1, 2, 4, 8],
+	},
+	"crit_chance": {
+		"values": [1, 5, 10, 50],
+	},
+	"crit_dmg_mult": {
+		"values": [0.5, 1, 2, 3],
+	},
+	"bounce": {
+		"values": [3, 8, 15, 30],
+	},
+	
+#	"max_battery_1": {
+#		"rarity":"common",
+#		"value":10},
+#	"max_battery_2": {
+#		"rarity":"uncommon",
+#		"value":30},
+#	"max_battery_3": {
+#		"rarity":"rare",
+#		"value":50},
+#	"max_battery_4": {
+#		"rarity":"legendary",
+#		"value":100},
+	
+#	"battery_drain_1": {
+#		"rarity":"common",
+#		"value":0.25},
+#	"battery_drain_2": {
+#		"rarity":"uncommon",
+#		"value":0.5},
+#	"battery_drain_3": {
+#		"rarity":"rare",
+#		"value":1},
+#	"battery_drain_4": {
+#		"rarity":"legendary",
+#		"value":2},
+#
+#	"speed_1": {
+#		"rarity":"common",
+#		"value":25},
+#	"speed_2": {
+#		"rarity":"uncommon",
+#		"value":50},
+#	"speedn_3": {
+#		"rarity":"rare",
+#		"value":100},
+#	"speed_4": {
+#		"rarity":"legendary",
+#		"value":200},
+}
+
 # Mod = multiplier, bonus = addition
 var initial:Dictionary = {
 	# Hub

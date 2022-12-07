@@ -54,9 +54,9 @@ func _on_drone_stats_changed(d:Drone, stat:String=""):
 			"display_name":
 				name_label.text = d.stats.display_name
 			"battery":
-				battery_label.text = str(round(d.battery))
+				battery_label.text = "%d" % d.battery
 			"battery_drain":
-				battery_drain_label.text = str(d.stats.battery_drain) + "/s"
+				battery_drain_label.text = "%d/s" % d.stats.battery_drain
 			"speed":
 				speed_label.text = str(d.stats.speed)
 			"damage":
@@ -74,8 +74,8 @@ func _on_drone_stats_changed(d:Drone, stat:String=""):
 # Sets all the labels to match that of the drone's stats
 func update_all_stat_labels(d:Drone):
 	name_label.text = d.stats.display_name
-	battery_label.text = str(d.battery)
-	battery_drain_label.text = str(d.stats.battery_drain) + "/s"
+	battery_label.text = "%d" % d.battery
+	battery_drain_label.text = "%d/s" % d.stats.battery_drain
 	speed_label.text = str(d.stats.speed)
 	damage_label.text = str(d.stats.damage)
 	crit_chance_label.text = str(d.stats.crit_chance) + "%"

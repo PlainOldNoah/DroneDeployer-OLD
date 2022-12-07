@@ -10,6 +10,10 @@ var queue_item_scene:String = "res://components/craft_queue_item.tscn"
 var craft_history:Dictionary = {}
 
 
+func _ready():
+	Global.fabricator = self
+
+
 func reset():
 	craft_history = {}
 
@@ -63,9 +67,19 @@ func verify_cost(cost:int) -> bool:
 	return true
 
 
-# When a core is freed up check if anything in the queue can be processed
-func core_freed():
-	queue_2_core()
+# When a core finishes it's job allow the fabricator to finish the task
+func _on_craft_complete(crafted_item:String):
+	match crafted_item:
+		"drone":
+			Global.drone_manager.increment_max_drones(1)
+		"health":
+			Global.game_manager.modify_health(1)
+		"mod":
+			Global.mod_manager.create_rand_enhancement()
+		_:
+			print_debug("ERROR: ", crafted_item, " is not a valid craftable item")
+
+	Logger.create(self, "fabrication", str(crafted_item + " fabricated"))
 
 
 func _on_DroneBtn_pressed():
