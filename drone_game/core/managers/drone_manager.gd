@@ -51,6 +51,7 @@ func deploy_next_up(position:Vector2, rotation:float):
 		
 	var drone_2_deploy:Drone = get_drone_from_queue(0)
 	drone_2_deploy.init(position, rotation)
+#	drone_2_deploy.set_state(drone_2_deploy.STATES.SPAWNING)
 	
 	Global.stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
 	
@@ -88,7 +89,7 @@ func add_drone_to_queue(drone:Drone):
 
 # Handles drones returning from deployment and prepares them for relaunching
 func collect_drone(drone:Drone):
-	drone.disable()
+	drone.set_state(drone.STATES.IDLE)
 	drone.global_position = Vector2.ONE * 100
 	
 	Logger.create(self, "drone", "Drone collected " + str(drone.exp_held) + " exp")

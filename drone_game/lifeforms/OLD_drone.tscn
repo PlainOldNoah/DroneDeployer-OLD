@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://lifeforms/generic_lifeform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://lifeforms/OLD_drone.gd" type="Script" id=2]
+[ext_resource path="res://assets/visual/large_drone.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 13.0
+
+[node name="Drone" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource( 2 )
+speed = 300.0
+show_path = false
+
+[node name="Sprite" parent="." index="0"]
+rotation = 1.57079
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="TraveledPath" type="Line2D" parent="." index="2"]
+default_color = Color( 0, 0.882353, 1, 0.137255 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

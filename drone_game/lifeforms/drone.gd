@@ -1,15 +1,15 @@
 class_name Drone
-extends "res://lifeforms/generic_lifeform.gd"
+extends KinematicBody2D
 
 signal stats_updated() #stats_updated(self, stat)
 
-onready var battery_controller:Timer = $BatteryController
-onready var traveled_line:Line2D = $TraveledPath
-onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
+enum STATES {ACTIVE, IDLE, SPAWNING, STOPPED}
+var state:int = STATES.IDLE
 
-export var show_path:bool = false
+onready var spawn_protection_timer := $SpawnProtectionTimer
 
 var stats:Dictionary = {}
+var velocity:Vector2 = Vector2.ZERO setget set_velocity
 var battery:float = 0.0 # Current battery level
 var bounce_count:int = 0
 var exp_held:int = 0
@@ -18,12 +18,17 @@ var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
 
 func _ready():
 	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
-	traveled_line.set_as_toplevel(true)
-	disable()
 	
-	calculate_stats()
-	battery = stats.max_battery
-	randomize_drone_stats() # WARNING
+	reset()
+	
+	stats.display_name = "Drone_" + str(self.get_index() - 3)
+	modulate = Color(randf(), randf(), randf())
+
+
+func _physics_process(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		handle_collision(collision)
 
 
 func _process(delta):
@@ -35,56 +40,54 @@ func init(start_pos:Vector2, start_rot:float):
 	global_position = start_pos
 	rotation = start_rot
 	bounce_count = 0
-	enable()
+	set_state(STATES.SPAWNING)
 
 
-# Turns collision on and starts movement
-func enable():
-	show()
-	set_physics_process(true)
-	restart_travel_path()
-	start()
-
-
-# Turns off drone's collision, movement, and traveled line
-func disable():
-	hide()
-	stop()
-	set_physics_process(false)
-	traveled_line.clear_points()
+# Reverts drone to default state
+func reset():
 	set_state(STATES.IDLE)
-#	state = STATES.IDLE
+	calculate_stats()
+	battery = stats.max_battery
+	bounce_count = 0
+	exp_held = 0
 
 
-# OVERRIDE Sets velocity to zero while mantaining rotation
-func stop():
+# State machine controller
+func set_state(new_state:int):
+	state = new_state
+	match state:
+		STATES.ACTIVE:
+			show()
+			set_physics_process(true)
+			set_process(true)
+			start_moving()
+		STATES.IDLE:
+			hide()
+			set_physics_process(false)
+			set_process(true)
+			stop_moving()
+		STATES.SPAWNING:
+			show()
+			set_physics_process(true)
+			start_moving()
+			spawn_protection_timer.start()
+		STATES.STOPPED:
+			stop_moving()
+		_:
+			print_debug("ERROR: <", state, "> is not a valid state")
+
+
+# Saves the current rotation and sets speed to 0
+func stop_moving():
 	var stored_rotation = global_rotation_degrees
-	.stop()
+#	set_velocity_from_angle(rotation, 0)
+	set_velocity_from_vector(velocity, 0)
 	set_deferred("global_rotation_degrees", stored_rotation)
 
 
-# OVERRIDE: Setter function for state var
-func set_state(new_state:int):
-	# Turn process back on to (dis)charge battery
-	if state == STATES.IDLE or state == STATES.MOVING:
-		set_process(true)
-		
-	.set_state(new_state)
-
-
-func battery_calculation(delta:float):
-	if state == 1: # Moving
-		battery = clamp(battery - (stats.battery_drain * delta), 0.0, stats.max_battery)
-	elif state == 3: # Idle
-		battery = clamp(battery + (stats.battery_drain * 2 * delta), 0.0, stats.max_battery)
-	
-	emit_signal("stats_updated", self, "battery")
-	
-	if battery <= 0: # Battery == dead
-		set_process(false)
-		stop()
-	elif battery >= stats.max_battery: # Battery == full
-		set_process(false)
+# Resumes movement in current rotation direction
+func start_moving():
+	set_velocity_from_angle(rotation, stats.speed)
 
 
 # Applies each enhancements bonus to the default stats to get new stats
@@ -104,62 +107,29 @@ func calculate_stats():
 	emit_signal("stats_updated", self) # Update all stats
 
 
-# DEBUG: This conflicts with the game_vars default stats
-func randomize_drone_stats():
-	rng.randomize()
-	custom_name = name
-#	health = rng.randi_range(1, 10)
-#	speed = rng.randi_range(250, 500)
-#	damage = rng.randi_range(1, 5)
-#	pickup_range = rng.randi_range(1, 3)
-#	crit_chance = rng.randi_range(0, 100)
-#	crit_damage_mod = rng.randi_range(1, 5)
-#	max_bounce_to_home = rng.randi_range(1, 5)
-	modulate = Color(randf(), randf(), randf())
-
-
-# OVERRIDE so drones correct their rotation
-func set_velocity(value:Vector2):
-	.set_velocity(value)
-	rotation_degrees = rad2deg(velocity.angle())
-
-
-# Removes all current points and then starts a new line
-func restart_travel_path():
-	traveled_line.clear_points()
-	traveled_line.add_point(global_position)
-
-
-# OVERRIDE Drones bounce off of objects and change their heading
+# Controller for when the drone bumps into something
 func handle_collision(collision:KinematicCollision2D):
 	bounce_count += 1
 	
 	var collider:Node = collision.collider
-	
-	if collider.is_in_group("HUB"):
-		collider.collect_drone(self)
-	elif collider.is_in_group("ENEMY"):
+		
+	if collider.is_in_group("ENEMY"):
 		if collider.health > stats.damage:
 			set_velocity_from_vector(get_bounce_direction(collision))
 		collider.take_hit()
+		
 	elif collider.is_in_group("DRONE"):
 		# Note: This seems to stops drones from doing several collisions at once
 		set_velocity_from_vector(get_bounce_direction(collision))
-		if collider.state == STATES.MOVING:
+		if collider.state == STATES.ACTIVE:
 			collider.set_velocity_from_vector(get_bounce_direction(collision))
+			collider.bounce_count += 1
+			
 	else:
 		set_velocity_from_vector(get_bounce_direction(collision))
-	
-	if show_path:
-		traveled_line.add_point(global_position, 0)
-	
+
 	if stats.bounce > 0 and bounce_count >= stats.bounce:
 		set_vel_to_hub()
-
-
-# Returns the direction of the bounce as an angle in degrees
-func get_bounce_angle(collision:KinematicCollision2D) -> float:
-	return rad2deg(velocity.bounce(collision.normal).angle())
 
 
 # Returns the direction of the bounce as a normalized vector
@@ -167,21 +137,49 @@ func get_bounce_direction(collision:KinematicCollision2D) -> Vector2:
 	return velocity.bounce(collision.normal).normalized()
 
 
-# Adds the mod to the equipped_mods array
-func add_mod(mod:Dictionary):
-	equipped_mods.append(mod)
-	calculate_stats()
+# Decreases battery while active and charges while idle
+func battery_calculation(delta:float):
+	if state == STATES.ACTIVE: # Moving
+		battery = clamp(battery - (stats.battery_drain * delta), 0.0, stats.max_battery)
+	elif state == STATES.IDLE: # Idle
+		battery = clamp(battery + (stats.battery_drain * 2 * delta), 0.0, stats.max_battery)
+	
+	emit_signal("stats_updated", self, "battery")
+	
+	if battery <= 0: # Battery == dead
+		set_process(false)
+		set_state(STATES.STOPPED)
+	elif battery >= stats.max_battery: # Battery == full
+		set_process(false)
 
 
-# Removes the mod from equipped_mods if it exists
-func remove_mod(mod:Dictionary):
-	if equipped_mods.has(mod):
-		equipped_mods.erase(mod)
-		calculate_stats()
-	else:
-		print_debug("ERROR: <", mod, "> could not be removed")
+# Sets the velocity and rotation angle
+func set_velocity(new_vel:Vector2):
+	velocity = new_vel
+	rotation_degrees = rad2deg(velocity.angle())
+
+
+# Set the velocity a normalized vector * speed
+func set_velocity_from_vector(direction:Vector2, speed_override:float=stats.speed):
+	set_velocity(direction * speed_override)
+
+
+# Set the velocity from an angle in degrees *  speed
+func set_velocity_from_angle(degrees:float, speed_override:float=stats.speed):
+	set_velocity(Vector2(cos(degrees), sin(degrees)) * speed_override)
+
+
+# Sets the current heading to that of the HUB
+func set_vel_to_hub():
+	if state != STATES.STOPPED:
+		set_velocity((Global.hub_scene.global_position - self.global_position).normalized() * stats.speed)
 
 
 # Returns the sprite texture
 func get_sprite() -> Texture:
 	return $Sprite.texture
+
+
+# When set to the SPAWNING state wait this long to move to ACTIVE
+func _on_SpawnProtectionTimer_timeout():
+	set_state(STATES.ACTIVE)
