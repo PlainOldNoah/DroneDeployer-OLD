@@ -30,6 +30,39 @@ func _process(delta):
 	battery_calculation(delta)
 
 
+# Sets the current position and rotation before enabling
+func init(start_pos:Vector2, start_rot:float):
+	global_position = start_pos
+	rotation = start_rot
+	bounce_count = 0
+	enable()
+
+
+# Turns collision on and starts movement
+func enable():
+	show()
+	set_physics_process(true)
+	restart_travel_path()
+	start()
+
+
+# Turns off drone's collision, movement, and traveled line
+func disable():
+	hide()
+	stop()
+	set_physics_process(false)
+	traveled_line.clear_points()
+	set_state(STATES.IDLE)
+#	state = STATES.IDLE
+
+
+# OVERRIDE Sets velocity to zero while mantaining rotation
+func stop():
+	var stored_rotation = global_rotation_degrees
+	.stop()
+	set_deferred("global_rotation_degrees", stored_rotation)
+
+
 # OVERRIDE: Setter function for state var
 func set_state(new_state:int):
 	# Turn process back on to (dis)charge battery
@@ -85,14 +118,6 @@ func randomize_drone_stats():
 	modulate = Color(randf(), randf(), randf())
 
 
-# Sets the current position and rotation before enabling
-func init(start_pos:Vector2, start_rot:float):
-	global_position = start_pos
-	rotation = start_rot
-	bounce_count = 0
-	enable()
-
-
 # OVERRIDE so drones correct their rotation
 func set_velocity(value:Vector2):
 	.set_velocity(value)
@@ -103,30 +128,6 @@ func set_velocity(value:Vector2):
 func restart_travel_path():
 	traveled_line.clear_points()
 	traveled_line.add_point(global_position)
-
-
-# Turns collision on and starts movement
-func enable():
-	show()
-	set_physics_process(true)
-	restart_travel_path()
-	start()
-
-
-# Turns off drone's collision, movement, and traveled line
-func disable():
-	hide()
-	stop()
-	set_physics_process(false)
-	traveled_line.clear_points()
-	state = STATES.IDLE
-
-
-# OVERRIDE Sets velocity to zero while mantaining rotation
-func stop():
-	var stored_rotation = global_rotation_degrees
-	.stop()
-	set_deferred("global_rotation_degrees", stored_rotation)
 
 
 # OVERRIDE Drones bounce off of objects and change their heading

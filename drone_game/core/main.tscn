@@ -27,6 +27,8 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "Head manager and parent of all gameplay related features."
 }
+max_drones = 6
+deploy_cooldown = 0.1
 
 [node name="DroneManager" type="Node" parent="GameManager"]
 script = ExtResource( 12 )

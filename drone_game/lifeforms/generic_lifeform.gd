@@ -62,7 +62,7 @@ func set_velocity_from_angle(degrees:float, speed_override:float=speed):
 	set_velocity(Vector2(cos(degrees), sin(degrees)) * speed_override)
 
 
-# Sets the velocity to the current rotation times speed
+# Sets the velocity to the current rotation * speed
 func start():
 	set_velocity_from_angle(rotation, speed)
 	set_state(STATES.MOVING)
