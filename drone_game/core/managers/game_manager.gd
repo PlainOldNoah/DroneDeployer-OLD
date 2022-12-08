@@ -4,7 +4,7 @@ extends Node
 signal game_paused()
 
 export var max_health:int = 3
-export var max_drones:int = 0
+export var max_drones:int = 1
 export var deploy_cooldown:float = 0.5
 
 onready var play_time_clock:Timer = $PlayTimeClock
@@ -82,7 +82,7 @@ func set_curr_exp(value:int):
 	curr_exp += value
 	if curr_exp < 0:
 		print_debug("INVALID VALUE: exp is a negative")
-	Global.gui.get_menu("fabrication").fabrication.queue_2_core()
+	Global.fabricator.queue_2_core()
 
 
 # Add the 'value' to the total gathered exp

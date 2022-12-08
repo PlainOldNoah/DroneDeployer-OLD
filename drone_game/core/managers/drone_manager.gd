@@ -5,16 +5,12 @@ signal drone_created()
 signal drone_added_to_queue()
 signal drone_launched()
 signal drone_queue_changed()
-#signal relay_drone_stats_changed()
 
 onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
 
 var max_drones:int = 0
 var curr_drone_count:int = 0
-var stats_bar:Node = null
-var launch_queue:Node = null
 var drone_scene = preload("res://lifeforms/drone.tscn")
-
 var drone_queue:Array = [] # Holds Drone datatype
 
 
@@ -22,11 +18,6 @@ func _ready():
 	Global.drone_manager = self
 	yield(get_tree().root, "ready")
 	var _ok := connect("drone_queue_changed", drone_info_view, "display_new_drone")
-#	_ok = connect("relay_drone_stats_changed", drone_info_view, "_on_drone_stats_changed")
-#	_ok = connect("relay_drone_stats_changed", Global.engr_menu, "_on_drone_stats_changed")
-	
-	stats_bar = Global.gui.get_menu("stats_bar")
-	launch_queue = Global.gui.get_menu("launch_queue")
 
 
 # Changes the max number of drones to count and builds the necessary amount
@@ -61,7 +52,7 @@ func deploy_next_up(position:Vector2, rotation:float):
 	var drone_2_deploy:Drone = get_drone_from_queue(0)
 	drone_2_deploy.init(position, rotation)
 	
-	stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
+	Global.stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
 	
 	drone_queue.remove(0)
 	
@@ -92,7 +83,7 @@ func add_drone_to_queue(drone:Drone):
 	emit_signal("drone_added_to_queue", drone)
 	emit_signal("drone_queue_changed", get_drone_from_queue(0))
 	
-	stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
+	Global.stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
 
 
 # Handles drones returning from deployment and prepares them for relaunching

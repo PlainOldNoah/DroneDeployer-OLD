@@ -69,29 +69,6 @@ func dismiss_menu():
 	debug_menu.hide()
 	engineering_menu.hide()
 	current_menu = MENUS.NONE
-	
-#	launch_queue.dismiss_popups()
-
-
-# Returns a child menu
-func get_menu(menu:String) -> Node:
-	match menu:
-		"stats_bar":
-			return stats_bar
-		"drone_info_view":
-			return drone_info
-		"launch_queue":
-			return launch_queue
-		"fabricator":
-			return fabricator_menu
-		_:
-			print_debug("ERROR: Menu <", menu, "> does not exist")
-			return null
-
-
-# Middle function to connect GUI to stats bar
-func update_stats(label:String, values:Array):
-	stats_bar.update_label(label, values)
 
 
 func adjust_gui_scales(): # DEBUG FUNCTION

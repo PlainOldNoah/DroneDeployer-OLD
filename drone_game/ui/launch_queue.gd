@@ -3,13 +3,13 @@ extends Control
 onready var queue_item_container := $MarginContainer/QueueItemContainer
 onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
 
-#var queue_locked:bool = false # Bool to check if tween is currently doing something
 var drone_manager:DroneManager = null
 var queue:Array = []
 var launch_enabled:bool = true # TODO: Work on this later. Needs to talk to HUB?
 
 
 func _ready():
+	Global.launch_queue = self
 	yield(get_tree().root, "ready")
 	drone_manager = Global.drone_manager
 	

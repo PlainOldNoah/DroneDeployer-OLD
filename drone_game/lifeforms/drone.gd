@@ -47,12 +47,11 @@ func battery_calculation(delta:float):
 	
 	emit_signal("stats_updated", self, "battery")
 	
-	if battery <= 0:
+	if battery <= 0: # Battery == dead
 		set_process(false)
-		# Drone is dead in the water, can turn off function for now
-	elif battery >= stats.max_battery:
+		stop()
+	elif battery >= stats.max_battery: # Battery == full
 		set_process(false)
-		# Fully charaged, can turn off function for now
 
 
 # Applies each enhancements bonus to the default stats to get new stats
@@ -142,6 +141,11 @@ func handle_collision(collision:KinematicCollision2D):
 		if collider.health > stats.damage:
 			set_velocity_from_vector(get_bounce_direction(collision))
 		collider.take_hit()
+	elif collider.is_in_group("DRONE"):
+		# Note: This seems to stops drones from doing several collisions at once
+		set_velocity_from_vector(get_bounce_direction(collision))
+		if collider.state == STATES.MOVING:
+			collider.set_velocity_from_vector(get_bounce_direction(collision))
 	else:
 		set_velocity_from_vector(get_bounce_direction(collision))
 	

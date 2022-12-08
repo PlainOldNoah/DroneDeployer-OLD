@@ -56,12 +56,10 @@ func add_drone_mirror(drone:Drone):
 func update_drone_display(_drone:Drone):
 	for mirror in drone_display.get_children():
 		match mirror.drone_ref.state:
-			1: # moving
-				mirror.disable()
 			3: # idle
 				mirror.enable()
 			_:
-				print_debug("WARNING: Drone state <", mirror.drone_ref.state, "> not handled")
+				mirror.disable()
 
 
 # Sets the selected drone and calls related funcs to display needed info

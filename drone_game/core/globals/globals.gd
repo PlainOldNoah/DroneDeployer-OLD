@@ -10,6 +10,7 @@ var hub_scene:Hub = null
 
 var gui:GUI = null
 var stats_bar:MarginContainer = null
+var launch_queue:Control = null
 var engr_menu:Control = null
 var fabricator:Control = null
 

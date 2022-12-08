@@ -8,7 +8,7 @@ const DEFAULT_DRONE_STATS:Dictionary = {
 	"damage":1, # Attack damage against enemies
 	"crit_chance":0, # Percentage chance of dealing a critical hit
 	"crit_dmg_mult":1, # Normal damage multiplier when dealing crit hit
-	"bounce":1, # How many bounces drone can make before going home
+	"bounce":100, # How many bounces drone can make before going home
 	}
 
 const DEFAULT_ENHANCEMENTS:Dictionary = {

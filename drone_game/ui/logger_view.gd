@@ -14,6 +14,7 @@ func add_new_msg(_sender:Node, _type:String, contents:String):
 
 	msg_label.text = contents
 	message_container.add_child(msg_label)
+	message_container.move_child(msg_label, 0)
 
 
 # Removes all current messages in the logger view
