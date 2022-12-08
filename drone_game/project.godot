@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Drone",
 "language": "GDScript",
-"path": "res://lifeforms/new_drone.gd"
+"path": "res://lifeforms/drone.gd"
 }, {
 "base": "Node",
 "class": "DroneManager",

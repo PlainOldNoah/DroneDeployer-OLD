@@ -89,7 +89,7 @@ func _on_SkipCooldown_timeout():
 
 # Aura around the HUB that collects deployed drones
 func _on_PickUpZone_body_entered(body):
-	print(body, ": ", body.state, ": ", body.bounce_count)
+#	print(body, ": ", body.state, ": ", body.bounce_count)
 	if body.is_in_group("DRONE") and body.state == body.STATES.ACTIVE:
 #		if body.bounce_count > 0:
 		collect_drone(body)
@@ -108,6 +108,6 @@ func _on_Hitbox_body_entered(body):
 		body.queue_free() # TODO: If I want to make this more fancy later
 
 
-func _on_PickUpZone_body_exited(body):
+func _on_PickUpZone_body_exited(_body):
 #	print(body)
 	pass

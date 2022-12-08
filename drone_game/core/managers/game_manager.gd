@@ -9,8 +9,6 @@ export var deploy_cooldown:float = 0.5
 
 onready var play_time_clock:Timer = $PlayTimeClock
 
-var drone_scene = preload("res://lifeforms/drone.tscn")
-
 var running:bool = false
 var curr_drone_count:int = 0
 var curr_health:int = 0
@@ -68,7 +66,8 @@ func stop_game():
 		i.queue_free()
 	
 	for i in get_tree().get_nodes_in_group("DRONE"):
-		i.set_vel_to_hub()
+		Global.drone_manager.add_drone_to_queue(i)
+		i.reset()
 
 
 # Unpauses if paused; pauses if unpaused
