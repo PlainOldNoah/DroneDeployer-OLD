@@ -10,7 +10,8 @@ onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContai
 
 var max_drones:int = 0
 var curr_drone_count:int = 0
-var drone_scene = preload("res://lifeforms/drone.tscn")
+var drone_scene = preload("res://lifeforms/new_drone.tscn")
+#var drone_scene = preload("res://lifeforms/drone.tscn")
 var drone_queue:Array = [] # Holds Drone datatype
 
 
@@ -51,6 +52,7 @@ func deploy_next_up(position:Vector2, rotation:float):
 		
 	var drone_2_deploy:Drone = get_drone_from_queue(0)
 	drone_2_deploy.init(position, rotation)
+#	drone_2_deploy.set_state(drone_2_deploy.STATES.SPAWNING)
 	
 	Global.stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
 	
@@ -88,7 +90,7 @@ func add_drone_to_queue(drone:Drone):
 
 # Handles drones returning from deployment and prepares them for relaunching
 func collect_drone(drone:Drone):
-	drone.disable()
+	drone.set_state(drone.STATES.IDLE)
 	drone.global_position = Vector2.ONE * 100
 	
 	Logger.create(self, "drone", "Drone collected " + str(drone.exp_held) + " exp")

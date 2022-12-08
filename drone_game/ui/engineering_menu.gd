@@ -56,7 +56,7 @@ func add_drone_mirror(drone:Drone):
 func update_drone_display(_drone:Drone):
 	for mirror in drone_display.get_children():
 		match mirror.drone_ref.state:
-			3: # idle
+			mirror.drone_ref.STATES.IDLE: # idle
 				mirror.enable()
 			_:
 				mirror.disable()

@@ -1,12 +1,10 @@
-class_name Drone
+#class_name Drone
 extends "res://lifeforms/generic_lifeform.gd"
 
 signal stats_updated() #stats_updated(self, stat)
 
-onready var battery_controller:Timer = $BatteryController
 onready var traveled_line:Line2D = $TraveledPath
 onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
-
 export var show_path:bool = false
 
 var stats:Dictionary = {}
