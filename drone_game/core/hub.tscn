@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://core/hub.gd" type="Script" id=1]
+[ext_resource path="res://components/trajectory_plotter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/visual/central_hub.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=3]
@@ -24,6 +25,7 @@ __meta__ = {
 shape = SubResource( 3 )
 
 [node name="TrajectoryLine" type="Line2D" parent="."]
+visible = false
 show_behind_parent = true
 width = 5.0
 default_color = Color( 1, 0, 0, 0.0784314 )
@@ -65,11 +67,17 @@ position = Vector2( 43.6882, 0 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="TrajectoryRay" type="RayCast2D" parent="Deployer"]
+visible = false
 position = Vector2( 32.7086, 0 )
 scale = Vector2( 1.5, 1.5 )
 enabled = true
 cast_to = Vector2( 0, 0 )
 collision_mask = 7
+
+[node name="TrajectoryPlotter" parent="Deployer" instance=ExtResource( 2 )]
+rotation = -1.5708
+ray_scaler = 5
+max_rays = 3
 
 [node name="Core" type="Sprite" parent="."]
 texture = ExtResource( 4 )

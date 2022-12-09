@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://components/trajectory_plotter.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="RayTrajectoryTest" type="Node2D"]
+
+[node name="TrajectoryPlotter" parent="." instance=ExtResource( 1 )]
+max_rays = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 83.4673, 4.38991 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( -36.7763, -56.1553 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( -64.0321, 29.4047 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2( -20.1915, 63.5816 )
+rotation = 0.261799
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2( 38.7341, -66.7618 )
+rotation = -0.261799
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2( 49.3407, 46.8467 )
+rotation = -0.523598
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2( -89.0165, -17.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.25, 0.25 )

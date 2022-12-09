@@ -27,7 +27,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": "Head manager and parent of all gameplay related features."
 }
-max_drones = 6
+max_drones = 20
 deploy_cooldown = 0.1
 
 [node name="DroneManager" type="Node" parent="GameManager"]
@@ -66,21 +66,21 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 32
-custom_constants/margin_top = 32
-custom_constants/margin_left = 32
-custom_constants/margin_bottom = 32
+custom_constants/margin_right = 12
+custom_constants/margin_top = 14
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 14
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameManager/GUI/MarginContainer"]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 1888.0
-margin_bottom = 1048.0
+margin_left = 12.0
+margin_top = 14.0
+margin_right = 1908.0
+margin_bottom = 1066.0
 custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer/HBoxContainer"]
 margin_right = 465.0
-margin_bottom = 1016.0
+margin_bottom = 1052.0
 custom_constants/separation = 10
 
 [node name="StatsBar" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 13 )]
@@ -92,14 +92,14 @@ margin_bottom = 148.0
 [node name="HBoxContainer" type="HBoxContainer" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 158.0
 margin_right = 465.0
-margin_bottom = 1016.0
+margin_bottom = 1052.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 350.0
-margin_bottom = 858.0
+margin_bottom = 894.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -116,32 +116,33 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 318.0
 margin_right = 350.0
-margin_bottom = 858.0
+margin_bottom = 894.0
 size_flags_vertical = 3
 
 [node name="LaunchQueue" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
+anchor_left = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 360.0
 margin_right = 465.0
-margin_bottom = 858.0
+margin_bottom = 894.0
 size_flags_stretch_ratio = 0.3
 __meta__ = {
 "_editor_description_": "Displays the drones to the user. Handled by drone manager."
 }
 
-[node name="Gameboard" parent="GameManager/GUI/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
+[node name="GameboardPanel" parent="GameManager/GUI/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 475.0
-margin_right = 1856.0
-margin_bottom = 1016.0
+margin_right = 1896.0
+margin_bottom = 1052.0
 
-[node name="Control" parent="GameManager/GUI/MarginContainer/HBoxContainer/Gameboard/MarginContainer" index="0"]
-margin_right = 1373.0
-margin_bottom = 1008.0
+[node name="Control" parent="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel/MarginContainer" index="0"]
+margin_right = 1413.0
+margin_bottom = 1044.0
 
-[node name="LevelManager" parent="GameManager/GUI/MarginContainer/HBoxContainer/Gameboard/MarginContainer/Control" index="0" instance=ExtResource( 4 )]
+[node name="LevelManager" parent="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel/MarginContainer/Control" index="0" instance=ExtResource( 4 )]
 enemy_level_edge_offset = 10
 enemy_spawn_subdivisions = 100
 
@@ -174,4 +175,4 @@ __meta__ = {
 
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]
 
-[editable path="GameManager/GUI/MarginContainer/HBoxContainer/Gameboard"]
+[editable path="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel"]
