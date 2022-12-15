@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/caution_9_square.png-24f1066d68737465db5e6d6717acf13e.stex"
+path="res://.import/drone-128.png-0169403f0bbca83f3a8c0705d4b1c3e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/caution_9_square.png"
-dest_files=[ "res://.import/caution_9_square.png-24f1066d68737465db5e6d6717acf13e.stex" ]
+source_file="res://assets/visual/drone-128.png"
+dest_files=[ "res://.import/drone-128.png-0169403f0bbca83f3a8c0705d4b1c3e8.stex" ]
 
 [params]
 

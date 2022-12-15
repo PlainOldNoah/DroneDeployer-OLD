@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://core/hub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tile_sets/grass_tileset.tres" type="TileSet" id=2]
@@ -12,11 +12,8 @@
 
 [sub_resource type="RectangleShape2D" id=4]
 
-[sub_resource type="RectangleShape2D" id=5]
-
 [node name="LevelManager" type="Node2D"]
 script = ExtResource( 3 )
-barrier_width = 100
 
 [node name="CurrentMap" type="TileMap" parent="."]
 visible = false
@@ -46,11 +43,5 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="EnemySpawnClock" type="Timer" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -293.337, -191.567 )
-shape = SubResource( 5 )
 
 [connection signal="timeout" from="EnemySpawnClock" to="." method="_on_EnemySpawnClock_timeout"]
