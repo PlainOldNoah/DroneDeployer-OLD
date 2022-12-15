@@ -8,6 +8,7 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 28
+use_mipmaps = true
 font_data = ExtResource( 1 )
 
 [resource]

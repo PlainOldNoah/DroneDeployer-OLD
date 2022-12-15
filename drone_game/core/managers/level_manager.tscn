@@ -16,7 +16,6 @@
 script = ExtResource( 3 )
 
 [node name="CurrentMap" type="TileMap" parent="."]
-visible = false
 scale = Vector2( 4, 4 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
