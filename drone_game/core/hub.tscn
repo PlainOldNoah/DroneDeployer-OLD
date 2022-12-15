@@ -24,6 +24,7 @@ __meta__ = {
 shape = SubResource( 3 )
 
 [node name="TrajectoryLine" type="Line2D" parent="."]
+visible = false
 show_behind_parent = true
 width = 5.0
 default_color = Color( 1, 0, 0, 0.0784314 )
@@ -65,6 +66,7 @@ position = Vector2( 43.6882, 0 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="TrajectoryRay" type="RayCast2D" parent="Deployer"]
+visible = false
 position = Vector2( 32.7086, 0 )
 scale = Vector2( 1.5, 1.5 )
 enabled = true

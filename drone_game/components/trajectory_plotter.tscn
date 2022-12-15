@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://components/trajectory_plotter.gd" type="Script" id=1]
+[ext_resource path="res://assets/visual/health_plus.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/red_x.png" type="Texture" id=3]
+[ext_resource path="res://assets/visual/pcb_oct_plus.png" type="Texture" id=4]
+
+[node name="TrajectoryPlotter" type="Node2D"]
+script = ExtResource( 1 )
+ray_scaler = 3
+
+[node name="RayCast1" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 200 )
+
+[node name="RedX" type="Sprite" parent="RayCast1"]
+position = Vector2( 0, 70 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="RayCast2" type="RayCast2D" parent="."]
+
+[node name="HealthPlus" type="Sprite" parent="RayCast2"]
+position = Vector2( 0, 70 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="RayCast3" type="RayCast2D" parent="."]
+visible = false
+cast_to = Vector2( 0, 200 )
+
+[node name="PcbOctPlus" type="Sprite" parent="RayCast3"]
+position = Vector2( 0, 70 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 1, 0.4, 0.4, 1 )
