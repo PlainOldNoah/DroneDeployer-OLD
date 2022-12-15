@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://core/hub.gd" type="Script" id=1]
-[ext_resource path="res://assets/visual/central_hub.png" type="Texture" id=4]
+[ext_resource path="res://assets/visual/command_center.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 40.0
+radius = 64.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 44.0
+radius = 64.0
 
 [node name="Hub" type="Node2D"]
 script = ExtResource( 1 )
@@ -24,7 +24,6 @@ __meta__ = {
 shape = SubResource( 3 )
 
 [node name="TrajectoryLine" type="Line2D" parent="."]
-visible = false
 show_behind_parent = true
 width = 5.0
 default_color = Color( 1, 0, 0, 0.0784314 )
@@ -33,10 +32,6 @@ end_cap_mode = 2
 __meta__ = {
 "_editor_description_": "The line that the player can see emitted from the arrow. Only emits if it's colliding w/ something"
 }
-
-[node name="BaseArea" type="Sprite" parent="."]
-texture = ExtResource( 4 )
-vframes = 5
 
 [node name="PickUpZone" type="Area2D" parent="."]
 show_behind_parent = true
@@ -50,36 +45,37 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpZone"]
 shape = SubResource( 2 )
 
+[node name="BaseArea" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 5
+
 [node name="Lights" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 vframes = 5
 frame = 1
 
 [node name="Deployer" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 vframes = 5
 frame = 2
 
 [node name="DeployPoint" type="Position2D" parent="Deployer"]
-position = Vector2( 43.6882, 0 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 54, 0 )
 
 [node name="TrajectoryRay" type="RayCast2D" parent="Deployer"]
-visible = false
-position = Vector2( 32.7086, 0 )
+position = Vector2( 49, 0 )
 scale = Vector2( 1.5, 1.5 )
 enabled = true
 cast_to = Vector2( 0, 0 )
 collision_mask = 7
 
 [node name="Core" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 vframes = 5
 frame = 3
 
 [node name="Modules" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 vframes = 5
 frame = 4
 
