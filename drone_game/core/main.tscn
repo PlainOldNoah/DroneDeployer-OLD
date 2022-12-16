@@ -14,7 +14,7 @@
 [ext_resource path="res://core/managers/drone_manager.gd" type="Script" id=12]
 [ext_resource path="res://ui/stats_bar.tscn" type="PackedScene" id=13]
 [ext_resource path="res://core/managers/mod_manager.gd" type="Script" id=14]
-[ext_resource path="res://assets/visual/industrial_9_square_joined.png" type="Texture" id=16]
+[ext_resource path="res://assets/visual/steel_sheet-128.png" type="Texture" id=15]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -46,19 +46,12 @@ __meta__ = {
 pause_mode = 2
 script = ExtResource( 5 )
 
-[node name="GameBackground" type="NinePatchRect" parent="GameManager/GUI"]
-visible = false
+[node name="GameBackground" type="TextureRect" parent="GameManager/GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1280.0
-margin_bottom = -720.0
-rect_scale = Vector2( 3, 3 )
-texture = ExtResource( 16 )
-region_rect = Rect2( 0, 0, 32, 32 )
-patch_margin_left = 11
-patch_margin_top = 11
-patch_margin_right = 12
-patch_margin_bottom = 11
+texture = ExtResource( 15 )
+expand = true
+stretch_mode = 2
 __meta__ = {
 "_editor_description_": "Main border for entire project. Scale can be increased to make pixles appear larger. Remember to divide size by same scale factor."
 }
