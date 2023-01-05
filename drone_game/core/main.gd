@@ -1,12 +1,8 @@
 extends Node
 
+onready var gui:CanvasLayer = $GameManager/GUI
+
 func _ready():
 	OS.center_window()
-	
-	set_necessary_visible()
-	
+	gui.request_menu(gui.MENUS.MAIN)
 	randomize()
-
-
-func set_necessary_visible():
-	$GameManager/GUI.show()

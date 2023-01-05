@@ -175,6 +175,21 @@ func set_vel_to_hub():
 		set_velocity((Global.hub_scene.global_position - self.global_position).normalized() * stats.speed)
 
 
+# Adds the mod to the equipped_mods array
+func add_mod(mod:Dictionary):
+	equipped_mods.append(mod)
+	calculate_stats()
+
+
+# Removes the mod from equipped_mods if it exists
+func remove_mod(mod:Dictionary):
+	if equipped_mods.has(mod):
+		equipped_mods.erase(mod)
+		calculate_stats()
+	else:
+		print_debug("ERROR: <", mod, "> could not be removed")
+
+
 # Returns the sprite texture
 func get_sprite() -> Texture:
 	return $Sprite.texture

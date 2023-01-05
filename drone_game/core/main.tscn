@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://ui/gameboard.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://ui/stats_bar.tscn" type="PackedScene" id=13]
 [ext_resource path="res://core/managers/mod_manager.gd" type="Script" id=14]
 [ext_resource path="res://assets/visual/steel_sheet-128.png" type="Texture" id=15]
+[ext_resource path="res://ui/main_menu.tscn" type="PackedScene" id=16]
+[ext_resource path="res://ui/game_over_menu.tscn" type="PackedScene" id=17]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -45,6 +47,12 @@ __meta__ = {
 [node name="GUI" type="CanvasLayer" parent="GameManager"]
 pause_mode = 2
 script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": "When adding new menus make sure to update:
+onready reference
+request_menu
+dismiss_menu"
+}
 
 [node name="GameBackground" type="TextureRect" parent="GameManager/GUI"]
 anchor_right = 1.0
@@ -163,6 +171,20 @@ anchor_bottom = 0.841667
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource( 16 )]
+visible = false
+
+[node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource( 17 )]
+visible = false
+anchor_left = 0.158
+anchor_top = 0.158
+anchor_right = 0.842
+anchor_bottom = 0.842
+margin_left = 0.639984
+margin_top = 0.359985
+margin_right = -0.640137
+margin_bottom = -0.360046
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 

@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/themes/title_label.tres" type="Theme" id=2]
+[ext_resource path="res://ui/main_menu.gd" type="Script" id=3]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/steel_sheet-128.png-2160f3c28bed194e1ba1db8f3306e282.stex"
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="GameBackground" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_editor_description_": "Main border for entire project. Scale can be increased to make pixles appear larger. Remember to divide size by same scale factor."
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1912.0
+margin_bottom = 1072.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+margin_right = 1904.0
+margin_bottom = 128.0
+theme = ExtResource( 2 )
+text = "DRONE DEPLOYER"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+margin_top = 138.0
+margin_right = 1904.0
+margin_bottom = 1064.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/VBoxContainer/HBoxContainer"]
+margin_right = 315.0
+margin_bottom = 926.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+custom_constants/separation = 10
+
+[node name="StartBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 315.0
+margin_bottom = 302.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "START"
+
+[node name="SettingsBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 312.0
+margin_right = 315.0
+margin_bottom = 614.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "SETTINGS"
+
+[node name="ScoresBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 624.0
+margin_right = 315.0
+margin_bottom = 926.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "SCORES"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Control/VBoxContainer/HBoxContainer"]
+margin_left = 325.0
+margin_right = 1904.0
+margin_bottom = 926.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer/StartBtn" to="." method="_on_StartBtn_pressed"]

@@ -98,6 +98,7 @@ func modify_health(value:int):
 	curr_health = clamp(curr_health + value, 0, max_health)
 	if curr_health <= 0:
 		Logger.create(self, "hub", "Dead")
+		Global.gui.request_menu(Global.gui.MENUS.GAMEOVER)
 		stop_game()
 	Global.stats_bar.update_health(curr_health, max_health)
 

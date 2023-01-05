@@ -56,6 +56,10 @@ margin_bottom = 109.0
 text = "Lorem ipsum latin nonsense words words words"
 autowrap = true
 
+[node name="Control" parent="CanvasLayer/UIPanel/MarginContainer" index="1"]
+margin_right = 392.0
+margin_bottom = 192.0
+
 [node name="Button" type="Button" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0

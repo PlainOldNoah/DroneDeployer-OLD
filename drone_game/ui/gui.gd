@@ -1,7 +1,7 @@
 class_name GUI
 extends CanvasLayer
 
-enum MENUS {NONE, FABRICATOR, DEBUG, ENGR}
+enum MENUS {NONE, FABRICATOR, DEBUG, ENGR, MAIN, GAMEOVER}
 var current_menu:int = MENUS.NONE
 
 onready var stats_bar:Control = find_node("StatsBar")
@@ -11,6 +11,8 @@ onready var background:ColorRect = get_node("BackgroundFade")
 onready var fabricator_menu:Control = get_node("FabricatorMenu")
 onready var engineering_menu:Control = get_node("EngineeringMenu")
 onready var debug_menu:Control = get_node("DebugMenu")
+onready var main_menu:Control = get_node("MainMenu")
+onready var game_over_menu:Control = get_node("GameOverMenu")
 
 
 func _ready():
@@ -19,7 +21,7 @@ func _ready():
 	stats_bar.reset()
 	drone_info.reset()
 	fabricator_menu.reset()
-	dismiss_menu()
+#	dismiss_menu()
 
 
 func _input(event):
@@ -57,6 +59,12 @@ func request_menu(menu:int):
 		MENUS.ENGR:
 			engineering_menu.show()
 			current_menu = MENUS.ENGR
+		MENUS.MAIN:
+			main_menu.show()
+			current_menu = MENUS.MAIN
+		MENUS.GAMEOVER:
+			game_over_menu.show()
+			current_menu = MENUS.GAMEOVER
 	background.show()
 
 
@@ -68,6 +76,8 @@ func dismiss_menu():
 	fabricator_menu.hide()
 	debug_menu.hide()
 	engineering_menu.hide()
+	main_menu.hide()
+	game_over_menu.hide()
 	current_menu = MENUS.NONE
 
 

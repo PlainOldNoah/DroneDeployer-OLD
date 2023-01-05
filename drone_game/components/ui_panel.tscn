@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="StreamTexture" id=1]
+flags = 4
 load_path = "res://.import/industrial_9_square.png-196870362c9792539ff214f864a5a97f.stex"
 
 [node name="UIPanel" type="MarginContainer"]
