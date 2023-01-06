@@ -79,11 +79,14 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 
-[node name="DroneDisplay" type="GridContainer" parent="MarginContainer/HBoxContainer/DronePanel/MarginContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/DronePanel/MarginContainer" index="0"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 234.0
-margin_bottom = 16.0
+margin_bottom = 682.0
+
+[node name="DroneDisplay" type="GridContainer" parent="MarginContainer/HBoxContainer/DronePanel/MarginContainer/ScrollContainer"]
+margin_right = 218.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 custom_constants/vseparation = 10

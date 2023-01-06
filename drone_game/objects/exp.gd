@@ -33,5 +33,5 @@ func _on_Exp_body_entered(body):
 #	print("Body Entered: ", body.name)
 	if body.is_in_group("DRONE"):
 		body.exp_held += value
-		print("Absorbed By: ", body.name)
+		print_debug("Absorbed By: ", body.name)
 		queue_free()

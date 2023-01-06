@@ -7,6 +7,7 @@ enum STATES {ACTIVE, IDLE, SPAWNING, STOPPED}
 var state:int = STATES.IDLE
 
 onready var spawn_protection_timer := $SpawnProtectionTimer
+onready var pickup_range := $PickupRange/CollisionShape2D
 
 var stats:Dictionary = {}
 var velocity:Vector2 = Vector2.ZERO setget set_velocity
@@ -53,6 +54,9 @@ func reset():
 
 
 # State machine controller
+# Active drones are currently in play while idle are waiting for deployment
+# Spawning state uses spawn protection to prevent drones from instantly being collected
+# IDLE -> SPAWNING -> ACTIVE -> STOPPED OR IDLE, STOPPED -> ACTIVE
 func set_state(new_state:int):
 	state = new_state
 	match state:
@@ -60,19 +64,23 @@ func set_state(new_state:int):
 			show()
 			set_physics_process(true)
 			set_process(true)
+			toggle_pickup_area(true)
 			start_moving()
 		STATES.IDLE:
 			hide()
 			set_physics_process(false)
 			set_process(true)
+			toggle_pickup_area(false)
 			stop_moving()
 		STATES.SPAWNING:
 			show()
 			set_physics_process(true)
+			toggle_pickup_area(true)
 			start_moving()
 			spawn_protection_timer.start()
 		STATES.STOPPED:
 			stop_moving()
+			toggle_pickup_area(false)
 		_:
 			print_debug("ERROR: <", state, "> is not a valid state")
 
@@ -193,6 +201,11 @@ func remove_mod(mod:Dictionary):
 # Returns the sprite texture
 func get_sprite() -> Texture:
 	return $Sprite.texture
+
+
+# Turns the pickup area on or off
+func toggle_pickup_area(toggle:bool):
+	pickup_range.disabled = !toggle
 
 
 # When set to the SPAWNING state wait this long to move to ACTIVE

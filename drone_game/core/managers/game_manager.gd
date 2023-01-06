@@ -43,6 +43,7 @@ func reset():
 	modify_health(max_health)
 	Global.stats_bar.reset()
 	Global.stats_bar.update_health(curr_health, max_health)
+	Global.stats_bar.update_drone_cnt(max_drones, max_drones)
 	Logger.clear()
 
 
@@ -66,8 +67,9 @@ func stop_game():
 		i.queue_free()
 	
 	for i in get_tree().get_nodes_in_group("DRONE"):
-		Global.drone_manager.add_drone_to_queue(i)
-		i.reset()
+		if i.state != Drone.STATES.IDLE:
+			Global.drone_manager.add_drone_to_queue(i)
+			i.reset()
 	
 #	for i in get_tree().get_nodes_in_group("EXP"):
 #		i.queue_free()

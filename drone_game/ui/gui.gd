@@ -14,6 +14,7 @@ onready var debug_menu:Control = get_node("DebugMenu")
 onready var main_menu:Control = get_node("MainMenu")
 onready var game_over_menu:Control = get_node("GameOverMenu")
 
+var menu_lockout:bool = false # Allows/Prevents user from requesting new menus w/ hotkeys
 
 func _ready():
 	Global.gui = self
@@ -25,6 +26,9 @@ func _ready():
 
 
 func _input(event):
+	if menu_lockout:
+		return
+	
 	if event.is_action_pressed("fabricator_menu"):
 		if current_menu == MENUS.FABRICATOR:
 			dismiss_menu()
@@ -62,15 +66,18 @@ func request_menu(menu:int):
 		MENUS.MAIN:
 			main_menu.show()
 			current_menu = MENUS.MAIN
+			menu_lockout = true
 		MENUS.GAMEOVER:
 			game_over_menu.show()
 			current_menu = MENUS.GAMEOVER
+			menu_lockout = true
 	background.show()
 
 
 # Hides all GUI menus
 func dismiss_menu():
 	Global.game_manager.toggle_pause(false)
+	menu_lockout = false
 	
 	background.hide()
 	fabricator_menu.hide()

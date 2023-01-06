@@ -1,6 +1,6 @@
 extends Control
 
-onready var drone_display := $MarginContainer/HBoxContainer/DronePanel/MarginContainer/DroneDisplay
+onready var drone_display := $MarginContainer/HBoxContainer/DronePanel/MarginContainer/ScrollContainer/DroneDisplay
 onready var selected_drone_mirror:DroneMirror = $MarginContainer/HBoxContainer/WorkArea/SelectedDrone/MarginContainer/SelectedDrone/DroneMirror
 onready var drone_info_view := $MarginContainer/HBoxContainer/WorkArea/DroneInfoView
 onready var available_mods_view := $MarginContainer/HBoxContainer/ModPanel/MarginContainer/AvailableMods
