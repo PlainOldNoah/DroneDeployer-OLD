@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://core/managers/game_manager.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "Hub",
 "language": "GDScript",
 "path": "res://core/hub.gd"
@@ -138,6 +138,7 @@ toggle_debug={
 2d_physics/layer_2="Drone"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Hub"
+2d_physics/layer_5="Pickups"
 
 [physics]
 

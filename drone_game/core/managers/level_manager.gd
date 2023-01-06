@@ -115,6 +115,7 @@ func lifeform_died(lifeform:Node):
 # Starts the timer that spawns enemies
 func start_enemy_spawning(wave_delay:int):
 	enemy_spawn_clock.wait_time = wave_delay
+	spawn_enemy() # Spawns before time begins
 	enemy_spawn_clock.start()
 
 

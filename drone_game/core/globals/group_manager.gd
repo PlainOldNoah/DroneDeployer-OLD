@@ -3,6 +3,7 @@ extends Node
 const GROUP_LIST:Array = [
 	"ENEMY","PLAYER",
 	"HUB","DRONE","SLUG",
+	"EXP"
 	]
 
 

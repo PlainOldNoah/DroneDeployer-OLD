@@ -198,3 +198,7 @@ func get_sprite() -> Texture:
 # When set to the SPAWNING state wait this long to move to ACTIVE
 func _on_SpawnProtectionTimer_timeout():
 	set_state(STATES.ACTIVE)
+
+
+func _on_PickupRange_area_entered(area):
+	area.toggle_attraction(true, self)

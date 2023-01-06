@@ -1,5 +1,5 @@
 class_name Hub
-extends Node2D
+extends Area2D
 
 signal hit_taken()
 
@@ -102,7 +102,7 @@ func emit_ray():
 		trajectory.set_point_position(1, to_local(ray.get_collision_point()))
 
 
-func _on_Hitbox_body_entered(body):
+func _on_Hub_body_entered(body):
 	if body.is_in_group("ENEMY"):
 		if not debug_invincible: emit_signal("hit_taken", 1)
 		body.queue_free() # TODO: If I want to make this more fancy later

@@ -68,6 +68,9 @@ func stop_game():
 	for i in get_tree().get_nodes_in_group("DRONE"):
 		Global.drone_manager.add_drone_to_queue(i)
 		i.reset()
+	
+#	for i in get_tree().get_nodes_in_group("EXP"):
+#		i.queue_free()
 
 
 # Unpauses if paused; pauses if unpaused
