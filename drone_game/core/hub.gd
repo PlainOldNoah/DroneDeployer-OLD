@@ -21,7 +21,7 @@ var debug_invincible:bool = false
 func _ready():
 	Global.hub_scene = self
 	yield(get_tree().root, "ready")
-	GroupMan.add_to_groups(self, ["HUB"])
+	Global.add_to_groups(self, ["HUB"])
 	
 	trajectory.add_point(Vector2(0,0))
 	trajectory.add_point(Vector2(0,0))

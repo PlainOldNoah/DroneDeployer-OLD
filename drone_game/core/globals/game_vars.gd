@@ -1,15 +1,15 @@
 extends Node
 
-const DEFAULT_DRONE_STATS:Dictionary = {
-	"display_name":"Drone", # Drones name in game
-	"max_battery":100, # Maximum battery level
-	"battery_drain":5, # How much battery is lost per second while active
-	"speed":300, # How fast drone moves
-	"damage":1, # Attack damage against enemies
-	"crit_chance":0, # Percentage chance of dealing a critical hit
-	"crit_dmg_mult":1, # Normal damage multiplier when dealing crit hit
-	"bounce":100, # How many bounces drone can make before going home
-	}
+#const DEFAULT_DRONE_STATS:Dictionary = {
+#	"display_name":"Drone", # Drones name in game
+#	"max_battery":100, # Maximum battery level
+#	"battery_drain":5, # How much battery is lost per second while active
+#	"speed":300, # How fast drone moves
+#	"damage":1, # Attack damage against enemies
+#	"crit_chance":0, # Percentage chance of dealing a critical hit
+#	"crit_dmg_mult":1, # Normal damage multiplier when dealing crit hit
+#	"bounce":100, # How many bounces drone can make before going home
+#	}
 
 
 const DEFAULT_ENHANCEMENTS:Dictionary = {

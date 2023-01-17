@@ -5,7 +5,7 @@ var immune:bool = false
 
 
 func _ready():
-	GroupMan.add_to_groups(self, ["SLUG", "ENEMY"])
+	Global.add_to_groups(self, ["SLUG", "ENEMY"])
 
 
 # OVERRIDE to have slugs follow the HUB should it happen to move

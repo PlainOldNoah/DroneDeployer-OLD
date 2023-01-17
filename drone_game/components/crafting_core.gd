@@ -8,6 +8,7 @@ onready var item_label := $NinePatchRect/InnerMargin/VBoxContainer/CraftingNameL
 onready var item_craft_time := $NinePatchRect/InnerMargin/VBoxContainer/CraftTimeLeft
 onready var timer := $Timer
 
+export(Texture) var default_texture = null
 var item_to_craft:String = ""
 var seconds:int = 0 # Seconds that craft takes, counts down
 var running:bool = false
@@ -24,7 +25,7 @@ func _ready():
 # Sets the core's info to default values
 func reset_core():
 	timer.stop()
-	item_icon.texture = load("res://assets/visual/red_x.png")
+	item_icon.texture = default_texture
 	item_label.text = "Idle"
 	item_craft_time.text = "0:00"
 	item_to_craft = ""
@@ -39,8 +40,7 @@ func pause_core(value:bool):
 
 # Sets core to running and populates with needed info
 func craft(item:String, temp_name:String):
-	var item_details:Dictionary = Global.crafting_options[item]
-	
+	var item_details:Dictionary = CraftOpt.fabricator_items[item]
 	running = true
 	item_to_craft = item
 	item_icon.texture = load(item_details.icon)

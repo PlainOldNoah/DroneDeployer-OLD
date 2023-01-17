@@ -9,20 +9,32 @@ var state:int = STATES.IDLE
 onready var spawn_protection_timer := $SpawnProtectionTimer
 onready var pickup_range := $PickupRange/CollisionShape2D
 
+const DEFAULT_DRONE_STATS:Dictionary = {
+	"max_battery":100, # Maximum battery level
+	"battery_drain":5, # How much battery is lost per second while active
+	"speed":300, # How fast drone moves
+	"damage":1, # Attack damage against enemies
+	"crit_chance":0, # Percentage chance of dealing a critical hit
+	"crit_dmg_mult":1, # Normal damage multiplier when dealing crit hit
+	"bounce":100, # How many bounces drone can make before going home
+	}
+
 var stats:Dictionary = {}
-var velocity:Vector2 = Vector2.ZERO setget set_velocity
 var battery:float = 0.0 # Current battery level
-var bounce_count:int = 0
+var display_name:String = "Drone"
 var exp_held:int = 0
+var bounce_count:int = 0
+
+var velocity:Vector2 = Vector2.ZERO setget set_velocity
 var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
 
 
 func _ready():
-	GroupMan.add_to_groups(self, ["DRONE", "PLAYER"])
+	Global.add_to_groups(self, ["DRONE", "PLAYER"])
 	
+	display_name = "Drone_" + str(self.get_index() - 3)
 	reset()
 	
-	stats.display_name = "Drone_" + str(self.get_index() - 3)
 	modulate = Color(randf(), randf(), randf())
 
 
@@ -100,7 +112,7 @@ func start_moving():
 
 # Applies each enhancements bonus to the default stats to get new stats
 func calculate_stats():
-	stats = GameVars.DEFAULT_DRONE_STATS.duplicate()
+	stats = DEFAULT_DRONE_STATS.duplicate()
 	for mod in equipped_mods:
 #		print(mod, " -> ", stats) # DEBUG
 		if (stats.has(mod.stat)):
@@ -205,7 +217,7 @@ func get_sprite() -> Texture:
 
 # Turns the pickup area on or off
 func toggle_pickup_area(toggle:bool):
-	pickup_range.disabled = !toggle
+	set_deferred("pickup_range.disable", !toggle)
 
 
 # When set to the SPAWNING state wait this long to move to ACTIVE

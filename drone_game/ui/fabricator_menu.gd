@@ -29,7 +29,7 @@ func update_craft_history(item:String):
 # Adds a new LineEdit node to the queue
 func add_item_2_queue(value:String=""):
 # Verify item is in crafting options
-	if not Global.crafting_options.has(value):
+	if not CraftOpt.fabricator_items.has(value):
 		print_debug("ERROR: ", value, " does not exist as an option")
 		return
 	

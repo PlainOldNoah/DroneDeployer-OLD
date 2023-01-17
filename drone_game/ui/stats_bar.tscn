@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ui/stats_bar.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/visual/industrial_9_square.png" type="Texture" id=3]
+[ext_resource path="res://assets/visual/menu/industrial_9_square.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 0.807843, 0.807843, 0.807843, 1 )
@@ -62,21 +62,21 @@ custom_constants/separation = 10
 [node name="Health" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_right = 204.0
-margin_bottom = 32.0
+margin_bottom = 24.0
 text = "Health: --/--"
 
 [node name="Time" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 42.0
+margin_top = 34.0
 margin_right = 204.0
-margin_bottom = 74.0
+margin_bottom = 58.0
 text = "Time: --:--"
 
 [node name="Score" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 84.0
+margin_top = 68.0
 margin_right = 204.0
-margin_bottom = 116.0
+margin_bottom = 92.0
 text = "Score: -----"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
@@ -96,12 +96,12 @@ custom_constants/separation = 10
 [node name="DroneCount" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 margin_right = 205.0
-margin_bottom = 32.0
+margin_bottom = 24.0
 text = "Drones: --/--"
 
 [node name="CurrentExp" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
-margin_top = 42.0
+margin_top = 34.0
 margin_right = 205.0
-margin_bottom = 74.0
+margin_bottom = 58.0
 text = "Exp: -----"

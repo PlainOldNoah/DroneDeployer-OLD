@@ -8,7 +8,7 @@ var velocity:Vector2 = Vector2.ZERO
 
 
 func _ready():
-	GroupMan.add_to_groups(self, ["EXP"])
+	Global.add_to_groups(self, ["EXP"])
 	set_physics_process(false)
 
 

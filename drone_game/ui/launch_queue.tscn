@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/launch_queue.gd" type="Script" id=1]
-[ext_resource path="res://assets/visual/industrial_9_square_joined.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/menu/industrial_9_square_joined.png" type="Texture" id=2]
 
 [sub_resource type="StreamTexture" id=1]
+flags = 4
 load_path = "res://.import/industrial_9_square_joined.png-cf01418c71cc4de6bb222556f25d8753.stex"
 
 [node name="LaunchQueue" type="Control"]
