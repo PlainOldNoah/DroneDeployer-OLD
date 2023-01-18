@@ -24,6 +24,7 @@ var battery:float = 0.0 # Current battery level
 var display_name:String = "Drone"
 var exp_held:int = 0
 var bounce_count:int = 0
+var battery_return_threshold:float = 0.50 #As a percentage
 
 var velocity:Vector2 = Vector2.ZERO setget set_velocity
 var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
@@ -144,7 +145,11 @@ func handle_collision(collision:KinematicCollision2D):
 		if collider.state == STATES.ACTIVE:
 			collider.set_velocity_from_vector(get_bounce_direction(collision))
 			collider.bounce_count += 1
-			
+	
+	# If battery is below the threshold attempt to return home
+	elif (battery/stats.max_battery) < battery_return_threshold:
+		set_vel_to_hub()
+	
 	else:
 		set_velocity_from_vector(get_bounce_direction(collision))
 
@@ -171,6 +176,8 @@ func battery_calculation(delta:float):
 		set_state(STATES.STOPPED)
 	elif battery >= stats.max_battery: # Battery == full
 		set_process(false)
+#	elif (battery/stats.max_battery) <= battery_return_threshold:
+#		print("Running Low: ", battery/stats.max_battery)
 
 
 # Sets the velocity and rotation angle
