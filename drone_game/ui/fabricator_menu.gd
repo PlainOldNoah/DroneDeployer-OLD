@@ -82,7 +82,7 @@ func _on_craft_complete(crafted_item:String):
 	Logger.create(self, "fabrication", str(crafted_item + " fabricated"))
 
 
-func _on_DroneBtn_pressed():
+func _on_NewDroneBtn_pressed():
 	add_item_2_queue("drone")
 
 
@@ -90,5 +90,5 @@ func _on_HealthBtn_pressed():
 	add_item_2_queue("health")
 
 
-func _on_ModBtn_pressed():
+func _on_EnhancementBtn_pressed():
 	add_item_2_queue("mod")

@@ -1,58 +1,13 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/fabricator_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/visual/menu/industrial_9_square.png" type="Texture" id=2]
-[ext_resource path="res://assets/visual/menu/pcb_circle_plus_128_btn.png" type="Texture" id=3]
-[ext_resource path="res://assets/visual/menu/drone_plus_128_btn.png" type="Texture" id=4]
+[ext_resource path="res://assets/visual/menu/pcb_circle_plus_128.png" type="Texture" id=3]
+[ext_resource path="res://components/fabricator_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=6]
-[ext_resource path="res://assets/visual/menu/health_plus_128_btn.png" type="Texture" id=7]
-[ext_resource path="res://assets/visual/menu/btn_click_mask.png" type="BitMap" id=8]
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 4, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 236, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 468, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 4, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 236, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 468, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 4, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 236, 4, 224, 224 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 468, 4, 224, 224 )
+[ext_resource path="res://assets/visual/menu/drone_plus_128.png" type="Texture" id=9]
+[ext_resource path="res://assets/visual/menu/health_plus_128.png" type="Texture" id=10]
 
 [node name="FabricatorMenu" type="Control"]
 anchor_left = 0.5
@@ -184,99 +139,69 @@ margin_bottom = 327.0
 margin_top = 337.0
 margin_right = 902.0
 margin_bottom = 664.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="DroneBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_left = 37.0
-margin_top = 37.0
-margin_right = 261.0
-margin_bottom = 261.0
-hint_tooltip = "Create new Drone"
-size_flags_horizontal = 6
-size_flags_vertical = 6
-shortcut_in_tooltip = false
-texture_normal = SubResource( 4 )
-texture_pressed = SubResource( 5 )
-texture_hover = SubResource( 6 )
-texture_click_mask = ExtResource( 8 )
-
-[node name="HealthBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_left = 339.0
-margin_top = 37.0
-margin_right = 563.0
-margin_bottom = 261.0
-hint_tooltip = "Restore +1 Health"
-size_flags_horizontal = 6
-size_flags_vertical = 6
-texture_normal = SubResource( 1 )
-texture_pressed = SubResource( 3 )
-texture_hover = SubResource( 2 )
-texture_click_mask = ExtResource( 8 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="ModBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_left = 641.0
-margin_top = 37.0
-margin_right = 865.0
-margin_bottom = 261.0
-hint_tooltip = "Random Drone Mod"
-size_flags_horizontal = 6
-size_flags_vertical = 6
-texture_normal = SubResource( 7 )
-texture_pressed = SubResource( 8 )
-texture_hover = SubResource( 9 )
-texture_click_mask = ExtResource( 8 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="NewDroneLabel" type="Label" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
-margin_top = 303.0
-margin_right = 298.0
+[node name="NewDroneBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 4 )]
 margin_bottom = 327.0
-text = "New Drone"
-align = 1
-valign = 1
 
-[node name="AddHpLabel" type="Label" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
+[node name="VBoxContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn" index="0"]
+margin_bottom = 277.0
+
+[node name="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn/VBoxContainer" index="0"]
+margin_bottom = 193.0
+
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn/VBoxContainer/TextureButton" index="0"]
+texture = ExtResource( 9 )
+
+[node name="Label" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn/VBoxContainer" index="1"]
+margin_top = 203.0
+margin_bottom = 227.0
+text = "New Drone"
+
+[node name="HealthBtn2" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 4 )]
 margin_left = 302.0
-margin_top = 303.0
 margin_right = 600.0
 margin_bottom = 327.0
-text = "+1 Health"
-align = 1
-valign = 1
 
-[node name="NewEnhancementLabel" type="Label" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions"]
+[node name="VBoxContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn2" index="0"]
+margin_bottom = 277.0
+
+[node name="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn2/VBoxContainer" index="0"]
+margin_bottom = 193.0
+
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn2/VBoxContainer/TextureButton" index="0"]
+texture = ExtResource( 10 )
+
+[node name="Label" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn2/VBoxContainer" index="1"]
+margin_top = 203.0
+margin_bottom = 227.0
+text = "+1 Health"
+
+[node name="EnhancementBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 4 )]
 margin_left = 604.0
-margin_top = 303.0
 margin_right = 902.0
 margin_bottom = 327.0
-text = "Random Enahncement"
-align = 1
-valign = 1
 
-[node name="HealthPlus128Test" type="Sprite" parent="."]
-position = Vector2( 86.1197, 328.333 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 7 )
-hframes = 3
+[node name="VBoxContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/EnhancementBtn" index="0"]
+margin_bottom = 277.0
 
-[node name="HealthPlus128Test2" type="Sprite" parent="."]
-position = Vector2( 115, 614.333 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 7 )
-hframes = 3
+[node name="TextureButton" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/EnhancementBtn/VBoxContainer" index="0"]
+margin_bottom = 193.0
 
-[node name="HealthPlus128Test3" type="Sprite" parent="."]
-position = Vector2( 98, 456 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 7 )
-hframes = 3
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/EnhancementBtn/VBoxContainer/TextureButton" index="0"]
+texture = ExtResource( 3 )
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/DroneBtn" to="." method="_on_DroneBtn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn" to="." method="_on_HealthBtn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/ModBtn" to="." method="_on_ModBtn_pressed"]
+[node name="Label" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/EnhancementBtn/VBoxContainer" index="1"]
+margin_top = 203.0
+margin_bottom = 227.0
+text = "Random Enhancement"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn/VBoxContainer/TextureButton" to="." method="_on_NewDroneBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn2/VBoxContainer/TextureButton" to="." method="_on_HealthBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/EnhancementBtn/VBoxContainer/TextureButton" to="." method="_on_EnhancementBtn_pressed"]
+
+[editable path="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn"]
+[editable path="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn2"]
+[editable path="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/EnhancementBtn"]
