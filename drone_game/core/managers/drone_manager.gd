@@ -94,7 +94,9 @@ func collect_drone(drone:Drone):
 	
 	Logger.create(self, "drone", "Drone collected " + str(drone.exp_held) + " exp")
 	
+	Global.game_manager.add_exp(drone.exp_held)
 	drone.exp_held = 0
+	
 	add_drone_to_queue(drone)
 
 

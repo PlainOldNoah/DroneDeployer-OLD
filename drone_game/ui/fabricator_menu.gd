@@ -88,7 +88,7 @@ func _on_craft_complete(crafted_item:String):
 		"health":
 			Global.game_manager.modify_health(1)
 		"mod":
-			Global.mod_manager.create_rand_enhancement()
+			Global.mod_manager.generate_rand_enhancement()
 		_:
 			print_debug("ERROR: ", crafted_item, " is not a valid craftable item")
 

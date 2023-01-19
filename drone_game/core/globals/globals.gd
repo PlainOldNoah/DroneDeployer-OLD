@@ -30,25 +30,28 @@ func add_to_groups(caller:Node, groups:Array):
 			print_debug("ERROR: <", group, "> DOES NOT EXIST")
 
 
-
-#var crafting_options:Dictionary = {
-#	"drone": {
-#		"name":"Drone",
-#		"scene":"res://lifeforms/drone.tscn",
-#		"icon":"res://assets/visual/drone_plus.png",
-#		"craft_time":3,
-#		"craft_cost":1
-#	},
-#	"health":{
-#		"name":"Health",
-#		"icon":"res://assets/visual/health_plus.png",
-#		"craft_time":5,
-#		"craft_cost":3,
-#	},
-#	"mod":{
-#		"name":"Mod",
-#		"icon":"res://assets/visual/pcb_rect_plus.png",
-#		"craft_time":2,
-#		"craft_cost":3,
-#	}
+# Unused modifier for global stats
+#var global_modifiers:Dictionary = {
+#	"starting_drone_count":3,
+#	"starting_health":3,
+#	"drone_launch_cooldown":0.5,
+#	"drone_skip_cooldown":0.25,
+#
+#	# Lifeforms
+#	"global_speed_modifier":1,
+#	"global_drone_speed_mod":1,
+#	"global_enemy_speed_mod":1,
+#
+#	"global_drone_crit_chance_mod":1,
+#	"global_drone_crit_chance_bonus":0,
+#	"global_enemy_crit_chance_mod":1,
+#	"global_enemy_crit_chance_bonus":0,
+#
+#	"global_drone_health_mod":1,
+#	"global_drone_health_bonus":0,
+#	"global_enemy_health_mod":1,
+#	"global_enemy_health_bonus":0,
+#
+#	"global_drone_pickup_rng_mod":1,
+#	"global_drone_pickup_rng_bonus":0,
 #}

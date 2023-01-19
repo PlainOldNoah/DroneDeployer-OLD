@@ -41,6 +41,7 @@ func reset():
 		stop_game()
 		
 	modify_health(max_health)
+	reset_exp()
 	Global.stats_bar.reset()
 	Global.stats_bar.update_health(curr_health, max_health)
 	Global.stats_bar.update_drone_cnt(max_drones, max_drones)
@@ -71,8 +72,8 @@ func stop_game():
 			Global.drone_manager.add_drone_to_queue(i)
 			i.reset()
 	
-#	for i in get_tree().get_nodes_in_group("EXP"):
-#		i.queue_free()
+	for i in get_tree().get_nodes_in_group("EXP"):
+		i.queue_free()
 
 
 # Unpauses if paused; pauses if unpaused
@@ -81,19 +82,23 @@ func toggle_pause(value:bool):
 	emit_signal("game_paused", value)
 
 
-# Adds value to the current exp and emits a signal
-func set_curr_exp(value:int):
+# Adds the value to the current exp/score
+func add_exp(value:int):
 	curr_exp += value
+	score += value
+	
+	Global.stats_bar.update_curr_exp(curr_exp)
+	Global.stats_bar.update_score(score)
+	
 	if curr_exp < 0:
 		print_debug("INVALID VALUE: exp is a negative")
 	Global.fabricator.queue_2_core()
 
 
-# Add the 'value' to the total gathered exp
-func exp_retrieved(value:int):
-	score += value
-	set_curr_exp(value)
-	
+# Sets exp to 0
+func reset_exp():
+	curr_exp = 0
+	score = 0
 	Global.stats_bar.update_curr_exp(curr_exp)
 	Global.stats_bar.update_score(score)
 

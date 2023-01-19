@@ -77,7 +77,6 @@ config/icon="res://assets/visual/drone-128.png"
 Global="*res://core/globals/globals.gd"
 Logger="*res://core/globals/logger.gd"
 CraftOpt="*res://core/globals/craft_options.gd"
-GameVars="*res://core/globals/game_vars.gd"
 
 [debug]
 

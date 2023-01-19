@@ -19,15 +19,6 @@ func create_enhancement(affected_stat:String, value:float):
 	emit_signal("enhancement_created", new_enhance)
 
 
-# Old function for creating enhancements
-func create_rand_enhancement():
-	var keys = GameVars.DEFAULT_ENHANCEMENTS.keys()
-	var stat = keys[randi() % keys.size()]
-	var value = GameVars.DEFAULT_ENHANCEMENTS[stat]["values"][randi() % GameVars.DEFAULT_ENHANCEMENTS[stat]["values"].size()] 
-	
-	create_enhancement(stat, value)
-
-
 func generate_rand_enhancement():
 	#1. Get the weight total for all enhancements
 	var weight_arr:Array = [0]
