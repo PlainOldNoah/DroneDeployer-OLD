@@ -191,11 +191,17 @@ margin_bottom = 698.0
 margin_right = 501.0
 margin_bottom = 698.0
 
-[node name="AvailableMods" type="GridContainer" parent="MarginContainer/HBoxContainer/ModPanel/MarginContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/ModPanel/MarginContainer" index="0"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 493.0
-margin_bottom = 8.0
+margin_bottom = 690.0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="AvailableMods" type="GridContainer" parent="MarginContainer/HBoxContainer/ModPanel/MarginContainer/ScrollContainer"]
+margin_right = 485.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/vseparation = 10

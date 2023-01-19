@@ -26,7 +26,7 @@ func update_craft_history(item:String):
 		craft_history[item] = 1
 
 
-# Adds a new LineEdit node to the queue
+# Adds a new craft_queue_item node to the queue
 func add_item_2_queue(value:String=""):
 # Verify item is in crafting options
 	if not CraftOpt.fabricator_items.has(value):
@@ -35,10 +35,23 @@ func add_item_2_queue(value:String=""):
 	
 	var queue_item:Node = load(queue_item_scene).instance()
 	update_craft_history(value)
-	queue_item.initialize(value, craft_history[value])
 	queue.add_child(queue_item)
+	var _ok := queue_item.connect("left_click", self, "reorder_queue_item")
+	_ok = queue_item.connect("right_click", self, "remove_item_from_queue")
+	queue_item.initialize(value, craft_history[value])
 	
 	queue_2_core()
+
+
+# Deletes the item from the crafting queue
+func remove_item_from_queue(item:Node):
+	item.call_deferred("queue_free")
+
+
+# Changes the ordering of the queue item
+func reorder_queue_item(item:Node, position:int=0):
+	queue.call_deferred("move_child", item, position)
+#	queue.move_child(item, position)
 
 
 # Attempts to move the first item in the queue into an open crafting core
