@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://components/drone_mirror.gd"
 }, {
+"base": "Node",
+"class": "EnemyManager",
+"language": "GDScript",
+"path": "res://core/managers/enemy_manager.gd"
+}, {
 "base": "CanvasLayer",
 "class": "GUI",
 "language": "GDScript",
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "Drone": "",
 "DroneManager": "",
 "DroneMirror": "",
+"EnemyManager": "",
 "GUI": "",
 "GameManager": "",
 "Hub": "",

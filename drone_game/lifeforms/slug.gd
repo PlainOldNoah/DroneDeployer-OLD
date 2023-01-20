@@ -26,7 +26,7 @@ func set_velocity(value:Vector2):
 	.set_velocity(value)
 
 
-# Reduces health damage
+# Reduces health by damage
 func take_hit(damage:int=1):
 	if not immune:
 		set_health(health - damage)

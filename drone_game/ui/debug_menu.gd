@@ -14,7 +14,7 @@ func _on_ToggleInvincible_toggled(button_pressed):
 
 # Tells the level manager to spawn a slug enemy
 func _on_SpawnSlug_pressed():
-	Global.level_manager.spawn_enemy()
+	Global.level_manager.spawn_enemy("res://lifeforms/slug.tscn")
 
 
 # Creates an enhancement

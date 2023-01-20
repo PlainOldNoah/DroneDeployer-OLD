@@ -6,9 +6,9 @@ enum STATES {SPAWNING, MOVING, STOPPED, IDLE, DEAD}
 export(STATES) var state = STATES.SPAWNING
 
 export var custom_name:String = ""
-export var damage:int = 1
 export var max_health:int = 1
 export var speed:float = 100.0
+export var damage:int = 1
 
 var velocity:Vector2 = Vector2.ZERO setget set_velocity
 onready var health:int = max_health setget set_health
@@ -22,6 +22,13 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		handle_collision(collision)
+
+
+# Initializes enemy with stats
+func set_stats(health_value:int = 1, speed_value:int = 100, damage_value:int = 1):
+	max_health = health_value
+	speed = speed_value
+	damage = damage_value
 
 
 # Setter function for state var
@@ -53,8 +60,8 @@ func set_velocity(value:Vector2):
 
 
 # Set the velocity a normalized vector times the speed
-func set_velocity_from_vector(direction:Vector2, speed_override:float=speed):
-	set_velocity(direction * speed_override)
+#func set_velocity_from_vector(direction:Vector2, speed_override:float=speed):
+#	set_velocity(direction * speed_override)
 
 
 # Set the velocity from an angle in degrees times the speed

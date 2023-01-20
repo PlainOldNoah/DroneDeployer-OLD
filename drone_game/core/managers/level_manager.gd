@@ -80,6 +80,7 @@ func generate_tiles():
 			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, AUTO_FILL_TILE)
 
 
+# Selects a point along the edge of the level
 func get_lvl_edge_point(edge_offset:int=0, sub_divisions:int=0) -> Vector2:
 	var point:Vector2 = Vector2(rng.randi_range(edge_offset, area.x), rng.randi_range(edge_offset, area.y))
 	sub_divisions = max(1, sub_divisions - 1)
@@ -97,12 +98,24 @@ func get_lvl_edge_point(edge_offset:int=0, sub_divisions:int=0) -> Vector2:
 
 
 # Creates an enemy instance somewhere along the edge of the level
-func spawn_enemy():
+#func spawn_enemy():
+#	var spawn_point:Vector2 = get_lvl_edge_point(enemy_level_edge_offset, enemy_spawn_subdivisions)
+#
+#	var enemy_inst:Node = slug_path.instance()
+#	enemy_inst.set_position(spawn_point)
+#	self.add_child(enemy_inst)
+
+
+func spawn_enemy(scene_path:String, count:int=1, health:int=1, speed:int=50, damage:int=1):
 	var spawn_point:Vector2 = get_lvl_edge_point(enemy_level_edge_offset, enemy_spawn_subdivisions)
 	
-	var enemy_inst:Node = slug_path.instance()
-	enemy_inst.set_position(spawn_point)
-	self.add_child(enemy_inst)
+	for i in count:
+		var enemy_inst:Node = load(scene_path).instance()
+		var group_offset:Vector2 = Vector2(rng.randi_range(10, 30), rng.randi_range(10, 30))
+		
+		enemy_inst.set_position(spawn_point + group_offset)
+		enemy_inst.set_stats(health, speed, damage)
+		self.add_child(enemy_inst)
 
 
 # Places exp where lifeform died at
@@ -113,16 +126,16 @@ func lifeform_died(lifeform:Node):
 
 
 # Starts the timer that spawns enemies
-func start_enemy_spawning(wave_delay:int):
-	enemy_spawn_clock.wait_time = wave_delay
-	spawn_enemy() # Spawns before time begins
-	enemy_spawn_clock.start()
+#func start_enemy_spawning(wave_delay:int):
+#	enemy_spawn_clock.wait_time = wave_delay
+#	spawn_enemy() # Spawns before time begins
+#	enemy_spawn_clock.start()
 
 
 # Stops the timer that spawns enemies
-func stop_enemy_spawning():
-	enemy_spawn_clock.stop()
+#func stop_enemy_spawning():
+#	enemy_spawn_clock.stop()
 
 
-func _on_EnemySpawnClock_timeout():
-	spawn_enemy()
+#func _on_EnemySpawnClock_timeout():
+#	spawn_enemy()

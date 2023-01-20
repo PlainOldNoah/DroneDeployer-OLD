@@ -42,6 +42,7 @@ func reset():
 		
 	modify_health(max_health)
 	reset_exp()
+	curr_survived_sec = 0
 	Global.stats_bar.reset()
 	Global.stats_bar.update_health(curr_health, max_health)
 	Global.stats_bar.update_drone_cnt(max_drones, max_drones)
@@ -54,7 +55,8 @@ func start_game():
 	Logger.create(self, "system", "Starting Game")
 	play_time_clock.start()
 	running = true
-	Global.level_manager.start_enemy_spawning(2)
+#	Global.level_manager.start_enemy_spawning(2)
+	Global.enemy_manager.toggle_spawning(true)
 
 
 # Stops enemy spawning and play clock
@@ -62,7 +64,8 @@ func stop_game():
 	Logger.create(self, "system", "Game Ending")
 	play_time_clock.stop()
 	running = false
-	Global.level_manager.stop_enemy_spawning()
+	Global.enemy_manager.toggle_spawning(false)
+#	Global.level_manager.stop_enemy_spawning()
 	
 	for i in get_tree().get_nodes_in_group("ENEMY"):
 		i.queue_free()
@@ -118,8 +121,13 @@ func take_hit(damage:int):
 	modify_health(-damage)
 
 
+# Returns curr_survived_sec
+func get_playtime() -> int:
+	return curr_survived_sec
+
+
 # Increments the amount of time by a second
 func _on_PlayTimeClock_timeout():
 	curr_survived_sec += 1
 	Global.stats_bar.update_time(curr_survived_sec)
-	play_time_clock.start()
+#	play_time_clock.start()

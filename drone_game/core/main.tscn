@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://core/main.gd" type="Script" id=1]
 [ext_resource path="res://ui/gameboard.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/visual/menu/steel_sheet-128.png" type="Texture" id=15]
 [ext_resource path="res://ui/main_menu.tscn" type="PackedScene" id=16]
 [ext_resource path="res://ui/game_over_menu.tscn" type="PackedScene" id=17]
+[ext_resource path="res://core/managers/enemy_manager.gd" type="Script" id=18]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -37,6 +38,13 @@ script = ExtResource( 12 )
 __meta__ = {
 "_editor_description_": "Handles all drone related functions. Also controls the launch queue by calling its functions."
 }
+
+[node name="EnemyManager" type="Node" parent="GameManager"]
+script = ExtResource( 18 )
+
+[node name="EnemySpawnClock" type="Timer" parent="GameManager/EnemyManager"]
+wait_time = 0.5
+one_shot = true
 
 [node name="ModManager" type="Node" parent="GameManager"]
 script = ExtResource( 14 )
@@ -188,6 +196,7 @@ margin_bottom = -0.360046
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 
+[connection signal="timeout" from="GameManager/EnemyManager/EnemySpawnClock" to="GameManager/EnemyManager" method="_on_EnemySpawnClock_timeout"]
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]
 
 [editable path="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel"]

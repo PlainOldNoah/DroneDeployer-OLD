@@ -4,7 +4,8 @@ var tile_size:int = 32
 
 var game_manager:GameManager = null
 var drone_manager:DroneManager = null
-var mod_manager:Node = null
+var enemy_manager:EnemyManager = null
+var mod_manager:ModManager = null
 var level_manager:LevelManager = null
 var hub_scene:Hub = null
 

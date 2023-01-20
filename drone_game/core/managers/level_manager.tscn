@@ -42,5 +42,3 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="EnemySpawnClock" type="Timer" parent="."]
-
-[connection signal="timeout" from="EnemySpawnClock" to="." method="_on_EnemySpawnClock_timeout"]
