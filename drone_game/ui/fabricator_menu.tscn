@@ -150,6 +150,8 @@ margin_right = 298.0
 margin_bottom = 327.0
 icon = ExtResource( 9 )
 desc = "New Drone"
+button_size = 25
+icon_size = 40
 
 [node name="HealthBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -159,6 +161,8 @@ margin_right = 600.0
 margin_bottom = 327.0
 icon = ExtResource( 10 )
 desc = "+1 Health"
+button_size = 25
+icon_size = 40
 
 [node name="EnhancementBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -168,6 +172,8 @@ margin_right = 902.0
 margin_bottom = 327.0
 icon = ExtResource( 3 )
 desc = "Random Enhancement"
+button_size = 25
+icon_size = 40
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn" to="." method="_on_NewDroneBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/HealthBtn" to="." method="_on_HealthBtn_pressed"]

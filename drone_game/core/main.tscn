@@ -181,7 +181,6 @@ __meta__ = {
 }
 
 [node name="MainMenu" parent="GameManager/GUI" instance=ExtResource( 16 )]
-visible = false
 
 [node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource( 17 )]
 visible = false

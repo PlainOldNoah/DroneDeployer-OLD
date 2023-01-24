@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/themes/title_label.tres" type="Theme" id=2]
 [ext_resource path="res://ui/main_menu.gd" type="Script" id=3]
 [ext_resource path="res://components/icon_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/ui_panel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/visual/menu/red_x_128.png" type="Texture" id=6]
+[ext_resource path="res://assets/visual/menu/cog_128.png" type="Texture" id=6]
+[ext_resource path="res://assets/visual/menu/list_128.png" type="Texture" id=7]
+[ext_resource path="res://assets/visual/menu/green_arrow_128.png" type="Texture" id=8]
+[ext_resource path="res://assets/visual/menu/question_128.png" type="Texture" id=9]
+[ext_resource path="res://assets/visual/menu/star_128.png" type="Texture" id=10]
+[ext_resource path="res://assets/visual/menu/red_x_128.png" type="Texture" id=11]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -32,16 +37,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
+custom_constants/margin_right = 45
+custom_constants/margin_top = 45
+custom_constants/margin_left = 45
+custom_constants/margin_bottom = 45
 
 [node name="Control" type="Control" parent="MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 1908.0
-margin_bottom = 1068.0
+margin_left = 45.0
+margin_top = 45.0
+margin_right = 1875.0
+margin_bottom = 1035.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -54,7 +59,7 @@ size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
-margin_right = 1896.0
+margin_right = 1830.0
 margin_bottom = 128.0
 theme = ExtResource( 2 )
 text = "DRONE DEPLOYER"
@@ -148,77 +153,104 @@ color = Color( 0, 0, 0, 1 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 138.0
-margin_right = 1896.0
-margin_bottom = 1056.0
-custom_constants/margin_right = 50
+margin_right = 1830.0
+margin_bottom = 990.0
+custom_constants/margin_right = 100
 custom_constants/margin_top = 50
-custom_constants/margin_left = 50
+custom_constants/margin_left = 100
 custom_constants/margin_bottom = 50
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/Control/VBoxContainer/UIPanel"]
-margin_left = 50.0
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Control/VBoxContainer/UIPanel"]
+margin_left = 100.0
 margin_top = 50.0
-margin_right = 1846.0
-margin_bottom = 868.0
+margin_right = 1730.0
+margin_bottom = 802.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 15
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 30
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2"]
+margin_left = 100.0
+margin_top = 15.0
+margin_right = 1530.0
+margin_bottom = 722.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="StartBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer" instance=ExtResource( 4 )]
+[node name="StartBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 596.0
-margin_bottom = 407.0
-icon = ExtResource( 6 )
-desc = "Start game"
+margin_right = 474.0
+margin_bottom = 352.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+icon = ExtResource( 8 )
+desc = "Start Game"
+button_size = 25
+icon_size = 50
 
-[node name="TutorialBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer" instance=ExtResource( 4 )]
+[node name="TutorialBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 600.0
-margin_right = 1196.0
-margin_bottom = 407.0
-icon = ExtResource( 6 )
+margin_left = 478.0
+margin_right = 952.0
+margin_bottom = 352.0
+icon = ExtResource( 9 )
 desc = "Tutorial"
+button_size = 25
+icon_size = 50
 
-[node name="SettingsBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer" instance=ExtResource( 4 )]
+[node name="SettingsBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1200.0
-margin_right = 1796.0
-margin_bottom = 407.0
+margin_left = 956.0
+margin_right = 1430.0
+margin_bottom = 352.0
+__meta__ = {
+"_editor_description_": ""
+}
 icon = ExtResource( 6 )
 desc = "Settings"
+button_size = 25
+icon_size = 50
 
-[node name="ScoresBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer" instance=ExtResource( 4 )]
+[node name="ScoresBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 411.0
-margin_right = 596.0
-margin_bottom = 818.0
-icon = ExtResource( 6 )
+margin_top = 356.0
+margin_right = 474.0
+margin_bottom = 707.0
+icon = ExtResource( 10 )
 desc = "Scores"
+button_size = 25
+icon_size = 50
 
-[node name="CreditsBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer" instance=ExtResource( 4 )]
+[node name="CreditsBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 600.0
-margin_top = 411.0
-margin_right = 1196.0
-margin_bottom = 818.0
-icon = ExtResource( 6 )
+margin_left = 478.0
+margin_top = 356.0
+margin_right = 952.0
+margin_bottom = 707.0
+icon = ExtResource( 7 )
 desc = "Credits"
+button_size = 25
+icon_size = 60
 
-[node name="QuitBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer" instance=ExtResource( 4 )]
+[node name="QuitBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1200.0
-margin_top = 411.0
-margin_right = 1796.0
-margin_bottom = 818.0
-icon = ExtResource( 6 )
+margin_left = 956.0
+margin_top = 356.0
+margin_right = 1430.0
+margin_bottom = 707.0
+icon = ExtResource( 11 )
 desc = "Quit"
+button_size = 25
+icon_size = 60
 
-[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer/StartBtn" to="." method="_on_StartBtn_pressed"]
-[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]
-[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/UIPanel/GridContainer/StartBtn" to="." method="_on_StartBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer/StartBtn" to="." method="_on_StartBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]
