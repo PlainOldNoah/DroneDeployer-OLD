@@ -10,6 +10,8 @@ export var max_health:int = 1
 export var speed:float = 100.0
 export var damage:int = 1
 
+onready var death_sfx := $DeathSound
+
 var velocity:Vector2 = Vector2.ZERO setget set_velocity
 onready var health:int = max_health setget set_health
 
@@ -44,9 +46,18 @@ func handle_collision(collision:KinematicCollision2D):
 func set_health(value:int):
 	health = clamp(value, 0, max_health)
 	if health == 0:
-		emit_signal("died", self)
-		set_state(STATES.DEAD)
-		queue_free()
+		die()
+
+
+# Function that kills the lifeform
+func die():
+	visible = false
+	$CollisionShape2D.disabled = true
+	emit_signal("died", self)
+	set_state(STATES.DEAD)
+	death_sfx.play()
+	yield(death_sfx, "finished")
+	queue_free()
 
 
 # Reduces health damage

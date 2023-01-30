@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mechanical_toggle_button_2.ogg-f6b5197b8e7c2a4597e83b3f4e22dfb3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/mechanical_toggle_button_2.ogg"
+dest_files=[ "res://.import/mechanical_toggle_button_2.ogg-f6b5197b8e7c2a4597e83b3f4e22dfb3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

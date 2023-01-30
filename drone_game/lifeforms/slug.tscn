@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://lifeforms/generic_lifeform.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/visual/slug.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/slug_128.png" type="Texture" id=2]
 [ext_resource path="res://lifeforms/slug.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/sfx/splat_3.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 16.0001
-height = 27.9997
+radius = 27.0002
+height = 63.9994
 
 [node name="Slug" instance=ExtResource( 1 )]
+scale = Vector2( 0.5, 0.5 )
 collision_layer = 4
 collision_mask = 10
 script = ExtResource( 3 )
@@ -17,10 +19,14 @@ script = ExtResource( 3 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, 3 )
 rotation = 1.57079
 shape = SubResource( 1 )
 
-[node name="ImmunityTimer" type="Timer" parent="." index="2"]
+[node name="DeathSound" parent="." index="2"]
+stream = ExtResource( 4 )
+
+[node name="ImmunityTimer" type="Timer" parent="." index="3"]
 wait_time = 0.5
 
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]

@@ -3,6 +3,9 @@ extends Control
 
 signal pressed()
 
+onready var btn_sound := $AudioStreamPlayer
+onready var btn_sound_2 := $AudioStreamPlayer2
+
 export(Texture) var icon setget set_icon
 export var desc:String = "<SET TEXT>" setget set_label_text
 export(int, -100, 500, 1) var button_size = 0 setget resize_button
@@ -39,3 +42,12 @@ func resize_icon(new_value):
 
 func _on_TextureButton_pressed():
 	emit_signal("pressed")
+
+
+func _on_TextureButton_button_down():
+	btn_sound.play()
+
+func _on_TextureButton_button_up():
+	if not btn_sound.playing:
+#		yield(btn_sound, "finished")
+		btn_sound_2.play()

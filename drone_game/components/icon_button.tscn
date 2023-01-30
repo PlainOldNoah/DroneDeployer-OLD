@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/visual/menu/blank_128_btn.png" type="Texture" id=1]
 [ext_resource path="res://assets/visual/menu/icon_button_clickmask.png" type="BitMap" id=2]
+[ext_resource path="res://assets/audio/sfx/mechanical_button_down.wav" type="AudioStream" id=3]
 [ext_resource path="res://components/icon_button.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/sfx/mechanical_button_up.wav" type="AudioStream" id=5]
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
@@ -26,7 +28,6 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 4 )
-label_top_padding = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -51,7 +52,6 @@ custom_constants/margin_bottom = 0
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/ButtonSizer"]
 margin_right = 1920.0
 margin_bottom = 1056.0
-hint_tooltip = "Create new Drone"
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -100,4 +100,13 @@ text = "<SET TEXT>"
 align = 1
 valign = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="button_down" from="VBoxContainer/ButtonSizer/TextureButton" to="." method="_on_TextureButton_button_down"]
+[connection signal="button_up" from="VBoxContainer/ButtonSizer/TextureButton" to="." method="_on_TextureButton_button_up"]
 [connection signal="pressed" from="VBoxContainer/ButtonSizer/TextureButton" to="." method="_on_TextureButton_pressed"]
