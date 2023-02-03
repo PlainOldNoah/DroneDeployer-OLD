@@ -74,7 +74,6 @@ func take_hit(dmg_amount:int=1):
 # Sets the health to the new value
 func set_health(value:int):
 	health = clamp(value, 0, max_health)
-	print(self, ", ", health)
 	if health == 0:
 		set_state(STATES.DEAD)
 

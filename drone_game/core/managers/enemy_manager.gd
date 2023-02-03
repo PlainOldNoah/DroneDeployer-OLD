@@ -35,9 +35,9 @@ func spawn_wave():
 		0, 1:
 			spawn_slugs(1, 3, 30, 1)
 		3:
-			spawn_slugs(2, 1, 100, 1)
+			spawn_slugs(2, 3, 30, 1)
 		_:
-			spawn_slugs(3, 1, 100, 1)
+			spawn_slugs(3, 3, 30, 1)
 
 
 # Spawns a pack of slug enemies

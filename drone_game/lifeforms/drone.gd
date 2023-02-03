@@ -6,7 +6,6 @@ signal stats_updated() #stats_updated(self, stat)
 enum STATES {ACTIVE, IDLE, SPAWNING, STOPPED}
 var state:int = STATES.IDLE
 
-onready var spawn_protection_timer := $SpawnProtectionTimer
 onready var pickup_range := $PickupRange/CollisionShape2D
 
 const DEFAULT_DRONE_STATS:Dictionary = {
@@ -85,12 +84,11 @@ func set_state(new_state:int):
 			set_process(true)
 			toggle_pickup_area(false)
 			stop_moving()
-		STATES.SPAWNING:
+		STATES.SPAWNING: # See HUB for SPAWNING -> ACTIVE
 			show()
 			set_physics_process(true)
 			toggle_pickup_area(true)
 			start_moving()
-			spawn_protection_timer.start()
 		STATES.STOPPED:
 			stop_moving()
 			toggle_pickup_area(false)
@@ -101,7 +99,6 @@ func set_state(new_state:int):
 # Saves the current rotation and sets speed to 0
 func stop_moving():
 	var stored_rotation = global_rotation_degrees
-#	set_velocity_from_angle(rotation, 0)
 	set_velocity_from_vector(velocity, 0)
 	set_deferred("global_rotation_degrees", stored_rotation)
 
@@ -115,7 +112,6 @@ func start_moving():
 func calculate_stats():
 	stats = DEFAULT_DRONE_STATS.duplicate()
 	for mod in equipped_mods:
-#		print(mod, " -> ", stats) # DEBUG
 		if (stats.has(mod.stat)):
 			stats[mod.stat] += mod.value
 		else:
@@ -152,7 +148,11 @@ func handle_collision(collision:KinematicCollision2D):
 	
 	else:
 		set_velocity_from_vector(get_bounce_direction(collision))
-
+	
+	# Deals with drones that hit slugs before escaping hub
+	if bounce_count > 0 and state == STATES.SPAWNING:
+		Global.hub_scene.collect_drone(self)
+	
 	if stats.bounce > 0 and bounce_count >= stats.bounce:
 		set_vel_to_hub()
 
@@ -225,11 +225,6 @@ func get_sprite() -> Texture:
 # Turns the pickup area on or off
 func toggle_pickup_area(toggle:bool):
 	set_deferred("pickup_range.disable", !toggle)
-
-
-# When set to the SPAWNING state wait this long to move to ACTIVE
-func _on_SpawnProtectionTimer_timeout():
-	set_state(STATES.ACTIVE)
 
 
 func _on_PickupRange_area_entered(area):

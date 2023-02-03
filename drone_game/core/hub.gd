@@ -5,13 +5,13 @@ signal hit_taken()
 
 export var rotation_weight:float = 0.2
 
-onready var deployer:Sprite = $Deployer
-onready var deploy_point = $Deployer/DeployPoint
-onready var deploy_cooldown:Timer = $DeployCooldown
-onready var skip_cooldown:Timer = $SkipCooldown
-
-onready var ray:RayCast2D = $Deployer/TrajectoryRay
-onready var trajectory:Line2D = $TrajectoryLine
+onready var ray := $Deployer/TrajectoryRay
+onready var trajectory := $TrajectoryLine
+onready var pickup_zone := $PickUpZone
+onready var deployer := $Deployer
+onready var deploy_point := $Deployer/DeployPoint
+onready var deploy_cooldown := $DeployCooldown
+onready var skip_cooldown := $SkipCooldown
 
 var can_deploy:bool = true
 var can_skip:bool = true
@@ -43,8 +43,17 @@ func _input(event):
 
 
 func _process(_delta):
+#	check_for_internal_drones()
 	rotate_arrow_smooth()
 	emit_ray()
+
+
+func check_for_internal_drones():
+	if pickup_zone.get_overlapping_bodies().size() > 0:
+		for i in pickup_zone.get_overlapping_bodies():
+			print(i)
+			if i.is_in_group("DRONE") and i.bounce_count > 0:
+				collect_drone(i)
 
 
 # DEPRECIATED
@@ -87,14 +96,6 @@ func _on_SkipCooldown_timeout():
 	can_skip = true
 
 
-# Aura around the HUB that collects deployed drones
-func _on_PickUpZone_body_entered(body):
-#	print(body, ": ", body.state, ": ", body.bounce_count)
-	if body.is_in_group("DRONE") and body.state == body.STATES.ACTIVE:
-#		if body.bounce_count > 0:
-		collect_drone(body)
-
-
 # Creates a line from the arrow to a collider
 func emit_ray():
 	if ray.is_colliding():
@@ -102,12 +103,19 @@ func emit_ray():
 		trajectory.set_point_position(1, to_local(ray.get_collision_point()))
 
 
+# Aura around the HUB that collects deployed drones
+func _on_PickUpZone_body_entered(body):
+	if body.is_in_group("DRONE") and body.state == body.STATES.ACTIVE:
+		collect_drone(body)
+
+
+# Changes drone state from SPAWNING to ACTIVE
+func _on_PickUpZone_body_exited(body):
+		if body.is_in_group("DRONE"):
+			body.state = Drone.STATES.ACTIVE
+
+
 func _on_Hub_body_entered(body):
 	if body.is_in_group("ENEMY"):
 		if not debug_invincible: emit_signal("hit_taken", 1)
-		body.queue_free() # TODO: If I want to make this more fancy later
-
-
-func _on_PickUpZone_body_exited(_body):
-#	print(body)
-	pass
+		body.queue_free()

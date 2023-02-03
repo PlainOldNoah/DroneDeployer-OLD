@@ -83,5 +83,6 @@ frame = 4
 
 [connection signal="body_entered" from="." to="." method="_on_Hub_body_entered"]
 [connection signal="body_entered" from="PickUpZone" to="." method="_on_PickUpZone_body_entered"]
+[connection signal="body_exited" from="PickUpZone" to="." method="_on_PickUpZone_body_exited"]
 [connection signal="timeout" from="DeployCooldown" to="." method="_on_DeployCooldown_timeout"]
 [connection signal="timeout" from="SkipCooldown" to="." method="_on_SkipCooldown_timeout"]
