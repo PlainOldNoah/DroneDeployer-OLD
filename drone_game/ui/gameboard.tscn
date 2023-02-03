@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/visual/menu/industrial_9_square_joined.png" type="Texture" id=1]
 
-
 [node name="GameboardPanel" type="Control"]
 pause_mode = 1
 anchor_right = 1.0

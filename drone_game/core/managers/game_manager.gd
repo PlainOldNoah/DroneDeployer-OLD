@@ -27,12 +27,12 @@ func _ready():
 	call_deferred("reset")
 
 
-func _input(event): # DEBUG
-	if event.is_action_pressed("ui_accept"):
-		if running:
-			stop_game()
-		else:
-			start_game()
+#func _input(event): # DEBUG
+#	if event.is_action_pressed("ui_accept"):
+#		if running:
+#			stop_game()
+#		else:
+#			start_game()
 
 
 # Calls the reset function for children nodes and puts variables to starting values

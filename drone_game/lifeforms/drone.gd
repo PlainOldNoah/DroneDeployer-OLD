@@ -137,7 +137,7 @@ func handle_collision(collision:KinematicCollision2D):
 	if collider.is_in_group("ENEMY"):
 		if collider.health > stats.damage:
 			set_velocity_from_vector(get_bounce_direction(collision))
-		collider.take_hit()
+		collider.take_hit(stats.damage)
 		
 	elif collider.is_in_group("DRONE"):
 		# Note: This seems to stops drones from doing several collisions at once

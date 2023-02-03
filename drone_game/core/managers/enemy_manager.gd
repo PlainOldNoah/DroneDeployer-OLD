@@ -33,17 +33,17 @@ func toggle_spawning(state:bool):
 func spawn_wave():
 	match difficulty:
 		0, 1:
-			spawn_slugs(1, 1, 30, 1)
+			spawn_slugs(1, 3, 30, 1)
 		3:
 			spawn_slugs(2, 1, 100, 1)
 		_:
-			spawn_slugs(20, 1, 100, 1)
+			spawn_slugs(3, 1, 100, 1)
 
 
 # Spawns a pack of slug enemies
 func spawn_slugs(count, health, speed, damage):
 	Global.level_manager.spawn_enemy("res://lifeforms/slug.tscn", count, health, speed, damage)
-	print("Spawn Slugs: ", count, ", ", speed, ", ", health)
+#	print("Spawn Slugs: ", count, ", ", speed, ", ", health)
 
 
 func _on_EnemySpawnClock_timeout():
