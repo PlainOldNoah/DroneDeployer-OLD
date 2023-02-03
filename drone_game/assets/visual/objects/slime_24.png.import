@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slug_128.png-82de36c6493000038f3f8132e31b858c.stex"
+path="res://.import/slime_24.png-6f15e6f145aabd2d5b72ce761e43751b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/slug_128.png"
-dest_files=[ "res://.import/slug_128.png-82de36c6493000038f3f8132e31b858c.stex" ]
+source_file="res://assets/visual/objects/slime_24.png"
+dest_files=[ "res://.import/slime_24.png-6f15e6f145aabd2d5b72ce761e43751b.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

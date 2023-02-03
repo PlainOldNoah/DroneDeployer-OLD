@@ -181,13 +181,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 474.0
 margin_bottom = 352.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
 icon = ExtResource( 8 )
 desc = "Start Game"
-button_size = 25
-icon_size = 50
 
 [node name="TutorialBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -197,8 +192,6 @@ margin_right = 952.0
 margin_bottom = 352.0
 icon = ExtResource( 9 )
 desc = "Tutorial"
-button_size = 25
-icon_size = 50
 
 [node name="SettingsBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -206,13 +199,8 @@ anchor_bottom = 0.0
 margin_left = 956.0
 margin_right = 1430.0
 margin_bottom = 352.0
-__meta__ = {
-"_editor_description_": ""
-}
 icon = ExtResource( 6 )
 desc = "Settings"
-button_size = 25
-icon_size = 50
 
 [node name="ScoresBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -222,8 +210,6 @@ margin_right = 474.0
 margin_bottom = 707.0
 icon = ExtResource( 10 )
 desc = "Scores"
-button_size = 25
-icon_size = 50
 
 [node name="CreditsBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -234,8 +220,6 @@ margin_right = 952.0
 margin_bottom = 707.0
 icon = ExtResource( 7 )
 desc = "Credits"
-button_size = 25
-icon_size = 60
 
 [node name="QuitBtn" parent="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -246,8 +230,6 @@ margin_right = 1430.0
 margin_bottom = 707.0
 icon = ExtResource( 11 )
 desc = "Quit"
-button_size = 25
-icon_size = 60
 
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer/StartBtn" to="." method="_on_StartBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/UIPanel/MarginContainer2/GridContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]

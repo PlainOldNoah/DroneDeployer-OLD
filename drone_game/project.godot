@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://core/hub.gd"
 }, {
+"base": "MarginContainer",
+"class": "IconButton",
+"language": "GDScript",
+"path": "res://components/icon_button.gd"
+}, {
 "base": "Node2D",
 "class": "LevelManager",
 "language": "GDScript",
@@ -68,6 +73,7 @@ _global_script_class_icons={
 "GUI": "",
 "GameManager": "",
 "Hub": "",
+"IconButton": "",
 "LevelManager": "",
 "ModManager": ""
 }
@@ -76,7 +82,7 @@ _global_script_class_icons={
 
 config/name="Drone Game"
 run/main_scene="res://core/main.tscn"
-config/icon="res://assets/visual/drone-128.png"
+config/icon="res://assets/visual/lifeforms/drone-128.png"
 
 [autoload]
 

@@ -172,6 +172,7 @@ visible = false
 visible = false
 
 [node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource( 3 )]
+visible = false
 anchor_left = 0.158333
 anchor_top = 0.158333
 anchor_right = 0.841667

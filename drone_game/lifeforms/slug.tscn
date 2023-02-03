@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://lifeforms/generic_lifeform.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/visual/slug_128.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/lifeforms/slug_128.png" type="Texture" id=2]
 [ext_resource path="res://lifeforms/slug.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/sfx/splat_3.wav" type="AudioStream" id=4]
 

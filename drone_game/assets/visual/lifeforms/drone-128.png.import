@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slug.png-003af062d1970c038a10de7feecb74ac.stex"
+path="res://.import/drone-128.png-41db6548b6513f4a419c62becf6d2028.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/slug.png"
-dest_files=[ "res://.import/slug.png-003af062d1970c038a10de7feecb74ac.stex" ]
+source_file="res://assets/visual/lifeforms/drone-128.png"
+dest_files=[ "res://.import/drone-128.png-41db6548b6513f4a419c62becf6d2028.stex" ]
 
 [params]
 

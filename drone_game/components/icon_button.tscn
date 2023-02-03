@@ -1,112 +1,92 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/visual/menu/blank_128_btn.png" type="Texture" id=1]
-[ext_resource path="res://assets/visual/menu/icon_button_clickmask.png" type="BitMap" id=2]
-[ext_resource path="res://assets/audio/sfx/mechanical_button_down.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/visual/menu/icon_button_clickmask.png" type="BitMap" id=1]
+[ext_resource path="res://assets/audio/sfx/mechanical_button_down.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/visual/menu/blank_128_btn.png" type="Texture" id=3]
 [ext_resource path="res://components/icon_button.gd" type="Script" id=4]
 [ext_resource path="res://assets/audio/sfx/mechanical_button_up.wav" type="AudioStream" id=5]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 3 )
 region = Rect2( 4, 4, 224, 224 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 3 )
 region = Rect2( 236, 4, 224, 224 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 3 )
 region = Rect2( 468, 4, 224, 224 )
 
-[node name="IconButton" type="Control"]
+[node name="IconBtn" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_right = 1880.0
+margin_bottom = 1006.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 10
-
-[node name="ButtonSizer" type="MarginContainer" parent="VBoxContainer"]
-unique_name_in_owner = true
-margin_right = 1920.0
-margin_bottom = 1056.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 0
-custom_constants/margin_top = 0
-custom_constants/margin_left = 0
-custom_constants/margin_bottom = 0
-
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/ButtonSizer"]
-margin_right = 1920.0
-margin_bottom = 1056.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-shortcut_in_tooltip = false
-texture_normal = SubResource( 4 )
-texture_pressed = SubResource( 5 )
-texture_hover = SubResource( 6 )
-texture_click_mask = ExtResource( 2 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 3 )
+texture_click_mask = ExtResource( 1 )
 expand = true
 stretch_mode = 5
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="IconSizer" type="MarginContainer" parent="VBoxContainer/ButtonSizer/TextureButton"]
-unique_name_in_owner = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_constants/margin_right = 0
-custom_constants/margin_top = 0
-custom_constants/margin_left = 0
-custom_constants/margin_bottom = 0
-
-[node name="IconRect" type="TextureRect" parent="VBoxContainer/ButtonSizer/TextureButton/IconSizer"]
-unique_name_in_owner = true
-margin_right = 1920.0
-margin_bottom = 1056.0
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control"]
+anchor_left = 0.199074
+anchor_top = 0.199074
+anchor_right = 0.800926
+anchor_bottom = 0.800926
 mouse_filter = 2
 expand = true
 stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_lock_": true
 }
 
-[node name="LabelSpacer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 1066.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-size_flags_horizontal = 3
-
-[node name="DescLabel" type="Label" parent="VBoxContainer/LabelSpacer"]
-unique_name_in_owner = true
-margin_right = 1920.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "<SET TEXT>"
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 1026.0
+margin_right = 1880.0
+margin_bottom = 1040.0
 align = 1
-valign = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "SFX"
+[node name="ButtonDownASP" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="ButtonUpASP" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
-[connection signal="button_down" from="VBoxContainer/ButtonSizer/TextureButton" to="." method="_on_TextureButton_button_down"]
-[connection signal="button_up" from="VBoxContainer/ButtonSizer/TextureButton" to="." method="_on_TextureButton_button_up"]
-[connection signal="pressed" from="VBoxContainer/ButtonSizer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="button_down" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_button_down"]
+[connection signal="button_up" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_button_up"]
+[connection signal="pressed" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_pressed"]
