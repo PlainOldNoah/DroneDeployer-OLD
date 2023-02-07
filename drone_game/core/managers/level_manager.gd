@@ -3,6 +3,7 @@ extends Node2D
 
 const AUTO_FILL_TILE:int = 0
 
+export var tile_size:int = 0
 export var barrier_width:int = 3
 export var enemy_level_edge_offset:int = 1
 export var enemy_spawn_subdivisions:int = 1
@@ -38,14 +39,14 @@ func _ready():
 	generate_tiles()
 
 
-func _input(event): #DEBUG
-	if event.is_action("ui_page_up"):
-		scale *= 1.025
-	elif event.is_action("ui_page_down"):
-		scale /= 1.025
-	
-	move_barriers()
-	generate_tiles()
+#func _input(event): #DEBUG
+#	if event.is_action("ui_page_up"):
+#		scale *= 1.025
+#	elif event.is_action("ui_page_down"):
+#		scale /= 1.025
+#
+#	move_barriers()
+#	generate_tiles()
 
 
 # Adjusts the size of the barriers to fit the current screen size and moves them into place
@@ -69,15 +70,16 @@ func move_barriers():
 # Places tiles to fill up the current visiable area
 func generate_tiles():
 	var tilemap_scale:Vector2 = current_map.scale
-	var num_tiles_x:int = ceil(area.x / (32.0 * scale.x * tilemap_scale.x))
-	var num_tiles_y:int = ceil(area.y / (32.0 * scale.y * tilemap_scale.y))
+	var num_tiles_x:int = ceil(area.x / (tile_size * scale.x * tilemap_scale.x))
+	var num_tiles_y:int = ceil(area.y / (tile_size * scale.y * tilemap_scale.y))
 	
 	num_tiles_x = num_tiles_x + 1 if num_tiles_x % 2 == 1 else num_tiles_x
 	num_tiles_y = num_tiles_y + 1 if num_tiles_y % 2 == 1 else num_tiles_y
 	
 	for i in num_tiles_x:
 		for j in num_tiles_y:
-			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, AUTO_FILL_TILE)
+			var selected_tile:int = rng.randi_range(0, 2) # WARNING: This should not be hardcoded
+			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, 0, false, false, false, Vector2(selected_tile,0))
 
 
 # Selects a point along the edge of the level
