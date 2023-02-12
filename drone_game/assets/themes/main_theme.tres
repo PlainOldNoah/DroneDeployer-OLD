@@ -10,5 +10,6 @@ font_data = ExtResource( 1 )
 
 [resource]
 Button/fonts/font = SubResource( 2 )
+Label/colors/font_color = Color( 0.0235294, 0.811765, 0, 1 )
 Label/fonts/font = SubResource( 2 )
 VBoxContainer/constants/separation = 10

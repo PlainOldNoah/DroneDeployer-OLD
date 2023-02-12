@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pcb_oct_plus.png-f205ed9994a1377b14606fd52b5f7595.stex"
+path="res://.import/command_center_256.png-815967c3e76a0b4c02031f1c10897229.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/menu/pcb_oct_plus.png"
-dest_files=[ "res://.import/pcb_oct_plus.png-f205ed9994a1377b14606fd52b5f7595.stex" ]
+source_file="res://assets/visual/command_center_256.png"
+dest_files=[ "res://.import/command_center_256.png-815967c3e76a0b4c02031f1c10897229.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

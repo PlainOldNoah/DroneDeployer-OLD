@@ -64,31 +64,31 @@ text = "DRONE DEPLOYER"
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
 visible = false
 margin_top = 138.0
-margin_right = 1896.0
-margin_bottom = 1056.0
+margin_right = 1830.0
+margin_bottom = 559.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/VBoxContainer/HBoxContainer"]
-margin_right = 314.0
-margin_bottom = 918.0
+margin_right = 303.0
+margin_bottom = 421.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 custom_constants/separation = 10
 
 [node name="StartBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 314.0
-margin_bottom = 144.0
+margin_right = 303.0
+margin_bottom = 61.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "START"
 
 [node name="TutorialBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 154.0
-margin_right = 314.0
-margin_bottom = 299.0
+margin_top = 71.0
+margin_right = 303.0
+margin_bottom = 133.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -98,27 +98,27 @@ __meta__ = {
 }
 
 [node name="SettingsBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 309.0
-margin_right = 314.0
-margin_bottom = 454.0
+margin_top = 143.0
+margin_right = 303.0
+margin_bottom = 205.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 text = "SETTINGS"
 
 [node name="ScoresBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 464.0
-margin_right = 314.0
-margin_bottom = 608.0
+margin_top = 215.0
+margin_right = 303.0
+margin_bottom = 277.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 text = "SCORES"
 
 [node name="CreditsBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 618.0
-margin_right = 314.0
-margin_bottom = 763.0
+margin_top = 287.0
+margin_right = 303.0
+margin_bottom = 349.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -128,9 +128,9 @@ __meta__ = {
 }
 
 [node name="QuitBtn" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 773.0
-margin_right = 314.0
-margin_bottom = 918.0
+margin_top = 359.0
+margin_right = 303.0
+margin_bottom = 421.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "QUIT GAME"
@@ -139,9 +139,9 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/Control/VBoxContainer/HBoxContainer"]
-margin_left = 324.0
-margin_right = 1896.0
-margin_bottom = 918.0
+margin_left = 313.0
+margin_right = 1830.0
+margin_bottom = 421.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0, 0, 0, 1 )
