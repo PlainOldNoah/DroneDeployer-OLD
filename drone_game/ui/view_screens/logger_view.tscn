@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://components/blank_terminal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/view_screens/logger_view.gd" type="Script" id=2]
+
+[node name="LoggerView" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContentContainer" index="0"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MessageContainer" type="VBoxContainer" parent="ContentContainer/ScrollContainer" index="0"]
+margin_right = 1880.0
+margin_bottom = 1040.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

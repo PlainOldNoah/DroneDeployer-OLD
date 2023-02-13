@@ -1,6 +1,6 @@
 extends Control
 
-onready var queue_item_container := $MarginContainer/QueueItemContainer
+onready var queue_item_container := $ContentContainer/MarginContainer/QueueItemContainer
 onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
 
 var drone_manager:DroneManager = null

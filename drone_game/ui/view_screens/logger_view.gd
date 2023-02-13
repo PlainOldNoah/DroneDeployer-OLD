@@ -1,6 +1,6 @@
-extends MarginContainer
+extends Control
 
-onready var message_container:VBoxContainer = $MarginContainer/ScrollContainer/MessageContainer
+onready var message_container:VBoxContainer = $ContentContainer/ScrollContainer/MessageContainer
 
 
 func _ready():

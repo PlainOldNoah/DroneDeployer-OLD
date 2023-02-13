@@ -5,8 +5,8 @@
 [ext_resource path="res://components/crafting_core.gd" type="Script" id=3]
 
 [node name="CraftingCore" type="MarginContainer"]
-margin_right = 302.0
-margin_bottom = 338.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -18,8 +18,8 @@ default_texture = ExtResource( 2 )
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color( 0.894118, 0.894118, 0.894118, 1 )
 margin_left = 10.0
-margin_right = 292.0
-margin_bottom = 328.0
+margin_right = 1910.0
+margin_bottom = 1070.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
@@ -43,36 +43,36 @@ custom_constants/margin_bottom = 12
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/InnerMargin"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 270.0
-margin_bottom = 316.0
+margin_right = 1888.0
+margin_bottom = 1058.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/InnerMargin/VBoxContainer"]
-margin_right = 258.0
-margin_bottom = 89.0
+margin_right = 1876.0
+margin_bottom = 340.0
 size_flags_vertical = 3
 
 [node name="CoreNameLabel" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer"]
-margin_right = 234.0
-margin_bottom = 89.0
+margin_right = 1852.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Crafting Core"
 
 [node name="CancelButton" type="Button" parent="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer"]
-margin_left = 238.0
-margin_right = 258.0
+margin_left = 1856.0
+margin_right = 1876.0
 margin_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "X"
 
 [node name="CraftingIcon" type="TextureRect" parent="NinePatchRect/InnerMargin/VBoxContainer"]
-margin_left = 79.0
-margin_top = 93.0
-margin_right = 179.0
-margin_bottom = 193.0
+margin_left = 888.0
+margin_top = 344.0
+margin_right = 988.0
+margin_bottom = 684.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 6
 size_flags_vertical = 3
@@ -81,17 +81,17 @@ expand = true
 stretch_mode = 5
 
 [node name="CraftingNameLabel" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer"]
-margin_top = 197.0
-margin_right = 258.0
-margin_bottom = 211.0
+margin_top = 688.0
+margin_right = 1876.0
+margin_bottom = 702.0
 size_flags_vertical = 0
 text = "Idle"
 align = 1
 
 [node name="CraftTimeLeft" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer"]
-margin_top = 215.0
-margin_right = 258.0
-margin_bottom = 304.0
+margin_top = 706.0
+margin_right = 1876.0
+margin_bottom = 1046.0
 size_flags_vertical = 3
 text = "0:00"
 align = 1

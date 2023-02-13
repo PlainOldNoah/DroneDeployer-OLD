@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://components/blank_terminal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/view_screens/launch_queue.gd" type="Script" id=2]
+
+[node name="LaunchQueue" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer" index="0"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="QueueItemContainer" type="VBoxContainer" parent="ContentContainer/MarginContainer" index="0"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 1868.0
+margin_bottom = 12.0
+size_flags_vertical = 0
+custom_constants/separation = 10
+alignment = 1

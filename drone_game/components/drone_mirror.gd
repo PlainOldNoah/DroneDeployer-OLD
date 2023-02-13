@@ -3,7 +3,7 @@ extends Control
 
 signal relay_btn_pressed()
 
-onready var texture_rect:TextureRect = $TextureRect
+onready var drone_icon:TextureRect = $DroneIcon
 onready var popup_window := $CanvasLayer/DroneStatsPopup
 onready var btn:Button = $Button
 
@@ -37,7 +37,7 @@ func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
 # Links the drone to this node
 func set_drone(drone:Drone):
 	drone_ref = drone
-	texture_rect.texture = drone.get_sprite()
+	drone_icon.texture = drone.get_sprite()
 	modulate = drone.modulate
 	popup_window.display_new_drone(drone)
 
@@ -45,7 +45,7 @@ func set_drone(drone:Drone):
 # Clears all non-init data
 func reset():
 	drone_ref = null
-	texture_rect.texture = null
+	drone_icon.texture = null
 	modulate = Color(1, 1, 1, 1)
 
 
