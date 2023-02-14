@@ -113,15 +113,15 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 34.0
 margin_right = 501.0
-margin_bottom = 278.0
+margin_bottom = 248.0
 
 [node name="SelectedDrone" parent="MarginContainer/HBoxContainer/WorkArea" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 159.0
-margin_top = 297.0
+margin_top = 274.0
 margin_right = 341.0
-margin_bottom = 479.0
+margin_bottom = 456.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
@@ -155,23 +155,23 @@ stretch_mode = 6
 [node name="EquippedMods" parent="MarginContainer/HBoxContainer/WorkArea" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 498.0
+margin_top = 483.0
 margin_right = 501.0
 margin_bottom = 698.0
 
 [node name="NinePatchRect" parent="MarginContainer/HBoxContainer/WorkArea/EquippedMods" index="0"]
 margin_right = 501.0
-margin_bottom = 200.0
+margin_bottom = 215.0
 
 [node name="MarginContainer" parent="MarginContainer/HBoxContainer/WorkArea/EquippedMods" index="1"]
 margin_right = 501.0
-margin_bottom = 200.0
+margin_bottom = 215.0
 
 [node name="EquippedMods" type="GridContainer" parent="MarginContainer/HBoxContainer/WorkArea/EquippedMods/MarginContainer" index="0"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 493.0
-margin_bottom = 192.0
+margin_bottom = 207.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 4
