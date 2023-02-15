@@ -46,13 +46,13 @@ mouse_filter = 2
 
 [node name="NameLabel" type="Label" parent="CanvasLayer/UIPanel/MarginContainer/VBoxContainer"]
 margin_right = 384.0
-margin_bottom = 32.0
+margin_bottom = 24.0
 text = "NAME"
 
 [node name="DescLabel" type="Label" parent="CanvasLayer/UIPanel/MarginContainer/VBoxContainer"]
-margin_top = 42.0
+margin_top = 34.0
 margin_right = 384.0
-margin_bottom = 109.0
+margin_bottom = 85.0
 text = "Lorem ipsum latin nonsense words words words"
 autowrap = true
 

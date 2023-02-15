@@ -111,8 +111,8 @@ func _on_PickUpZone_body_entered(body):
 
 # Changes drone state from SPAWNING to ACTIVE
 func _on_PickUpZone_body_exited(body):
-		if body.is_in_group("DRONE"):
-			body.state = Drone.STATES.ACTIVE
+	if body.is_in_group("DRONE") and body.state == Drone.STATES.SPAWNING:
+		body.state = Drone.STATES.ACTIVE
 
 
 func _on_Hub_body_entered(body):
