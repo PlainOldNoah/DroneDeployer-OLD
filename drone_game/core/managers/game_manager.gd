@@ -16,7 +16,7 @@ var curr_exp:int = 0
 var score:int = 0
 var curr_survived_sec:int = 0
 
-var drone_queue:Array = [] # Holds Drone datatype
+#var drone_queue:Array = [] # Holds Drone datatype
 
 
 func _ready():

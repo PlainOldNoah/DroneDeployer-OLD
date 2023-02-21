@@ -16,14 +16,20 @@ func _ready():
 	yield(get_tree().root, "ready")
 	
 	var _ok = Global.drone_manager.connect("drone_created", self, "add_drone_mirror")
-	_ok = Global.drone_manager.connect("drone_launched", self, "update_drone_display")
-	_ok = Global.drone_manager.connect("drone_added_to_queue", self, "update_drone_display")
+#	_ok = Global.drone_manager.connect("drone_launched", self, "update_drone_display")
+#	_ok = Global.drone_manager.connect("drone_added_to_queue", self, "update_drone_display")
 	_ok = Global.mod_manager.connect("enhancement_created", self, "add_free_enhancement")
+
+	for i in drone_display.get_items():
+		i.init(32, true, true)
+		_ok = i.connect("relay_btn_pressed", self, "drone_selected")
 
 
 # Called when the GUI brings up this menu
 func on_open():
-	pass
+	moveto_drone_page(0)
+
+	
 
 
 # Called when this menu is hidden by the GUI
@@ -41,14 +47,15 @@ func on_close():
 
 # Creates a new drone mirror and adds it to the drone display
 func add_drone_mirror(drone:Drone):
-	var drone_mirror_inst = load(drone_mirror_path).instance()
-	drone_display.add_child(drone_mirror_inst)
-	
-	drone_mirror_inst.init(80, true, true)
-	drone_mirror_inst.set_drone(drone)
-	
-#	drone_mirror.set_rect_size(100) # TODO: Make sure this isn't hardcoded
-	var _ok = drone_mirror_inst.connect("relay_btn_pressed", self, "drone_selected")
+	pass
+#	var drone_mirror_inst = load(drone_mirror_path).instance()
+#	drone_display.add_child(drone_mirror_inst)
+#
+#	drone_mirror_inst.init(80, true, true)
+#	drone_mirror_inst.set_drone(drone)
+#
+##	drone_mirror.set_rect_size(100) # TODO: Make sure this isn't hardcoded
+#	var _ok = drone_mirror_inst.connect("relay_btn_pressed", self, "drone_selected")
 
 
 # Grays out currently deployed drones
@@ -117,6 +124,35 @@ func remove_mod_from_drone(mod:Dictionary):
 	selected_drone.remove_mod(mod)
 
 
+var drone_page:int = 0
+
+# Sets the drone mirrors to groups of 9 drones
+func moveto_drone_page(page:int):
+	clear_drone_icons()
+	var mirrors:Array = drone_display.get_items()
+	var drone_list_ref:Array = Global.drone_manager.full_drone_list
+	
+	drone_page = clamp(page, 0, drone_list_ref.size() / 9.0)
+	for i in 9: # One for each mirror
+		var focused:int = i + (9 * drone_page)
+# Set each mirror with correct drone
+		if focused < drone_list_ref.size():
+			mirrors[i].set_drone(drone_list_ref[focused])
+# Gray out currently deployed drones
+			match mirrors[i].drone_ref.state:
+				Drone.STATES.IDLE: # idle
+					mirrors[i].enable()
+				_:
+					mirrors[i].disable()
+
+
+# Removes all drones from the drone mirrors
+func clear_drone_icons():
+	for i in drone_display.get_items():
+		i.reset()
+
+
+
 func _on_EngineeringMenu_visibility_changed():
 	if visible:
 		on_open()
@@ -134,3 +170,11 @@ func _on_LeftModBtns_btn_pressed(btn_num:int):
 
 func _on_RightModBtns_btn_pressed(btn_num:int):
 	print(btn_num)
+
+
+func _on_PageBackBtn_pressed():
+	moveto_drone_page(drone_page - 1)
+
+
+func _on_PageForwardsBtn_pressed():
+	moveto_drone_page(drone_page + 1)

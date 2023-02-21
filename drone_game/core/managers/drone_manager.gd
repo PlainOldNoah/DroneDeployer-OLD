@@ -12,6 +12,7 @@ var max_drones:int = 0
 var curr_drone_count:int = 0
 var drone_scene = preload("res://lifeforms/drone.tscn")
 
+var full_drone_list:Array = []
 var drone_queue:Array = [] # Holds Drone datatype
 
 
@@ -42,6 +43,7 @@ func create_new_drone():
 	add_drone_to_queue(drone_inst)
 	
 	curr_drone_count += 1
+	full_drone_list.append(drone_inst)
 	emit_signal("drone_created", drone_inst)
 
 

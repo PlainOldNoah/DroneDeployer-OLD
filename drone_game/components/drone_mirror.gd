@@ -32,7 +32,6 @@ func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
 		var _ok := connect("mouse_entered", self, "_on_DroneMirror_mouse_entered")
 		_ok = connect("mouse_exited", self, "_on_DroneMirror_mouse_exited")
 
-
 # Base Functions
 # Links the drone to this node
 func set_drone(drone:Drone):
