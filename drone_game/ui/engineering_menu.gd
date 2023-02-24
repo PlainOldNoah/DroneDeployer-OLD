@@ -20,14 +20,16 @@ func _ready():
 #	_ok = Global.drone_manager.connect("drone_added_to_queue", self, "update_drone_display")
 	_ok = Global.mod_manager.connect("enhancement_created", self, "add_free_enhancement")
 
-	for i in drone_display.get_items():
-		i.init(32, true, true)
-		_ok = i.connect("relay_btn_pressed", self, "drone_selected")
+#	for i in drone_display.get_items():
+#		i.init(32, true, true)
+#		_ok = i.connect("relay_btn_pressed", self, "drone_selected")
 
 
 # Called when the GUI brings up this menu
 func on_open():
-	moveto_drone_page(0)
+	pass
+	$MarginContainer/MainTrifold/DroneDisplay/DroneCycler.initialize()
+#	moveto_drone_page(0)
 
 	
 

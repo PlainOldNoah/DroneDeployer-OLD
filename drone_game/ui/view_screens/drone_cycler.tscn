@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://components/drone_mirror.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/view_screens/blank_terminal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/view_screens/drone_cycler.gd" type="Script" id=3]
+
+[node name="DroneCycler" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "Vertical column that displays drones. Used in engineering menu"
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer" index="0"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+
+[node name="DroneMirror" parent="ContentContainer/VBoxContainer" index="0" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1880.0
+margin_bottom = 87.0
+
+[node name="DroneMirror2" parent="ContentContainer/VBoxContainer" index="1" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 97.0
+margin_right = 1880.0
+margin_bottom = 184.0
+
+[node name="DroneMirror3" parent="ContentContainer/VBoxContainer" index="2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 194.0
+margin_right = 1880.0
+margin_bottom = 281.0
+
+[node name="DroneMirror4" parent="ContentContainer/VBoxContainer" index="3" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 291.0
+margin_right = 1880.0
+margin_bottom = 422.0
+size_flags_stretch_ratio = 1.5
+
+[node name="DroneMirror5" parent="ContentContainer/VBoxContainer" index="4" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 432.0
+margin_right = 1880.0
+margin_bottom = 607.0
+size_flags_stretch_ratio = 2.0
+
+[node name="DroneMirror6" parent="ContentContainer/VBoxContainer" index="5" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 617.0
+margin_right = 1880.0
+margin_bottom = 748.0
+size_flags_stretch_ratio = 1.5
+
+[node name="DroneMirror7" parent="ContentContainer/VBoxContainer" index="6" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 758.0
+margin_right = 1880.0
+margin_bottom = 845.0
+
+[node name="DroneMirror8" parent="ContentContainer/VBoxContainer" index="7" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 855.0
+margin_right = 1880.0
+margin_bottom = 942.0
+
+[node name="DroneMirror9" parent="ContentContainer/VBoxContainer" index="8" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 952.0
+margin_right = 1880.0
+margin_bottom = 1040.0
