@@ -15,6 +15,7 @@ func _ready():
 	
 	var _ok := drone_manager.connect("drone_added_to_queue", self, "create_queue_item")
 	_ok = drone_manager.connect("drone_launched", self, "deploy_up_next")
+	_ok = drone_manager.connect("drone_skipped", self, "skip_up_next")
 
 
 # Makes a new queue item for the given drone
@@ -28,19 +29,26 @@ func create_queue_item(drone:Drone):
 	queue.append(drone_mirror)
 
 
-# Pops the next drone in line, either deletes it or has it reenter the queue
-func deploy_up_next(delete_up_next:bool=true):
+# Pops the next drone in line and deletes the mirror
+func deploy_up_next(_drone:Drone):
 	if not launch_enabled:
 		return
 	
 	var up_next := queue_item_container.get_child(0)
 	
 	queue.pop_front()
+	up_next.queue_free()
+
+
+# Sends the mirror the end of the line
+func skip_up_next():
+	if not launch_enabled:
+		return
 	
-	if delete_up_next: # Launching
-		up_next.queue_free()
-	else: # Skipping
-		queue_item_container.move_child(up_next, queue_item_container.get_child_count())
+	var up_next := queue_item_container.get_child(0)
+	
+	queue.pop_front()
+	queue_item_container.move_child(up_next, queue_item_container.get_child_count())
 
 
 func _on_QueueItemContainer_resized():

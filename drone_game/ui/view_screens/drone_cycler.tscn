@@ -80,3 +80,13 @@ anchor_bottom = 0.0
 margin_top = 952.0
 margin_right = 1880.0
 margin_bottom = 1040.0
+
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror2" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror3" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror4" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror5" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror6" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror7" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror8" to="." method="_on_DroneMirror_relay_btn_pressed"]
+[connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror9" to="." method="_on_DroneMirror_relay_btn_pressed"]
