@@ -4,23 +4,20 @@
 [ext_resource path="res://components/drone_mirror.gd" type="Script" id=2]
 
 [node name="DroneMirror" type="Control"]
-anchor_right = 0.167
-anchor_bottom = 0.238
-margin_right = 0.359985
-margin_bottom = -0.0400085
-rect_min_size = Vector2( 16, 16 )
-mouse_filter = 2
+anchor_right = 0.0166667
+anchor_bottom = 0.0296296
+rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": "Displays a drones sprite in GUI form. Can have clickability with relay_btn_pressed() signal and can display linked drones stat's."
 }
 
 [node name="DroneIcon" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand = true
@@ -30,9 +27,11 @@ stretch_mode = 6
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+disabled = true
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
 flat = true

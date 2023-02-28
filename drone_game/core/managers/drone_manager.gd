@@ -4,6 +4,7 @@ extends Node
 signal drone_created()
 signal drone_added_to_queue()
 signal drone_launched()
+signal drone_skipped()
 signal drone_queue_changed()
 
 onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
@@ -12,6 +13,7 @@ var max_drones:int = 0
 var curr_drone_count:int = 0
 var drone_scene = preload("res://lifeforms/drone.tscn")
 
+var full_drone_list:Array = []
 var drone_queue:Array = [] # Holds Drone datatype
 
 
@@ -42,6 +44,7 @@ func create_new_drone():
 	add_drone_to_queue(drone_inst)
 	
 	curr_drone_count += 1
+	full_drone_list.append(drone_inst)
 	emit_signal("drone_created", drone_inst)
 
 
@@ -57,7 +60,7 @@ func deploy_next_up(position:Vector2, rotation:float):
 	
 	drone_queue.remove(0)
 	
-	emit_signal("drone_launched", true)
+	emit_signal("drone_launched", drone_2_deploy)
 	emit_signal("drone_queue_changed", get_drone_from_queue(0))
 
 
@@ -69,7 +72,7 @@ func skip_up_next():
 	drone_queue.push_back(drone_queue.pop_front())
 	
 	emit_signal("drone_queue_changed", get_drone_from_queue(0))
-	emit_signal("drone_launched", false)
+	emit_signal("drone_skipped")
 
 
 # Return the idx drone from the queue

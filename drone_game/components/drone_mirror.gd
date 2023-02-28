@@ -19,10 +19,11 @@ var cursor_default := CURSOR_ARROW
 
 func _ready():
 	popup_window.visible = false
+	Global.add_to_groups(self, ["POPUP"])
 
 
 func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
-	set_rect_size(size)
+	set_rect_size(size) # Required to have mirror float to top of container
 	
 	if clickable: 
 		enable()
@@ -33,6 +34,11 @@ func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
 		_ok = connect("mouse_exited", self, "_on_DroneMirror_mouse_exited")
 
 
+func _input(event):
+	if event.is_action_pressed("ui_down"):
+		print(get_parent().name, ", ", get_parent().rect_size)
+
+
 # Base Functions
 # Links the drone to this node
 func set_drone(drone:Drone):
@@ -40,6 +46,15 @@ func set_drone(drone:Drone):
 	drone_icon.texture = drone.get_sprite()
 	modulate = drone.modulate
 	popup_window.display_new_drone(drone)
+
+
+# Advanced set_drone that can enable or disable when called
+func set_drone_with_state(drone:Drone):
+	set_drone(drone)
+	if drone_ref.state == drone.STATES.IDLE: # idle
+		enable()
+	else:
+		disable()
 
 
 # Clears all non-init data
@@ -79,12 +94,13 @@ func _on_Button_pressed():
 # Hover Functions
 func _process(_delta):
 	popup_window.rect_global_position = get_global_mouse_position()# + Vector2(0, 8)
+#	print(rect_size)
 
 
 # Enables or disables the popup window
 func toggle_popup(state:bool):
 	if state and not enabled:
-		mouse_default_cursor_shape = cursor_hover
+		set_default_cursor_shape(cursor_hover)
 	
 	mouse_hovering = state
 	popup_window.visible = state
