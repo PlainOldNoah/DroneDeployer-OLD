@@ -19,9 +19,7 @@ func _on_SpawnSlug_pressed():
 
 # Creates an enhancement
 func _on_CreateEnhancement_pressed():
-	Global.engr_menu.add_available_mod()
-	
-#	Global.mod_manager.create_enhancement("max_battery", 50)
+	Global.mod_manager.create_enhancement("max_battery", 50)
 #	Global.mod_manager.create_enhancement("battery_drain", 50)
 #	Global.mod_manager.create_enhancement("speed", 100)
 #	Global.mod_manager.create_enhancement("damage", 5)
