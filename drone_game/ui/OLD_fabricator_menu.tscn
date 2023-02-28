@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://ui/fabricator_menu.gd" type="Script" id=1]
+[ext_resource path="res://ui/OLD_fabricator_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/visual/menu/industrial_9_square.png" type="Texture" id=2]
 [ext_resource path="res://assets/visual/menu/pcb_circle_plus_128.png" type="Texture" id=3]
 [ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=5]
@@ -101,8 +101,6 @@ margin_right = 348.0
 margin_bottom = 652.0
 
 [node name="QueueItemContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer"]
-margin_right = 336.0
-margin_bottom = 640.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -122,15 +120,21 @@ size_flags_vertical = 3
 columns = 3
 
 [node name="CraftingCore" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 298.0
 margin_bottom = 327.0
 
 [node name="CraftingCore2" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 302.0
 margin_right = 600.0
 margin_bottom = 327.0
 
 [node name="CraftingCore3" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 604.0
 margin_right = 902.0
 margin_bottom = 327.0
