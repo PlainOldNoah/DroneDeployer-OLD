@@ -1,12 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://csmx60cscfmm6"]
+[gd_scene load_steps=19 format=3 uid="uid://c76cvl5gvsua7"]
 
 [ext_resource type="Script" path="res://core/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c463xds63hhsm" path="res://ui/gameboard.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://drmy1qwvh8v38" path="res://ui/debug_menu.tscn" id="3"]
 [ext_resource type="Script" path="res://ui/gui.gd" id="5"]
 [ext_resource type="Script" path="res://core/managers/game_manager.gd" id="6"]
-[ext_resource type="PackedScene" uid="uid://nee2t6blx4g2" path="res://ui/OLD_fabricator_menu.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://hgkn532n4ohp" path="res://ui/engineering_menu.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://ui/OLD_fabricator_menu.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://ui/engineering_menu.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://jd2y4uyp40pj" path="res://ui/view_screens/launch_queue.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://ui/view_screens/logger_view.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="11"]
@@ -14,9 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://dvi0cbnk21t7b" path="res://ui/view_screens/stats_bar.tscn" id="13"]
 [ext_resource type="Script" path="res://core/managers/mod_manager.gd" id="14"]
 [ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
-[ext_resource type="PackedScene" uid="uid://cj86muccig8gq" path="res://ui/main_menu.tscn" id="16"]
 [ext_resource type="PackedScene" path="res://ui/game_over_menu.tscn" id="17"]
 [ext_resource type="Script" path="res://core/managers/enemy_manager.gd" id="18"]
+[ext_resource type="PackedScene" uid="uid://c1bu4134eyil6" path="res://ui/main_menu.tscn" id="18_51jau"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19"]
 
 [node name="Main" type="Node"]
@@ -45,13 +45,13 @@ process_mode = 3
 script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="GameManager/GUI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.6, 0.615686, 0.627451, 1)
 
 [node name="GameBackground" type="TextureRect" parent="GameManager/GUI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -153,7 +153,7 @@ offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource("16")]
+[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource("18_51jau")]
 visible = false
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource path="res://assets/visual/menu/debug_128.png" type="Texture2D" id=1]
-[ext_resource path="res://components/mod_display.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/debug_128.png" id="1"]
+[ext_resource type="Script" path="res://ui/components/mod_display.gd" id="3"]
 
 [node name="ModDisplay" type="Control"]
 anchor_right = 0.0333333

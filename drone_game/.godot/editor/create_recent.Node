@@ -1,8 +1,11 @@
-TextureRect
+AudioStreamPlayer
 ColorRect
+MarginContainer
+Panel
 VBoxContainer
 Label
 HBoxContainer
+TextureRect
 AspectRatioContainer
 Node
 CanvasLayer

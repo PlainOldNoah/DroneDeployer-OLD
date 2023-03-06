@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b8ho3617jr42y"]
+
+[ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="1_c3g7t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qok3o"]
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[resource]
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("1_c3g7t")
+Panel/styles/panel = SubResource("StyleBoxFlat_qok3o")

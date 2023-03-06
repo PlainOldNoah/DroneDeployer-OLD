@@ -19,7 +19,7 @@ func clear_selected_drone():
 # Creates a new mod_mirror
 # mod_data are the mod stats, available == true spawns the mod in available grid
 func add_new_mod_display(mod_data:Dictionary, available:bool=true):
-	var mod_display_inst = load("res://components/mod_display.tscn").instantiate()
+	var mod_display_inst = load("res://ui/components/mod_display.tscn").instantiate()
 	
 	if available:
 		available_grid.add_child(mod_display_inst)

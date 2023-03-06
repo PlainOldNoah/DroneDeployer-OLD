@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource path="res://ui/game_over_menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/themes/title_label.tres" type="Theme" id=2]
-[ext_resource path="res://assets/visual/menu/red_x_128.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/visual/menu/redo_128.png" type="Texture2D" id=4]
-[ext_resource path="res://components/icon_button.tscn" type="PackedScene" id=5]
+[ext_resource type="Script" path="res://ui/game_over_menu.gd" id="1"]
+[ext_resource type="Theme" uid="uid://c4j8s0dbvnss1" path="res://assets/themes/title_label.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://7c060shf1iuu" path="res://assets/visual/menu/red_x_128.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dwt3qn76psghy" path="res://assets/visual/menu/redo_128.png" id="4"]
+[ext_resource type="PackedScene" path="res://ui/components/icon_button.tscn" id="5"]
 
 [sub_resource type="CompressedTexture2D" id=1]
 flags = 4

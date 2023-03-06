@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh5tim0mk3slq"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="1"]
-[ext_resource type="Script" path="res://components/drone_mirror.gd" id="2"]
+[ext_resource type="Script" path="res://ui/components/drone_mirror.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://c73j0q2ov7s3w" path="res://assets/visual/lifeforms/drone-128.png" id="2_qxg3c"]
 
 [node name="DroneMirror" type="Control"]

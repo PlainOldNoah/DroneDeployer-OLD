@@ -1,7 +1,7 @@
 extends Control
 
 @onready var queue_item_container := $ContentContainer/MarginContainer/QueueItemContainer
-@onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
+@onready var drone_mirror_scene := "res://ui/components/drone_mirror.tscn"
 
 var drone_manager:DroneManager = null
 var queue:Array = []

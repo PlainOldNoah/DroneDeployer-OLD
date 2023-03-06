@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://3htdnqwcokn3"]
+
+[ext_resource type="Script" path="res://ui/components/circle_button.gd" id="1_d4e51"]
+[ext_resource type="Texture2D" uid="uid://c0a7rk8t75yx2" path="res://assets/visual/menu/button_128_v2.png" id="2_2lbtp"]
+[ext_resource type="BitMap" uid="uid://soteolx73v56" path="res://assets/visual/menu/icon_button_clickmask.png" id="3_tllky"]
+[ext_resource type="AudioStream" uid="uid://bijepdwon7uy7" path="res://assets/audio/sfx/mechanical_button_down.wav" id="4_b3iqv"]
+[ext_resource type="AudioStream" uid="uid://c0aav7d4jkg5h" path="res://assets/audio/sfx/mechanical_button_up.wav" id="5_1xspu"]
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("2_2lbtp")
+region = Rect2(4, 4, 224, 224)
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2_2lbtp")
+region = Rect2(236, 4, 224, 224)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("2_2lbtp")
+region = Rect2(468, 4, 224, 224)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("2_2lbtp")
+region = Rect2(236, 4, 224, 224)
+
+[node name="CircleButton" type="MarginContainer"]
+editor_description = "Texture button that is a circle"
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_d4e51")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+texture_hover = SubResource("3")
+texture_disabled = SubResource("4")
+texture_click_mask = ExtResource("3_tllky")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ButtonDownASP" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_b3iqv")
+bus = &"SFX"
+
+[node name="ButtonUpASP" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1xspu")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

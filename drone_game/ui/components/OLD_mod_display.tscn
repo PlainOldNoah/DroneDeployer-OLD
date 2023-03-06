@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/visual/menu/pcb_rect_plus_128.png" type="Texture2D" id=2]
-[ext_resource path="res://components/OLD_mod_display.gd" type="Script" id=3]
-[ext_resource path="res://components/ui_panel.tscn" type="PackedScene" id=4]
+[ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://c54powcnps2im" path="res://assets/visual/menu/pcb_rect_plus_128.png" id="2"]
+[ext_resource type="Script" path="res://ui/components/OLD_mod_display.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://cpbp1en848fam" path="res://ui/components/ui_panel.tscn" id="4"]
 
 [node name="ModDisplay" type="TextureRect"]
 anchor_right = 1.0

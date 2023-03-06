@@ -1,21 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://co7pddfic2fp7"]
+[gd_scene load_steps=9 format=3 uid="uid://cue07maoas8w2"]
 
-[ext_resource type="BitMap" uid="uid://soteolx73v56" path="res://assets/visual/menu/icon_button_clickmask.png" id="1"]
-[ext_resource type="AudioStream" uid="uid://bijepdwon7uy7" path="res://assets/audio/sfx/mechanical_button_down.wav" id="2"]
-[ext_resource type="Texture2D" uid="uid://qbknhcuukrk3" path="res://assets/visual/menu/blank_128_btn.png" id="3"]
-[ext_resource type="Script" path="res://components/icon_button.gd" id="4"]
-[ext_resource type="AudioStream" uid="uid://c0aav7d4jkg5h" path="res://assets/audio/sfx/mechanical_button_up.wav" id="5"]
+[ext_resource type="Script" path="res://ui/components/icon_button.gd" id="1_k0rmd"]
+[ext_resource type="Texture2D" uid="uid://qbknhcuukrk3" path="res://assets/visual/menu/blank_128_btn.png" id="2_w3lr5"]
+[ext_resource type="BitMap" uid="uid://soteolx73v56" path="res://assets/visual/menu/icon_button_clickmask.png" id="3_cyk1g"]
+[ext_resource type="AudioStream" uid="uid://bijepdwon7uy7" path="res://assets/audio/sfx/mechanical_button_down.wav" id="4_bb6ss"]
+[ext_resource type="AudioStream" uid="uid://c0aav7d4jkg5h" path="res://assets/audio/sfx/mechanical_button_up.wav" id="5_q1eog"]
 
 [sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("3")
+atlas = ExtResource("2_w3lr5")
 region = Rect2(4, 4, 224, 224)
 
 [sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("3")
+atlas = ExtResource("2_w3lr5")
 region = Rect2(236, 4, 224, 224)
 
 [sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("3")
+atlas = ExtResource("2_w3lr5")
 region = Rect2(468, 4, 224, 224)
 
 [node name="IconBtn" type="MarginContainer"]
@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("4")
+script = ExtResource("1_k0rmd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -46,7 +46,7 @@ anchor_bottom = 1.0
 texture_normal = SubResource("1")
 texture_pressed = SubResource("2")
 texture_hover = SubResource("3")
-texture_click_mask = ExtResource("1")
+texture_click_mask = ExtResource("3_cyk1g")
 stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control"]
@@ -68,10 +68,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonDownASP" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2")
+stream = ExtResource("4_bb6ss")
 
 [node name="ButtonUpASP" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5")
+stream = ExtResource("5_q1eog")
 
 [connection signal="button_down" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="button_up" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_button_up"]

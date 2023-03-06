@@ -63,8 +63,6 @@ func _input(event):
 
 # Shows the requested menu
 func request_menu(menu:int):
-	print("REQUESTING MENU")
-	
 	dismiss_menu()
 	Global.game_manager.toggle_pause(true)
 	

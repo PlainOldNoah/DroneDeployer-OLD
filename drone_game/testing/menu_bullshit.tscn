@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm1k2q2qe5dar"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://co7pddfic2fp7" path="res://components/icon_button.tscn" id="1_gpiag"]
+[ext_resource type="PackedScene" path="res://ui/components/icon_button.tscn" id="1_gpiag"]
 [ext_resource type="PackedScene" uid="uid://cj86muccig8gq" path="res://ui/main_menu.tscn" id="2_4yg0t"]
 
 [node name="Control" type="Control"]

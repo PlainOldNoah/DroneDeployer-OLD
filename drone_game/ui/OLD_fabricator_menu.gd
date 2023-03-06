@@ -5,7 +5,7 @@ extends Control
 @onready var crafting_core_container := $MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer
 @onready var queue := $MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer/QueueItemContainer
 
-var queue_item_scene:String = "res://components/craft_queue_item.tscn"
+var queue_item_scene:String = "res://ui/components/craft_queue_item.tscn"
 
 var craft_history:Dictionary = {}
 

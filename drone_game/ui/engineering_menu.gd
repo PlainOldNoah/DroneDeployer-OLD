@@ -4,7 +4,7 @@ extends Control
 @onready var drone_info_view := $MarginContainer/MainTrifold/SelectionDisplay/DroneInfoView
 @onready var mod_panel := $MarginContainer/MainTrifold/AvailableModDisplay/HBoxContainer/ModPanel
 
-var drone_mirror_path:String = "res://components/drone_mirror.tscn"
+var drone_mirror_path:String = "res://ui/components/drone_mirror.tscn"
 var selected_drone:Drone = null
 
 
