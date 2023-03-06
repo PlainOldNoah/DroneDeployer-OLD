@@ -2,9 +2,9 @@ extends TextureRect
 
 signal relay_btn_pressed()
 
-@onready var popup_window := $CanvasLayer/UIPanel
-@onready var name_label := $CanvasLayer/UIPanel/MarginContainer/VBoxContainer/NameLabel
-@onready var desc_label := $CanvasLayer/UIPanel/MarginContainer/VBoxContainer/DescLabel
+@onready var popup_window := $CanvasLayer/VBoxContainer
+@onready var name_label := $CanvasLayer/VBoxContainer/NameLabel
+@onready var desc_label := $CanvasLayer/VBoxContainer/DescLabel
 
 var cached_mod:Dictionary = {}
 var mouse_hovering:bool = false

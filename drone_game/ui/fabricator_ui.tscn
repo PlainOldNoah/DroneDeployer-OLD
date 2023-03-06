@@ -1,226 +1,189 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://ppruegnftbfl"]
 
 [ext_resource type="PackedScene" path="res://ui/components/crafting_core.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://ui/components/icon_button.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://ui/components/circle_button.tscn" id="3"]
+[ext_resource type="Theme" uid="uid://b8ho3617jr42y" path="res://assets/themes/ui_white_outline.tres" id="1_82sv1"]
+[ext_resource type="PackedScene" uid="uid://cue07maoas8w2" path="res://ui/components/icon_button.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://3htdnqwcokn3" path="res://ui/components/circle_button.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://ui/components/craft_queue_item.tscn" id="3_sh1tl"]
 
 [node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.6, 0.615686, 0.627451, 1 )
+color = Color(0.6, 0.615686, 0.627451, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.00012207
 offset_bottom = 6.10352e-05
-custom_constants/offset_right = 20
-custom_constants/offset_top = 20
-custom_constants/offset_left = 20
-custom_constants/offset_bottom = 20
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 1900.0
-offset_bottom = 1060.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 20
 
-[node name="CraftingOptions" type="GridContainer" parent="MarginContainer/HBoxContainer"]
-offset_right = 620.0
-offset_bottom = 1040.0
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_82sv1")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CraftingOptions" type="GridContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="IconBtn" parent="MarginContainer/HBoxContainer/CraftingOptions" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 308.0
-offset_bottom = 518.0
+[node name="IconBtn" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="IconBtn2" parent="MarginContainer/HBoxContainer/CraftingOptions" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 312.0
-offset_right = 620.0
-offset_bottom = 518.0
+[node name="IconBtn2" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
+layout_mode = 2
 
-[node name="IconBtn3" parent="MarginContainer/HBoxContainer/CraftingOptions" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 522.0
-offset_right = 308.0
-offset_bottom = 1040.0
+[node name="IconBtn3" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="IconBtn4" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
+layout_mode = 2
 
 [node name="CraftingQueue" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-offset_left = 630.0
-offset_right = 1250.0
-offset_bottom = 1040.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Buttons" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]
-offset_right = 96.0
-offset_bottom = 1040.0
-custom_minimum_size = Vector2( 96, 0 )
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.66
-custom_constants/v_separation = 20
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 96.0
-offset_bottom = 98.0
+[node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 118.0
-offset_right = 96.0
-offset_bottom = 216.0
+[node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 236.0
-offset_right = 96.0
-offset_bottom = 334.0
+[node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 354.0
-offset_right = 96.0
-offset_bottom = 452.0
+[node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton5" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 472.0
-offset_right = 96.0
-offset_bottom = 570.0
+[node name="CircleButton5" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton6" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 590.0
-offset_right = 96.0
-offset_bottom = 688.0
+[node name="CircleButton6" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton7" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 708.0
-offset_right = 96.0
-offset_bottom = 806.0
+[node name="CircleButton7" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton8" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 826.0
-offset_right = 96.0
-offset_bottom = 923.0
+[node name="CircleButton8" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton9" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 943.0
-offset_right = 96.0
-offset_bottom = 1040.0
+[node name="CircleButton9" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/CraftingQueue"]
-offset_left = 100.0
-offset_right = 620.0
-offset_bottom = 1040.0
+[node name="QueueItemContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0, 0, 0, 1 )
+
+[node name="CraftQueueItem" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem2" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem3" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem4" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem5" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem6" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem7" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem8" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
+
+[node name="CraftQueueItem9" parent="MarginContainer/HBoxContainer/CraftingQueue/QueueItemContainer" instance=ExtResource("3_sh1tl")]
+layout_mode = 2
 
 [node name="CraftingCores" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-offset_left = 1260.0
-offset_right = 1880.0
-offset_bottom = 1040.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingCores"]
-offset_right = 620.0
-offset_bottom = 940.0
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/CraftingCores"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_82sv1")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/CraftingCores/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CraftingCoreGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="CraftingCore" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 308.0
-offset_bottom = 468.0
+[node name="CraftingCore" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCoreGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="CraftingCore2" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 312.0
-offset_right = 620.0
-offset_bottom = 468.0
+[node name="CraftingCore2" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCoreGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="CraftingCore3" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 472.0
-offset_right = 308.0
-offset_bottom = 940.0
+[node name="CraftingCore3" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCoreGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="CraftingCore4" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 312.0
-offset_top = 472.0
-offset_right = 620.0
-offset_bottom = 940.0
+[node name="CraftingCore4" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCoreGrid" instance=ExtResource("1")]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores"]
-offset_top = 944.0
-offset_right = 620.0
-offset_bottom = 1040.0
-custom_minimum_size = Vector2( 96, 96 )
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
 
-[node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 152.0
-offset_bottom = 96.0
+[node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 156.0
-offset_right = 308.0
-offset_bottom = 96.0
+[node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 312.0
-offset_right = 464.0
-offset_bottom = 96.0
+[node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource("3")]
+layout_mode = 2
 
-[node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 468.0
-offset_right = 620.0
-offset_bottom = 96.0
+[node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource("3")]
+layout_mode = 2

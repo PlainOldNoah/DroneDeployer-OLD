@@ -12,3 +12,8 @@ res://ui/components/icon_button.tscn
 res://ui/OLD_main_menu.tscn
 res://ui/main_menu.tscn
 res://ui/gui.gd
+res://ui/components/OLD_mod_display.tscn
+res://ui/components/OLD_mod_display.gd
+res://lifeforms/drone.gd
+res://ui/fabricator_ui.tscn
+res://ui/OLD_fabricator_menu.tscn

@@ -73,18 +73,19 @@ func set_state(new_state:int):
 	match state:
 		STATES.ACTIVE:
 			show()
-			set_physics_process(true)
 			set_process(true)
+			set_physics_process(true)
 			toggle_pickup_area(true)
 			start_moving()
 		STATES.IDLE:
 			hide()
-			set_physics_process(false)
 			set_process(true)
+			set_physics_process(false)
 			toggle_pickup_area(false)
 			stop_moving()
 		STATES.SPAWNING: # See HUB for SPAWNING -> ACTIVE
 			show()
+			set_process(true)
 			set_physics_process(true)
 			toggle_pickup_area(true)
 			start_moving()
@@ -98,7 +99,7 @@ func set_state(new_state:int):
 # Saves the current rotation and sets speed to 0
 func stop_moving():
 	var stored_rotation = global_rotation_degrees
-	set_velocity_from_vector(velocity, 0)
+	set_velocity_and_rot(velocity, 0)
 	set_deferred("global_rotation_degrees", stored_rotation)
 
 
@@ -131,14 +132,14 @@ func handle_collision(collision:KinematicCollision2D):
 		
 	if collider.is_in_group("ENEMY"):
 		if collider.health > stats.damage:
-			set_velocity_from_vector(get_bounce_direction(collision))
+			set_velocity_and_rot(get_bounce_direction(collision))
 		collider.take_hit(stats.damage)
 		
 	elif collider.is_in_group("DRONE"):
 		# Note: This seems to stops drones from doing several collisions at once
-		set_velocity_from_vector(get_bounce_direction(collision))
+		set_velocity_and_rot(get_bounce_direction(collision))
 		if collider.state == STATES.ACTIVE:
-			collider.set_velocity_from_vector(get_bounce_direction(collision))
+			collider.set_velocity_and_rot(get_bounce_direction(collision))
 			collider.bounce_count += 1
 	
 	# If battery is below the threshold attempt to return home
@@ -146,7 +147,7 @@ func handle_collision(collision:KinematicCollision2D):
 		set_vel_to_hub()
 	
 	else:
-		set_velocity_from_vector(get_bounce_direction(collision))
+		set_velocity_and_rot(get_bounce_direction(collision))
 	
 	# Deals with drones that hit slugs before escaping hub
 	if bounce_count > 0 and state == STATES.SPAWNING:
@@ -155,7 +156,7 @@ func handle_collision(collision:KinematicCollision2D):
 	if stats.bounce > 0 and bounce_count >= stats.bounce:
 		set_vel_to_hub()
 		
-	rotation_degrees = rad_to_deg(velocity.angle()) # Rotates drone to current heading
+#	rotation_degrees = rad_to_deg(velocity.angle()) # Rotates drone to current heading
 
 
 # Returns the direction of the bounce as a normalized vector
@@ -169,32 +170,33 @@ func battery_calculation(delta:float):
 		battery = clamp(battery - (stats.battery_drain * delta), 0.0, stats.max_battery)
 	elif state == STATES.IDLE: # Idle
 		battery = clamp(battery + (stats.battery_drain * 2 * delta), 0.0, stats.max_battery)
-	
+		
+		if battery >= stats.max_battery: # Stop running function if battery is full
+			set_process(false)
+		
 	emit_signal("stats_updated", self, "battery")
 	
 	if battery <= 0: # Battery == dead
 		set_process(false)
 		set_state(STATES.STOPPED)
-	elif battery >= stats.max_battery: # Battery == full
-		set_process(false)
 #	elif (battery/stats.max_battery) <= battery_return_threshold:
 #		print("Running Low: ", battery/stats.max_battery)
 
 
-# Set the velocity a normalized vector * speed
-func set_velocity_from_vector(direction:Vector2, speed_override:float=stats.speed):
+func set_velocity_and_rot(direction:Vector2, speed_override:float=stats.speed):
 	set_velocity(direction * speed_override)
+	rotation_degrees = rad_to_deg(velocity.angle())
 
 
 # Set the velocity from an angle in degrees *  speed
 func set_velocity_from_angle(degrees:float, speed_override:float=stats.speed):
-	set_velocity(Vector2(cos(degrees), sin(degrees)) * speed_override)
+	set_velocity_and_rot(Vector2(cos(degrees), sin(degrees)), speed_override)
 
 
 # Sets the current heading to that of the HUB
 func set_vel_to_hub():
 	if state != STATES.STOPPED:
-		set_velocity((Global.hub_scene.global_position - self.global_position).normalized() * stats.speed)
+		set_velocity_and_rot((Global.hub_scene.global_position - self.global_position).normalized(), stats.speed)
 
 
 # Adds the mod to the equipped_mods array

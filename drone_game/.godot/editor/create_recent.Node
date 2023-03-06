@@ -1,8 +1,8 @@
-AudioStreamPlayer
-ColorRect
 MarginContainer
 Panel
 VBoxContainer
+AudioStreamPlayer
+ColorRect
 Label
 HBoxContainer
 TextureRect

@@ -1,74 +1,46 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://rm2u6vot6f4s"]
 
-[ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://c54powcnps2im" path="res://assets/visual/menu/pcb_rect_plus_128.png" id="2"]
 [ext_resource type="Script" path="res://ui/components/OLD_mod_display.gd" id="3"]
-[ext_resource type="PackedScene" uid="uid://cpbp1en848fam" path="res://ui/components/ui_panel.tscn" id="4"]
 
 [node name="ModDisplay" type="TextureRect"]
+custom_minimum_size = Vector2(90, 90)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2( 90, 90 )
-mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
+mouse_default_cursor_shape = 2
+texture = ExtResource("2")
+expand_mode = 1
 stretch_mode = 6
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="UIPanel" parent="CanvasLayer" instance=ExtResource( 4 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_right = 400.0
 offset_bottom = 200.0
 mouse_filter = 2
-theme = ExtResource( 1 )
 
-[node name="NinePatchRect" parent="CanvasLayer/UIPanel" index="0"]
-offset_right = 400.0
-offset_bottom = 200.0
-
-[node name="MarginContainer" parent="CanvasLayer/UIPanel" index="1"]
-offset_right = 400.0
-offset_bottom = 200.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIPanel/MarginContainer" index="0"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 392.0
-offset_bottom = 192.0
-mouse_filter = 2
-
-[node name="NameLabel" type="Label" parent="CanvasLayer/UIPanel/MarginContainer/VBoxContainer"]
-offset_right = 384.0
-offset_bottom = 24.0
+[node name="NameLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
 text = "NAME"
 
-[node name="DescLabel" type="Label" parent="CanvasLayer/UIPanel/MarginContainer/VBoxContainer"]
-offset_top = 34.0
-offset_right = 384.0
-offset_bottom = 85.0
+[node name="DescLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
 text = "Lorem ipsum latin nonsense words words words"
-autowrap = true
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 0
 mouse_filter = 1
 shortcut_in_tooltip = false
 flat = true
-__meta__ = {
-"_editor_description_": ""
-}
 
 [connection signal="mouse_entered" from="." to="." method="_on_ModDisplay_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_ModDisplay_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-
-[editable path="CanvasLayer/UIPanel"]
