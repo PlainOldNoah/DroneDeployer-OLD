@@ -4,22 +4,22 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR, DEBUG, ENGR, MAIN, GAMEOVER, PAUSE}
 var current_menu:int = MENUS.NONE
 
-onready var stats_bar:Control = find_node("StatsBar")
-onready var drone_info:Control = find_node("DroneInfoView")
-onready var launch_queue:Control = find_node("LaunchQueue")
-onready var background:ColorRect = get_node("BackgroundFade")
-onready var fabricator_menu:Control = get_node("FabricatorMenu")
-onready var engineering_menu:Control = get_node("EngineeringMenu")
-onready var debug_menu:Control = get_node("DebugMenu")
-onready var main_menu:Control = get_node("MainMenu")
-onready var game_over_menu:Control = get_node("GameOverMenu")
-onready var pause_menu:Control = get_node("PauseMenu")
+@onready var stats_bar:Control = find_child("StatsBar")
+@onready var drone_info:Control = find_child("DroneInfoView")
+@onready var launch_queue:Control = find_child("LaunchQueue")
+@onready var background:ColorRect = get_node("BackgroundFade")
+@onready var fabricator_menu:Control = get_node("FabricatorMenu")
+@onready var engineering_menu:Control = get_node("EngineeringMenu")
+@onready var debug_menu:Control = get_node("DebugMenu")
+@onready var main_menu:Control = get_node("MainMenu")
+@onready var game_over_menu:Control = get_node("GameOverMenu")
+@onready var pause_menu:Control = get_node("PauseMenu")
 
 var menu_lockout:bool = false # Allows/Prevents user from requesting new menus w/ hotkeys
 
 func _ready():
 	Global.gui = self
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 	stats_bar.reset()
 	drone_info.reset()
 	fabricator_menu.reset()
@@ -63,11 +63,14 @@ func _input(event):
 
 # Shows the requested menu
 func request_menu(menu:int):
+	print("REQUESTING MENU")
+	
 	dismiss_menu()
 	Global.game_manager.toggle_pause(true)
 	
 	match menu:
 		MENUS.FABRICATOR:
+			fabricator_menu.visible = true
 			fabricator_menu.show()
 			current_menu = MENUS.FABRICATOR
 		MENUS.DEBUG:
@@ -104,11 +107,3 @@ func dismiss_menu():
 	game_over_menu.hide()
 	pause_menu.hide()
 	current_menu = MENUS.NONE
-
-
-func adjust_gui_scales(): # DEBUG FUNCTION
-	var scale_factor:int = $GameBackground.rect_scale.x
-	$MarginContainer.add_constant_override("margin_bottom", scale_factor * 8) # Scale factor times number of pixles that make up the border
-	$MarginContainer.add_constant_override("margin_left", scale_factor * 8)
-	$MarginContainer.add_constant_override("margin_right", scale_factor * 8)
-	$MarginContainer.add_constant_override("margin_top", scale_factor * 8)

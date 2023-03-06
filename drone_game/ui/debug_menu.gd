@@ -3,7 +3,7 @@ extends Control
 
 
 func _ready():
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 
 
 # Toggles a var in Hub.gd that stops damage from being reported

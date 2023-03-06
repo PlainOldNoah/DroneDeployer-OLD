@@ -1,12 +1,12 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 signal died()
 
 enum STATES {SPAWNING, ACTIVE, PAUSED, DEAD}
-export(STATES) var state = STATES.SPAWNING
+@export var state: STATES = STATES.SPAWNING
 
-onready var immune_timer:Timer = $ImmunityTimer
-onready var death_sfx := $DeathSound
+@onready var immune_timer:Timer = $ImmunityTimer
+@onready var death_sfx := $DeathSound
 
 #var custom_name:String = ""
 var max_health:int
@@ -14,12 +14,12 @@ var health:int
 var speed:float
 var damage:int
 
-var velocity:Vector2 = Vector2.ZERO setget set_velocity
+#var velocity:Vector2 = Vector2.ZERO : set = set_velocity
 var immune:bool = false
 
 
 func _ready():
-	var _ok = connect("died", Global.level_manager, "lifeform_died")
+	var _ok = connect("died",Callable(Global.level_manager,"lifeform_died"))
 
 
 func _physics_process(delta):
@@ -37,7 +37,7 @@ func set_stats(health_value:int = 1, speed_value:int = 100, damage_value:int = 1
 
 
 # State machine
-func set_state(new_state:int):
+func set_state(new_state:STATES):
 	state = new_state
 	match state:
 		STATES.SPAWNING:
@@ -51,7 +51,7 @@ func set_state(new_state:int):
 			visible = false
 			$CollisionShape2D.disabled = true
 			emit_signal("died", self)
-			yield(death_sfx, "finished")
+			await death_sfx.finished
 			queue_free()
 		_:
 			print_debug("ERROR: <", state, "> is not a valid state")
@@ -79,8 +79,8 @@ func set_health(value:int):
 
 
 # Changes the velocity to the parameterized value
-func set_velocity(value:Vector2):
-	velocity = value
+#func set_velocity(value:Vector2):
+#	velocity = value
 
 
 # Set the velocity from an angle in degrees times the speed
@@ -97,9 +97,9 @@ func set_target_destination(target:Node):
 		set_velocity(direction * speed)
 		
 		if sign(direction.x) == -1:
-			$Sprite.set_flip_h(true)
+			$Sprite2D.set_flip_h(true)
 		else:
-			$Sprite.set_flip_h(false)
+			$Sprite2D.set_flip_h(false)
 
 
 # Turns off immunity when timer is finished

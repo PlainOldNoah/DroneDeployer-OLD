@@ -1,8 +1,8 @@
 extends Control
 
-onready var drone_display := $MarginContainer/MainTrifold/DroneDisplay/DroneDisplay
-onready var drone_info_view := $MarginContainer/MainTrifold/SelectionDisplay/DroneInfoView
-onready var mod_panel := $MarginContainer/MainTrifold/AvailableModDisplay/HBoxContainer/ModPanel
+@onready var drone_display := $MarginContainer/MainTrifold/DroneDisplay/DroneDisplay
+@onready var drone_info_view := $MarginContainer/MainTrifold/SelectionDisplay/DroneInfoView
+@onready var mod_panel := $MarginContainer/MainTrifold/AvailableModDisplay/HBoxContainer/ModPanel
 
 var drone_mirror_path:String = "res://components/drone_mirror.tscn"
 var selected_drone:Drone = null
@@ -10,12 +10,12 @@ var selected_drone:Drone = null
 
 func _ready():
 	Global.engr_menu = self
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 	
-	var _ok = Global.drone_manager.connect("drone_created", self, "add_drone_mirror")
-#	_ok = Global.drone_manager.connect("drone_launched", self, "update_drone_display")
-#	_ok = Global.drone_manager.connect("drone_added_to_queue", self, "update_drone_display")
-	_ok = Global.mod_manager.connect("enhancement_created", self, "add_new_available_mod")
+	var _ok = Global.drone_manager.connect("drone_created",Callable(self,"add_drone_mirror"))
+#	_ok = Global.drone_manager.connect("drone_launched",Callable(self,"update_drone_display"))
+#	_ok = Global.drone_manager.connect("drone_added_to_queue",Callable(self,"update_drone_display"))
+	_ok = Global.mod_manager.connect("enhancement_created",Callable(self,"add_new_available_mod"))
 
 
 # Called when the GUI brings up this menu
@@ -36,16 +36,16 @@ func on_close():
 
 # Creates a new drone_mirror and adds it to the drone_display
 func add_drone_mirror(drone:Drone):
-	var mirror_inst:Node = load(drone_mirror_path).instance()
-	drone_display.add_child(mirror_inst)
+	var mirror_inst:Node = load(drone_mirror_path).instantiate()
+	drone_display.add_item(mirror_inst)
 	mirror_inst.init(80, true, true)
 	mirror_inst.set_drone(drone)
-	var _ok = mirror_inst.connect("relay_btn_pressed", self, "drone_selected")
+	var _ok = mirror_inst.connect("relay_btn_pressed",Callable(self,"drone_selected"))
 
 
 # Grays out currently deployed drones
 func update_drone_display():
-	for mirror in drone_display.get_children():
+	for mirror in drone_display.get_items():
 		match mirror.drone_ref.state:
 			Drone.STATES.IDLE: # idle
 				mirror.enable()
@@ -71,6 +71,9 @@ func add_new_available_mod(mod_data:Dictionary):
 
 
 func _on_EngineeringMenu_visibility_changed():
+	if not is_instance_valid(mod_panel):
+		return
+	
 	if visible:
 		on_open()
 	else:

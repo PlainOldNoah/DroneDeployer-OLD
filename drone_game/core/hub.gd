@@ -3,15 +3,15 @@ extends Area2D
 
 signal hit_taken()
 
-export var rotation_weight:float = 0.2
+@export var rotation_weight:float = 0.2
 
-onready var ray := $Deployer/TrajectoryRay
-onready var trajectory := $TrajectoryLine
-onready var pickup_zone := $PickUpZone
-onready var deployer := $Deployer
-onready var deploy_point := $Deployer/DeployPoint
-onready var deploy_cooldown := $DeployCooldown
-onready var skip_cooldown := $SkipCooldown
+@onready var ray := $Deployer/TrajectoryRay
+@onready var trajectory := $TrajectoryLine
+@onready var pickup_zone := $PickUpZone
+@onready var deployer := $Deployer
+@onready var deploy_point := $Deployer/DeployPoint
+@onready var deploy_cooldown := $DeployCooldown
+@onready var skip_cooldown := $SkipCooldown
 
 var can_deploy:bool = true
 var can_skip:bool = true
@@ -20,15 +20,15 @@ var debug_invincible:bool = false
 
 func _ready():
 	Global.hub_scene = self
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 	Global.add_to_groups(self, ["HUB"])
 	
 	trajectory.add_point(Vector2(0,0))
 	trajectory.add_point(Vector2(0,0))
-	ray.cast_to.x = max(OS.window_size.x, OS.window_size.y)
+	ray.target_position.x = max(get_window().size.x, get_window().size.y)
 	
 	if is_instance_valid(Global.game_manager):
-		var _ok = self.connect("hit_taken", Global.game_manager, "take_hit")
+		var _ok = self.connect("hit_taken",Callable(Global.game_manager,"take_hit"))
 
 
 func _input(event):
@@ -61,14 +61,14 @@ func check_for_internal_drones():
 func rotate_arrow():
 	deployer.look_at(get_global_mouse_position())
 	if Input.is_action_pressed("deploy_snap"):
-		deployer.rotation_degrees = stepify(deployer.rotation_degrees, 45)
+		deployer.rotation_degrees = snapped(deployer.rotation_degrees, 45)
 
 
 # Deploy vector follows the mouse but rotates smoothly
 func rotate_arrow_smooth():
 	var angle = (get_global_mouse_position() - self.global_position).angle()
 	if Input.is_action_pressed("deploy_snap"):
-		deployer.global_rotation = lerp_angle(deployer.global_rotation, stepify(angle, PI/4), rotation_weight)
+		deployer.global_rotation = lerp_angle(deployer.global_rotation, snapped(angle, PI/4), rotation_weight)
 	else:
 		deployer.global_rotation = lerp_angle(deployer.global_rotation, angle, rotation_weight)
 

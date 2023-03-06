@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/splat_3.wav-98b474adb4b89e6154c627b665d41cec.sample"
+type="AudioStreamWAV"
+uid="uid://biq23m04s8c5h"
+path="res://.godot/imported/splat_3.wav-98b474adb4b89e6154c627b665d41cec.sample"
 
 [deps]
 
 source_file="res://assets/audio/sfx/splat_3.wav"
-dest_files=[ "res://.import/splat_3.wav-98b474adb4b89e6154c627b665d41cec.sample" ]
+dest_files=["res://.godot/imported/splat_3.wav-98b474adb4b89e6154c627b665d41cec.sample"]
 
 [params]
 

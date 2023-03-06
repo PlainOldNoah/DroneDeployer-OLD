@@ -3,17 +3,17 @@ extends Node2D
 
 const AUTO_FILL_TILE:int = 0
 
-export var tile_size:int = 0
-export var barrier_width:int = 3
-export var enemy_level_edge_offset:int = 1
-export var enemy_spawn_subdivisions:int = 1
+@export var tile_size:int = 0
+@export var barrier_width:int = 3
+@export var enemy_level_edge_offset:int = 1
+@export var enemy_spawn_subdivisions:int = 1
 
-onready var current_map:TileMap = $CurrentMap
-onready var barrier_top:CollisionShape2D = $LevelEdgeBarrier/BarrierTop
-onready var barrier_bottom:CollisionShape2D = $LevelEdgeBarrier/BarrierBottom
-onready var barrier_left:CollisionShape2D = $LevelEdgeBarrier/BarrierLeft
-onready var barrier_right:CollisionShape2D = $LevelEdgeBarrier/BarrierRight
-onready var enemy_spawn_clock:Timer = $EnemySpawnClock
+@onready var current_map:TileMap = $CurrentMap
+@onready var barrier_top:CollisionShape2D = $LevelEdgeBarrier/BarrierTop
+@onready var barrier_bottom:CollisionShape2D = $LevelEdgeBarrier/BarrierBottom
+@onready var barrier_left:CollisionShape2D = $LevelEdgeBarrier/BarrierLeft
+@onready var barrier_right:CollisionShape2D = $LevelEdgeBarrier/BarrierRight
+@onready var enemy_spawn_clock:Timer = $EnemySpawnClock
 
 var area:Vector2 = Vector2.ZERO
 var perimeter:int = 0
@@ -26,8 +26,13 @@ var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	Global.level_manager = self
+	await get_tree().root.ready
+
+
+# Sets the levels size and generates other map elements
+func prepare_map():
 	rng.randomize()
-	area = get_parent().rect_size
+	area = owner.size
 	perimeter = (2 * area.x) + (2 * area.y)
 	position = area / 2 # Center the scene
 	
@@ -39,32 +44,22 @@ func _ready():
 	generate_tiles()
 
 
-#func _input(event): #DEBUG
-#	if event.is_action("ui_page_up"):
-#		scale *= 1.025
-#	elif event.is_action("ui_page_down"):
-#		scale /= 1.025
-#
-#	move_barriers()
-#	generate_tiles()
-
-
 # Adjusts the size of the barriers to fit the current screen size and moves them into place
 func move_barriers():
-	var height:int = (area.y / scale.y) / 2 # Top to bottom
-	var width:int = (area.x / scale.x) / 2 # Left to Right
+	var height:int = (area.y / scale.y) # Top to bottom
+	var width:int = (area.x / scale.x) # Left to Right
 
-	barrier_top.shape.extents = Vector2(width, barrier_width)
-	barrier_top.position = Vector2(0, -height)
+	barrier_top.shape.size = Vector2(width, barrier_width)
+	barrier_top.position = Vector2(0, -height / 2)
 
-	barrier_bottom.shape.extents = Vector2(width, barrier_width)
-	barrier_bottom.position = Vector2(0, height)
+	barrier_bottom.shape.size = Vector2(width, barrier_width)
+	barrier_bottom.position = Vector2(0, height / 2)
 
-	barrier_left.shape.extents = Vector2(barrier_width, height)
-	barrier_left.position = Vector2(-width, 0)
+	barrier_left.shape.size = Vector2(barrier_width, height)
+	barrier_left.position = Vector2(-width / 2, 0)
 
-	barrier_right.shape.extents = Vector2(barrier_width, height)
-	barrier_right.position = Vector2(width, 0)
+	barrier_right.shape.size = Vector2(barrier_width, height)
+	barrier_right.position = Vector2(width / 2, 0)
 
 
 # Places tiles to fill up the current visiable area
@@ -79,8 +74,7 @@ func generate_tiles():
 	for i in num_tiles_x:
 		for j in num_tiles_y:
 			var selected_tile:int = rng.randi_range(0, 2) # WARNING: This should not be hardcoded
-			current_map.set_cell(i - num_tiles_x / 2, j - num_tiles_y / 2, 0, false, false, false, Vector2(selected_tile,0))
-
+			current_map.set_cell(0, Vector2i(i - num_tiles_x / 2, j - num_tiles_y / 2), 0, Vector2i(selected_tile, 0))
 
 # Selects a point along the edge of the level
 func get_lvl_edge_point(edge_offset:int=0, sub_divisions:int=0) -> Vector2:
@@ -103,7 +97,7 @@ func get_lvl_edge_point(edge_offset:int=0, sub_divisions:int=0) -> Vector2:
 #func spawn_enemy():
 #	var spawn_point:Vector2 = get_lvl_edge_point(enemy_level_edge_offset, enemy_spawn_subdivisions)
 #
-#	var enemy_inst:Node = slug_path.instance()
+#	var enemy_inst:Node = slug_path.instantiate()
 #	enemy_inst.set_position(spawn_point)
 #	self.add_child(enemy_inst)
 
@@ -112,7 +106,7 @@ func spawn_enemy(scene_path:String, count:int=1, health:int=1, speed:int=50, dam
 	var spawn_point:Vector2 = get_lvl_edge_point(enemy_level_edge_offset, enemy_spawn_subdivisions)
 	
 	for i in count:
-		var enemy_inst:Node = load(scene_path).instance()
+		var enemy_inst:Node = load(scene_path).instantiate()
 		var group_offset:Vector2 = Vector2(rng.randi_range(10, 30), rng.randi_range(10, 30))
 		
 		enemy_inst.set_position(spawn_point + group_offset)
@@ -122,7 +116,7 @@ func spawn_enemy(scene_path:String, count:int=1, health:int=1, speed:int=50, dam
 
 # Places exp where lifeform died at
 func lifeform_died(lifeform:Node):
-	var exp_scene:Node = exp_path.instance()
+	var exp_scene:Node = exp_path.instantiate()
 	self.add_child(exp_scene)
 	exp_scene.global_position = lifeform.global_position
 

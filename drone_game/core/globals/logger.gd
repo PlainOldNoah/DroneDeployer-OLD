@@ -3,7 +3,7 @@ extends Node
 signal message_created() # Recieved by logger_view
 signal messages_cleared()
 
-var messages:PoolStringArray = []
+var messages:PackedStringArray = []
 
 # Adds a new message to the logger
 func create(sender:Node, type:String, contents:String):

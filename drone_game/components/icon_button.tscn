@@ -1,91 +1,77 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://co7pddfic2fp7"]
 
-[ext_resource path="res://assets/visual/menu/icon_button_clickmask.png" type="BitMap" id=1]
-[ext_resource path="res://assets/audio/sfx/mechanical_button_down.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/visual/menu/blank_128_btn.png" type="Texture" id=3]
-[ext_resource path="res://components/icon_button.gd" type="Script" id=4]
-[ext_resource path="res://assets/audio/sfx/mechanical_button_up.wav" type="AudioStream" id=5]
+[ext_resource type="BitMap" uid="uid://soteolx73v56" path="res://assets/visual/menu/icon_button_clickmask.png" id="1"]
+[ext_resource type="AudioStream" uid="uid://bijepdwon7uy7" path="res://assets/audio/sfx/mechanical_button_down.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://qbknhcuukrk3" path="res://assets/visual/menu/blank_128_btn.png" id="3"]
+[ext_resource type="Script" path="res://components/icon_button.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://c0aav7d4jkg5h" path="res://assets/audio/sfx/mechanical_button_up.wav" id="5"]
 
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 4, 4, 224, 224 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("3")
+region = Rect2(4, 4, 224, 224)
 
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 236, 4, 224, 224 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("3")
+region = Rect2(236, 4, 224, 224)
 
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 468, 4, 224, 224 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("3")
+region = Rect2(468, 4, 224, 224)
 
 [node name="IconBtn" type="MarginContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1900.0
-margin_bottom = 1060.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 20
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="VBoxContainer"]
-margin_right = 1880.0
-margin_bottom = 1006.0
-rect_min_size = Vector2( 32, 32 )
-mouse_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture_normal = SubResource( 1 )
-texture_pressed = SubResource( 2 )
-texture_hover = SubResource( 3 )
-texture_click_mask = ExtResource( 1 )
-expand = true
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+texture_hover = SubResource("3")
+texture_click_mask = ExtResource("1")
 stretch_mode = 5
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control"]
-anchor_left = 0.199074
-anchor_top = 0.199074
-anchor_right = 0.800926
-anchor_bottom = 0.800926
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.330729
+anchor_top = 0.191358
+anchor_right = 0.669271
+anchor_bottom = 0.808642
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_lock_": true
-}
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 1026.0
-margin_right = 1880.0
-margin_bottom = 1040.0
-align = 1
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonDownASP" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource("2")
 
 [node name="ButtonUpASP" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource("5")
 
 [connection signal="button_down" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="button_up" from="VBoxContainer/Control/TextureButton" to="." method="_on_TextureButton_button_up"]

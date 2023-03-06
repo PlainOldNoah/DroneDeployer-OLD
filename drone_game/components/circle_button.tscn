@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/visual/menu/icon_button_clickmask.png" type="BitMap" id=1]
-[ext_resource path="res://assets/visual/menu/button_128_v2.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/menu/button_128_v2.png" type="Texture2D" id=2]
 [ext_resource path="res://components/circle_button.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -27,14 +27,14 @@ region = Rect2( 236, 4, 224, 224 )
 [node name="CircleButton" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 16, 16 )
+custom_minimum_size = Vector2( 16, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = SubResource( 1 )

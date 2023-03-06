@@ -13,32 +13,32 @@ anchor_bottom = 1.0
 columns = 3
 
 [node name="ResumeBtn" type="Button" parent="GridContainer"]
-margin_right = 638.0
-margin_bottom = 538.0
+offset_right = 638.0
+offset_bottom = 538.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Resume"
 
 [node name="RestartBtn" type="Button" parent="GridContainer"]
-margin_left = 642.0
-margin_right = 1279.0
-margin_bottom = 538.0
+offset_left = 642.0
+offset_right = 1279.0
+offset_bottom = 538.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Restart"
 
 [node name="QuitBtn" type="Button" parent="GridContainer"]
-margin_left = 1283.0
-margin_right = 1920.0
-margin_bottom = 538.0
+offset_left = 1283.0
+offset_right = 1920.0
+offset_bottom = 538.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quit"
 
 [node name="SettingsBtn" type="Button" parent="GridContainer"]
-margin_top = 542.0
-margin_right = 638.0
-margin_bottom = 1080.0
+offset_top = 542.0
+offset_right = 638.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Settings"

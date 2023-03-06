@@ -1,13 +1,13 @@
 extends Control
 
-onready var name_label:Label = get_node("%NameValue")
-onready var battery_label:Label = get_node("%BatteryValue")
-onready var battery_drain_label:Label = get_node("%BatteryDrainValue")
-onready var speed_label:Label = get_node("%SpeedValue")
-onready var damage_label:Label = get_node("%DamageValue")
-onready var crit_chance_label:Label = get_node("%CritChanceValue")
-onready var crit_damage_label:Label = get_node("%CritDamageValue")
-onready var max_bounce_label:Label = get_node("%MaxBounceValue")
+@onready var name_label:Label = get_node("%NameValue")
+@onready var battery_label:Label = get_node("%BatteryValue")
+@onready var battery_drain_label:Label = get_node("%BatteryDrainValue")
+@onready var speed_label:Label = get_node("%SpeedValue")
+@onready var damage_label:Label = get_node("%DamageValue")
+@onready var crit_chance_label:Label = get_node("%CritChanceValue")
+@onready var crit_damage_label:Label = get_node("%CritDamageValue")
+@onready var max_bounce_label:Label = get_node("%MaxBounceValue")
 
 var linked_drone:Drone = null
 
@@ -20,9 +20,9 @@ func display_new_drone(d:Drone):
 	
 	linked_drone = d
 	
-	if linked_drone.is_connected("stats_updated", self, "_on_drone_stats_changed"):
-		linked_drone.disconnect("stats_updated", self, "_on_drone_stats_changed")
-	var _ok := linked_drone.connect("stats_updated", self, "_on_drone_stats_changed")
+	if linked_drone.is_connected("stats_updated",Callable(self,"_on_drone_stats_changed")):
+		linked_drone.disconnect("stats_updated",Callable(self,"_on_drone_stats_changed"))
+	var _ok := linked_drone.connect("stats_updated",Callable(self,"_on_drone_stats_changed"))
 	
 	update_all_stat_labels(d)
 
@@ -42,8 +42,8 @@ func reset():
 
 
 func disconnect_previous_linked():
-	if linked_drone.is_connected("stats_updated", self, "_on_drone_stats_changed"):
-		linked_drone.disconnect("stats_updated", self, "_on_drone_stats_changed")
+	if linked_drone.is_connected("stats_updated",Callable(self,"_on_drone_stats_changed")):
+		linked_drone.disconnect("stats_updated",Callable(self,"_on_drone_stats_changed"))
 
 
 # Signal recived if a drones stat's change

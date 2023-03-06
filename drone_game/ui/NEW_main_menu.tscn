@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc0b5n1ecjqcm"]
+
+[ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="1_vkilo"]
+[ext_resource type="PackedScene" path="res://components/circle_button.tscn" id="2_o2l16"]
+[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/debug_128.png" id="3_id0rx"]
+[ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="4_c8jg5"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vkilo")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Drone Deployer"
+
+[node name="LRDivide" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftSegment" type="VBoxContainer" parent="VBoxContainer/LRDivide"]
+layout_mode = 2
+
+[node name="ButtonControls" type="HBoxContainer" parent="VBoxContainer/LRDivide/LeftSegment"]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls"]
+layout_mode = 2
+
+[node name="CircleButton" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls/Buttons" instance=ExtResource("2_o2l16")]
+layout_mode = 2
+
+[node name="CircleButton2" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls/Buttons" instance=ExtResource("2_o2l16")]
+layout_mode = 2
+
+[node name="CircleButton3" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls/Buttons" instance=ExtResource("2_o2l16")]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Button Text"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Button Text"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/LRDivide/LeftSegment/ButtonControls/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Button Text"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LRDivide/LeftSegment"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_id0rx")
+
+[node name="BlankTerminal" parent="VBoxContainer/LRDivide" instance=ExtResource("4_c8jg5")]
+layout_mode = 2

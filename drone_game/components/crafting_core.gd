@@ -3,23 +3,23 @@ extends MarginContainer
 signal core_freed() # Lets the fabricator know that this core is no longer being used
 signal craft_completed()
 
-onready var item_icon := $NinePatchRect/InnerMargin/VBoxContainer/CraftingIcon
-onready var item_label := $NinePatchRect/InnerMargin/VBoxContainer/CraftingNameLabel
-onready var item_craft_time := $NinePatchRect/InnerMargin/VBoxContainer/CraftTimeLeft
-onready var timer := $Timer
+@onready var item_icon := $NinePatchRect/InnerMargin/VBoxContainer/CraftingIcon
+@onready var item_label := $NinePatchRect/InnerMargin/VBoxContainer/CraftingNameLabel
+@onready var item_craft_time := $NinePatchRect/InnerMargin/VBoxContainer/CraftTimeLeft
+@onready var timer := $Timer
 
-export(Texture) var default_texture = null
+@export var default_texture: Texture2D = null
 var item_to_craft:String = ""
 var seconds:int = 0 # Seconds that craft takes, counts down
 var running:bool = false
 
 
 func _ready():
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 	reset_core()
-	var _ok = connect("core_freed", Global.fabricator, "queue_2_core")
-	_ok = Global.game_manager.connect("game_paused", self, "pause_core")
-	_ok = connect("craft_completed", Global.fabricator, "_on_craft_complete")
+	var _ok = connect("core_freed",Callable(Global.fabricator,"queue_2_core"))
+	_ok = Global.game_manager.connect("game_paused",Callable(self,"pause_core"))
+	_ok = connect("craft_completed",Callable(Global.fabricator,"_on_craft_complete"))
 
 
 # Sets the core's info to default values

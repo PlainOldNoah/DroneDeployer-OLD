@@ -1,218 +1,162 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=3 uid="uid://csmx60cscfmm6"]
 
-[ext_resource path="res://core/main.gd" type="Script" id=1]
-[ext_resource path="res://ui/gameboard.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/debug_menu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://core/managers/level_manager.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/gui.gd" type="Script" id=5]
-[ext_resource path="res://core/managers/game_manager.gd" type="Script" id=6]
-[ext_resource path="res://ui/OLD_fabricator_menu.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ui/engineering_menu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://ui/view_screens/launch_queue.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ui/view_screens/logger_view.tscn" type="PackedScene" id=10]
-[ext_resource path="res://ui/view_screens/drone_info_view.tscn" type="PackedScene" id=11]
-[ext_resource path="res://core/managers/drone_manager.gd" type="Script" id=12]
-[ext_resource path="res://ui/view_screens/stats_bar.tscn" type="PackedScene" id=13]
-[ext_resource path="res://core/managers/mod_manager.gd" type="Script" id=14]
-[ext_resource path="res://assets/visual/menu/steel_sheet_2_128.png" type="Texture" id=15]
-[ext_resource path="res://ui/main_menu.tscn" type="PackedScene" id=16]
-[ext_resource path="res://ui/game_over_menu.tscn" type="PackedScene" id=17]
-[ext_resource path="res://core/managers/enemy_manager.gd" type="Script" id=18]
-[ext_resource path="res://ui/pause_menu.tscn" type="PackedScene" id=19]
+[ext_resource type="Script" path="res://core/main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c463xds63hhsm" path="res://ui/gameboard.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://drmy1qwvh8v38" path="res://ui/debug_menu.tscn" id="3"]
+[ext_resource type="Script" path="res://ui/gui.gd" id="5"]
+[ext_resource type="Script" path="res://core/managers/game_manager.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://nee2t6blx4g2" path="res://ui/OLD_fabricator_menu.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://hgkn532n4ohp" path="res://ui/engineering_menu.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://jd2y4uyp40pj" path="res://ui/view_screens/launch_queue.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://ui/view_screens/logger_view.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="11"]
+[ext_resource type="Script" path="res://core/managers/drone_manager.gd" id="12"]
+[ext_resource type="PackedScene" uid="uid://dvi0cbnk21t7b" path="res://ui/view_screens/stats_bar.tscn" id="13"]
+[ext_resource type="Script" path="res://core/managers/mod_manager.gd" id="14"]
+[ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
+[ext_resource type="PackedScene" uid="uid://cj86muccig8gq" path="res://ui/main_menu.tscn" id="16"]
+[ext_resource type="PackedScene" path="res://ui/game_over_menu.tscn" id="17"]
+[ext_resource type="Script" path="res://core/managers/enemy_manager.gd" id="18"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19"]
 
 [node name="Main" type="Node"]
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
+script = ExtResource("1")
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_description_": "Head manager and parent of all gameplay related features."
-}
+script = ExtResource("6")
 max_drones = 5
 deploy_cooldown = 0.1
 
 [node name="DroneManager" type="Node" parent="GameManager"]
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": "Handles all drone related functions. Also controls the launch queue by calling its functions."
-}
+script = ExtResource("12")
 
 [node name="EnemyManager" type="Node" parent="GameManager"]
-script = ExtResource( 18 )
+script = ExtResource("18")
 
 [node name="EnemySpawnClock" type="Timer" parent="GameManager/EnemyManager"]
 wait_time = 0.5
 one_shot = true
 
 [node name="ModManager" type="Node" parent="GameManager"]
-script = ExtResource( 14 )
-__meta__ = {
-"_editor_description_": "Can create new mods and stores unused mods"
-}
+script = ExtResource("14")
 
 [node name="GUI" type="CanvasLayer" parent="GameManager"]
-pause_mode = 2
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": "When adding new menus make sure to update:
-onready reference
-request_menu
-dismiss_menu"
-}
+process_mode = 3
+script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="GameManager/GUI"]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.6, 0.615686, 0.627451, 1 )
+color = Color(0.6, 0.615686, 0.627451, 1)
 
 [node name="GameBackground" type="TextureRect" parent="GameManager/GUI"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 15 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_editor_description_": "Main border for entire project. Scale can be increased to make pixles appear larger. Remember to divide size by same scale factor."
-}
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15")
+stretch_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="GameManager/GUI"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 14
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 14
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameManager/GUI/MarginContainer"]
-margin_left = 12.0
-margin_top = 14.0
-margin_right = 1908.0
-margin_bottom = 1066.0
-custom_constants/separation = 10
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer/HBoxContainer"]
-margin_right = 400.0
-margin_bottom = 1052.0
-rect_min_size = Vector2( 400, 0 )
-custom_constants/separation = 10
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
 
-[node name="StatsBar" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 13 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 400.0
-margin_bottom = 135.0
+[node name="StatsBar" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("13")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 145.0
-margin_right = 400.0
-margin_bottom = 1052.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 260.0
-margin_bottom = 907.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
 
-[node name="DroneInfoView" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 11 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 260.0
-margin_bottom = 265.0
-size_flags_stretch_ratio = 0.42
+[node name="DroneInfoView" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("11")]
+layout_mode = 2
 
-[node name="LoggerView" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 10 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 275.0
-margin_right = 260.0
-margin_bottom = 907.0
+[node name="LoggerView" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("10")]
+layout_mode = 2
 
-[node name="LaunchQueue" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 270.0
-margin_right = 400.0
-margin_bottom = 907.0
+[node name="LaunchQueue" parent="GameManager/GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9")]
+layout_mode = 2
 size_flags_stretch_ratio = 0.5
 
-[node name="GameboardPanel" parent="GameManager/GUI/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 410.0
-margin_right = 1896.0
-margin_bottom = 1052.0
-
-[node name="Control" parent="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel/MarginContainer" index="0"]
-margin_right = 1478.0
-margin_bottom = 1044.0
-
-[node name="LevelManager" parent="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel/MarginContainer/Control" index="0" instance=ExtResource( 4 )]
-enemy_level_edge_offset = 10
-enemy_spawn_subdivisions = 100
+[node name="GameboardPanel" parent="GameManager/GUI/MarginContainer/HBoxContainer" instance=ExtResource("2")]
+layout_mode = 2
 
 [node name="BackgroundFade" type="ColorRect" parent="GameManager/GUI"]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.392157 )
-__meta__ = {
-"_editor_description_": "Fades the background when opening up a menu. Anything placed before this node will be faded."
-}
+color = Color(0, 0, 0, 0.392157)
 
-[node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource( 7 )]
+[node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("7")]
 visible = false
 
-[node name="EngineeringMenu" parent="GameManager/GUI" instance=ExtResource( 8 )]
+[node name="EngineeringMenu" parent="GameManager/GUI" instance=ExtResource("8")]
 visible = false
 
-[node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource( 3 )]
+[node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource("3")]
 visible = false
+anchors_preset = -1
 anchor_left = 0.158333
 anchor_top = 0.158333
 anchor_right = 0.841667
 anchor_bottom = 0.841667
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource( 17 )]
+[node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource("17")]
 visible = false
+layout_mode = 3
 anchor_left = 0.260156
 anchor_top = 0.260185
 anchor_right = 0.739844
 anchor_bottom = 0.739815
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
-[node name="PauseMenu" parent="GameManager/GUI" instance=ExtResource( 19 )]
+[node name="PauseMenu" parent="GameManager/GUI" instance=ExtResource("19")]
 visible = false
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -718.5
-margin_top = -404.0
-margin_right = 718.5
-margin_bottom = 404.0
+offset_left = -718.5
+offset_top = -404.0
+offset_right = 718.5
+offset_bottom = 404.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource( 16 )]
+[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource("16")]
 visible = false
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 
 [connection signal="timeout" from="GameManager/EnemyManager/EnemySpawnClock" to="GameManager/EnemyManager" method="_on_EnemySpawnClock_timeout"]
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]
-
-[editable path="GameManager/GUI/MarginContainer/HBoxContainer/GameboardPanel"]

@@ -2,7 +2,7 @@ extends Control
 
 signal mirror_clicked()
 
-onready var drone_mirrors:Array = $ContentContainer/VBoxContainer.get_children()
+@onready var drone_mirrors:Array = $ContentContainer/VBoxContainer.get_children()
 
 var center_mirror:int = 0
 var drone_list_ref:Array = []

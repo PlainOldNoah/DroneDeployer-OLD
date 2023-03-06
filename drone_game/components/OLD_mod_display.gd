@@ -2,9 +2,9 @@ extends TextureRect
 
 signal relay_btn_pressed()
 
-onready var popup_window := $CanvasLayer/UIPanel
-onready var name_label := $CanvasLayer/UIPanel/MarginContainer/VBoxContainer/NameLabel
-onready var desc_label := $CanvasLayer/UIPanel/MarginContainer/VBoxContainer/DescLabel
+@onready var popup_window := $CanvasLayer/UIPanel
+@onready var name_label := $CanvasLayer/UIPanel/MarginContainer/VBoxContainer/NameLabel
+@onready var desc_label := $CanvasLayer/UIPanel/MarginContainer/VBoxContainer/DescLabel
 
 var cached_mod:Dictionary = {}
 var mouse_hovering:bool = false
@@ -29,7 +29,7 @@ func reset():
 
 
 func _process(_delta):
-	popup_window.rect_global_position = get_global_mouse_position() + Vector2(0, 8)
+	popup_window.global_position = get_global_mouse_position() + Vector2(0, 8)
 
 
 # Enables or disables the popup window

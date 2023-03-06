@@ -3,7 +3,7 @@ extends Node
 
 signal enhancement_created()
 
-onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
+@onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 
 func _ready():

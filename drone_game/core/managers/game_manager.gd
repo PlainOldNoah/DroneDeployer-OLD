@@ -3,11 +3,11 @@ extends Node
 
 signal game_paused()
 
-export var max_health:int = 3
-export var max_drones:int = 1
-export var deploy_cooldown:float = 0.5
+@export var max_health:int = 3
+@export var max_drones:int = 1
+@export var deploy_cooldown:float = 0.5
 
-onready var play_time_clock:Timer = $PlayTimeClock
+@onready var play_time_clock:Timer = $PlayTimeClock
 
 var running:bool = false
 var curr_drone_count:int = 0
@@ -21,7 +21,7 @@ var curr_survived_sec:int = 0
 
 func _ready():
 	Global.game_manager = self
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 	
 	Global.drone_manager.set_max_drones(max_drones)
 	call_deferred("reset")
@@ -54,6 +54,7 @@ func start_game():
 	reset()
 	Logger.create(self, "system", "Starting Game")
 	play_time_clock.start()
+	Global.level_manager.prepare_map()
 	running = true
 #	Global.level_manager.start_enemy_spawning(2)
 	Global.enemy_manager.toggle_spawning(true)

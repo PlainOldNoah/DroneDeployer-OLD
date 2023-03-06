@@ -1,10 +1,10 @@
-tool
+@tool
 extends Control
 
-export var columns:int = 1 setget set_columns
-export var rows:int = 1
-export var populate_with:PackedScene
-onready var grid := $ContentContainer/GridContainer
+@export var columns:int = 1 : set = set_columns
+@export var rows:int = 1
+@export var populate_with:PackedScene
+@onready var grid := $ContentContainer/GridContainer
 
 
 func set_columns(value:int):

@@ -9,10 +9,10 @@ func _ready():
 # OVERRIDE to have slugs follow the HUB should it happen to move
 func _physics_process(delta):
 	set_target_destination(Global.hub_scene)
-	._physics_process(delta)
+	super._physics_process(delta)
 
 
 # OVERRIDE Different behavior for hitting drone or the hub
 func handle_collision(collision:KinematicCollision2D):
-	if collision.collider.is_in_group("HUB"):
+	if collision.get_collider().is_in_group("HUB"):
 		queue_free()

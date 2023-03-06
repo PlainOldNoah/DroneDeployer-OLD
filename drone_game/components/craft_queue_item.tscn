@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://components/craft_queue_item.gd" type="Script" id=1]
-[ext_resource path="res://assets/visual/menu/drone_plus_128.png" type="Texture" id=2]
+[ext_resource path="res://assets/visual/menu/drone_plus_128.png" type="Texture2D" id=2]
 
 [node name="CraftQueueItem" type="Button"]
 anchor_right = 1.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 64, 64 )
+offset_bottom = 20.0
+custom_minimum_size = Vector2( 64, 64 )
 button_mask = 3
 script = ExtResource( 1 )
 __meta__ = {
@@ -17,23 +17,23 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
+custom_constants/offset_right = 8
+custom_constants/offset_top = 8
+custom_constants/offset_left = 8
+custom_constants/offset_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 1912.0
-margin_bottom = 56.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1912.0
+offset_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-margin_right = 48.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 48 )
+offset_right = 48.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 48, 48 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 2 )
@@ -41,10 +41,10 @@ expand = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
-margin_left = 52.0
-margin_top = 17.0
-margin_right = 1904.0
-margin_bottom = 31.0
+offset_left = 52.0
+offset_top = 17.0
+offset_right = 1904.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "<CRAFT_QUEUE_ITEM>"

@@ -3,9 +3,9 @@ extends Control
 
 signal relay_btn_pressed()
 
-onready var drone_icon:TextureRect = $DroneIcon
-onready var popup_window := $CanvasLayer/DroneStatsPopup
-onready var btn:Button = $Button
+@onready var drone_icon:TextureRect = $DroneIcon
+@onready var popup_window := $CanvasLayer/DroneStatsPopup
+@onready var btn:Button = $Button
 
 var drone_ref:Drone = null
 var enabled:bool = false
@@ -22,21 +22,21 @@ func _ready():
 	Global.add_to_groups(self, ["POPUP"])
 
 
-func init(size:int=32, clickable:bool=false, hover_stats:bool=false):
-	set_rect_size(size) # Required to have mirror float to top of container
+func init(_min_size:int=32, clickable:bool=false, hover_stats:bool=false):
+#	set_rect_size(min_size) # Required to have mirror float to top of container
 	
 	if clickable: 
 		enable()
 	btn.disabled = !clickable
 	
 	if hover_stats:
-		var _ok := connect("mouse_entered", self, "_on_DroneMirror_mouse_entered")
-		_ok = connect("mouse_exited", self, "_on_DroneMirror_mouse_exited")
+		var _ok := connect("mouse_entered",Callable(self,"_on_DroneMirror_mouse_entered"))
+		_ok = connect("mouse_exited",Callable(self,"_on_DroneMirror_mouse_exited"))
 
 
 func _input(event):
 	if event.is_action_pressed("ui_down"):
-		print(get_parent().name, ", ", get_parent().rect_size)
+		print(get_parent().name, ", ", get_parent().size)
 
 
 # Base Functions
@@ -67,8 +67,8 @@ func reset():
 # Note: Whatever the parent of this node it will need to update the rect size
 # Sets the texturerect to a square area with length of factor
 func set_rect_size(factor:int):
-	rect_min_size = Vector2(factor, factor)
-	rect_size = rect_min_size
+	custom_minimum_size = Vector2(factor, factor)
+	size = custom_minimum_size
 
 
 # Clicking Functions
@@ -93,8 +93,8 @@ func _on_Button_pressed():
 
 # Hover Functions
 func _process(_delta):
-	popup_window.rect_global_position = get_global_mouse_position()# + Vector2(0, 8)
-#	print(rect_size)
+	popup_window.global_position = get_global_mouse_position()# + Vector2(0, 8)
+#	print(size)
 
 
 # Enables or disables the popup window

@@ -1,9 +1,9 @@
-tool
+@tool
 extends Control
 
-export var columns:int = 1 setget set_columns
+@export var columns:int = 1 : set = set_columns
 
-onready var grid:GridContainer = $ContentContainer/ScrollContainer/GridContainer
+@onready var grid:GridContainer = $ContentContainer/ScrollContainer/GridContainer
 
 
 func set_columns(value:int):
@@ -11,14 +11,14 @@ func set_columns(value:int):
 	$ContentContainer/ScrollContainer/GridContainer.columns = value
 
 
-func get_children() -> Array:
+func get_items() -> Array[Node]:
 	return grid.get_children()
 
 
-func add_child(node: Node, legible_unique_name: bool = false):
-	grid.add_child(node, legible_unique_name)
+func add_item(node: Node):
+	grid.add_child(node)
 	node.set_owner(self)
 
 
-func get_child(idx: int) -> Node:
+func get_item(idx: int) -> Node:
 	return grid.get_child(idx)

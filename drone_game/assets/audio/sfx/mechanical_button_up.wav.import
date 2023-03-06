@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mechanical_button_up.wav-e15634c6710c3b20103cefa58d1598fc.sample"
+type="AudioStreamWAV"
+uid="uid://c0aav7d4jkg5h"
+path="res://.godot/imported/mechanical_button_up.wav-e15634c6710c3b20103cefa58d1598fc.sample"
 
 [deps]
 
 source_file="res://assets/audio/sfx/mechanical_button_up.wav"
-dest_files=[ "res://.import/mechanical_button_up.wav-e15634c6710c3b20103cefa58d1598fc.sample" ]
+dest_files=["res://.godot/imported/mechanical_button_up.wav-e15634c6710c3b20103cefa58d1598fc.sample"]
 
 [params]
 

@@ -6,82 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Control",
-"class": "DebugMenu",
-"language": "GDScript",
-"path": "res://ui/debug_menu.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "Drone",
-"language": "GDScript",
-"path": "res://lifeforms/drone.gd"
-}, {
-"base": "Node",
-"class": "DroneManager",
-"language": "GDScript",
-"path": "res://core/managers/drone_manager.gd"
-}, {
-"base": "Control",
-"class": "DroneMirror",
-"language": "GDScript",
-"path": "res://components/drone_mirror.gd"
-}, {
-"base": "Node",
-"class": "EnemyManager",
-"language": "GDScript",
-"path": "res://core/managers/enemy_manager.gd"
-}, {
-"base": "CanvasLayer",
-"class": "GUI",
-"language": "GDScript",
-"path": "res://ui/gui.gd"
-}, {
-"base": "Node",
-"class": "GameManager",
-"language": "GDScript",
-"path": "res://core/managers/game_manager.gd"
-}, {
-"base": "Area2D",
-"class": "Hub",
-"language": "GDScript",
-"path": "res://core/hub.gd"
-}, {
-"base": "MarginContainer",
-"class": "IconButton",
-"language": "GDScript",
-"path": "res://components/icon_button.gd"
-}, {
-"base": "Node2D",
-"class": "LevelManager",
-"language": "GDScript",
-"path": "res://core/managers/level_manager.gd"
-}, {
-"base": "Node",
-"class": "ModManager",
-"language": "GDScript",
-"path": "res://core/managers/mod_manager.gd"
-} ]
-_global_script_class_icons={
-"DebugMenu": "",
-"Drone": "",
-"DroneManager": "",
-"DroneMirror": "",
-"EnemyManager": "",
-"GUI": "",
-"GameManager": "",
-"Hub": "",
-"IconButton": "",
-"LevelManager": "",
-"ModManager": ""
-}
+config_version=5
 
 [application]
 
 config/name="Drone Game"
 run/main_scene="res://core/main.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://assets/visual/lifeforms/drone-128.png"
 
 [autoload]
@@ -97,11 +28,9 @@ gdscript/warnings/integer_division=false
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/dpi/allow_hidpi=true
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [global]
 
@@ -111,41 +40,38 @@ window=false
 
 deploy={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
 }
 deploy_snap={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"key_label":4194325,"unicode":0,"echo":false,"script":null)
+]
 }
 deploy_skip={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"pressed":false,"double_click":false,"script":null)
+]
 }
 fabricator_menu={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"key_label":70,"unicode":102,"echo":false,"script":null)
+]
 }
 engr_menu={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"key_label":69,"unicode":101,"echo":false,"script":null)
+]
 }
 toggle_debug={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"key_label":96,"unicode":96,"echo":false,"script":null)
+]
 }
 pause={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"key_label":4194305,"unicode":0,"echo":false,"script":null)
+]
 }
 
 [layer_names]
@@ -162,5 +88,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/defaults/default_environment="res://default_env.tres"
 2d/snapping/use_gpu_pixel_snap=true
-environment/default_environment="res://default_env.tres"

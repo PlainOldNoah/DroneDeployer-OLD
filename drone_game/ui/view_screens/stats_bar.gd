@@ -1,10 +1,10 @@
 extends MarginContainer
 
-onready var curr_exp_label:Label = get_node("%CurrentExp")
-onready var score_label:Label = get_node("%Score")
-onready var time_label:Label = get_node("%Time")
-onready var drone_count_label:Label = get_node("%DroneCount")
-onready var health_label:Label = get_node("%Health")
+@onready var curr_exp_label:Label = get_node("%CurrentExp")
+@onready var score_label:Label = get_node("%Score")
+@onready var time_label:Label = get_node("%Time")
+@onready var drone_count_label:Label = get_node("%DroneCount")
+@onready var health_label:Label = get_node("%Health")
 
 
 func _ready():

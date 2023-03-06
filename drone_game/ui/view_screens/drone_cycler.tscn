@@ -11,75 +11,75 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer" index="0"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1900.0
-margin_bottom = 1060.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1900.0
+offset_bottom = 1060.0
 
 [node name="DroneMirror" parent="ContentContainer/VBoxContainer" index="0" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1880.0
-margin_bottom = 87.0
+offset_right = 1880.0
+offset_bottom = 87.0
 
 [node name="DroneMirror2" parent="ContentContainer/VBoxContainer" index="1" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 97.0
-margin_right = 1880.0
-margin_bottom = 184.0
+offset_top = 97.0
+offset_right = 1880.0
+offset_bottom = 184.0
 
 [node name="DroneMirror3" parent="ContentContainer/VBoxContainer" index="2" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 194.0
-margin_right = 1880.0
-margin_bottom = 281.0
+offset_top = 194.0
+offset_right = 1880.0
+offset_bottom = 281.0
 
 [node name="DroneMirror4" parent="ContentContainer/VBoxContainer" index="3" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 291.0
-margin_right = 1880.0
-margin_bottom = 422.0
+offset_top = 291.0
+offset_right = 1880.0
+offset_bottom = 422.0
 size_flags_stretch_ratio = 1.5
 
 [node name="DroneMirror5" parent="ContentContainer/VBoxContainer" index="4" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 432.0
-margin_right = 1880.0
-margin_bottom = 607.0
+offset_top = 432.0
+offset_right = 1880.0
+offset_bottom = 607.0
 size_flags_stretch_ratio = 2.0
 
 [node name="DroneMirror6" parent="ContentContainer/VBoxContainer" index="5" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 617.0
-margin_right = 1880.0
-margin_bottom = 748.0
+offset_top = 617.0
+offset_right = 1880.0
+offset_bottom = 748.0
 size_flags_stretch_ratio = 1.5
 
 [node name="DroneMirror7" parent="ContentContainer/VBoxContainer" index="6" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 758.0
-margin_right = 1880.0
-margin_bottom = 845.0
+offset_top = 758.0
+offset_right = 1880.0
+offset_bottom = 845.0
 
 [node name="DroneMirror8" parent="ContentContainer/VBoxContainer" index="7" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 855.0
-margin_right = 1880.0
-margin_bottom = 942.0
+offset_top = 855.0
+offset_right = 1880.0
+offset_bottom = 942.0
 
 [node name="DroneMirror9" parent="ContentContainer/VBoxContainer" index="8" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 952.0
-margin_right = 1880.0
-margin_bottom = 1040.0
+offset_top = 952.0
+offset_right = 1880.0
+offset_bottom = 1040.0
 
 [connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror" to="." method="_on_DroneMirror_relay_btn_pressed"]
 [connection signal="relay_btn_pressed" from="ContentContainer/VBoxContainer/DroneMirror2" to="." method="_on_DroneMirror_relay_btn_pressed"]

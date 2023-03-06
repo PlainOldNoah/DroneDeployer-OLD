@@ -1,47 +1,44 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://c463xds63hhsm"]
 
-[ext_resource path="res://assets/visual/menu/industrial_9_square_joined.png" type="Texture" id=1]
+[ext_resource type="PackedScene" uid="uid://dhq3n2qg2150b" path="res://core/managers/level_manager.tscn" id="1_3dnkt"]
 
 [node name="GameboardPanel" type="Control"]
-pause_mode = 1
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": "Control node area that holds the level, hub, drones, enemies, and everything else part of active gameplay"
-}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 1 )
-region_rect = Rect2( 32, 0, 32, 32 )
-patch_margin_left = 11
-patch_margin_top = 21
-patch_margin_right = 11
-patch_margin_bottom = 21
-__meta__ = {
-"_editor_description_": ""
-}
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 14
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
 
 [node name="Control" type="Control" parent="MarginContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 1912.0
-margin_bottom = 1072.0
-rect_clip_content = true
+clip_contents = true
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="LevelManager" parent="MarginContainer/Control" instance=ExtResource("1_3dnkt")]
+barrier_width = 3

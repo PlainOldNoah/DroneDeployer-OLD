@@ -1,14 +1,14 @@
-tool
+@tool
 class_name IconButton
 extends MarginContainer
 
 signal pressed()
 
-onready var button_down_asp := $ButtonDownASP
-onready var button_up_asp := $ButtonUpASP
+@onready var button_down_asp := $ButtonDownASP
+@onready var button_up_asp := $ButtonUpASP
 
-export(Texture) var icon setget set_icon
-export var desc:String = "" setget set_label_text
+@export var icon: Texture2D : set = set_icon
+@export var desc:String = "" : set = set_label_text
 
 
 func set_icon(new_icon):

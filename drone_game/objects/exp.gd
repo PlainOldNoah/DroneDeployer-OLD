@@ -1,7 +1,7 @@
 extends Area2D
 
-export var value:int = 1
-export var attract_force:int = 80
+@export var value:int = 1
+@export var attract_force:int = 80
 var target_body:Node = null
 var acceleration:Vector2 = Vector2.ZERO
 var velocity:Vector2 = Vector2.ZERO

@@ -1,176 +1,124 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://nee2t6blx4g2"]
 
-[ext_resource path="res://ui/OLD_fabricator_menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/visual/menu/industrial_9_square.png" type="Texture" id=2]
-[ext_resource path="res://assets/visual/menu/pcb_circle_plus_128.png" type="Texture" id=3]
-[ext_resource path="res://components/crafting_core.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/themes/main_theme.tres" type="Theme" id=6]
-[ext_resource path="res://components/icon_button.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/visual/menu/drone_plus_128.png" type="Texture" id=9]
-[ext_resource path="res://assets/visual/menu/health_plus_128.png" type="Texture" id=10]
+[ext_resource type="Script" path="res://ui/OLD_fabricator_menu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bc43eukry8d4v" path="res://assets/visual/menu/pcb_circle_plus_128.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://cwh5ptibx8fop" path="res://components/crafting_core.tscn" id="5"]
+[ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://co7pddfic2fp7" path="res://components/icon_button.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://do0372plufkwh" path="res://assets/visual/menu/drone_plus_128.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://b05wd0ueju45r" path="res://assets/visual/menu/health_plus_128.png" id="10"]
 
 [node name="FabricatorMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -656.0
-margin_top = -369.0
-margin_right = 656.0
-margin_bottom = 369.0
-theme = ExtResource( 6 )
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": "Items are crafted here. All items are added to the queue first and then are moved to a core"
-}
+offset_left = -656.0
+offset_top = -369.0
+offset_right = 656.0
+offset_bottom = 369.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6")
+script = ExtResource("1")
 exp_enabled = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 32, 32 )
+region_rect = Rect2(0, 0, 32, 32)
 patch_margin_left = 15
 patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1292.0
-margin_bottom = 718.0
+layout_mode = 2
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1272.0
-margin_bottom = 24.0
+layout_mode = 2
 
 [node name="FabricatorLabel" type="Label" parent="MarginContainer/VBoxContainer/Header"]
-margin_right = 100.0
-margin_bottom = 24.0
+layout_mode = 2
 text = "Fabricator"
 
 [node name="Body" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 34.0
-margin_right = 1272.0
-margin_bottom = 698.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
 
 [node name="CraftingQueue" type="MarginContainer" parent="MarginContainer/VBoxContainer/Body"]
-margin_right = 360.0
-margin_bottom = 664.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Body/CraftingQueue"]
-margin_right = 360.0
-margin_bottom = 664.0
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 32, 32 )
+layout_mode = 2
+region_rect = Rect2(0, 0, 32, 32)
 patch_margin_left = 15
 patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue"]
-margin_right = 360.0
-margin_bottom = 664.0
-custom_constants/margin_right = 12
-custom_constants/margin_top = 12
-custom_constants/margin_left = 12
-custom_constants/margin_bottom = 12
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 348.0
-margin_bottom = 652.0
+layout_mode = 2
 
 [node name="QueueItemContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Body"]
-margin_left = 370.0
-margin_right = 1272.0
-margin_bottom = 664.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CraftingCoreContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer"]
-margin_right = 902.0
-margin_bottom = 327.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="CraftingCore" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 298.0
-margin_bottom = 327.0
+[node name="CraftingCore" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource("5")]
+layout_mode = 2
 
-[node name="CraftingCore2" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 302.0
-margin_right = 600.0
-margin_bottom = 327.0
+[node name="CraftingCore2" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource("5")]
+layout_mode = 2
 
-[node name="CraftingCore3" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource( 5 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 604.0
-margin_right = 902.0
-margin_bottom = 327.0
+[node name="CraftingCore3" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer" instance=ExtResource("5")]
+layout_mode = 2
 
 [node name="CraftingOptions" type="GridContainer" parent="MarginContainer/VBoxContainer/Body/VBoxContainer"]
-margin_top = 337.0
-margin_right = 902.0
-margin_bottom = 664.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="NewDroneBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 298.0
-margin_bottom = 327.0
-icon = ExtResource( 9 )
+[node name="NewDroneBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource("7")]
+layout_mode = 2
+icon = ExtResource("9")
 desc = "New Drone"
 
-[node name="HealthBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 302.0
-margin_right = 600.0
-margin_bottom = 327.0
-icon = ExtResource( 10 )
+[node name="HealthBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource("7")]
+layout_mode = 2
+icon = ExtResource("10")
 desc = "+1 Health"
 
-[node name="EnhancementBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 604.0
-margin_right = 902.0
-margin_bottom = 327.0
-icon = ExtResource( 3 )
+[node name="EnhancementBtn" parent="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions" instance=ExtResource("7")]
+layout_mode = 2
+icon = ExtResource("3")
 desc = "Random Enhancement"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingOptions/NewDroneBtn" to="." method="_on_NewDroneBtn_pressed"]

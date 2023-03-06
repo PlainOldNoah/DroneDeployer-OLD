@@ -1,7 +1,7 @@
 extends Control
 
-onready var equipped_grid := $ContentContainer/HBoxContainer/EquippedMods
-onready var available_grid := $ContentContainer/HBoxContainer/AvailableMods
+@onready var equipped_grid := $ContentContainer/HBoxContainer/EquippedMods
+@onready var available_grid := $ContentContainer/HBoxContainer/AvailableMods
 
 var selected_drone:Drone = null
 
@@ -19,7 +19,7 @@ func clear_selected_drone():
 # Creates a new mod_mirror
 # mod_data are the mod stats, available == true spawns the mod in available grid
 func add_new_mod_display(mod_data:Dictionary, available:bool=true):
-	var mod_display_inst = load("res://components/mod_display.tscn").instance()
+	var mod_display_inst = load("res://components/mod_display.tscn").instantiate()
 	
 	if available:
 		available_grid.add_child(mod_display_inst)
@@ -27,7 +27,7 @@ func add_new_mod_display(mod_data:Dictionary, available:bool=true):
 		equipped_grid.add_child(mod_display_inst)
 	
 	mod_display_inst.init(mod_data)
-	var _ok = mod_display_inst.connect("relay_btn_pressed", self, "change_mod_equip_state")
+	var _ok = mod_display_inst.connect("relay_btn_pressed",Callable(self,"change_mod_equip_state"))
 
 
 # Populates the equipped_grid with drone's equipped mods

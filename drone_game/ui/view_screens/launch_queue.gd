@@ -1,7 +1,7 @@
 extends Control
 
-onready var queue_item_container := $ContentContainer/MarginContainer/QueueItemContainer
-onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
+@onready var queue_item_container := $ContentContainer/MarginContainer/QueueItemContainer
+@onready var drone_mirror_scene := "res://components/drone_mirror.tscn"
 
 var drone_manager:DroneManager = null
 var queue:Array = []
@@ -10,17 +10,17 @@ var launch_enabled:bool = true # TODO: Work on this later. Needs to talk to HUB?
 
 func _ready():
 	Global.launch_queue = self
-	yield(get_tree().root, "ready")
+	await get_tree().root.ready
 	drone_manager = Global.drone_manager
 	
-	var _ok := drone_manager.connect("drone_added_to_queue", self, "create_queue_item")
-	_ok = drone_manager.connect("drone_launched", self, "deploy_up_next")
-	_ok = drone_manager.connect("drone_skipped", self, "skip_up_next")
+	var _ok := drone_manager.connect("drone_added_to_queue",Callable(self,"create_queue_item"))
+	_ok = drone_manager.connect("drone_launched",Callable(self,"deploy_up_next"))
+	_ok = drone_manager.connect("drone_skipped",Callable(self,"skip_up_next"))
 
 
 # Makes a new queue item for the given drone
 func create_queue_item(drone:Drone):
-	var drone_mirror = load(drone_mirror_scene).instance()
+	var drone_mirror = load(drone_mirror_scene).instantiate()
 	queue_item_container.add_child(drone_mirror)
 	
 	drone_mirror.init(64, false, true)
@@ -52,7 +52,7 @@ func skip_up_next():
 
 
 func _on_QueueItemContainer_resized():
-	var limit_factor:int = queue_item_container.rect_size.x
+	var limit_factor:int = queue_item_container.size.x
 	for mirror in queue_item_container.get_children():
 		mirror.set_rect_size(limit_factor)
 

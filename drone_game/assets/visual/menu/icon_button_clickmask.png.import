@@ -2,12 +2,13 @@
 
 importer="bitmap"
 type="BitMap"
-path="res://.import/icon_button_clickmask.png-0d00701ac9155f40cf8992b911f5031f.res"
+uid="uid://soteolx73v56"
+path="res://.godot/imported/icon_button_clickmask.png-0d00701ac9155f40cf8992b911f5031f.res"
 
 [deps]
 
 source_file="res://assets/visual/menu/icon_button_clickmask.png"
-dest_files=[ "res://.import/icon_button_clickmask.png-0d00701ac9155f40cf8992b911f5031f.res" ]
+dest_files=["res://.godot/imported/icon_button_clickmask.png-0d00701ac9155f40cf8992b911f5031f.res"]
 
 [params]
 

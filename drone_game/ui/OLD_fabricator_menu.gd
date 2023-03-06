@@ -1,9 +1,9 @@
 extends Control
 
-export var exp_enabled:bool = true
+@export var exp_enabled:bool = true
 
-onready var crafting_core_container := $MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer
-onready var queue := $MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer/QueueItemContainer
+@onready var crafting_core_container := $MarginContainer/VBoxContainer/Body/VBoxContainer/CraftingCoreContainer
+@onready var queue := $MarginContainer/VBoxContainer/Body/CraftingQueue/MarginContainer/ScrollContainer/QueueItemContainer
 
 var queue_item_scene:String = "res://components/craft_queue_item.tscn"
 
@@ -33,11 +33,11 @@ func add_item_2_queue(value:String=""):
 		print_debug("ERROR: ", value, " does not exist as an option")
 		return
 	
-	var queue_item:Node = load(queue_item_scene).instance()
+	var queue_item:Node = load(queue_item_scene).instantiate()
 	update_craft_history(value)
 	queue.add_child(queue_item)
-	var _ok := queue_item.connect("left_click", self, "reorder_queue_item")
-	_ok = queue_item.connect("right_click", self, "remove_item_from_queue")
+	var _ok := queue_item.connect("left_click",Callable(self,"reorder_queue_item"))
+	_ok = queue_item.connect("right_click",Callable(self,"remove_item_from_queue"))
 	queue_item.initialize(value, craft_history[value])
 	
 	queue_2_core()
@@ -49,8 +49,8 @@ func remove_item_from_queue(item:Node):
 
 
 # Changes the ordering of the queue item
-func reorder_queue_item(item:Node, position:int=0):
-	queue.call_deferred("move_child", item, position)
+func reorder_queue_item(item:Node, pos:int=0):
+	queue.call_deferred("move_child", item, pos)
 #	queue.move_child(item, position)
 
 

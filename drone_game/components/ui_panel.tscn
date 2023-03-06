@@ -1,33 +1,20 @@
-[gd_scene load_steps=2 format=2]
-
-[sub_resource type="StreamTexture" id=1]
-flags = 4
-load_path = "res://.import/industrial_9_square.png-196870362c9792539ff214f864a5a97f.stex"
+[gd_scene format=3 uid="uid://cpbp1en848fam"]
 
 [node name="UIPanel" type="MarginContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
-texture = SubResource( 1 )
-region_rect = Rect2( 0, 0, 32, 32 )
+layout_mode = 2
+region_rect = Rect2(0, 0, 32, 32)
 patch_margin_left = 15
 patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8

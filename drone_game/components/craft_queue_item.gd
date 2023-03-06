@@ -3,8 +3,8 @@ extends Button
 signal left_click
 signal right_click
 
-onready var item_icon:TextureRect = $MarginContainer/HBoxContainer/TextureRect
-onready var item_text:Label = $MarginContainer/HBoxContainer/Label
+@onready var item_icon:TextureRect = $MarginContainer/HBoxContainer/TextureRect
+@onready var item_text:Label = $MarginContainer/HBoxContainer/Label
 
 var ref_item:String = ""
 var item_details:Dictionary
@@ -12,7 +12,7 @@ var craftable = true
 
 
 func _ready():
-	var _ok := connect("gui_input", self, "_on_CraftQueueItem_gui_input")
+	var _ok := connect("gui_input",Callable(self,"_on_CraftQueueItem_gui_input"))
 
 
 # Sets up the label with the necessary information
@@ -27,7 +27,7 @@ func initialize(item:String, temp_id:int):
 func _on_CraftQueueItem_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		match event.button_index:
-			BUTTON_LEFT:
+			MOUSE_BUTTON_LEFT:
 				emit_signal("left_click", self)
-			BUTTON_RIGHT:
+			MOUSE_BUTTON_RIGHT:
 				emit_signal("right_click", self)

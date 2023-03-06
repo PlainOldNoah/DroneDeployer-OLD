@@ -1,12 +1,12 @@
 class_name Drone
-extends KinematicBody2D
+extends CharacterBody2D
 
 signal stats_updated() #stats_updated(self, stat)
 
 enum STATES {ACTIVE, IDLE, SPAWNING, STOPPED}
 var state:int = STATES.IDLE
 
-onready var pickup_range := $PickupRange/CollisionShape2D
+@onready var pickup_range := $PickupRange/CollisionShape2D
 
 const DEFAULT_DRONE_STATS:Dictionary = {
 	"max_battery":100, # Maximum battery level
@@ -25,7 +25,6 @@ var exp_held:int = 0
 var bounce_count:int = 0
 var battery_return_threshold:float = 0.50 #As a percentage
 
-var velocity:Vector2 = Vector2.ZERO setget set_velocity
 var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
 
 
@@ -128,7 +127,7 @@ func calculate_stats():
 func handle_collision(collision:KinematicCollision2D):
 	bounce_count += 1
 	
-	var collider:Node = collision.collider
+	var collider:Node = collision.get_collider()
 		
 	if collider.is_in_group("ENEMY"):
 		if collider.health > stats.damage:
@@ -155,11 +154,13 @@ func handle_collision(collision:KinematicCollision2D):
 	
 	if stats.bounce > 0 and bounce_count >= stats.bounce:
 		set_vel_to_hub()
+		
+	rotation_degrees = rad_to_deg(velocity.angle()) # Rotates drone to current heading
 
 
 # Returns the direction of the bounce as a normalized vector
 func get_bounce_direction(collision:KinematicCollision2D) -> Vector2:
-	return velocity.bounce(collision.normal).normalized()
+	return velocity.bounce(collision.get_normal()).normalized()
 
 
 # Decreases battery while active and charges while idle
@@ -178,12 +179,6 @@ func battery_calculation(delta:float):
 		set_process(false)
 #	elif (battery/stats.max_battery) <= battery_return_threshold:
 #		print("Running Low: ", battery/stats.max_battery)
-
-
-# Sets the velocity and rotation angle
-func set_velocity(new_vel:Vector2):
-	velocity = new_vel
-	rotation_degrees = rad2deg(velocity.angle())
 
 
 # Set the velocity a normalized vector * speed
@@ -218,8 +213,8 @@ func remove_mod(mod:Dictionary):
 
 
 # Returns the sprite texture
-func get_sprite() -> Texture:
-	return $Sprite.texture
+func get_sprite() -> Texture2D:
+	return $Sprite2D.texture
 
 
 # Turns the pickup area on or off

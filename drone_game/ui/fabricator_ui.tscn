@@ -16,28 +16,28 @@ color = Color( 0.6, 0.615686, 0.627451, 1 )
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.00012207
-margin_bottom = 6.10352e-05
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+offset_right = 0.00012207
+offset_bottom = 6.10352e-05
+custom_constants/offset_right = 20
+custom_constants/offset_top = 20
+custom_constants/offset_left = 20
+custom_constants/offset_bottom = 20
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1900.0
-margin_bottom = 1060.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1900.0
+offset_bottom = 1060.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="CraftingOptions" type="GridContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 620.0
-margin_bottom = 1040.0
+offset_right = 620.0
+offset_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
@@ -45,37 +45,37 @@ columns = 2
 [node name="IconBtn" parent="MarginContainer/HBoxContainer/CraftingOptions" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 518.0
+offset_right = 308.0
+offset_bottom = 518.0
 
 [node name="IconBtn2" parent="MarginContainer/HBoxContainer/CraftingOptions" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 312.0
-margin_right = 620.0
-margin_bottom = 518.0
+offset_left = 312.0
+offset_right = 620.0
+offset_bottom = 518.0
 
 [node name="IconBtn3" parent="MarginContainer/HBoxContainer/CraftingOptions" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 522.0
-margin_right = 308.0
-margin_bottom = 1040.0
+offset_top = 522.0
+offset_right = 308.0
+offset_bottom = 1040.0
 
 [node name="CraftingQueue" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 630.0
-margin_right = 1250.0
-margin_bottom = 1040.0
+offset_left = 630.0
+offset_right = 1250.0
+offset_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Buttons" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]
-margin_right = 96.0
-margin_bottom = 1040.0
-rect_min_size = Vector2( 96, 0 )
+offset_right = 96.0
+offset_bottom = 1040.0
+custom_minimum_size = Vector2( 96, 0 )
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.66
-custom_constants/vseparation = 20
+custom_constants/v_separation = 20
 __meta__ = {
 "_edit_group_": true
 }
@@ -83,83 +83,83 @@ __meta__ = {
 [node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 96.0
-margin_bottom = 98.0
+offset_right = 96.0
+offset_bottom = 98.0
 
 [node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 118.0
-margin_right = 96.0
-margin_bottom = 216.0
+offset_top = 118.0
+offset_right = 96.0
+offset_bottom = 216.0
 
 [node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 236.0
-margin_right = 96.0
-margin_bottom = 334.0
+offset_top = 236.0
+offset_right = 96.0
+offset_bottom = 334.0
 
 [node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 354.0
-margin_right = 96.0
-margin_bottom = 452.0
+offset_top = 354.0
+offset_right = 96.0
+offset_bottom = 452.0
 
 [node name="CircleButton5" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 472.0
-margin_right = 96.0
-margin_bottom = 570.0
+offset_top = 472.0
+offset_right = 96.0
+offset_bottom = 570.0
 
 [node name="CircleButton6" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 590.0
-margin_right = 96.0
-margin_bottom = 688.0
+offset_top = 590.0
+offset_right = 96.0
+offset_bottom = 688.0
 
 [node name="CircleButton7" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 708.0
-margin_right = 96.0
-margin_bottom = 806.0
+offset_top = 708.0
+offset_right = 96.0
+offset_bottom = 806.0
 
 [node name="CircleButton8" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 826.0
-margin_right = 96.0
-margin_bottom = 923.0
+offset_top = 826.0
+offset_right = 96.0
+offset_bottom = 923.0
 
 [node name="CircleButton9" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 943.0
-margin_right = 96.0
-margin_bottom = 1040.0
+offset_top = 943.0
+offset_right = 96.0
+offset_bottom = 1040.0
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/CraftingQueue"]
-margin_left = 100.0
-margin_right = 620.0
-margin_bottom = 1040.0
+offset_left = 100.0
+offset_right = 620.0
+offset_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0, 0, 0, 1 )
 
 [node name="CraftingCores" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 1260.0
-margin_right = 1880.0
-margin_bottom = 1040.0
+offset_left = 1260.0
+offset_right = 1880.0
+offset_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingCores"]
-margin_right = 620.0
-margin_bottom = 940.0
+offset_right = 620.0
+offset_bottom = 940.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
@@ -167,60 +167,60 @@ columns = 2
 [node name="CraftingCore" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 468.0
+offset_right = 308.0
+offset_bottom = 468.0
 
 [node name="CraftingCore2" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 312.0
-margin_right = 620.0
-margin_bottom = 468.0
+offset_left = 312.0
+offset_right = 620.0
+offset_bottom = 468.0
 
 [node name="CraftingCore3" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 472.0
-margin_right = 308.0
-margin_bottom = 940.0
+offset_top = 472.0
+offset_right = 308.0
+offset_bottom = 940.0
 
 [node name="CraftingCore4" parent="MarginContainer/HBoxContainer/CraftingCores/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 312.0
-margin_top = 472.0
-margin_right = 620.0
-margin_bottom = 940.0
+offset_left = 312.0
+offset_top = 472.0
+offset_right = 620.0
+offset_bottom = 940.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores"]
-margin_top = 944.0
-margin_right = 620.0
-margin_bottom = 1040.0
-rect_min_size = Vector2( 96, 96 )
+offset_top = 944.0
+offset_right = 620.0
+offset_bottom = 1040.0
+custom_minimum_size = Vector2( 96, 96 )
 
 [node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 152.0
-margin_bottom = 96.0
+offset_right = 152.0
+offset_bottom = 96.0
 
 [node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 156.0
-margin_right = 308.0
-margin_bottom = 96.0
+offset_left = 156.0
+offset_right = 308.0
+offset_bottom = 96.0
 
 [node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 312.0
-margin_right = 464.0
-margin_bottom = 96.0
+offset_left = 312.0
+offset_right = 464.0
+offset_bottom = 96.0
 
 [node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingCores/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 468.0
-margin_right = 620.0
-margin_bottom = 96.0
+offset_left = 468.0
+offset_right = 620.0
+offset_bottom = 96.0

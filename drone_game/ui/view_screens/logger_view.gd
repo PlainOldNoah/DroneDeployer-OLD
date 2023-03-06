@@ -1,16 +1,16 @@
 extends Control
 
-onready var message_container:VBoxContainer = $ContentContainer/ScrollContainer/MessageContainer
+@onready var message_container:VBoxContainer = $ContentContainer/ScrollContainer/MessageContainer
 
 
 func _ready():
-	var _ok = Logger.connect("message_created", self, "add_new_msg")
-	_ok = Logger.connect("messages_cleared", self, "clear_messages")
+	var _ok = Logger.connect("message_created",Callable(self,"add_new_msg"))
+	_ok = Logger.connect("messages_cleared",Callable(self,"clear_messages"))
 
 # Creates a new label and adds it to the message container
 func add_new_msg(_sender:Node, _type:String, contents:String):
 	var msg_label:Label = Label.new()
-	msg_label.autowrap = true
+	msg_label.set_autowrap_mode(TextServer.AUTOWRAP_WORD)
 
 	msg_label.text = contents
 	message_container.add_child(msg_label)

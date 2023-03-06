@@ -7,7 +7,7 @@ signal drone_launched()
 signal drone_skipped()
 signal drone_queue_changed()
 
-onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
+@onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
 
 var max_drones:int = 0
 var curr_drone_count:int = 0
@@ -19,8 +19,8 @@ var drone_queue:Array = [] # Holds Drone datatype
 
 func _ready():
 	Global.drone_manager = self
-	yield(get_tree().root, "ready")
-	var _ok := connect("drone_queue_changed", drone_info_view, "display_new_drone")
+	await get_tree().root.ready
+	var _ok := connect("drone_queue_changed",Callable(drone_info_view,"display_new_drone"))
 
 
 # Changes the max number of drones to count and builds the necessary amount
@@ -39,7 +39,7 @@ func increment_max_drones(value:int):
 
 # Creates a new drone scene and appends it to the queue
 func create_new_drone():
-	var drone_inst:Drone = drone_scene.instance()
+	var drone_inst:Drone = drone_scene.instantiate()
 	Global.level_manager.add_child(drone_inst)
 	add_drone_to_queue(drone_inst)
 	
@@ -50,7 +50,7 @@ func create_new_drone():
 
 # Deploys the next drone in the queue
 func deploy_next_up(position:Vector2, rotation:float):
-	if drone_queue.empty():
+	if drone_queue.is_empty():
 		return
 		
 	var drone_2_deploy:Drone = get_drone_from_queue(0)
@@ -58,7 +58,7 @@ func deploy_next_up(position:Vector2, rotation:float):
 	
 	Global.stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
 	
-	drone_queue.remove(0)
+	drone_queue.remove_at(0)
 	
 	emit_signal("drone_launched", drone_2_deploy)
 	emit_signal("drone_queue_changed", get_drone_from_queue(0))
@@ -77,7 +77,7 @@ func skip_up_next():
 
 # Return the idx drone from the queue
 func get_drone_from_queue(idx:int=0) -> Drone:
-	return null if drone_queue.empty() else drone_queue[idx]
+	return null if drone_queue.is_empty() else drone_queue[idx]
 
 
 # Adds the drone to the end of the drone queue

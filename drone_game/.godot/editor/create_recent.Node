@@ -1,0 +1,8 @@
+TextureRect
+ColorRect
+VBoxContainer
+Label
+HBoxContainer
+AspectRatioContainer
+Node
+CanvasLayer
