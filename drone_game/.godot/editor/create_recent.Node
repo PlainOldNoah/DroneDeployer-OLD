@@ -1,10 +1,13 @@
 MarginContainer
-Panel
+PanelContainer
+HBoxContainer
 VBoxContainer
+Label
+TextureProgressBar
+ProgressBar
+Panel
 AudioStreamPlayer
 ColorRect
-Label
-HBoxContainer
 TextureRect
 AspectRatioContainer
 Node
