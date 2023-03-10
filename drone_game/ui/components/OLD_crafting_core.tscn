@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" uid="uid://7c060shf1iuu" path="res://assets/visual/menu/red_x_128.png" id="2"]
+[ext_resource type="Script" path="res://ui/components/OLD_crafting_core.gd" id="3"]
+
+[node name="CraftingCore" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3")
+default_texture = ExtResource("2")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(0.894118, 0.894118, 0.894118, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="InnerMargin" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/InnerMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/InnerMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CoreNameLabel" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Crafting Core"
+
+[node name="CancelButton" type="Button" parent="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "X"
+
+[node name="CraftingIcon" type="TextureRect" parent="NinePatchRect/InnerMargin/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CraftingNameLabel" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Idle"
+
+[node name="CraftTimeLeft" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0:00"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

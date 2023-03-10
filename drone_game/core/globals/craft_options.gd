@@ -4,6 +4,7 @@ extends Node
 # Fabricator items with references and values
 var fabricator_items:Dictionary = {
 	"drone": {
+		"id":"drone",
 		"name":"Drone",
 		"scene":"res://lifeforms/drone.tscn",
 		"icon":"res://assets/visual/menu/drone_plus_128.png",
@@ -11,12 +12,14 @@ var fabricator_items:Dictionary = {
 		"craft_cost":1
 	},
 	"health":{
+		"id":"health",
 		"name":"Health",
 		"icon":"res://assets/visual/menu/health_plus_128.png",
 		"craft_time":5,
 		"craft_cost":3,
 	},
 	"mod":{
+		"id":"mod",
 		"name":"Mod",
 		"icon":"res://assets/visual/menu/pcb_circle_plus_128.png",
 		"craft_time":2,

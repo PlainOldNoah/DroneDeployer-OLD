@@ -1,74 +1,110 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://cvuq5w8k1v1tn"]
 
-[ext_resource type="Texture2D" uid="uid://7c060shf1iuu" path="res://assets/visual/menu/red_x_128.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dwh3ev4v3uv38" path="res://assets/visual/menu/segment_light_bar.png" id="1_5fhk5"]
+[ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="2_gach5"]
 [ext_resource type="Script" path="res://ui/components/crafting_core.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://b05wd0ueju45r" path="res://assets/visual/menu/health_plus_128.png" id="3_6imw7"]
+[ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="4_hyjt0"]
 
-[node name="CraftingCore" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[sub_resource type="AtlasTexture" id="AtlasTexture_svuuc"]
+atlas = ExtResource("1_5fhk5")
+region = Rect2(4, 4, 56, 286)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qegc"]
+atlas = ExtResource("1_5fhk5")
+region = Rect2(132, 4, 56, 286)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl3wa"]
+atlas = ExtResource("1_5fhk5")
+region = Rect2(68, 12, 56, 270)
+
+[node name="CraftingCore" type="PanelContainer"]
+custom_minimum_size = Vector2(306, 306)
+anchors_preset = -1
+anchor_right = 0.159375
+anchor_bottom = 0.283333
+offset_right = -70.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("3")
-default_texture = ExtResource("2")
+metadata/_edit_use_anchors_ = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-self_modulate = Color(0.894118, 0.894118, 0.894118, 1)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeftVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-region_rect = Rect2(0, 0, 32, 32)
-patch_margin_left = 15
-patch_margin_top = 15
-patch_margin_right = 15
-patch_margin_bottom = 15
+theme_override_constants/separation = 10
 
-[node name="InnerMargin" type="MarginContainer" parent="NinePatchRect"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/InnerMargin"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftVBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/InnerMargin/VBoxContainer"]
+[node name="InfoMargin" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftVBox/PanelContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="CoreNameLabel" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer"]
+[node name="CoreInfoDisplay" type="Label" parent="MarginContainer/HBoxContainer/LeftVBox/PanelContainer/InfoMargin"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Crafting Core"
+theme_override_colors/font_color = Color(0.831373, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_hyjt0")
+theme_override_font_sizes/font_size = 18
+text = "Health
+12 Scrap       2:30 Min"
 
-[node name="CancelButton" type="Button" parent="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "X"
-
-[node name="CraftingIcon" type="TextureRect" parent="NinePatchRect/InnerMargin/VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+[node name="TEMP_IconDisplay" parent="MarginContainer/HBoxContainer/LeftVBox" instance=ExtResource("2_gach5")]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 3
-texture = ExtResource("2")
-expand_mode = 1
-stretch_mode = 5
+size_flags_vertical = 4
 
-[node name="CraftingNameLabel" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Idle"
+[node name="TEMP_Icon" type="Sprite2D" parent="MarginContainer/HBoxContainer/LeftVBox/TEMP_IconDisplay"]
+position = Vector2(21, 21)
+scale = Vector2(1.15441, 1.15441)
+texture = ExtResource("3_6imw7")
+centered = false
 
-[node name="CraftTimeLeft" type="Label" parent="NinePatchRect/InnerMargin/VBoxContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-text = "0:00"
+max_value = 11.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_svuuc")
+texture_over = SubResource("AtlasTexture_5qegc")
+texture_progress = SubResource("AtlasTexture_kl3wa")
+texture_progress_offset = Vector2(0, 8)
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelMargins" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_edit_lock_ = true
+
+[node name="CoreNumLabel" type="Label" parent="LabelMargins"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_hyjt0")
+theme_override_font_sizes/font_size = 18
+text = "C1"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 
-[connection signal="pressed" from="NinePatchRect/InnerMargin/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

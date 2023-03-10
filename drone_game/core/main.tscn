@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://drmy1qwvh8v38" path="res://ui/debug_menu.tscn" id="3"]
 [ext_resource type="Script" path="res://ui/gui.gd" id="5"]
 [ext_resource type="Script" path="res://core/managers/game_manager.gd" id="6"]
-[ext_resource type="PackedScene" path="res://ui/OLD_fabricator_menu.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://ui/engineering_menu.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://jd2y4uyp40pj" path="res://ui/view_screens/launch_queue.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://ui/view_screens/logger_view.tscn" id="10"]
@@ -13,6 +12,7 @@
 [ext_resource type="Script" path="res://core/managers/drone_manager.gd" id="12"]
 [ext_resource type="PackedScene" uid="uid://dvi0cbnk21t7b" path="res://ui/view_screens/stats_bar.tscn" id="13"]
 [ext_resource type="Script" path="res://core/managers/mod_manager.gd" id="14"]
+[ext_resource type="PackedScene" uid="uid://msm4kdb77x4x" path="res://ui/fabricator_ui.tscn" id="14_lwyhh"]
 [ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
 [ext_resource type="PackedScene" path="res://ui/game_over_menu.tscn" id="17"]
 [ext_resource type="Script" path="res://core/managers/enemy_manager.gd" id="18"]
@@ -114,11 +114,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.392157)
 
-[node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("7")]
-visible = false
-
 [node name="EngineeringMenu" parent="GameManager/GUI" instance=ExtResource("8")]
 visible = false
+
+[node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("14_lwyhh")]
 
 [node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource("3")]
 visible = false

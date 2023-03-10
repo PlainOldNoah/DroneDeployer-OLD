@@ -1,51 +1,93 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://ccsqeg6c64k7x"]
 
 [ext_resource type="Script" path="res://ui/components/craft_queue_item.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="1_ohgny"]
 [ext_resource type="Texture2D" uid="uid://do0372plufkwh" path="res://assets/visual/menu/drone_plus_128.png" id="2"]
 
-[node name="CraftQueueItem" type="Button"]
-anchor_right = 1.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 64, 64 )
-button_mask = 3
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": "Displays items queued for creation when a core becomes next available"
-}
+[sub_resource type="Theme" id="Theme_bvdhn"]
+Label/colors/font_color = Color(0.858824, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_ohgny")
+Label/styles/normal = null
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="CraftQueueItem" type="Control"]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-custom_constants/offset_right = 8
-custom_constants/offset_top = 8
-custom_constants/offset_left = 8
-custom_constants/offset_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 1912.0
-offset_bottom = 56.0
+anchor_bottom = 0.5
+offset_right = -1511.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource("Theme_bvdhn")
+script = ExtResource("1")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-offset_right = 48.0
-offset_bottom = 48.0
-custom_minimum_size = Vector2( 48, 48 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource( 2 )
-expand = true
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("2")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
-offset_left = 52.0
-offset_top = 17.0
-offset_right = 1904.0
-offset_bottom = 31.0
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "<CRAFT_QUEUE_ITEM>"
-align = 2
+size_flags_vertical = 0
+text = "Item Name"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CostLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Cost: 000"
+horizontal_alignment = 2
+
+[node name="TimeLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 24
+text = "Time: 0:00"
+horizontal_alignment = 2

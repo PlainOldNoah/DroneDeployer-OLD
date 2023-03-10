@@ -1,33 +1,27 @@
-extends Button
+extends Control
 
-signal left_click
-signal right_click
+@onready var icon := $Panel/MarginContainer/HBoxContainer/TextureRect
+@onready var name_label := $Panel/MarginContainer/HBoxContainer/NameLabel
+@onready var cost_label := $Panel/MarginContainer/HBoxContainer/VBoxContainer/CostLabel
+@onready var time_label := $Panel/MarginContainer/HBoxContainer/VBoxContainer/TimeLabel
 
-@onready var item_icon:TextureRect = $MarginContainer/HBoxContainer/TextureRect
-@onready var item_text:Label = $MarginContainer/HBoxContainer/Label
-
-var ref_item:String = ""
-var item_details:Dictionary
-var craftable = true
+var item_ref:Dictionary = {}
+var available:bool = true
 
 
-func _ready():
-	var _ok := connect("gui_input",Callable(self,"_on_CraftQueueItem_gui_input"))
+func initialize(item:String):
+	available = false
+	item_ref = CraftOpt.fabricator_items[item]
+	name_label.text = item_ref.name
+	cost_label.text = "Cost: " + str(item_ref.craft_cost)
+	time_label.text = "Time: " + str(item_ref.craft_time)
+	icon.texture = load(item_ref.icon)
 
 
-# Sets up the label with the necessary information
-func initialize(item:String, temp_id:int):
-	ref_item = item
-	item_details = CraftOpt.fabricator_items[ref_item]
-	item_text.text = item_details.name + ": " + str(temp_id)
-	item_icon.texture = load(item_details.icon)
-
-
-# Modified function to handle both left and right clicking
-func _on_CraftQueueItem_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		match event.button_index:
-			MOUSE_BUTTON_LEFT:
-				emit_signal("left_click", self)
-			MOUSE_BUTTON_RIGHT:
-				emit_signal("right_click", self)
+func reset():
+	available = true
+	item_ref = {}
+	name_label.text = ""
+	cost_label.text = ""
+	time_label.text = ""
+	icon.texture = null

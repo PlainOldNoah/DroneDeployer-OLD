@@ -1,69 +1,67 @@
-extends MarginContainer
+@tool
+extends PanelContainer
 
-signal core_freed() # Lets the fabricator know that this core is no longer being used
-signal craft_completed()
+const PROGRESS_BAR_SEGMENTS:int = 11
 
-@onready var item_icon := $NinePatchRect/InnerMargin/VBoxContainer/CraftingIcon
-@onready var item_label := $NinePatchRect/InnerMargin/VBoxContainer/CraftingNameLabel
-@onready var item_craft_time := $NinePatchRect/InnerMargin/VBoxContainer/CraftTimeLeft
-@onready var timer := $Timer
+signal craft_complete()
 
-@export var default_texture: Texture2D = null
-var item_to_craft:String = ""
-var seconds:int = 0 # Seconds that craft takes, counts down
-var running:bool = false
+@export var core_number:int = 0 : set = set_core_number
 
+@onready var progress_bar := $MarginContainer/HBoxContainer/TextureProgressBar
+@onready var info_display := $MarginContainer/HBoxContainer/LeftVBox/PanelContainer/InfoMargin/CoreInfoDisplay
+@onready var display_icon := $MarginContainer/HBoxContainer/LeftVBox/TEMP_IconDisplay/TEMP_Icon
 
-func _ready():
-	await get_tree().root.ready
-	reset_core()
-	var _ok = connect("core_freed",Callable(Global.fabricator,"queue_2_core"))
-	_ok = Global.game_manager.connect("game_paused",Callable(self,"pause_core"))
-	_ok = connect("craft_completed",Callable(Global.fabricator,"_on_craft_complete"))
+var item_ref:Dictionary = {}
+var elapsed_craft_time:float = 0.0
+var available:bool = true
 
 
-# Sets the core's info to default values
-func reset_core():
-	timer.stop()
-	item_icon.texture = default_texture
-	item_label.text = "Idle"
-	item_craft_time.text = "0:00"
-	item_to_craft = ""
-	seconds = 0
-	running = false
-	emit_signal("core_freed")
+func reset():
+	available = true
+	progress_bar.value = 0
+	elapsed_craft_time = 0
+	info_display.text = "Health\n00 Scrap       0:00 Min"
+	$Timer.stop()
 
 
-func pause_core(value:bool):
-	timer.set_paused(value)
+func start_new_sequence(item:String):
+	available = false
+	item_ref = CraftOpt.fabricator_items[item]
+	$Timer.start()
 
 
-# Sets core to running and populates with needed info
-func craft(item:String, temp_name:String):
-	var item_details:Dictionary = CraftOpt.fabricator_items[item]
-	running = true
-	item_to_craft = item
-	item_icon.texture = load(item_details.icon)
-	item_label.text = temp_name
-#	item_label.text = item_details.name
-	seconds = item_details.craft_time
-	update_time()
-	timer.start()
+# Fills the progress bar and checks if the crafting operation should be finished
+func update_progress():
+	progress_bar.value = roundi((elapsed_craft_time / item_ref["craft_time"]) * PROGRESS_BAR_SEGMENTS)
+	if elapsed_craft_time >= item_ref["craft_time"]:
+		$Timer.stop()
+		on_craft_complete()
+		reset()
+		emit_signal("craft_complete")
 
 
-# Each second update the time label and verify if it's 0
-func update_time():
-	if seconds <= 0:
-		emit_signal("craft_completed", item_to_craft)
-		reset_core()
-	item_craft_time.text = (str(seconds / 60) + ":" + str(seconds % 60).pad_zeros(2))
+# Handles the actual result of crafting an item
+func on_craft_complete():
+	match item_ref["id"]:
+		"drone":
+			Global.drone_manager.increment_max_drones(1)
+		"health":
+			Global.game_manager.modify_health(1)
+		"mod":
+			Global.mod_manager.generate_rand_enhancement()
+		_:
+			print_debug("ERROR: <", item_ref, "> was not able to be crafted")
+	
+	Logger.create(self, "fabrication", str(item_ref["id"] + " fabricated"))
 
 
-# Stops the core's current craft
-func _on_CancelButton_pressed():
-	reset_core()
+# Setter function to change the label in the bottom left
+func set_core_number(value:int):
+	core_number = value
+	$LabelMargins/CoreNumLabel.text = "C" + str(value)
 
 
-func _on_Timer_timeout():
-	seconds -= 1
-	update_time()
+# Advances the craft by whatever the Timer's wait_time is
+func _on_timer_timeout():
+	elapsed_craft_time += $Timer.get_wait_time()
+	update_progress()

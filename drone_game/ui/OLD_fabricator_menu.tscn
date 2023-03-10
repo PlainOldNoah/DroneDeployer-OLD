@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cctr8vef67evs"]
+[gd_scene load_steps=8 format=3 uid="uid://donkvcckqtjc6"]
 
 [ext_resource type="Script" path="res://ui/OLD_fabricator_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bc43eukry8d4v" path="res://assets/visual/menu/pcb_circle_plus_128.png" id="3"]
-[ext_resource type="PackedScene" path="res://ui/components/crafting_core.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://ui/components/OLD_crafting_core.tscn" id="5"]
 [ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://cue07maoas8w2" path="res://ui/components/icon_button.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://do0372plufkwh" path="res://assets/visual/menu/drone_plus_128.png" id="9"]

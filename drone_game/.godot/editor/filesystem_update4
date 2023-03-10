@@ -1,6 +1,16 @@
 res://default_env.tres
-res://ui/components/NEW_crafting_core.tscn
+res://ui/fabricator_ui.tscn
 res://assets/tile_sets/ruin_tileset.tres
 res://assets/themes/main_theme.tres
 res://assets/themes/title_label.tres
 res://assets/themes/ui_white_outline.tres
+res://ui/components/crafting_core.tscn
+res://ui/components/crafting_core.gd
+res://core/main.tscn
+res://ui/OLD_fabricator_menu.tscn
+res://ui/components/icon_button.gd
+res://ui/fabricator_menu.gd
+res://core/globals/craft_options.gd
+res://ui/components/craft_queue_item.tscn
+res://ui/components/OLD_craft_queue_item.tscn
+res://ui/components/craft_queue_item.gd
