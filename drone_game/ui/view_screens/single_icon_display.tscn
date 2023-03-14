@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://wj5c0j5ll3rf"]
+
+[ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="1_d4fyd"]
+[ext_resource type="Script" path="res://ui/view_screens/single_icon_display.gd" id="2_orxy1"]
+
+[node name="SingleIconDisplay" instance=ExtResource("1_d4fyd")]
+script = ExtResource("2_orxy1")
+
+[node name="TextureRect" type="TextureRect" parent="ContentContainer" index="0"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

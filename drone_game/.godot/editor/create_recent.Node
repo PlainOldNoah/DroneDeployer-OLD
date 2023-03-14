@@ -1,9 +1,9 @@
+TextureRect
 GridContainer
 MarginContainer
 Label
 VBoxContainer
 HBoxContainer
-TextureRect
 Panel
 Timer
 PanelContainer

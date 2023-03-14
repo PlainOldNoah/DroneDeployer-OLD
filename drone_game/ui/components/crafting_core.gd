@@ -2,6 +2,7 @@
 extends PanelContainer
 
 const PROGRESS_BAR_SEGMENTS:int = 11
+const INFO_FORMAT_STRING:String = "%s\n%d Scrap       %d Sec"
 
 signal craft_complete()
 
@@ -9,7 +10,8 @@ signal craft_complete()
 
 @onready var progress_bar := $MarginContainer/HBoxContainer/TextureProgressBar
 @onready var info_display := $MarginContainer/HBoxContainer/LeftVBox/PanelContainer/InfoMargin/CoreInfoDisplay
-@onready var display_icon := $MarginContainer/HBoxContainer/LeftVBox/TEMP_IconDisplay/TEMP_Icon
+@onready var icon_display := $MarginContainer/HBoxContainer/LeftVBox/SingleIconDisplay
+@onready var x_texture := preload("res://assets/visual/menu/red_x_128.png")
 
 var item_ref:Dictionary = {}
 var elapsed_craft_time:float = 0.0
@@ -20,13 +22,16 @@ func reset():
 	available = true
 	progress_bar.value = 0
 	elapsed_craft_time = 0
-	info_display.text = "Health\n00 Scrap       0:00 Min"
+	info_display.text = INFO_FORMAT_STRING % ["NULL", 0, 0]
+	icon_display.set_icon(null)
 	$Timer.stop()
 
 
 func start_new_sequence(item:String):
 	available = false
 	item_ref = CraftOpt.fabricator_items[item]
+	info_display.text = INFO_FORMAT_STRING % [item_ref.name, item_ref.craft_cost, item_ref.craft_time]
+	icon_display.set_icon(load(item_ref.icon))
 	$Timer.start()
 
 
@@ -58,7 +63,7 @@ func on_craft_complete():
 # Setter function to change the label in the bottom left
 func set_core_number(value:int):
 	core_number = value
-	$LabelMargins/CoreNumLabel.text = "C" + str(value)
+	$MarginContainer/HBoxContainer/LeftVBox/LabelMargins/CoreNumLabel.text = "C" + str(value)
 
 
 # Advances the craft by whatever the Timer's wait_time is

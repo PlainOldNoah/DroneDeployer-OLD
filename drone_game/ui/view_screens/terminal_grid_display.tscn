@@ -1,17 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b2d32wj0gjwy3"]
 
-[ext_resource path="res://ui/view_screens/blank_terminal.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ui/view_screens/terminal_grid_display.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="1"]
+[ext_resource type="Script" path="res://ui/view_screens/terminal_grid_display.gd" id="2"]
 
-[node name="TerminalGridDisplay" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="TerminalGridDisplay" instance=ExtResource("1")]
+script = ExtResource("2")
 __meta__ = {
 "_editor_description_": "Instance of blank_terminal that can store items within an GridContainer"
 }
 
 [node name="GridContainer" type="GridContainer" parent="ContentContainer" index="0"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 1900.0
-offset_bottom = 1060.0
+layout_mode = 2
 size_flags_vertical = 3
