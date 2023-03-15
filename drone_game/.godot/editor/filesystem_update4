@@ -7,7 +7,5 @@ res://assets/themes/title_label.tres
 res://ui/fabricator_ui.tscn
 res://ui/components/crafting_core.tscn
 res://ui/components/craft_queue_item.tscn
-res://ui/components/crafting_core.gd
-res://ui/view_screens/single_icon_display.tscn
-res://ui/view_screens/single_icon_display.gd
 res://ui/view_screens/terminal_grid_display.tscn
+res://ui/view_screens/single_icon_display.tscn

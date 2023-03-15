@@ -57,6 +57,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
