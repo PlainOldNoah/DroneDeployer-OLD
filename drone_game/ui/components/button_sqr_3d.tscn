@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://diy3v76agoevs"]
+[gd_scene load_steps=10 format=3 uid="uid://diy3v76agoevs"]
 
 [ext_resource type="Script" path="res://ui/components/button_sqr_3d.gd" id="1_6lcig"]
 [ext_resource type="Texture2D" uid="uid://dr541myq76sue" path="res://assets/visual/menu/btn_sqr_3d.png" id="1_mq1ww"]
@@ -7,30 +7,50 @@
 atlas = ExtResource("1_mq1ww")
 region = Rect2(2, 2, 228, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuilb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fljyp"]
 atlas = ExtResource("1_mq1ww")
 region = Rect2(232, 0, 232, 232)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cpoyw"]
-atlas = ExtResource("1_mq1ww")
-region = Rect2(928, 0, 232, 232)
+[sub_resource type="Animation" id="Animation_gc286"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(232, 0, 232, 232)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2rndu"]
-atlas = ExtResource("1_mq1ww")
-region = Rect2(1160, 0, 232, 232)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fljyp"]
-atlas = ExtResource("1_mq1ww")
-region = Rect2(464, 0, 232, 232)
+[sub_resource type="Animation" id="Animation_fedfi"]
+resource_name = "hover"
+length = 0.01
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(232, 0, 232, 232), Rect2(1160, 0, 232, 232)]
+}
 
 [sub_resource type="Animation" id="Animation_vidq3"]
-resource_name = "button_press"
+resource_name = "button_down"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonBase/TextureRect:texture:region")
+tracks/0/path = NodePath("ButtonBase/ButtonTexture:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,63 +60,80 @@ tracks/0/keys = {
 "values": [Rect2(232, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(928, 0, 232, 232)]
 }
 
-[sub_resource type="Animation" id="Animation_gc286"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_r1hgt"]
+resource_name = "button_up"
+length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonBase/TextureRect:texture:region")
+tracks/0/path = NodePath("ButtonBase/ButtonTexture:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(464, 0, 232, 232)]
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(928, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(232, 0, 232, 232)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y44rn"]
 _data = {
 "RESET": SubResource("Animation_gc286"),
-"button_press": SubResource("Animation_vidq3")
+"button_down": SubResource("Animation_vidq3"),
+"button_up": SubResource("Animation_r1hgt"),
+"hover": SubResource("Animation_fedfi")
 }
 
 [node name="ButtonSquare3D" type="Control"]
+editor_description = "Square 3d button with animations"
 layout_mode = 3
 anchors_preset = 0
+offset_left = 159.0
+offset_top = 141.0
+offset_right = 159.0
+offset_bottom = 141.0
 script = ExtResource("1_6lcig")
 
 [node name="ButtonBase" type="TextureRect" parent="."]
-layout_mode = 1
-offset_right = 228.0
-offset_bottom = 228.0
-texture = SubResource("AtlasTexture_q8mch")
-stretch_mode = 5
-
-[node name="TextureButton" type="TextureButton" parent="ButtonBase"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("AtlasTexture_xuilb")
-texture_pressed = SubResource("AtlasTexture_cpoyw")
-texture_hover = SubResource("AtlasTexture_2rndu")
+texture = SubResource("AtlasTexture_q8mch")
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="ButtonBase"]
+[node name="ButtonTexture" type="TextureRect" parent="ButtonBase"]
 layout_mode = 1
-offset_left = 277.0
-offset_top = 10.0
-offset_right = 509.0
-offset_bottom = 242.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_fljyp")
-stretch_mode = 1
+stretch_mode = 5
+
+[node name="ClickRegion" type="Button" parent="ButtonBase"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118421
+anchor_top = 0.0394737
+anchor_right = 0.881579
+anchor_bottom = 0.881579
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_y44rn")
 }
 
-[connection signal="pressed" from="ButtonBase/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="ButtonBase/ClickRegion" to="." method="_on_click_region_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonBase/ClickRegion" to="." method="_on_click_region_mouse_exited"]
+[connection signal="pressed" from="ButtonBase/ClickRegion" to="." method="_on_click_region_pressed"]

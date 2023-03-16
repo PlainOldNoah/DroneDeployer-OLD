@@ -1,13 +1,13 @@
 res://default_env.tres
-res://core/main.tscn
+res://ui/components/button_sqr_3d.tscn
 res://assets/tile_sets/ruin_tileset.tres
 res://assets/themes/main_theme.tres
 res://assets/themes/ui_white_outline.tres
 res://assets/themes/title_label.tres
+res://core/main.tscn
 res://ui/fabricator_ui.tscn
 res://ui/components/crafting_core.tscn
 res://ui/components/craft_queue_item.tscn
 res://ui/view_screens/terminal_grid_display.tscn
 res://ui/view_screens/single_icon_display.tscn
-res://ui/components/button_sqr_3d.tscn
 res://ui/components/button_sqr_3d.gd
