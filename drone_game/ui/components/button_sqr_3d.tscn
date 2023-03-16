@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://diy3v76agoevs"]
+
+[ext_resource type="Script" path="res://ui/components/button_sqr_3d.gd" id="1_6lcig"]
+[ext_resource type="Texture2D" uid="uid://dr541myq76sue" path="res://assets/visual/menu/btn_sqr_3d.png" id="1_mq1ww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8mch"]
+atlas = ExtResource("1_mq1ww")
+region = Rect2(2, 2, 228, 228)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuilb"]
+atlas = ExtResource("1_mq1ww")
+region = Rect2(232, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpoyw"]
+atlas = ExtResource("1_mq1ww")
+region = Rect2(928, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rndu"]
+atlas = ExtResource("1_mq1ww")
+region = Rect2(1160, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fljyp"]
+atlas = ExtResource("1_mq1ww")
+region = Rect2(464, 0, 232, 232)
+
+[sub_resource type="Animation" id="Animation_vidq3"]
+resource_name = "button_press"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/TextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(232, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(928, 0, 232, 232)]
+}
+
+[sub_resource type="Animation" id="Animation_gc286"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/TextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(464, 0, 232, 232)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y44rn"]
+_data = {
+"RESET": SubResource("Animation_gc286"),
+"button_press": SubResource("Animation_vidq3")
+}
+
+[node name="ButtonSquare3D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6lcig")
+
+[node name="ButtonBase" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 228.0
+offset_bottom = 228.0
+texture = SubResource("AtlasTexture_q8mch")
+stretch_mode = 5
+
+[node name="TextureButton" type="TextureButton" parent="ButtonBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_xuilb")
+texture_pressed = SubResource("AtlasTexture_cpoyw")
+texture_hover = SubResource("AtlasTexture_2rndu")
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ButtonBase"]
+layout_mode = 1
+offset_left = 277.0
+offset_top = 10.0
+offset_right = 509.0
+offset_bottom = 242.0
+texture = SubResource("AtlasTexture_fljyp")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y44rn")
+}
+
+[connection signal="pressed" from="ButtonBase/TextureButton" to="." method="_on_texture_button_pressed"]

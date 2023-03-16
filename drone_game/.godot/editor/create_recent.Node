@@ -1,4 +1,7 @@
+AnimatedSprite2D
 TextureRect
+AnimationPlayer
+TextureButton
 GridContainer
 MarginContainer
 Label
