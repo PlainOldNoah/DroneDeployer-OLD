@@ -1,15 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://msm4kdb77x4x"]
+[gd_scene load_steps=8 format=3 uid="uid://msm4kdb77x4x"]
 
 [ext_resource type="Theme" uid="uid://b8ho3617jr42y" path="res://assets/themes/ui_white_outline.tres" id="1_82sv1"]
 [ext_resource type="Script" path="res://ui/fabricator_menu.gd" id="1_vtbve"]
-[ext_resource type="PackedScene" uid="uid://cue07maoas8w2" path="res://ui/components/icon_button.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://3htdnqwcokn3" path="res://ui/components/circle_button.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://b05wd0ueju45r" path="res://assets/visual/menu/health_plus_128.png" id="3_8fpqg"]
 [ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="5_0empu"]
-[ext_resource type="Texture2D" uid="uid://do0372plufkwh" path="res://assets/visual/menu/drone_plus_128.png" id="5_kb3yk"]
-[ext_resource type="Texture2D" uid="uid://bc43eukry8d4v" path="res://assets/visual/menu/pcb_circle_plus_128.png" id="6_31gov"]
 [ext_resource type="PackedScene" uid="uid://cvuq5w8k1v1tn" path="res://ui/components/crafting_core.tscn" id="6_lxrv1"]
 [ext_resource type="PackedScene" uid="uid://ccsqeg6c64k7x" path="res://ui/components/craft_queue_item.tscn" id="9_em06k"]
+[ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="11_x5ykn"]
 
 [node name="FabricatorMenu" type="Control"]
 layout_mode = 3
@@ -62,27 +59,20 @@ theme_override_constants/margin_bottom = 20
 
 [node name="CraftingOptions" type="GridContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="IconBtn" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
+[node name="ButtonSquare3D" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("11_x5ykn")]
 layout_mode = 2
-icon = ExtResource("3_8fpqg")
-desc = "Repair"
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="IconBtn2" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
-layout_mode = 2
-icon = ExtResource("5_kb3yk")
-desc = "Drone"
-
-[node name="IconBtn3" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
-layout_mode = 2
-icon = ExtResource("6_31gov")
-desc = "Enhance"
-
-[node name="IconBtn4" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("2")]
-layout_mode = 2
+[node name="MarginContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/ButtonSquare3D/ButtonBase" index="3"]
+offset_left = -28.8281
+offset_top = -12.8125
+offset_right = -28.8281
+offset_bottom = -12.8125
 
 [node name="CraftingQueue" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -230,8 +220,9 @@ layout_mode = 2
 [node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3")]
 layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/IconBtn" to="." method="_on_icon_btn_pressed"]
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/VBoxContainer/CraftingCoreGrid/CraftingCore" to="." method="_on_crafting_core_freed"]
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/VBoxContainer/CraftingCoreGrid/CraftingCore2" to="." method="_on_crafting_core_freed"]
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/VBoxContainer/CraftingCoreGrid/CraftingCore3" to="." method="_on_crafting_core_freed"]
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/VBoxContainer/CraftingCoreGrid/CraftingCore4" to="." method="_on_crafting_core_freed"]
+
+[editable path="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/ButtonSquare3D"]

@@ -1,7 +1,9 @@
-extends Control
+@tool
+extends AspectRatioContainer
 
 signal pressed()
 
+@export var icon:Texture = null : set = set_icon
 @onready var animation_player := $AnimationPlayer
 
 var mouse_hovering:bool = false
@@ -9,6 +11,12 @@ var mouse_hovering:bool = false
 
 func _ready():
 	animation_player.play("RESET")
+
+
+func set_icon(new_icon):
+	print("HEllo")
+	icon = new_icon
+	$ButtonBase/MarginContainer/TextureRect.texture = new_icon
 
 
 # Play the button down and then up animation, then check for mouse hover
@@ -41,3 +49,7 @@ func _on_click_region_mouse_entered():
 func _on_click_region_mouse_exited():
 	mouse_hovering = false
 	update_hover_texture()
+
+
+func _on_margin_container_resized():
+	print(size)
