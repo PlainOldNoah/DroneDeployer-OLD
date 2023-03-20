@@ -15,7 +15,7 @@ func _ready():
 
 func set_icon(new_icon):
 	icon = new_icon
-	$ButtonBase/TextureRect.texture = new_icon
+	$ButtonBase/IconTextureRect.texture = new_icon
 
 
 # Play the button down and then up animation, then check for mouse hover

@@ -14,3 +14,5 @@ res://ui/components/dial.tscn
 res://ui/components/dial.gd
 res://testing/dial_test.tscn
 res://core/hub.tscn
+res://ui/game_over_menu.tscn
+res://ui/components/button_round_3d.tscn

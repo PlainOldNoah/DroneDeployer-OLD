@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://core/managers/mod_manager.gd" id="14"]
 [ext_resource type="PackedScene" uid="uid://msm4kdb77x4x" path="res://ui/fabricator_ui.tscn" id="14_lwyhh"]
 [ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
-[ext_resource type="PackedScene" path="res://ui/game_over_menu.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://yra5b423ki2w" path="res://ui/game_over_menu.tscn" id="17"]
 [ext_resource type="Script" path="res://core/managers/enemy_manager.gd" id="18"]
 [ext_resource type="PackedScene" uid="uid://c1bu4134eyil6" path="res://ui/main_menu.tscn" id="18_51jau"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19"]
