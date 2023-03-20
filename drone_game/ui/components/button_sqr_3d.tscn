@@ -1,20 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://diy3v76agoevs"]
+[gd_scene load_steps=13 format=3 uid="uid://diy3v76agoevs"]
 
 [ext_resource type="Script" path="res://ui/components/button_sqr_3d.gd" id="1_6lcig"]
-[ext_resource type="Texture2D" uid="uid://dr541myq76sue" path="res://assets/visual/menu/btn_sqr_3d.png" id="1_mq1ww"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_incc0"]
-atlas = ExtResource("1_mq1ww")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a57i4"]
+load_path = "res://.godot/imported/btn_sqr_3d.png-18201d4c7511ef251288a9dbec7e3626.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k676y"]
+atlas = SubResource("CompressedTexture2D_a57i4")
 region = Rect2(0, 0, 232, 232)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5ir6"]
-atlas = ExtResource("1_mq1ww")
-region = Rect2(232, 0, 232, 232)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1es0r"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/btn_sqr_3d.png-18201d4c7511ef251288a9dbec7e3626.ctex"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y44rn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vifc"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_1es0r")
+region = Rect2(1160, 0, 232, 232)
 
-[sub_resource type="Animation" id="Animation_2dd25"]
-resource_name = "RESET"
+[sub_resource type="Animation" id="Animation_n0xy0"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -25,81 +29,210 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Rect2(232, 0, 232, 232)]
+"update": 0,
+"values": [Rect2(1160, 0, 232, 232)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y44rn"]
+_data = {
+"RESET": SubResource("Animation_n0xy0")
+}
+
+[sub_resource type="Animation" id="Animation_u4xuu"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonBase/TextureRect:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.15625]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonBase/TextureRect:position")
+tracks/1/path = NodePath("ButtonBase/TextureRect:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, 4.99997)]
+"values": [0.0781245]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/TextureRect:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.84375]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonBase/TextureRect:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.765625]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(232, 0, 232, 232)]
 }
 
-[sub_resource type="Animation" id="Animation_gubw3"]
+[sub_resource type="Animation" id="Animation_t315y"]
 resource_name = "button_down"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/0/path = NodePath("ButtonBase/TextureRect:anchor_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(232, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(928, 0, 232, 232)]
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.15625, 0.15625]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonBase/TextureRect:position")
+tracks/1/path = NodePath("ButtonBase/TextureRect:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(10, 4.99997), Vector2(10, 9.99994)]
+"values": [0.0781245, 0.15625]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/TextureRect:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.84375, 0.84375]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonBase/TextureRect:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.765625, 0.84375]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(232, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(928, 0, 232, 232)]
 }
 
-[sub_resource type="Animation" id="Animation_l10ei"]
+[sub_resource type="Animation" id="Animation_eqsdj"]
 resource_name = "button_up"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/0/path = NodePath("ButtonBase/TextureRect:anchor_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(928, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(232, 0, 232, 232)]
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.15625, 0.15625]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonBase/TextureRect:position")
+tracks/1/path = NodePath("ButtonBase/TextureRect:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(10, 9.99994), Vector2(10, 4.99997)]
+"values": [0.15625, 0.0781245]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/TextureRect:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.84375, 0.84375]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonBase/TextureRect:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.84375, 0.765625]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonBase/ButtonTexture:texture:region")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(928, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(232, 0, 232, 232)]
 }
 
-[sub_resource type="Animation" id="Animation_fvxhu"]
+[sub_resource type="Animation" id="Animation_1w6ft"]
 resource_name = "hover"
 length = 0.01
 step = 0.01
@@ -112,16 +245,16 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.01),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [Rect2(232, 0, 232, 232), Rect2(1160, 0, 232, 232)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfvy1"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oadfa"]
 _data = {
-"RESET": SubResource("Animation_2dd25"),
-"button_down": SubResource("Animation_gubw3"),
-"button_up": SubResource("Animation_l10ei"),
-"hover": SubResource("Animation_fvxhu")
+"RESET": SubResource("Animation_u4xuu"),
+"button_down": SubResource("Animation_t315y"),
+"button_up": SubResource("Animation_eqsdj"),
+"hover": SubResource("Animation_1w6ft")
 }
 
 [node name="ButtonSquare3D" type="AspectRatioContainer"]
@@ -135,7 +268,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ButtonBase" type="TextureRect" parent="."]
 layout_mode = 2
-texture = SubResource("AtlasTexture_incc0")
+texture = SubResource("AtlasTexture_k676y")
 expand_mode = 1
 stretch_mode = 5
 
@@ -145,7 +278,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = SubResource("AtlasTexture_n5ir6")
+texture = SubResource("AtlasTexture_3vifc")
 expand_mode = 1
 stretch_mode = 5
 
@@ -173,14 +306,14 @@ grow_vertical = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_y44rn"),
-"ButtonSquare3D": SubResource("AnimationLibrary_lfvy1")
+"SqrBtn3D": SubResource("AnimationLibrary_oadfa")
 }
 
-[connection signal="resized" from="ButtonBase" to="." method="_on_button_base_resized"]
 [connection signal="mouse_entered" from="ButtonBase/ClickRegion" to="." method="_on_click_region_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonBase/ClickRegion" to="." method="_on_click_region_mouse_exited"]
 [connection signal="pressed" from="ButtonBase/ClickRegion" to="." method="_on_click_region_pressed"]

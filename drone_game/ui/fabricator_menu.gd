@@ -39,5 +39,13 @@ func _on_crafting_core_freed():
 	queue_to_core()
 
 
-func _on_icon_btn_pressed():
+func _on_new_drone_btn_pressed():
+	add_to_queue("drone")
+
+
+func _on_repair_btn_pressed():
 	add_to_queue("health")
+
+
+func _on_enhancement_btn_pressed():
+	add_to_queue("mod")

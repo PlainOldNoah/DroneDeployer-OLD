@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://0b3d7nghpgyn"]
+[gd_scene load_steps=6 format=3 uid="uid://0b3d7nghpgyn"]
 
 [ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="1_xtfg2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gpwfk"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/btn_sqr_3d.png-18201d4c7511ef251288a9dbec7e3626.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4qib"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_gpwfk")
+region = Rect2(1160, 0, 232, 232)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cidrh"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/btn_sqr_3d.png-18201d4c7511ef251288a9dbec7e3626.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig3of"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_cidrh")
+region = Rect2(1160, 0, 232, 232)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,22 +29,29 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ButtonSquare3D" parent="." instance=ExtResource("1_xtfg2")]
-layout_mode = 1
-anchor_right = 0.396354
-anchor_bottom = 0.70463
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 163.0
+offset_top = 128.0
+offset_right = 163.0
+offset_bottom = 128.0
+
+[node name="ButtonTexture" parent="ButtonSquare3D/ButtonBase" index="0"]
+texture = SubResource("AtlasTexture_f4qib")
 
 [node name="ButtonSquare3D2" parent="." instance=ExtResource("1_xtfg2")]
 layout_mode = 1
-anchor_left = 0.404687
-anchor_top = 0.114815
-anchor_right = 0.83125
-anchor_bottom = 0.873148
+anchor_right = 0.307812
+anchor_bottom = 0.547222
+offset_left = 480.0
+offset_top = 264.0
+offset_right = 480.0
+offset_bottom = 264.0
 
-[node name="ButtonSquare3D3" parent="." instance=ExtResource("1_xtfg2")]
-layout_mode = 1
-anchor_top = -0.112037
-anchor_right = 0.0963541
-offset_left = 125.0
-offset_top = 960.0
-offset_right = 125.0
-offset_bottom = 960.0
+[node name="ButtonTexture" parent="ButtonSquare3D2/ButtonBase" index="0"]
+texture = SubResource("AtlasTexture_ig3of")
+
+[editable path="ButtonSquare3D"]
+[editable path="ButtonSquare3D2"]

@@ -8,3 +8,9 @@ res://assets/themes/title_label.tres
 res://core/main.tscn
 res://ui/fabricator_ui.tscn
 res://ui/components/button_sqr_3d.tscn
+res://ui/fabricator_menu.gd
+res://ui/components/craft_queue_item.tscn
+res://ui/components/dial.tscn
+res://ui/components/dial.gd
+res://testing/dial_test.tscn
+res://core/hub.tscn

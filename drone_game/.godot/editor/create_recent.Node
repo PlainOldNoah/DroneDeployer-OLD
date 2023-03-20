@@ -1,9 +1,9 @@
 Marker2D
-AspectRatioContainer
 Control
+TextureRect
+AspectRatioContainer
 Container
 PanelContainer
-TextureRect
 MarginContainer
 Button
 AnimatedSprite2D

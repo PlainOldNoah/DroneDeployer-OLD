@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://cetk4igygusq6"]
+
+[ext_resource type="Texture2D" uid="uid://tf6iiouowwfm" path="res://assets/visual/menu/dial_128.png" id="1_2q66c"]
+[ext_resource type="Script" path="res://ui/components/dial.gd" id="1_c6tw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iapj"]
+atlas = ExtResource("1_2q66c")
+region = Rect2(0, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g0xb"]
+atlas = ExtResource("1_2q66c")
+region = Rect2(232, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6baf"]
+atlas = ExtResource("1_2q66c")
+region = Rect2(464, 0, 232, 232)
+
+[node name="Dial" type="Control"]
+layout_mode = 3
+anchor_right = 0.120833
+anchor_bottom = 0.214815
+script = ExtResource("1_c6tw0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Base" type="TextureRect" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_0iapj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Core" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0g0xb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spinner" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(116, 94)
+texture = SubResource("AtlasTexture_x6baf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CursorEye" type="Marker2D" parent="."]
+position = Vector2(116, 94)
+gizmo_extents = 60.0
