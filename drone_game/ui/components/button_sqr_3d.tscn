@@ -2,17 +2,19 @@
 
 [ext_resource type="Script" path="res://ui/components/button_sqr_3d.gd" id="1_6lcig"]
 [ext_resource type="Texture2D" uid="uid://dr541myq76sue" path="res://assets/visual/menu/btn_sqr_3d.png" id="1_mq1ww"]
-[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/debug_128.png" id="3_cfple"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q8mch"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_incc0"]
 atlas = ExtResource("1_mq1ww")
 region = Rect2(0, 0, 232, 232)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fljyp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5ir6"]
 atlas = ExtResource("1_mq1ww")
 region = Rect2(232, 0, 232, 232)
 
-[sub_resource type="Animation" id="Animation_gc286"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y44rn"]
+
+[sub_resource type="Animation" id="Animation_2dd25"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -28,30 +30,18 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("ButtonBase/MarginContainer:position")
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/TextureRect:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(9, 4)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("ButtonBase/TextureRect:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, 5)]
+"values": [Vector2(10, 4.99997)]
 }
 
-[sub_resource type="Animation" id="Animation_vidq3"]
+[sub_resource type="Animation" id="Animation_gubw3"]
 resource_name = "button_down"
 length = 0.2
 step = 0.05
@@ -69,30 +59,18 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("ButtonBase/MarginContainer:position")
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/TextureRect:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(9, 4), Vector2(9, 5), Vector2(9, 7), Vector2(9, 9)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("ButtonBase/TextureRect:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(10, 5), Vector2(10, 6.5), Vector2(10, 8.45), Vector2(10, 10)]
+"values": [Vector2(10, 4.99997), Vector2(10, 9.99994)]
 }
 
-[sub_resource type="Animation" id="Animation_r1hgt"]
+[sub_resource type="Animation" id="Animation_l10ei"]
 resource_name = "button_up"
 length = 0.2
 step = 0.05
@@ -110,18 +88,18 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("ButtonBase/MarginContainer:position")
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/TextureRect:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(9, 9), Vector2(9, 7), Vector2(9, 5), Vector2(9, 4)]
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, 9.99994), Vector2(10, 4.99997)]
 }
 
-[sub_resource type="Animation" id="Animation_fedfi"]
+[sub_resource type="Animation" id="Animation_fvxhu"]
 resource_name = "hover"
 length = 0.01
 step = 0.01
@@ -138,12 +116,12 @@ tracks/0/keys = {
 "values": [Rect2(232, 0, 232, 232), Rect2(1160, 0, 232, 232)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y44rn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfvy1"]
 _data = {
-"RESET": SubResource("Animation_gc286"),
-"button_down": SubResource("Animation_vidq3"),
-"button_up": SubResource("Animation_r1hgt"),
-"hover": SubResource("Animation_fedfi")
+"RESET": SubResource("Animation_2dd25"),
+"button_down": SubResource("Animation_gubw3"),
+"button_up": SubResource("Animation_l10ei"),
+"hover": SubResource("Animation_fvxhu")
 }
 
 [node name="ButtonSquare3D" type="AspectRatioContainer"]
@@ -157,7 +135,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ButtonBase" type="TextureRect" parent="."]
 layout_mode = 2
-texture = SubResource("AtlasTexture_q8mch")
+texture = SubResource("AtlasTexture_incc0")
 expand_mode = 1
 stretch_mode = 5
 
@@ -167,7 +145,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = SubResource("AtlasTexture_fljyp")
+texture = SubResource("AtlasTexture_n5ir6")
 expand_mode = 1
 stretch_mode = 5
 
@@ -186,41 +164,23 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15625
-anchor_top = 0.167187
+anchor_top = 0.0781245
 anchor_right = 0.84375
-anchor_bottom = 0.854688
-offset_top = -5.7
-offset_bottom = -5.7
+anchor_bottom = 0.765625
+offset_bottom = -6.10352e-05
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_cfple")
 expand_mode = 1
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="ButtonBase"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.140625
-anchor_top = 0.0625
-anchor_right = 0.859375
-anchor_bottom = 0.78125
-offset_top = 5.0
-offset_right = 46.0
-offset_bottom = 51.0
-mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_y44rn")
+"": SubResource("AnimationLibrary_y44rn"),
+"ButtonSquare3D": SubResource("AnimationLibrary_lfvy1")
 }
 
+[connection signal="resized" from="ButtonBase" to="." method="_on_button_base_resized"]
 [connection signal="mouse_entered" from="ButtonBase/ClickRegion" to="." method="_on_click_region_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonBase/ClickRegion" to="." method="_on_click_region_mouse_exited"]
 [connection signal="pressed" from="ButtonBase/ClickRegion" to="." method="_on_click_region_pressed"]

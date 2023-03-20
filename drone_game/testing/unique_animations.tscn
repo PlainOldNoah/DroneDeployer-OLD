@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://0b3d7nghpgyn"]
+
+[ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="1_xtfg2"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonSquare3D" parent="." instance=ExtResource("1_xtfg2")]
+layout_mode = 1
+anchor_right = 0.396354
+anchor_bottom = 0.70463
+
+[node name="ButtonSquare3D2" parent="." instance=ExtResource("1_xtfg2")]
+layout_mode = 1
+anchor_left = 0.404687
+anchor_top = 0.114815
+anchor_right = 0.83125
+anchor_bottom = 0.873148
+
+[node name="ButtonSquare3D3" parent="." instance=ExtResource("1_xtfg2")]
+layout_mode = 1
+anchor_top = -0.112037
+anchor_right = 0.0963541
+offset_left = 125.0
+offset_top = 960.0
+offset_right = 125.0
+offset_bottom = 960.0
