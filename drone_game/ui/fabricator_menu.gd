@@ -1,6 +1,6 @@
 extends Control
 
-@onready var core_parent := $MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/VBoxContainer/CraftingCoreGrid
+@onready var core_parent := $MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CraftingCoreGrid
 @onready var queue_item_container := $MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer
 
 
@@ -32,7 +32,6 @@ func queue_to_core():
 			queue_item_container.move_child(focused_child, queue_item_container.get_child_count())
 			focused_child.reset()
 			break
-			
 
 
 func _on_crafting_core_freed():

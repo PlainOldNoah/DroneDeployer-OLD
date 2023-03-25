@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn26a7lutns7e"]
+[gd_scene load_steps=3 format=3 uid="uid://cn26a7lutns7e"]
 
 [ext_resource type="PackedScene" uid="uid://cetk4igygusq6" path="res://ui/components/dial.tscn" id="1_bdamx"]
+[ext_resource type="Script" path="res://ui/components/dial_fabricator.gd" id="2_tcvg1"]
 
 [node name="dial_test" type="Control"]
 layout_mode = 3
@@ -32,3 +33,5 @@ anchor_right = 0.523438
 anchor_bottom = 0.160185
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_tcvg1")
+mouse_active_zone = NodePath("")

@@ -54,5 +54,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="CursorEye" type="Marker2D" parent="."]
+visible = false
 position = Vector2(116, 94)
 gizmo_extents = 60.0

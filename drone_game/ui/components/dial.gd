@@ -8,6 +8,7 @@ extends Control
 
 func _ready():
 	var _ok = self.resized.connect(_on_resized)
+#	set_center_point() # USED WITH dial_test.tscn
 
 
 func _process(_delta):
