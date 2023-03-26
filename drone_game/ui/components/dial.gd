@@ -1,6 +1,6 @@
 extends Control
 
-@export var rotation_weight:float = 0.2
+@export var rotation_weight:float = 0.15
 
 @onready var spinner := $Spinner
 @onready var cursor_eye := $CursorEye

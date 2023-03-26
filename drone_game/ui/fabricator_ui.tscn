@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://msm4kdb77x4x"]
+[gd_scene load_steps=19 format=3 uid="uid://msm4kdb77x4x"]
 
 [ext_resource type="Theme" uid="uid://b8ho3617jr42y" path="res://assets/themes/ui_white_outline.tres" id="1_82sv1"]
 [ext_resource type="Script" path="res://ui/fabricator_menu.gd" id="1_vtbve"]
@@ -12,6 +12,24 @@
 [ext_resource type="PackedScene" uid="uid://ccsqeg6c64k7x" path="res://ui/components/craft_queue_item.tscn" id="9_em06k"]
 [ext_resource type="PackedScene" uid="uid://cetk4igygusq6" path="res://ui/components/dial.tscn" id="11_mkwp3"]
 [ext_resource type="Script" path="res://ui/components/dial_fabricator.gd" id="12_mclxs"]
+[ext_resource type="Texture2D" uid="uid://behoahm2y2lie" path="res://assets/visual/menu/simple_icons.png" id="13_wwgmf"]
+[ext_resource type="Texture2D" uid="uid://bhnvrflp7yw5u" path="res://assets/visual/menu/led_224.png" id="14_3iwx6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh2gf"]
+atlas = ExtResource("13_wwgmf")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tv4g"]
+atlas = ExtResource("13_wwgmf")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6mtl"]
+atlas = ExtResource("13_wwgmf")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfbcg"]
+atlas = ExtResource("13_wwgmf")
+region = Rect2(128, 0, 128, 128)
 
 [node name="FabricatorMenu" type="Control"]
 layout_mode = 3
@@ -266,21 +284,44 @@ size_flags_horizontal = 0
 size_flags_vertical = 6
 text = "C3"
 
-[node name="ButtonSquare3D" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls" instance=ExtResource("3_bpg4w")]
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 10
 
-[node name="ButtonSquare3D2" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls" instance=ExtResource("3_bpg4w")]
+[node name="PauseBtn" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls/Buttons" instance=ExtResource("3_bpg4w")]
 layout_mode = 2
 size_flags_horizontal = 3
+icon = SubResource("AtlasTexture_rh2gf")
 
-[node name="ButtonSquare3D3" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls" instance=ExtResource("3_bpg4w")]
+[node name="RepeatBtn" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls/Buttons" instance=ExtResource("3_bpg4w")]
 layout_mode = 2
 size_flags_horizontal = 3
+icon = SubResource("AtlasTexture_6tv4g")
 
-[node name="ButtonSquare3D4" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls" instance=ExtResource("3_bpg4w")]
+[node name="LockBtn" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls/Buttons" instance=ExtResource("3_bpg4w")]
 layout_mode = 2
 size_flags_horizontal = 3
+icon = SubResource("AtlasTexture_w6mtl")
+
+[node name="CancelBtn" parent="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls/Buttons" instance=ExtResource("3_bpg4w")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = SubResource("AtlasTexture_kfbcg")
+
+[node name="Led225" type="Sprite2D" parent="."]
+position = Vector2(1466.16, 1007.56)
+scale = Vector2(0.116287, 0.116287)
+texture = ExtResource("14_3iwx6")
+region_enabled = true
+region_rect = Rect2(320, 32, 224, 224)
+
+[node name="Led224" type="Sprite2D" parent="Led225"]
+self_modulate = Color(0, 1, 0, 1)
+texture = ExtResource("14_3iwx6")
+region_enabled = true
+region_rect = Rect2(44, 44, 200, 200)
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/NewDroneBtn" to="." method="_on_new_drone_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/RepairBtn" to="." method="_on_repair_btn_pressed"]
@@ -289,3 +330,4 @@ size_flags_horizontal = 3
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CraftingCoreGrid/CraftingCore2" to="." method="_on_crafting_core_freed"]
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CraftingCoreGrid/CraftingCore3" to="." method="_on_crafting_core_freed"]
 [connection signal="craft_complete" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CraftingCoreGrid/CraftingCore4" to="." method="_on_crafting_core_freed"]
+[connection signal="visibility_changed" from="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls/CoreSelector/LeftSection/Dial" to="MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CoreControls/CoreSelector/LeftSection/Dial" method="_on_visibility_changed"]

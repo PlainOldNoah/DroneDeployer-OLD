@@ -1,9 +1,9 @@
+HBoxContainer
 Control
 ReferenceRect
 Label
 Container
 VBoxContainer
-HBoxContainer
 AnimationPlayer
 TextureButton
 TextureRect
