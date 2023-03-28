@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvuq5w8k1v1tn"]
+[gd_scene load_steps=9 format=3 uid="uid://cvuq5w8k1v1tn"]
 
 [ext_resource type="Texture2D" uid="uid://dwh3ev4v3uv38" path="res://assets/visual/menu/segment_light_bar.png" id="1_5fhk5"]
 [ext_resource type="Script" path="res://ui/components/crafting_core.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://wj5c0j5ll3rf" path="res://ui/view_screens/single_icon_display.tscn" id="3_okm0c"]
+[ext_resource type="PackedScene" uid="uid://b26pohuobxi1j" path="res://ui/components/led.tscn" id="4_atcan"]
 [ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="4_hyjt0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svuuc"]
@@ -20,10 +21,8 @@ region = Rect2(68, 12, 56, 270)
 [node name="CraftingCore" type="PanelContainer"]
 custom_minimum_size = Vector2(306, 306)
 anchors_preset = -1
-anchor_right = 0.159
-anchor_bottom = 0.283
-offset_right = 0.719971
-offset_bottom = 0.359985
+anchor_right = 0.159375
+anchor_bottom = 0.283333
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("3")
@@ -64,25 +63,35 @@ text = "NULL
 0 Scrap       0 Min"
 
 [node name="SingleIconDisplay" parent="MarginContainer/HBoxContainer/LeftVBox" instance=ExtResource("3_okm0c")]
-custom_minimum_size = Vector2(180, 180)
+custom_minimum_size = Vector2(172, 172)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="LabelMargins" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftVBox"]
+[node name="LabelMargins" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftVBox"]
 layout_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="CoreNumLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftVBox/LabelMargins"]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(30, 20)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_hyjt0")
 theme_override_font_sizes/font_size = 18
 text = "C1"
-vertical_alignment = 2
-metadata/_edit_lock_ = true
+vertical_alignment = 1
+
+[node name="PauseLED" parent="MarginContainer/HBoxContainer/LeftVBox/LabelMargins" instance=ExtResource("4_atcan")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="RepeatLED" parent="MarginContainer/HBoxContainer/LeftVBox/LabelMargins" instance=ExtResource("4_atcan")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="LockedLED" parent="MarginContainer/HBoxContainer/LeftVBox/LabelMargins" instance=ExtResource("4_atcan")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

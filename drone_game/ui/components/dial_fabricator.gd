@@ -28,7 +28,7 @@ func _input(event):
 func set_selected_pos(value:int):
 	if selected_pos != value:
 		selected_pos = value
-		emit_signal("dial_selection_changed")
+		emit_signal("dial_selection_changed", selected_pos)
 
 
 # Checks if mouse is within the mouse_active_zone

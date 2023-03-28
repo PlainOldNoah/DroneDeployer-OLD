@@ -1,6 +1,6 @@
 extends Control
 
-@onready var core_parent := $MarginContainer/HBoxContainer/CraftingCores/Panel/MarginContainer/CraftingCores/CraftingCoreGrid
+@onready var core_parent := $MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CraftingCoreGrid
 @onready var queue_item_container := $MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer
 
 

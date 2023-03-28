@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b26pohuobxi1j"]
+
+[ext_resource type="Script" path="res://ui/components/led.gd" id="1_bti3y"]
+[ext_resource type="Texture2D" uid="uid://bhnvrflp7yw5u" path="res://assets/visual/menu/led_224.png" id="2_e7v6t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp8vd"]
+atlas = ExtResource("2_e7v6t")
+region = Rect2(0, 0, 288, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucsog"]
+atlas = ExtResource("2_e7v6t")
+region = Rect2(288, 0, 288, 288)
+
+[node name="LED" type="Control"]
+layout_mode = 3
+anchor_right = 0.0666667
+anchor_bottom = 0.118519
+script = ExtResource("1_bti3y")
+metadata/_edit_use_anchors_ = true
+
+[node name="Light" type="TextureRect" parent="."]
+self_modulate = Color(0.839216, 0.839216, 0.839216, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_rp8vd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ucsog")
+expand_mode = 1
+stretch_mode = 5
