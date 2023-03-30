@@ -10,7 +10,6 @@ radius = 127.999
 radius = 128.0
 
 [node name="Hub" type="Area2D"]
-scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 4
 monitorable = false

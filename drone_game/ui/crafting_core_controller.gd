@@ -2,7 +2,6 @@ extends Panel
 
 @onready var core_select_dial := $MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/LeftSection/Dial
 @onready var craft_core_grid := $MarginContainer/CraftCoreInnerMargin/CraftingCoreGrid
-@onready var led_array := $MarginContainer/CraftCoreInnerMargin/CoreControls/VBoxContainer/Lights
 
 var focused_core:int = 0
 

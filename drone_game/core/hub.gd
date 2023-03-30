@@ -25,7 +25,9 @@ func _ready():
 	
 	trajectory.add_point(Vector2(0,0))
 	trajectory.add_point(Vector2(0,0))
-	ray.target_position.x = max(get_window().size.x, get_window().size.y)
+	
+	ray.target_position.x = get_window().size.x * (1.5) # Not really sure what this constant is
+#	print_debug(ray.target_position.x)
 	
 	if is_instance_valid(Global.game_manager):
 		var _ok = self.connect("hit_taken",Callable(Global.game_manager,"take_hit"))

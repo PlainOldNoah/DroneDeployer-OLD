@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://ciuiyiiv6a6mj"]
+
+[ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="1_7bffq"]
+[ext_resource type="PackedScene" uid="uid://ba37xwhrt56du" path="res://ui/components/specialized/gameboard.tscn" id="1_608yw"]
+[ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="2_xrrg3"]
+[ext_resource type="Texture2D" uid="uid://behoahm2y2lie" path="res://assets/visual/menu/simple_icons.png" id="3_s8774"]
+[ext_resource type="PackedScene" path="res://ui/view_screens/logger_view.tscn" id="4_kxvki"]
+[ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="5_3mto4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_651jk"]
+atlas = ExtResource("3_s8774")
+region = Rect2(0, 0, 128, 128)
+
+[node name="MainFrame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_vertical_guides_ = []
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.615686, 0.627451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeftSection" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.5
+theme_override_constants/separation = 10
+
+[node name="Gameboard" parent="MarginContainer/VBoxContainer/LeftSection" instance=ExtResource("1_608yw")]
+clip_contents = true
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LeftSection"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ButtonSquare3D" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+layout_mode = 2
+icon = SubResource("AtlasTexture_651jk")
+
+[node name="ButtonSquare3D2" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+layout_mode = 2
+
+[node name="ButtonSquare3D3" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+layout_mode = 2
+
+[node name="ButtonSquare3D4" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+layout_mode = 2
+
+[node name="BlankTerminal" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("1_7bffq")]
+layout_mode = 2
+
+[node name="InfoBoxes" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="TODO GAME INFO" parent="MarginContainer/VBoxContainer/InfoBoxes" instance=ExtResource("1_7bffq")]
+layout_mode = 2
+
+[node name="LoggerView" parent="MarginContainer/VBoxContainer/InfoBoxes" instance=ExtResource("4_kxvki")]
+layout_mode = 2
+
+[node name="DroneInfoView" parent="MarginContainer/VBoxContainer/InfoBoxes" instance=ExtResource("5_3mto4")]
+layout_mode = 2
