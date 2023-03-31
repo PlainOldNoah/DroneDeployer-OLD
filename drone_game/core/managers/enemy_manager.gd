@@ -42,7 +42,9 @@ func spawn_wave():
 
 # Spawns a pack of slug enemies
 func spawn_slugs(count, health, speed, damage):
-	Global.level_manager.spawn_enemy("res://lifeforms/slug.tscn", count, health, speed, damage)
+	Global.gameboard.hi()
+	pass
+#	Global.level_manager.spawn_enemy("res://lifeforms/slug.tscn", count, health, speed, damage)
 #	print("Spawn Slugs: ", count, ", ", speed, ", ", health)
 
 

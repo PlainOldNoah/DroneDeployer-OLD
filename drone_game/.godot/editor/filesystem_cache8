@@ -1,7 +1,7 @@
 2a60927148abd1d33b818b535e306557
-::res://::1680210695
+::res://::1680272543
 default_bus_layout.tres::AudioBusLayout::-1::1677701287::0::1::::<><>::
-default_env.tres::Environment::3305927171009468513::1680210695::0::1::::<><>::
+default_env.tres::Environment::3305927171009468513::1680213549::0::1::::<><>::
 dev_read_me.tres::::-1::1677701287::0::1::::<><>::
 icon.png::CompressedTexture2D::3434213149846076878::1667682415::1677725291::1::::<><>::
 ::res://assets/::1674697172
@@ -39,7 +39,7 @@ tiles_grass.png::CompressedTexture2D::1847165723368148047::1668803947::167772529
 drone-128.png::CompressedTexture2D::7077278921448192742::1671126097::1677725291::1::::<><>::
 slug.png::CompressedTexture2D::3816829832374885589::1671150805::1677725291::1::::<><>::
 slug_128.png::CompressedTexture2D::4847467794589820713::1675123723::1677725291::1::::<><>::
-::res://assets/visual/menu/::1680212710
+::res://assets/visual/menu/::1680212805
 blank_128_btn.png::CompressedTexture2D::1125716632899914308::1673996988::1677725291::1::::<><>::
 btn_round_3d.png::CompressedTexture2D::8317105519360595972::1679349384::1679349389::1::::<><>::
 btn_sqr_3d.png::CompressedTexture2D::8416211617105878892::1678922931::1678922936::1::::<><>::
@@ -161,9 +161,9 @@ OLD_mod_display.gd::GDScript::-1::1678124745::0::1::::<>TextureRect<>::
 OLD_mod_display.tscn::PackedScene::1219659610905519016::1678124745::0::1::::<><>::uid://c54powcnps2im<>res://ui/components/OLD_mod_display.gd
 right_text_button.gd::GDScript::-1::1678123198::0::1::::<>Control<>::
 right_text_button.tscn::PackedScene::9166061328222614182::1678124451::0::1::::<><>::uid://3htdnqwcokn3<>res://ui/components/right_text_button.gd
-::res://ui/components/specialized/::1680210695
-gameboard.tscn::PackedScene::2446208444961455990::1680210695::0::1::::<><>::uid://c7qynj1hx3g86<>res://ui/components/specialized/gameboard.gd<>uid://bnict46ngcgau<>uid://c1r5lay4ne77r
-gameboard.gd::GDScript::-1::1680210695::0::1::::<>Control<>::
+::res://ui/components/specialized/::1680213549
+gameboard.gd::GDScript::-1::1680213006::0::1::::<>Control<>::
+gameboard.tscn::PackedScene::2446208444961455990::1680213549::0::1::::<><>::uid://c7qynj1hx3g86<>res://ui/components/specialized/gameboard.gd<>uid://bnict46ngcgau
 ::res://ui/view_screens/::1680042112
 blank_terminal.tscn::PackedScene::725245665726213740::1677705801::0::1::::<><>::uid://cyhvn15bum0yy<>uid://bm0imcdkby8d4
 drone_cycler.gd::GDScript::-1::1677701287::0::1::::<>Control<>::
