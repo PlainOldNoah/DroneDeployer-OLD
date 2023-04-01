@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba37xwhrt56du"]
+[gd_scene load_steps=8 format=3 uid="uid://ba37xwhrt56du"]
 
 [ext_resource type="PackedScene" uid="uid://c7qynj1hx3g86" path="res://core/hub.tscn" id="1_67ypw"]
 [ext_resource type="Script" path="res://ui/components/specialized/gameboard.gd" id="1_367n6"]
 [ext_resource type="TileSet" uid="uid://bnict46ngcgau" path="res://assets/tile_sets/ruin_tileset.tres" id="1_ucxch"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7rdkw"]
-radius = 640.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xkst6"]
 
@@ -46,12 +43,8 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65537, 0, 0, 65538, 131072, 0, 131
 [node name="Hub" parent="Centerer" instance=ExtResource("1_67ypw")]
 scale = Vector2(0.25, 0.25)
 
-[node name="Area2D" type="Area2D" parent="Centerer"]
-position = Vector2(-960, -540)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Centerer/Area2D"]
-position = Vector2(960, 540)
-shape = SubResource("CircleShape2D_7rdkw")
+[node name="LevelObjects" type="Node2D" parent="."]
+editor_description = "Storage for drones, enemies, xp, and other objects that may be on a given level"
 
 [node name="LevelBoundries" type="StaticBody2D" parent="."]
 
@@ -72,3 +65,7 @@ shape = SubResource("WorldBoundaryShape2D_vyqv6")
 position = Vector2(1920, 0)
 rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_65jow")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

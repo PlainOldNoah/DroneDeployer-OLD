@@ -5,9 +5,9 @@ signal drone_created()
 signal drone_added_to_queue()
 signal drone_launched()
 signal drone_skipped()
-signal drone_queue_changed()
+signal drone_queue_updated() # Emit when drone queue order changes
 
-@onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
+#@onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
 
 var max_drones:int = 0
 var curr_drone_count:int = 0
@@ -20,7 +20,12 @@ var drone_queue:Array = [] # Holds Drone datatype
 func _ready():
 	Global.drone_manager = self
 	await get_tree().root.ready
-	var _ok := connect("drone_queue_changed",Callable(drone_info_view,"display_new_drone"))
+#	var _ok := connect("drone_queue_updated",Callable(drone_info_view,"display_new_drone"))
+
+
+# Easy setter to increase/decrease max drones by a value
+func increment_max_drones(value:int):
+	set_max_drones(max_drones + value)
 
 
 # Changes the max number of drones to count and builds the necessary amount
@@ -32,15 +37,11 @@ func set_max_drones(count:int):
 		create_new_drone()
 
 
-# Easy setter to increase/decrease max drones by a value
-func increment_max_drones(value:int):
-	set_max_drones(max_drones + value)
-
-
 # Creates a new drone scene and appends it to the queue
 func create_new_drone():
 	var drone_inst:Drone = drone_scene.instantiate()
-	Global.level_manager.add_child(drone_inst)
+	Global.gameboard.add_object(drone_inst)
+#	Global.level_manager.add_child(drone_inst)
 	add_drone_to_queue(drone_inst)
 	
 	curr_drone_count += 1
@@ -56,12 +57,12 @@ func deploy_next_up(position:Vector2, rotation:float):
 	var drone_2_deploy:Drone = get_drone_from_queue(0)
 	drone_2_deploy.init(position, rotation)
 	
-	Global.stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
+#	Global.stats_bar.update_drone_cnt(drone_queue.size() - 1, max_drones)
 	
 	drone_queue.remove_at(0)
 	
 	emit_signal("drone_launched", drone_2_deploy)
-	emit_signal("drone_queue_changed", get_drone_from_queue(0))
+	emit_signal("drone_queue_updated")
 
 
 # Puts the current drone to the back of the queue
@@ -71,7 +72,7 @@ func skip_up_next():
 	
 	drone_queue.push_back(drone_queue.pop_front())
 	
-	emit_signal("drone_queue_changed", get_drone_from_queue(0))
+	emit_signal("drone_queue_updated")
 	emit_signal("drone_skipped")
 
 
@@ -90,9 +91,9 @@ func add_drone_to_queue(drone:Drone):
 	drone_queue.append(drone)
 	
 	emit_signal("drone_added_to_queue", drone)
-	emit_signal("drone_queue_changed", get_drone_from_queue(0))
+	emit_signal("drone_queue_updated")
 	
-	Global.stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
+#	Global.stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
 
 
 # Handles drones returning from deployment and prepares them for relaunching

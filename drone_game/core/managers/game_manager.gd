@@ -43,9 +43,9 @@ func reset():
 	modify_health(max_health)
 	reset_exp()
 	curr_survived_sec = 0
-	Global.stats_bar.reset()
-	Global.stats_bar.update_health(curr_health, max_health)
-	Global.stats_bar.update_drone_cnt(max_drones, max_drones)
+#	Global.stats_bar.reset()
+#	Global.stats_bar.update_health(curr_health, max_health)
+#	Global.stats_bar.update_drone_cnt(max_drones, max_drones)
 	Logger.clear()
 
 
@@ -54,7 +54,7 @@ func start_game():
 	reset()
 	Logger.create(self, "system", "Starting Game")
 	play_time_clock.start()
-	Global.level_manager.prepare_map()
+#	Global.level_manager.prepare_map()
 	running = true
 #	Global.level_manager.start_enemy_spawning(2)
 	Global.enemy_manager.toggle_spawning(true)
@@ -91,20 +91,20 @@ func add_exp(value:int):
 	curr_exp += value
 	score += value
 	
-	Global.stats_bar.update_curr_exp(curr_exp)
-	Global.stats_bar.update_score(score)
+#	Global.stats_bar.update_curr_exp(curr_exp)
+#	Global.stats_bar.update_score(score)
 	
 	if curr_exp < 0:
 		print_debug("INVALID VALUE: exp is a negative")
-	Global.fabricator.queue_2_core()
+	Global.fabricator.queue_to_core()
 
 
 # Sets exp to 0
 func reset_exp():
 	curr_exp = 0
 	score = 0
-	Global.stats_bar.update_curr_exp(curr_exp)
-	Global.stats_bar.update_score(score)
+#	Global.stats_bar.update_curr_exp(curr_exp)
+#	Global.stats_bar.update_score(score)
 
 
 # Increases or decreases the current health. + to heal, - to hurt
@@ -114,7 +114,7 @@ func modify_health(value:int):
 		Logger.create(self, "hub", "Dead")
 		Global.gui.request_menu(Global.gui.MENUS.GAMEOVER)
 		stop_game()
-	Global.stats_bar.update_health(curr_health, max_health)
+#	Global.stats_bar.update_health(curr_health, max_health)
 
 
 # Takes a positive damage value and negates it for modify health
@@ -130,5 +130,5 @@ func get_playtime() -> int:
 # Increments the amount of time by a second
 func _on_PlayTimeClock_timeout():
 	curr_survived_sec += 1
-	Global.stats_bar.update_time(curr_survived_sec)
+#	Global.stats_bar.update_time(curr_survived_sec)
 #	play_time_clock.start()

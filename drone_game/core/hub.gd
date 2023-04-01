@@ -33,17 +33,6 @@ func _ready():
 		var _ok = self.connect("hit_taken",Callable(Global.game_manager,"take_hit"))
 
 
-func _input(event):
-	if event.is_action_pressed("deploy") and can_deploy:
-		can_deploy = false
-		deploy_drone()
-		deploy_cooldown.start(1)
-	elif event.is_action_pressed("deploy_skip") and can_skip:
-		can_skip = false
-		skip_drone()
-		skip_cooldown.start(0.25)
-
-
 func _process(_delta):
 #	check_for_internal_drones()
 	rotate_arrow_smooth()
@@ -77,11 +66,15 @@ func rotate_arrow_smooth():
 
 # Retrieves the first drone from the queue and deploys it
 func deploy_drone():
+	can_deploy = false
 	Global.drone_manager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
+	deploy_cooldown.start(1)
 
 
 func skip_drone():
+	can_skip = false
 	Global.drone_manager.skip_up_next()
+	skip_cooldown.start(0.25)
 
 
 # Handles drone given in parameter

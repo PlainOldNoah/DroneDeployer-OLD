@@ -1,3 +1,5 @@
+HBoxContainer
+Node2D
 ReferenceRect
 Line2D
 CollisionShape2D
@@ -9,7 +11,6 @@ Control
 MarginContainer
 CenterContainer
 VBoxContainer
-HBoxContainer
 GridContainer
 TextureRect
 Label

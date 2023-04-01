@@ -34,7 +34,7 @@ func init(_min_size:int=32, clickable:bool=false, hover_stats:bool=false):
 		_ok = connect("mouse_exited",Callable(self,"_on_DroneMirror_mouse_exited"))
 
 
-func _input(event):
+func _input(event): # DEBUGGING
 	if event.is_action_pressed("ui_down"):
 		print(get_parent().name, ", ", get_parent().size)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ciuiyiiv6a6mj"]
+[gd_scene load_steps=9 format=3 uid="uid://ciuiyiiv6a6mj"]
 
 [ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="1_7bffq"]
 [ext_resource type="PackedScene" uid="uid://ba37xwhrt56du" path="res://ui/components/specialized/gameboard.tscn" id="1_608yw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://behoahm2y2lie" path="res://assets/visual/menu/simple_icons.png" id="3_s8774"]
 [ext_resource type="PackedScene" path="res://ui/view_screens/logger_view.tscn" id="4_kxvki"]
 [ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="5_3mto4"]
+[ext_resource type="PackedScene" uid="uid://c3p6sm608p8rc" path="res://ui/view_screens/drone_queue_view.tscn" id="5_rkv3r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_651jk"]
 atlas = ExtResource("3_s8774")
@@ -61,7 +62,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="ButtonSquare3D" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+[node name="PauseBtn" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
 layout_mode = 2
 icon = SubResource("AtlasTexture_651jk")
 
@@ -75,6 +76,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="BlankTerminal" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("1_7bffq")]
+visible = false
+layout_mode = 2
+
+[node name="DroneQueueView" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("5_rkv3r")]
 layout_mode = 2
 
 [node name="InfoBoxes" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]

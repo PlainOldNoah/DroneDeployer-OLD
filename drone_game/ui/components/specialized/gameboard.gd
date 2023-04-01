@@ -1,6 +1,9 @@
 extends Control
 
 @onready var current_map := $Centerer/TileMap
+@onready var level_objects := $LevelObjects
+@onready var hub:Hub = $Centerer/Hub
+
 @onready var top_bound := $LevelBoundries/Top
 @onready var bottom_bound := $LevelBoundries/Bottom
 @onready var left_bound := $LevelBoundries/Left
@@ -40,9 +43,31 @@ func get_spawn_group_position(central_pt:Vector2i, max_offset:int=0, step:int=1)
 	return central_pt + Vector2i(0, rand_offset)
 
 
-func set_enemy(enemy):
-	pass
+# Adds a child node to level_objects instead of gameboard itself
+func add_object(object:Node):
+	level_objects.add_child(object)
 
 
-func hi():
-	print("HI")
+func set_enemy(enemy_path:String, count:int, health:int, speed:int, damage:int):
+	var enemy_scene := load(enemy_path)
+	for i in count:
+		var enemy_inst = enemy_scene.instantiate()
+		enemy_inst.set_position(get_spawn_group_position(get_spawnable_position(), 10))
+		enemy_inst.set_stats(health, speed, damage)
+		add_object(enemy_inst)
+
+
+func _on_mouse_entered():
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+
+func _on_mouse_exited():
+	mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+
+# Calls down to the HUB to deploy or skip drones based on input
+func _on_gui_input(event):
+	if event.is_action_pressed("deploy") and hub.can_deploy:
+		hub.deploy_drone()
+	elif event.is_action_pressed("deploy_skip") and hub.can_skip:
+		hub.skip_drone()

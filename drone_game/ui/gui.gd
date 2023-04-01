@@ -20,7 +20,7 @@ var menu_lockout:bool = false # Allows/Prevents user from requesting new menus w
 func _ready():
 	Global.gui = self
 	await get_tree().root.ready
-	stats_bar.reset()
+#	stats_bar.reset()
 	drone_info.reset()
 	fabricator_menu.reset()
 #	dismiss_menu()
