@@ -1,0 +1,247 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj0e2jqxkppof"]
+
+[ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="1_3hj7c"]
+[ext_resource type="Script" path="res://ui/components/meter.gd" id="1_eh51n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmqg7"]
+bg_color = Color(0.733333, 0.678431, 0.517647, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.678431, 0.631373, 0.482353, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Meter" type="Panel"]
+custom_minimum_size = Vector2(230, 100)
+anchors_preset = -1
+anchor_right = 0.119792
+anchor_bottom = 0.0925926
+offset_right = -230.0
+offset_bottom = -100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cmqg7")
+script = ExtResource("1_eh51n")
+metadata/_edit_use_anchors_ = true
+
+[node name="Zero" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.110911
+anchor_top = 0.545096
+anchor_right = 0.289089
+anchor_bottom = 0.545096
+offset_left = 5.49037
+offset_top = -9.50956
+offset_right = -5.49037
+offset_bottom = 20.4904
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.0472
+pivot_offset = Vector2(15, 15)
+theme_override_colors/font_color = Color(0.6, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3hj7c")
+theme_override_font_sizes/font_size = 20
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="Zero"]
+position = Vector2(15, 15)
+points = PackedVector2Array(0, 15, 0, 30)
+width = 2.0
+default_color = Color(0.6, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Quarter" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.236998
+anchor_top = 0.255096
+anchor_right = 0.415176
+anchor_bottom = 0.364904
+offset_left = 5.49038
+offset_top = -9.5096
+offset_right = -5.49037
+offset_bottom = 9.50961
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.523598
+pivot_offset = Vector2(15, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3hj7c")
+theme_override_font_sizes/font_size = 20
+text = "25"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="Quarter"]
+position = Vector2(15, 15)
+points = PackedVector2Array(0, 15, 0, 30)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Half" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.434783
+anchor_top = 0.05
+anchor_right = 0.565217
+anchor_bottom = 0.35
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3hj7c")
+theme_override_font_sizes/font_size = 20
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="Half"]
+position = Vector2(15, 15)
+points = PackedVector2Array(0, 15, 0, 30)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ThreeFourths" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.650042
+anchor_top = 0.105096
+anchor_right = 0.697784
+anchor_bottom = 0.514904
+offset_left = -9.5096
+offset_top = 5.49038
+offset_right = 9.50961
+offset_bottom = -5.49038
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.523598
+pivot_offset = Vector2(15, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3hj7c")
+theme_override_font_sizes/font_size = 20
+text = "75"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="ThreeFourths"]
+position = Vector2(15, 15)
+points = PackedVector2Array(0, 15, 0, 30)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Full" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.776129
+anchor_top = 0.395096
+anchor_right = 0.776129
+anchor_bottom = 0.804904
+offset_left = -9.50957
+offset_top = 5.49037
+offset_right = 20.4904
+offset_bottom = -5.49036
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.0472
+pivot_offset = Vector2(15, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3hj7c")
+theme_override_font_sizes/font_size = 20
+text = "100
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="Full"]
+position = Vector2(15, 15)
+points = PackedVector2Array(0, 15, 0, 30)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="IndicatorPivot" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Indicator" type="Line2D" parent="IndicatorPivot"]
+points = PackedVector2Array(0, 0, 0, -65)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="IndicatorPivot"]
+visible = false
+points = PackedVector2Array(0, 0, 0, -65)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="IndicatorPivot"]
+visible = false
+rotation = 0.523599
+points = PackedVector2Array(0, 0, 0, -65)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="IndicatorPivot"]
+visible = false
+rotation = 1.0472
+points = PackedVector2Array(0, 0, 0, -65)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="IndicatorPivot"]
+visible = false
+rotation = -0.523599
+points = PackedVector2Array(0, 0, 0, -65)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="IndicatorPivot"]
+visible = false
+rotation = -1.0472
+points = PackedVector2Array(0, 0, 0, -65)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2

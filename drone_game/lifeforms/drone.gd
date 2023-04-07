@@ -31,7 +31,7 @@ var equipped_mods:Array = [] # {"stat":affected_stat, "value":value}
 func _ready():
 	Global.add_to_groups(self, ["DRONE", "PLAYER"])
 	
-	display_name = "Drone_" + str(self.get_index() - 3)
+	display_name = "Drone_" + str(self.get_index())
 	reset()
 	
 	modulate = Color(randf(), randf(), randf())

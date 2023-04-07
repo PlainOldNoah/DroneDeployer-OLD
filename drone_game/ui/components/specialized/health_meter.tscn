@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch0py1h4yysjm"]
+
+[ext_resource type="FontFile" uid="uid://60fmg4tdpewd" path="res://assets/fonts/7segments/7segments.ttf" id="1_bojww"]
+[ext_resource type="Script" path="res://ui/components/specialized/health_meter.gd" id="1_ejub3"]
+[ext_resource type="PackedScene" uid="uid://dj0e2jqxkppof" path="res://ui/components/meter.tscn" id="2_ih52u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bm3n"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.678431, 0.678431, 0.678431, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="HealthMeter" type="PanelContainer"]
+custom_minimum_size = Vector2(260, 175)
+anchors_preset = -1
+anchor_right = 0.135417
+anchor_bottom = 0.162037
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bm3n")
+script = ExtResource("1_ejub3")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Meter" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_ih52u")]
+layout_mode = 2
+
+[node name="HealthDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="CurrHpPanel" type="Panel" parent="MarginContainer/VBoxContainer/HealthDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CurrHealthLabel" type="Label" parent="MarginContainer/VBoxContainer/HealthDisplay/CurrHpPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_bojww")
+theme_override_font_sizes/font_size = 24
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxHpPanel" type="Panel" parent="MarginContainer/VBoxContainer/HealthDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MaxHealthLabel" type="Label" parent="MarginContainer/VBoxContainer/HealthDisplay/MaxHpPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_bojww")
+theme_override_font_sizes/font_size = 24
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1

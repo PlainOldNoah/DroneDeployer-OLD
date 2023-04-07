@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="1_c3g7t"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qok3o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rpjo"]
 draw_center = false
 border_width_left = 10
 border_width_top = 10
@@ -17,4 +17,4 @@ corner_radius_bottom_left = 25
 [resource]
 Label/font_sizes/font_size = 50
 Label/fonts/font = ExtResource("1_c3g7t")
-Panel/styles/panel = SubResource("StyleBoxFlat_qok3o")
+Panel/styles/panel = SubResource("StyleBoxFlat_3rpjo")

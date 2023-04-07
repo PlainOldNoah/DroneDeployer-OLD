@@ -7,8 +7,6 @@ signal drone_launched()
 signal drone_skipped()
 signal drone_queue_updated() # Emit when drone queue order changes
 
-#@onready var drone_info_view := $"../GUI/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/DroneInfoView"
-
 var max_drones:int = 0
 var curr_drone_count:int = 0
 var drone_scene = preload("res://lifeforms/drone.tscn")
@@ -20,7 +18,6 @@ var drone_queue:Array = [] # Holds Drone datatype
 func _ready():
 	Global.drone_manager = self
 	await get_tree().root.ready
-#	var _ok := connect("drone_queue_updated",Callable(drone_info_view,"display_new_drone"))
 
 
 # Easy setter to increase/decrease max drones by a value

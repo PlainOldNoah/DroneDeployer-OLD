@@ -1,16 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciuiyiiv6a6mj"]
+[gd_scene load_steps=14 format=3 uid="uid://ciuiyiiv6a6mj"]
 
 [ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="1_7bffq"]
+[ext_resource type="Script" path="res://ui/main_frame.gd" id="1_8rpna"]
 [ext_resource type="PackedScene" uid="uid://ba37xwhrt56du" path="res://ui/components/specialized/gameboard.tscn" id="1_608yw"]
 [ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="2_xrrg3"]
 [ext_resource type="Texture2D" uid="uid://behoahm2y2lie" path="res://assets/visual/menu/simple_icons.png" id="3_s8774"]
 [ext_resource type="PackedScene" path="res://ui/view_screens/logger_view.tscn" id="4_kxvki"]
 [ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="5_3mto4"]
 [ext_resource type="PackedScene" uid="uid://c3p6sm608p8rc" path="res://ui/view_screens/drone_queue_view.tscn" id="5_rkv3r"]
+[ext_resource type="PackedScene" uid="uid://ch0py1h4yysjm" path="res://ui/components/specialized/health_meter.tscn" id="6_6aa52"]
+[ext_resource type="Texture2D" uid="uid://dwh3ev4v3uv38" path="res://assets/visual/menu/segment_light_bar.png" id="6_ljsy7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_651jk"]
 atlas = ExtResource("3_s8774")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2fnk"]
+atlas = ExtResource("6_ljsy7")
+region = Rect2(4, 4, 56, 286)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35jfo"]
+atlas = ExtResource("6_ljsy7")
+region = Rect2(68, 12, 56, 270)
 
 [node name="MainFrame" type="Control"]
 layout_mode = 3
@@ -19,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8rpna")
 metadata/_edit_vertical_guides_ = []
 metadata/_edit_use_anchors_ = true
 
@@ -75,10 +87,6 @@ layout_mode = 2
 [node name="ButtonSquare3D4" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
 layout_mode = 2
 
-[node name="BlankTerminal" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("1_7bffq")]
-visible = false
-layout_mode = 2
-
 [node name="DroneQueueView" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("5_rkv3r")]
 layout_mode = 2
 
@@ -87,7 +95,87 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
+[node name="GameInfo" type="Control" parent="MarginContainer/VBoxContainer/InfoBoxes"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthMeter" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo/MarginContainer/VBoxContainer" instance=ExtResource("6_6aa52")]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 258.0
+offset_bottom = 31.0
+value = 5.23
+
+[node name="DroneCountLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 42.0
+offset_right = 125.0
+offset_bottom = 68.0
+text = "000 - 000 - 000"
+
+[node name="TimeLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+visible = false
+layout_mode = 0
+offset_left = 176.0
+offset_top = 42.0
+offset_right = 227.0
+offset_bottom = 68.0
+text = "00:00:00"
+
+[node name="ExpLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+visible = false
+layout_mode = 0
+offset_left = 48.0
+offset_top = 91.0
+offset_right = 112.0
+offset_bottom = 117.0
+text = "000000"
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+visible = false
+layout_mode = 0
+offset_left = 173.0
+offset_top = 95.0
+offset_right = 237.0
+offset_bottom = 121.0
+text = "000000"
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/InfoBoxes/GameInfo"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.357692
+anchor_top = 0.299748
+anchor_right = 0.688462
+anchor_bottom = 1.02015
+max_value = 11.0
+value = 1.0
+fill_mode = 4
+texture_under = SubResource("AtlasTexture_o2fnk")
+texture_progress = SubResource("AtlasTexture_35jfo")
+texture_progress_offset = Vector2(0, 8)
+metadata/_edit_use_anchors_ = true
+
 [node name="TODO GAME INFO" parent="MarginContainer/VBoxContainer/InfoBoxes" instance=ExtResource("1_7bffq")]
+visible = false
 layout_mode = 2
 
 [node name="LoggerView" parent="MarginContainer/VBoxContainer/InfoBoxes" instance=ExtResource("4_kxvki")]

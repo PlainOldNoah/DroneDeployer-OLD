@@ -2,6 +2,7 @@ class_name GameManager
 extends Node
 
 signal game_paused()
+signal health_changed()
 
 @export var max_health:int = 3
 @export var max_drones:int = 1
@@ -25,14 +26,6 @@ func _ready():
 	
 	Global.drone_manager.set_max_drones(max_drones)
 	call_deferred("reset")
-
-
-#func _input(event): # DEBUG
-#	if event.is_action_pressed("ui_accept"):
-#		if running:
-#			stop_game()
-#		else:
-#			start_game()
 
 
 # Calls the reset function for children nodes and puts variables to starting values
@@ -110,6 +103,7 @@ func reset_exp():
 # Increases or decreases the current health. + to heal, - to hurt
 func modify_health(value:int):
 	curr_health = clamp(curr_health + value, 0, max_health)
+	emit_signal("health_changed", curr_health, max_health)
 	if curr_health <= 0:
 		Logger.create(self, "hub", "Dead")
 		Global.gui.request_menu(Global.gui.MENUS.GAMEOVER)

@@ -71,7 +71,6 @@ color = Color(0, 0, 0, 0.392157)
 visible = false
 
 [node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("14_lwyhh")]
-visible = false
 
 [node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource("3")]
 visible = false

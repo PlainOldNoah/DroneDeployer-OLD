@@ -10,91 +10,69 @@ script = ExtResource("2_j4v74")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer" index="0"]
 layout_mode = 2
-size_flags_horizontal = 8
 theme_override_constants/separation = 10
 
 [node name="DroneMirror" parent="ContentContainer/HBoxContainer" index="0" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 1
 
 [node name="DroneMirror2" parent="ContentContainer/HBoxContainer" index="1" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror3" parent="ContentContainer/HBoxContainer" index="2" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror4" parent="ContentContainer/HBoxContainer" index="3" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror5" parent="ContentContainer/HBoxContainer" index="4" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror6" parent="ContentContainer/HBoxContainer" index="5" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror7" parent="ContentContainer/HBoxContainer" index="6" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror8" parent="ContentContainer/HBoxContainer" index="7" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror9" parent="ContentContainer/HBoxContainer" index="8" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror10" parent="ContentContainer/HBoxContainer" index="9" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror11" parent="ContentContainer/HBoxContainer" index="10" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror12" parent="ContentContainer/HBoxContainer" index="11" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror13" parent="ContentContainer/HBoxContainer" index="12" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror14" parent="ContentContainer/HBoxContainer" index="13" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror15" parent="ContentContainer/HBoxContainer" index="14" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="DroneMirror16" parent="ContentContainer/HBoxContainer" index="15" instance=ExtResource("2_76w5a")]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="DroneMirror17" parent="ContentContainer/HBoxContainer" index="16" instance=ExtResource("2_76w5a")]
-custom_minimum_size = Vector2(65, 65)
-layout_mode = 2
-size_flags_horizontal = 8
