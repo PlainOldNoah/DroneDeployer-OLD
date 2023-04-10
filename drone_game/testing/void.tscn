@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" uid="uid://trg55n85858h" path="res://ui/components/seven_segment_display.tscn" id="1_lmmdb"]
+
+[node name="void" type="Node"]
+
+[node name="seven_segment_panel" parent="." instance=ExtResource("1_lmmdb")]
+offset_left = 384.0
+offset_top = 272.0
+offset_right = -949.0
+offset_bottom = -478.0
+digits = 4

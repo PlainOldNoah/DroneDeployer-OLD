@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8m4ksfpokbj"]
+
+[ext_resource type="PackedScene" uid="uid://nbmhffvjq6fs" path="res://ui/components/specialized/time_display.tscn" id="1_105tj"]
+[ext_resource type="Script" path="res://ui/components/specialized/drone_count_display.gd" id="2_p1gha"]
+
+[node name="DroneCountDisplay" instance=ExtResource("1_105tj")]
+script = ExtResource("2_p1gha")
+
+[node name="Label" parent="Panel" index="0"]
+theme_override_font_sizes/font_size = 24
+text = "00-00"
+
+[node name="BgLabel" parent="Panel/Label" index="0"]
+theme_override_font_sizes/font_size = 24
+text = "88-88"

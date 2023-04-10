@@ -3,6 +3,7 @@ extends Node
 
 signal game_paused()
 signal health_changed()
+signal playtime_updated()
 
 @export var max_health:int = 3
 @export var max_drones:int = 1
@@ -108,7 +109,6 @@ func modify_health(value:int):
 		Logger.create(self, "hub", "Dead")
 		Global.gui.request_menu(Global.gui.MENUS.GAMEOVER)
 		stop_game()
-#	Global.stats_bar.update_health(curr_health, max_health)
 
 
 # Takes a positive damage value and negates it for modify health
@@ -124,5 +124,5 @@ func get_playtime() -> int:
 # Increments the amount of time by a second
 func _on_PlayTimeClock_timeout():
 	curr_survived_sec += 1
-#	Global.stats_bar.update_time(curr_survived_sec)
+	emit_signal("playtime_updated", get_playtime())
 #	play_time_clock.start()

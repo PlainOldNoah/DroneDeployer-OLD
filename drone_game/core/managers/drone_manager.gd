@@ -89,8 +89,6 @@ func add_drone_to_queue(drone:Drone):
 	
 	emit_signal("drone_added_to_queue", drone)
 	emit_signal("drone_queue_updated")
-	
-#	Global.stats_bar.update_drone_cnt(drone_queue.size(), max_drones)
 
 
 # Handles drones returning from deployment and prepares them for relaunching

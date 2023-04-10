@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cprpt86jsp7d0"]
+
+[ext_resource type="FontFile" uid="uid://60fmg4tdpewd" path="res://assets/fonts/7segments/7segments.ttf" id="1_cykb2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gp7nf"]
+bg_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_cykb2")
+Label/styles/normal = null
+Panel/styles/panel = SubResource("StyleBoxFlat_gp7nf")
+background/base_type = &"Label"
+background/colors/font_color = Color(0.168627, 0.168627, 0.168627, 1)
+foreground/base_type = &"Label"
+foreground/colors/font_color = Color(1, 0.239216, 0.239216, 1)
+foreground/colors/font_shadow_color = Color(1, 0, 0, 0.478431)
+foreground/constants/shadow_outline_size = 6

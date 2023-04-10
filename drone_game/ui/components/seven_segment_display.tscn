@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://djk15r2dcqo84"]
+
+[ext_resource type="Theme" uid="uid://cprpt86jsp7d0" path="res://assets/themes/seven_segment.tres" id="1_hsbac"]
+[ext_resource type="Script" path="res://ui/components/seven_segment_display.gd" id="2_26p7p"]
+
+[node name="seven_segment_display" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_hsbac")
+script = ExtResource("2_26p7p")
+font_size = null
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"background"
+text = "888888"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForegroundLabel" type="Label" parent="Panel/BackgroundLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"foreground"
+horizontal_alignment = 1
+vertical_alignment = 1

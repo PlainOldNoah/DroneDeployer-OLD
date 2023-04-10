@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch0py1h4yysjm"]
+[gd_scene load_steps=6 format=3 uid="uid://2qryjecms50t"]
 
-[ext_resource type="FontFile" uid="uid://60fmg4tdpewd" path="res://assets/fonts/7segments/7segments.ttf" id="1_bojww"]
 [ext_resource type="Script" path="res://ui/components/specialized/health_meter.gd" id="1_ejub3"]
 [ext_resource type="PackedScene" uid="uid://dj0e2jqxkppof" path="res://ui/components/meter.tscn" id="2_ih52u"]
+[ext_resource type="PackedScene" uid="uid://djk15r2dcqo84" path="res://ui/components/seven_segment_display.tscn" id="3_nil7l"]
+[ext_resource type="Theme" uid="uid://b1vn2j5dredkr" path="res://assets/themes/display_label.tres" id="4_7iolv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bm3n"]
 bg_color = Color(0.380392, 0.380392, 0.380392, 1)
@@ -17,10 +18,10 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="HealthMeter" type="PanelContainer"]
-custom_minimum_size = Vector2(260, 175)
+custom_minimum_size = Vector2(255, 182)
 anchors_preset = -1
-anchor_right = 0.135417
-anchor_bottom = 0.162037
+anchor_right = 0.132813
+anchor_bottom = 0.168519
 theme_override_styles/panel = SubResource("StyleBoxFlat_4bm3n")
 script = ExtResource("1_ejub3")
 metadata/_edit_use_anchors_ = true
@@ -38,45 +39,30 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Meter" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_ih52u")]
+custom_minimum_size = Vector2(225, 100)
 layout_mode = 2
 
 [node name="HealthDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 
-[node name="CurrHpPanel" type="Panel" parent="MarginContainer/VBoxContainer/HealthDisplay"]
+[node name="CurrHpDisplay" parent="MarginContainer/VBoxContainer/HealthDisplay" instance=ExtResource("3_nil7l")]
 layout_mode = 2
-size_flags_horizontal = 3
+digits = 3
+font_size = 24
 
-[node name="CurrHealthLabel" type="Label" parent="MarginContainer/VBoxContainer/HealthDisplay/CurrHpPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_bojww")
-theme_override_font_sizes/font_size = 24
-text = "000"
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HealthDisplay"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.79
+theme = ExtResource("4_7iolv")
+theme_type_variation = &"LargeFont"
+text = "CORE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MaxHpPanel" type="Panel" parent="MarginContainer/VBoxContainer/HealthDisplay"]
+[node name="MaxHpDisplay" parent="MarginContainer/VBoxContainer/HealthDisplay" instance=ExtResource("3_nil7l")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MaxHealthLabel" type="Label" parent="MarginContainer/VBoxContainer/HealthDisplay/MaxHpPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_bojww")
-theme_override_font_sizes/font_size = 24
-text = "000"
-horizontal_alignment = 1
-vertical_alignment = 1
+digits = 3
+font_size = 24

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b1vn2j5dredkr"]
+
+[ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="1_1h1gp"]
+
+[resource]
+Label/colors/font_color = Color(0.396078, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/font_sizes/font_size = 14
+Label/fonts/font = ExtResource("1_1h1gp")
+LargeFont/base_type = &"Label"
+LargeFont/font_sizes/font_size = 24

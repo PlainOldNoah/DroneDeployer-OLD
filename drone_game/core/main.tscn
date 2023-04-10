@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://core/managers/game_manager.gd" id="6"]
 [ext_resource type="PackedScene" path="res://ui/engineering_menu.tscn" id="8"]
 [ext_resource type="Script" path="res://core/managers/drone_manager.gd" id="12"]
-[ext_resource type="PackedScene" uid="uid://ciuiyiiv6a6mj" path="res://ui/main_frame.tscn" id="13_sodfw"]
+[ext_resource type="PackedScene" uid="uid://b2tlwobww834t" path="res://ui/main_frame.tscn" id="13_sodfw"]
 [ext_resource type="Script" path="res://core/managers/mod_manager.gd" id="14"]
 [ext_resource type="PackedScene" uid="uid://msm4kdb77x4x" path="res://ui/fabricator_ui.tscn" id="14_lwyhh"]
 [ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
@@ -71,6 +71,7 @@ color = Color(0, 0, 0, 0.392157)
 visible = false
 
 [node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("14_lwyhh")]
+visible = false
 
 [node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource("3")]
 visible = false
