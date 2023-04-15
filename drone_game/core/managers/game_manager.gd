@@ -18,8 +18,6 @@ var curr_exp:int = 0
 var score:int = 0
 var curr_survived_sec:int = 0
 
-#var drone_queue:Array = [] # Holds Drone datatype
-
 
 func _ready():
 	Global.game_manager = self
@@ -71,6 +69,9 @@ func stop_game():
 			i.reset()
 	
 	for i in get_tree().get_nodes_in_group("EXP"):
+		i.queue_free()
+	
+	for i in get_tree().get_nodes_in_group("DEBRIS"):
 		i.queue_free()
 
 

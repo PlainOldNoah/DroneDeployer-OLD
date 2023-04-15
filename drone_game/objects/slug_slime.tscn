@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://yldf0md3wkwt"]
+
+[ext_resource type="Script" path="res://objects/slug_slime.gd" id="1_tiggx"]
+[ext_resource type="Texture2D" uid="uid://bnebu8u37mbxe" path="res://assets/visual/objects/Slug Slime x32.png" id="2_ygv4i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ai5ag"]
+radius = 14.0
+
+[node name="Slug Slime" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_tiggx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ai5ag")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ygv4i")
+hframes = 4

@@ -45,6 +45,7 @@ func get_spawn_group_position(central_pt:Vector2i, max_offset:int=0, step:int=1)
 
 # Adds a child node to level_objects instead of gameboard itself
 func add_object(object:Node):
+#	level_objects.call_deferred("add_child", object)
 	level_objects.add_child(object)
 
 

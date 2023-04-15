@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfm1jt6hyvdtw"]
+[gd_scene load_steps=6 format=3 uid="uid://cfm1jt6hyvdtw"]
 
 [ext_resource type="Script" path="res://lifeforms/drone.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c73j0q2ov7s3w" path="res://assets/visual/lifeforms/drone-128.png" id="2"]
@@ -9,10 +9,13 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id="2"]
 radius = 256.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qntab"]
+radius = 100.0
+
 [node name="Drone" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
 collision_layer = 2
-collision_mask = 31
+collision_mask = 63
 script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,13 +23,23 @@ rotation = 1.57079
 texture = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("1")
 
 [node name="PickupRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
 shape = SubResource("2")
 
+[node name="CleaningRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleaningRange"]
+shape = SubResource("CircleShape2D_qntab")
+
 [connection signal="area_entered" from="PickupRange" to="." method="_on_PickupRange_area_entered"]
+[connection signal="area_entered" from="CleaningRange" to="." method="_on_cleaning_range_area_entered"]

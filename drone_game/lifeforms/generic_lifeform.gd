@@ -16,6 +16,7 @@ var damage:int
 
 #var velocity:Vector2 = Vector2.ZERO : set = set_velocity
 var immune:bool = false
+var facing:int = 0
 
 
 func _ready():
@@ -78,11 +79,6 @@ func set_health(value:int):
 		set_state(STATES.DEAD)
 
 
-# Changes the velocity to the parameterized value
-#func set_velocity(value:Vector2):
-#	velocity = value
-
-
 # Set the velocity from an angle in degrees times the speed
 func set_velocity_from_angle(degrees:float, speed_override:float=speed):
 	set_velocity(Vector2(cos(degrees), sin(degrees)) * speed_override)
@@ -96,10 +92,9 @@ func set_target_destination(target:Node):
 		var direction = (target.global_position - self.global_position).normalized()
 		set_velocity(direction * speed)
 		
-		if sign(direction.x) == -1:
-			$Sprite2D.set_flip_h(true)
-		else:
-			$Sprite2D.set_flip_h(false)
+		if sign(direction.x) != facing:
+			facing = sign(direction.x)
+			self.scale.x = (abs(self.scale.x) * sign(direction.x))
 
 
 # Turns off immunity when timer is finished

@@ -226,3 +226,7 @@ func toggle_pickup_area(toggle:bool):
 
 func _on_PickupRange_area_entered(area):
 	area.toggle_attraction(true, self)
+
+
+func _on_cleaning_range_area_entered(area):
+	area.queue_free()
