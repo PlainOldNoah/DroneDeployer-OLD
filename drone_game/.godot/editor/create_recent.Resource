@@ -1,1 +1,4 @@
+Resource
+GDScript
+JSON
 Theme

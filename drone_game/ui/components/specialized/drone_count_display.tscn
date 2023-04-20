@@ -8,7 +8,7 @@ script = ExtResource("2_p1gha")
 
 [node name="Label" parent="Panel" index="0"]
 theme_override_font_sizes/font_size = 24
-text = "00-00"
+text = ""
 
 [node name="BgLabel" parent="Panel/Label" index="0"]
 theme_override_font_sizes/font_size = 24

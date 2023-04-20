@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfm1jt6hyvdtw"]
+[gd_scene load_steps=6 format=3 uid="uid://dvpy85r4qwyv"]
 
 [ext_resource type="Script" path="res://lifeforms/drone.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c73j0q2ov7s3w" path="res://assets/visual/lifeforms/drone-128.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c73j0q2ov7s3w" path="res://assets/visual/lifeforms/drone_128.png" id="2_nplkx"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 64.0
@@ -20,7 +20,7 @@ script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.57079
-texture = ExtResource("2")
+texture = ExtResource("2_nplkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -38,7 +38,6 @@ func set_max_drones(count:int):
 func create_new_drone():
 	var drone_inst:Drone = drone_scene.instantiate()
 	Global.gameboard.add_object(drone_inst)
-#	Global.level_manager.add_child(drone_inst)
 	add_drone_to_queue(drone_inst)
 	
 	curr_drone_count += 1

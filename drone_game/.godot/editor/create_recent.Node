@@ -1,7 +1,8 @@
-Area2D
 CollisionShape2D
-VisibleOnScreenNotifier2D
+Area2D
 Marker2D
+AnimationPlayer
+VisibleOnScreenNotifier2D
 VBoxContainer
 Label
 PanelContainer
@@ -23,7 +24,6 @@ StaticBody2D
 GridContainer
 TextureRect
 Container
-AnimationPlayer
 TextureButton
 AspectRatioContainer
 Button

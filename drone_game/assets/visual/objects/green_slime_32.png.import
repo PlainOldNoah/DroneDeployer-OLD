@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c73j0q2ov7s3w"
-path="res://.godot/imported/drone-128.png-41db6548b6513f4a419c62becf6d2028.ctex"
+uid="uid://bnebu8u37mbxe"
+path="res://.godot/imported/green_slime_32.png-e94f6dd0cc6f6e3af1a0d68290ae8af6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/lifeforms/drone-128.png"
-dest_files=["res://.godot/imported/drone-128.png-41db6548b6513f4a419c62becf6d2028.ctex"]
+source_file="res://assets/visual/objects/green_slime_32.png"
+dest_files=["res://.godot/imported/green_slime_32.png-e94f6dd0cc6f6e3af1a0d68290ae8af6.ctex"]
 
 [params]
 

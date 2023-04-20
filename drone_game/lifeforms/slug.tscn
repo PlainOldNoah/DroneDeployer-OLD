@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://4vhhhw701wyn"]
+[gd_scene load_steps=8 format=3 uid="uid://4vhhhw701wyn"]
 
 [ext_resource type="PackedScene" uid="uid://gdf3jfxc0m75" path="res://lifeforms/generic_lifeform.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cbcfc63auskuj" path="res://assets/visual/lifeforms/slug_128.png" id="2"]
@@ -9,11 +9,13 @@
 radius = 14.0
 height = 128.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tyn38"]
+radius = 12.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2tqg"]
 radius = 20.0
 
 [node name="Slug" instance=ExtResource("1")]
-z_index = 1
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 10
@@ -30,8 +32,11 @@ shape = SubResource("1")
 [node name="DeathSound" parent="." index="2"]
 stream = ExtResource("4")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
-rect = Rect2(-67, -35, 135, 70)
+[node name="GameboardDetector" parent="." index="4"]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" parent="GameboardDetector" index="0"]
+shape = SubResource("CircleShape2D_tyn38")
 
 [node name="SlimePlacer" type="Area2D" parent="." index="5"]
 position = Vector2(34, 16)

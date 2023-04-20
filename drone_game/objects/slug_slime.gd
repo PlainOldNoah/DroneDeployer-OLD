@@ -14,3 +14,7 @@ func _ready():
 
 func variate_texture():
 	sprite.frame = rng.randi_range(0, sprite.hframes - 1)
+
+
+func spawn_in():
+	$AnimationPlayer.play("spawn_in")

@@ -1,9 +1,9 @@
 class_name GameManager
 extends Node
 
-signal game_paused()
 signal health_changed()
 signal playtime_updated()
+signal score_changed()
 
 @export var max_health:int = 3
 @export var max_drones:int = 1
@@ -78,16 +78,13 @@ func stop_game():
 # Unpauses if paused; pauses if unpaused
 func toggle_pause(value:bool):
 	get_tree().paused = value
-	emit_signal("game_paused", value)
 
 
 # Adds the value to the current exp/score
 func add_exp(value:int):
 	curr_exp += value
 	score += value
-	
-#	Global.stats_bar.update_curr_exp(curr_exp)
-#	Global.stats_bar.update_score(score)
+	emit_signal("score_changed", curr_exp, score)
 	
 	if curr_exp < 0:
 		print_debug("INVALID VALUE: exp is a negative")

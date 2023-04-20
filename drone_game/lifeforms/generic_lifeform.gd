@@ -3,24 +3,22 @@ extends CharacterBody2D
 signal died()
 
 enum STATES {SPAWNING, ACTIVE, PAUSED, DEAD}
-@export var state: STATES = STATES.SPAWNING
+var state: STATES = STATES.SPAWNING
 
-@onready var immune_timer:Timer = $ImmunityTimer
+const ENEMY_DATA = preload("res://lifeforms/enemy_data.gd")
+
 @onready var death_sfx := $DeathSound
+@onready var immune_timer:Timer = $ImmunityTimer
 
-#var custom_name:String = ""
-var max_health:int
+var stats:Dictionary = {}
+
 var health:int
-var speed:float
-var damage:int
-
-#var velocity:Vector2 = Vector2.ZERO : set = set_velocity
 var immune:bool = false
 var facing:int = 0
 
 
 func _ready():
-	var _ok = connect("died",Callable(Global.level_manager,"lifeform_died"))
+	pass
 
 
 func _physics_process(delta):
@@ -29,12 +27,12 @@ func _physics_process(delta):
 		handle_collision(collision)
 
 
-# Initializes enemy with stats
-func set_stats(health_value:int = 1, speed_value:int = 100, damage_value:int = 1):
-	max_health = health_value
-	health = max_health
-	speed = speed_value
-	damage = damage_value
+# Reads from ENEMY_DATA to init lifeform
+func load_data(enemy_type:String):
+	var data:Dictionary = ENEMY_DATA.enemy_data[enemy_type]
+	stats = data.duplicate()
+	$Sprite2D.set_texture(load(data.sprite_path))
+	health = stats.max_health
 
 
 # State machine
@@ -44,16 +42,11 @@ func set_state(new_state:STATES):
 		STATES.SPAWNING:
 			pass
 		STATES.ACTIVE:
-			set_velocity_from_angle(rotation, speed)
+			set_velocity_from_angle(rotation, stats.speed)
 		STATES.PAUSED:
 			set_velocity_from_angle(rotation, 0)
 		STATES.DEAD:
-			death_sfx.play()
-			visible = false
-			$CollisionShape2D.disabled = true
-			emit_signal("died", self)
-			await death_sfx.finished
-			queue_free()
+			_on_death()
 		_:
 			print_debug("ERROR: <", state, "> is not a valid state")
 
@@ -68,19 +61,19 @@ func take_hit(dmg_amount:int=1):
 	if not immune:
 		set_health(health - dmg_amount)
 		immune = true
-		immune_timer.start()
+		immune_timer.start(stats.stun_cooldown)
 		set_state(STATES.PAUSED)
 
 
 # Sets the health to the new value
 func set_health(value:int):
-	health = clamp(value, 0, max_health)
+	health = clamp(value, 0, stats.max_health)
 	if health == 0:
 		set_state(STATES.DEAD)
 
 
 # Set the velocity from an angle in degrees times the speed
-func set_velocity_from_angle(degrees:float, speed_override:float=speed):
+func set_velocity_from_angle(degrees:float, speed_override:float=stats.speed):
 	set_velocity(Vector2(cos(degrees), sin(degrees)) * speed_override)
 
 
@@ -90,14 +83,34 @@ func set_target_destination(target:Node):
 		print("<", target, "> is not a valid target for ", self)
 	if state != STATES.PAUSED:
 		var direction = (target.global_position - self.global_position).normalized()
-		set_velocity(direction * speed)
+		set_velocity(direction * stats.speed)
 		
 		if sign(direction.x) != facing:
 			facing = sign(direction.x)
 			self.scale.x = (abs(self.scale.x) * sign(direction.x))
 
 
+# What to do when lifeform dies
+func _on_death():
+	death_sfx.play()
+	visible = false
+	$CollisionShape2D.disabled = true
+#	emit_signal("died", self)
+	await death_sfx.finished
+	
+	queue_free()
+
+
+# Create and add scrap/drops for dying
+func spawn_drops():
+	pass
+
+
 # Turns off immunity when timer is finished
 func _on_ImmunityTimer_timeout():
 	immune = false
 	set_state(STATES.ACTIVE)
+
+
+func _on_gameboard_detector_area_entered(area):
+	pass # Replace with function body.

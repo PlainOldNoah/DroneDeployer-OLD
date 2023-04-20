@@ -13,7 +13,7 @@ config_version=5
 config/name="Drone Game"
 run/main_scene="res://core/main.tscn"
 config/features=PackedStringArray("4.0")
-config/icon="res://assets/visual/lifeforms/drone-128.png"
+config/icon="res://assets/visual/lifeforms/drone_128.png"
 
 [autoload]
 
@@ -87,6 +87,7 @@ left_mouse={
 2d_physics/layer_4="Hub"
 2d_physics/layer_5="Pickups"
 2d_physics/layer_6="Debris"
+2d_physics/layer_7="Gameboard"
 
 [physics]
 

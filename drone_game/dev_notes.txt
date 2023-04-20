@@ -6,3 +6,7 @@ Mods:
 	Surges are temporary enhancements
 	
 	Upgrades change how drones interact with world
+
+
+generic_lifeform
+	slug
