@@ -19,8 +19,8 @@ var area:Vector2 = Vector2.ZERO
 var perimeter:int = 0
 var corners:Array = [0]
 
-var slug_path := preload("res://lifeforms/slug.tscn")
-var exp_path := preload("res://objects/exp.tscn")
+var slug_path := preload("res://lifeforms/enemies/slug.tscn")
+var exp_path := preload("res://map_objects/exp.tscn")
 var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 

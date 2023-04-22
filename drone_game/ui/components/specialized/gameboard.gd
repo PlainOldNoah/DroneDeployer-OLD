@@ -38,11 +38,12 @@ func get_spawnable_position() -> Vector2i:
 	var output = Vector2.ZERO
 	if rng.randi() % lr_to_tb_ratio == 0: # Top and Bottom
 		output.x = rng.randi_range(0, size.x)
-		output.y = -dist_outside_screen if rng.randi() % 2 == 0 else size.y + dist_outside_screen
+		@warning_ignore("incompatible_ternary")
+		output.y = -dist_outside_screen if (rng.randi() % 2 == 0) else (size.y + dist_outside_screen)
 	else: # Left and Right
-		output.x = -dist_outside_screen if rng.randi() % 2 == 0 else size.x + dist_outside_screen
+		@warning_ignore("incompatible_ternary")
+		output.x = -dist_outside_screen if rng.randi() % 2 == 0 else (size.x + dist_outside_screen)
 		output.y = rng.randi_range(0, size.y)
-	
 	return output
 
 

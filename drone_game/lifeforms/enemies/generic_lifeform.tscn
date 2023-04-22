@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://gdf3jfxc0m75"]
+[gd_scene load_steps=2 format=3 uid="uid://ul3xcc5grbro"]
 
-[ext_resource type="Script" path="res://lifeforms/generic_lifeform.gd" id="1"]
+[ext_resource type="Script" path="res://lifeforms/enemies/generic_lifeform.gd" id="1_jce4y"]
 
 [node name="GenericLifeform" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 65
-script = ExtResource("1")
+script = ExtResource("1_jce4y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://4vhhhw701wyn"]
 
-[ext_resource type="PackedScene" uid="uid://gdf3jfxc0m75" path="res://lifeforms/generic_lifeform.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://cbcfc63auskuj" path="res://assets/visual/lifeforms/slug_128.png" id="2"]
-[ext_resource type="Script" path="res://lifeforms/slug.gd" id="3"]
-[ext_resource type="AudioStream" uid="uid://biq23m04s8c5h" path="res://assets/audio/sfx/splat_3.wav" id="4"]
+[ext_resource type="PackedScene" uid="uid://ul3xcc5grbro" path="res://lifeforms/enemies/generic_lifeform.tscn" id="1_xxqqh"]
+[ext_resource type="Script" path="res://lifeforms/enemies/slug.gd" id="2_p63fw"]
+[ext_resource type="Texture2D" uid="uid://cbcfc63auskuj" path="res://assets/visual/lifeforms/slug_128.png" id="3_62vgd"]
+[ext_resource type="AudioStream" uid="uid://biq23m04s8c5h" path="res://assets/audio/sfx/splat_3.wav" id="4_owmya"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 14.0
@@ -13,16 +13,16 @@ height = 128.0
 radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2tqg"]
-radius = 20.0
+radius = 18.0
 
-[node name="Slug" instance=ExtResource("1")]
+[node name="Slug" instance=ExtResource("1_xxqqh")]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 10
-script = ExtResource("3")
+script = ExtResource("2_p63fw")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2")
+texture = ExtResource("3_62vgd")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-2, 16)
@@ -30,16 +30,16 @@ rotation = 1.57079
 shape = SubResource("1")
 
 [node name="DeathSound" parent="." index="2"]
-stream = ExtResource("4")
+stream = ExtResource("4_owmya")
 
 [node name="GameboardDetector" parent="." index="4"]
-position = Vector2(0, 16)
+position = Vector2(0, 18)
 
 [node name="CollisionShape2D" parent="GameboardDetector" index="0"]
 shape = SubResource("CircleShape2D_tyn38")
 
 [node name="SlimePlacer" type="Area2D" parent="." index="5"]
-position = Vector2(34, 16)
+position = Vector2(0, 18)
 collision_layer = 0
 collision_mask = 32
 

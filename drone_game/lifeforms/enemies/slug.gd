@@ -1,6 +1,6 @@
-extends "res://lifeforms/generic_lifeform.gd"
+extends "res://lifeforms/enemies/generic_lifeform.gd"
 
-@onready var slime_trail := preload("res://objects/slug_slime.tscn")
+@onready var slime_trail := preload("res://map_objects/slug_slime.tscn")
 @onready var slime_placer := $SlimePlacer
 
 var on_slime:bool = false
@@ -54,7 +54,7 @@ func _on_ImmunityTimer_timeout():
 	add_slime_if_needed()
 
 
-func _on_gameboard_detector_area_entered(area):
+func _on_gameboard_detector_area_entered(_area):
 	add_slime_if_needed()
 
 

@@ -44,7 +44,7 @@ func spawn_wave():
 
 # Spawns a pack of slug enemies
 func spawn_slugs(tier:int, count:int):
-	Global.gameboard.set_enemy("res://lifeforms/slug.tscn", "slug_t" + str(tier), count)
+	Global.gameboard.set_enemy("res://lifeforms/enemies/slug.tscn", "slug_t" + str(tier), count)
 
 
 func _on_EnemySpawnClock_timeout():

@@ -5,7 +5,7 @@ signal died()
 enum STATES {SPAWNING, ACTIVE, PAUSED, DEAD}
 var state: STATES = STATES.SPAWNING
 
-const ENEMY_DATA = preload("res://lifeforms/enemy_data.gd")
+const ENEMY_DATA = preload("res://lifeforms/enemies/enemy_data.gd")
 
 @onready var death_sfx := $DeathSound
 @onready var immune_timer:Timer = $ImmunityTimer
@@ -112,5 +112,5 @@ func _on_ImmunityTimer_timeout():
 	set_state(STATES.ACTIVE)
 
 
-func _on_gameboard_detector_area_entered(area):
+func _on_gameboard_detector_area_entered(_area):
 	pass # Replace with function body.

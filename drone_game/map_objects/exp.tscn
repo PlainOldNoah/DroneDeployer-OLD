@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bsn8wghtlaxcj" path="res://assets/visual/objects/temp_xp.png" id="1"]
-[ext_resource type="Script" path="res://objects/exp.gd" id="2"]
+[ext_resource type="Script" path="res://map_objects/exp.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bfwnskrbdtimh" path="res://assets/visual/objects/slime_32.png" id="3"]
 
 [sub_resource type="CircleShape2D" id=1]
