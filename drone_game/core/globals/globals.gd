@@ -3,18 +3,11 @@ extends Node
 var tile_size:int = 32
 
 var game_manager:GameManager = null
-var drone_manager:DroneManager = null
-var enemy_manager:EnemyManager = null
-var mod_manager:ModManager = null
-var level_manager:LevelManager = null
-var hub_scene:Hub = null
-
 var gui:GUI = null
 var gameboard:Control = null
+var hub_scene:Hub = null
 var engr_menu:Control = null
 var fabricator:Control = null
-var stats_bar:Control = null
-var launch_queue:Control = null
 
 
 const GROUP_LIST:Array = [

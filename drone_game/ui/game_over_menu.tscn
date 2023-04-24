@@ -1,16 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://yra5b423ki2w"]
+[gd_scene load_steps=6 format=3 uid="uid://dnvciwcg61ydl"]
 
 [ext_resource type="Script" path="res://ui/game_over_menu.gd" id="1"]
 [ext_resource type="Theme" uid="uid://c4j8s0dbvnss1" path="res://assets/themes/title_label.tres" id="2"]
-[ext_resource type="Texture2D" uid="uid://7c060shf1iuu" path="res://assets/visual/menu/red_x_128.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://dwt3qn76psghy" path="res://assets/visual/menu/redo_128.png" id="4"]
-[ext_resource type="PackedScene" uid="uid://cue07maoas8w2" path="res://ui/components/icon_button.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="3_25l6e"]
+[ext_resource type="Texture2D" uid="uid://dwt3qn76psghy" path="res://assets/visual/menu/icons/redo_128.png" id="4_tw1fu"]
+[ext_resource type="Texture2D" uid="uid://7c060shf1iuu" path="res://assets/visual/menu/icons/red_x_128.png" id="5_7eeb7"]
 
 [node name="GameOverMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -21,31 +23,28 @@ mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
 theme = ExtResource("2")
 text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="RetryBtn" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_25l6e")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+icon = ExtResource("4_tw1fu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="MainMenuBtn" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_25l6e")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+icon = ExtResource("5_7eeb7")
 
-[node name="RetryBtn" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("5")]
-layout_mode = 2
-icon = ExtResource("4")
-desc = "Retry"
-
-[node name="MainMenuBtn" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("5")]
-layout_mode = 2
-icon = ExtResource("3")
-desc = "Quit To Main Men"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/RetryBtn" to="." method="_on_RetryBtn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RetryBtn" to="." method="_on_retry_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]

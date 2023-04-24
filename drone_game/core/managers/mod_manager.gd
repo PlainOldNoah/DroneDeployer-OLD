@@ -1,4 +1,4 @@
-class_name ModManager
+#class_name ModManager
 extends Node
 
 signal enhancement_created()
@@ -8,7 +8,6 @@ signal enhancement_created()
 
 func _ready():
 	rng.randomize()
-	Global.mod_manager = self
 
 
 # Enhancements look like; {"stat":affected_stat, "value":value}

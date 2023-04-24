@@ -4,9 +4,7 @@ extends CanvasLayer
 enum MENUS {NONE, FABRICATOR, DEBUG, ENGR, MAIN, GAMEOVER, PAUSE}
 var current_menu:int = MENUS.NONE
 
-@onready var stats_bar:Control = find_child("StatsBar")
 @onready var drone_info:Control = find_child("DroneInfoView")
-@onready var launch_queue:Control = find_child("LaunchQueue")
 @onready var background:ColorRect = get_node("BackgroundFade")
 @onready var fabricator_menu:Control = get_node("FabricatorMenu")
 @onready var engineering_menu:Control = get_node("EngineeringMenu")
@@ -20,10 +18,8 @@ var menu_lockout:bool = false # Allows/Prevents user from requesting new menus w
 func _ready():
 	Global.gui = self
 	await get_tree().root.ready
-#	stats_bar.reset()
 	drone_info.reset()
 	fabricator_menu.reset()
-#	dismiss_menu()
 
 
 func _input(event):

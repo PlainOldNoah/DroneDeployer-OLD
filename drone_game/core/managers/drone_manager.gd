@@ -1,4 +1,3 @@
-class_name DroneManager
 extends Node
 
 signal drone_created()
@@ -16,7 +15,6 @@ var drone_queue:Array = [] # Holds Drone datatype
 
 
 func _ready():
-	Global.drone_manager = self
 	await get_tree().root.ready
 
 

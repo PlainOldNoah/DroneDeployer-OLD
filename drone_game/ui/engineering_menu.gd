@@ -12,10 +12,10 @@ func _ready():
 	Global.engr_menu = self
 	await get_tree().root.ready
 	
-	var _ok = Global.drone_manager.connect("drone_created",Callable(self,"add_drone_mirror"))
-#	_ok = Global.drone_manager.connect("drone_launched",Callable(self,"update_drone_display"))
-#	_ok = Global.drone_manager.connect("drone_added_to_queue",Callable(self,"update_drone_display"))
-	_ok = Global.mod_manager.connect("enhancement_created",Callable(self,"add_new_available_mod"))
+	var _ok = DroneManager.connect("drone_created",Callable(self,"add_drone_mirror"))
+#	_ok = DroneManager.connect("drone_launched",Callable(self,"update_drone_display"))
+#	_ok = DroneManager.connect("drone_added_to_queue",Callable(self,"update_drone_display"))
+	_ok = ModManager.connect("enhancement_created",Callable(self,"add_new_available_mod"))
 
 
 # Called when the GUI brings up this menu

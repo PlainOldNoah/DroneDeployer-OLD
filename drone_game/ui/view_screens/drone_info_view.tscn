@@ -83,7 +83,7 @@ vertical_alignment = 1
 
 [node name="CritChanceLabel" type="Label" parent="ContentContainer/LabelContainer" index="10"]
 layout_mode = 2
-text = "Crit Chance: "
+text = "!Crit Chance: "
 vertical_alignment = 1
 
 [node name="CritChanceValue" type="Label" parent="ContentContainer/LabelContainer" index="11"]
@@ -95,7 +95,7 @@ vertical_alignment = 1
 
 [node name="CritDamageLabel" type="Label" parent="ContentContainer/LabelContainer" index="12"]
 layout_mode = 2
-text = "Crit Damage: "
+text = "!Crit Damage: "
 vertical_alignment = 1
 
 [node name="CritDamageValue" type="Label" parent="ContentContainer/LabelContainer" index="13"]
@@ -107,7 +107,7 @@ vertical_alignment = 1
 
 [node name="MaxBounceLabel" type="Label" parent="ContentContainer/LabelContainer" index="14"]
 layout_mode = 2
-text = "Max Bounces: "
+text = "!Max Bounces: "
 vertical_alignment = 1
 
 [node name="MaxBounceValue" type="Label" parent="ContentContainer/LabelContainer" index="15"]

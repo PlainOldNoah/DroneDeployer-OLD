@@ -18,6 +18,9 @@ config/icon="res://assets/visual/lifeforms/drone_128.png"
 [autoload]
 
 Global="*res://core/globals/globals.gd"
+DroneManager="*res://core/managers/drone_manager.gd"
+EnemyManager="*res://core/managers/enemy_manager.tscn"
+ModManager="*res://core/managers/mod_manager.gd"
 Logger="*res://core/globals/logger.gd"
 CraftOpt="*res://core/globals/craft_options.gd"
 

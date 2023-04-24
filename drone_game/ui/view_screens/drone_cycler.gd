@@ -12,7 +12,7 @@ func _ready():
 	for i in drone_mirrors:
 		i.init(32, true, true)
 	center_mirror = ceil(drone_mirrors.size() / 2.0)
-	drone_list_ref = Global.drone_manager.full_drone_list
+	drone_list_ref = DroneManager.full_drone_list
 
 
 # Sets all the drone mirror to refernce the first drone in the lineup

@@ -23,7 +23,7 @@ func _ready():
 	Global.game_manager = self
 	await get_tree().root.ready
 	
-	Global.drone_manager.set_max_drones(max_drones)
+	DroneManager.set_max_drones(max_drones)
 	call_deferred("reset")
 
 
@@ -35,9 +35,6 @@ func reset():
 	modify_health(max_health)
 	reset_exp()
 	curr_survived_sec = 0
-#	Global.stats_bar.reset()
-#	Global.stats_bar.update_health(curr_health, max_health)
-#	Global.stats_bar.update_drone_cnt(max_drones, max_drones)
 	Logger.clear()
 
 
@@ -46,10 +43,8 @@ func start_game():
 	reset()
 	Logger.create(self, "system", "Starting Game")
 	play_time_clock.start()
-#	Global.level_manager.prepare_map()
 	running = true
-#	Global.level_manager.start_enemy_spawning(2)
-	Global.enemy_manager.toggle_spawning(true)
+	EnemyManager.toggle_spawning(true)
 
 
 # Stops enemy spawning and play clock
@@ -57,15 +52,14 @@ func stop_game():
 	Logger.create(self, "system", "Game Ending")
 	play_time_clock.stop()
 	running = false
-	Global.enemy_manager.toggle_spawning(false)
-#	Global.level_manager.stop_enemy_spawning()
+	EnemyManager.toggle_spawning(false)
 	
 	for i in get_tree().get_nodes_in_group("ENEMY"):
 		i.queue_free()
 	
 	for i in get_tree().get_nodes_in_group("DRONE"):
 		if i.state != Drone.STATES.IDLE:
-			Global.drone_manager.add_drone_to_queue(i)
+			DroneManager.add_drone_to_queue(i)
 			i.reset()
 	
 	for i in get_tree().get_nodes_in_group("EXP"):

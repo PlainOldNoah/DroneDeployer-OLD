@@ -1,7 +1,5 @@
-class_name EnemyManager
 extends Node
 
-@onready var playtime_clock := $"../PlayTimeClock"
 @onready var spawn_clock := $EnemySpawnClock
 @onready var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -9,9 +7,8 @@ var difficulty:int = 0
 
 
 func _ready():
-	Global.enemy_manager = self
 	await get_tree().root.ready
-	var _ok := playtime_clock.connect("timeout",Callable(self,"calculate_difficulty"))
+	var _ok := Global.game_manager.play_time_clock.connect("timeout",Callable(self,"calculate_difficulty"))
 
 
 # Sets the difficulty

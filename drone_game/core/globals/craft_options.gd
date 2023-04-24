@@ -7,21 +7,21 @@ var fabricator_items:Dictionary = {
 		"id":"drone",
 		"name":"Drone",
 		"scene":"res://lifeforms/drone.tscn",
-		"icon":"res://assets/visual/menu/drone_plus_128.png",
+		"icon":"res://assets/visual/menu/icons/drone_plus_128.png",
 		"craft_time":3,
 		"craft_cost":1
 	},
 	"health":{
 		"id":"health",
 		"name":"Health",
-		"icon":"res://assets/visual/menu/health_plus_128.png",
+		"icon":"res://assets/visual/menu/icons/health_plus_128.png",
 		"craft_time":5,
 		"craft_cost":3,
 	},
 	"mod":{
 		"id":"mod",
 		"name":"Mod",
-		"icon":"res://assets/visual/menu/pcb_circle_plus_128.png",
+		"icon":"res://assets/visual/menu/icons/pcb_circle_plus_128.png",
 		"craft_time":2,
 		"craft_cost":3,
 	}

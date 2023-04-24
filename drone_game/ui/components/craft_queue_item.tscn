@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccsqeg6c64k7x"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://ui/components/craft_queue_item.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="1_ohgny"]
-[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/debug_128.png" id="3_2brc5"]
+[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/icons/debug_128.png" id="3_2brc5"]
 
 [sub_resource type="Theme" id="Theme_bvdhn"]
 Label/colors/font_color = Color(0.858824, 0, 0, 1)

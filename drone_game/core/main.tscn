@@ -1,17 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://ryck6iemcpi2"]
+[gd_scene load_steps=12 format=3 uid="uid://ryck6iemcpi2"]
 
 [ext_resource type="Script" path="res://core/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://drmy1qwvh8v38" path="res://ui/debug_menu.tscn" id="3"]
 [ext_resource type="Script" path="res://ui/gui.gd" id="5"]
 [ext_resource type="Script" path="res://core/managers/game_manager.gd" id="6"]
 [ext_resource type="PackedScene" path="res://ui/engineering_menu.tscn" id="8"]
-[ext_resource type="Script" path="res://core/managers/drone_manager.gd" id="12"]
 [ext_resource type="PackedScene" uid="uid://b2tlwobww834t" path="res://ui/main_frame.tscn" id="13_sodfw"]
-[ext_resource type="Script" path="res://core/managers/mod_manager.gd" id="14"]
-[ext_resource type="PackedScene" uid="uid://msm4kdb77x4x" path="res://ui/fabricator_ui.tscn" id="14_lwyhh"]
+[ext_resource type="PackedScene" path="res://ui/fabricator_ui.tscn" id="14_lwyhh"]
 [ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
-[ext_resource type="PackedScene" uid="uid://yra5b423ki2w" path="res://ui/game_over_menu.tscn" id="17"]
-[ext_resource type="Script" path="res://core/managers/enemy_manager.gd" id="18"]
+[ext_resource type="PackedScene" uid="uid://dnvciwcg61ydl" path="res://ui/game_over_menu.tscn" id="17"]
 [ext_resource type="PackedScene" uid="uid://c1bu4134eyil6" path="res://ui/main_menu.tscn" id="18_51jau"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19"]
 
@@ -22,19 +19,6 @@ script = ExtResource("1")
 script = ExtResource("6")
 max_drones = 5
 deploy_cooldown = 0.1
-
-[node name="DroneManager" type="Node" parent="GameManager"]
-script = ExtResource("12")
-
-[node name="EnemyManager" type="Node" parent="GameManager"]
-script = ExtResource("18")
-
-[node name="EnemySpawnClock" type="Timer" parent="GameManager/EnemyManager"]
-wait_time = 0.5
-one_shot = true
-
-[node name="ModManager" type="Node" parent="GameManager"]
-script = ExtResource("14")
 
 [node name="GUI" type="CanvasLayer" parent="GameManager"]
 process_mode = 3
@@ -82,14 +66,14 @@ anchor_right = 0.841667
 anchor_bottom = 0.841667
 
 [node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource("17")]
-visible = false
 anchors_preset = -1
-anchor_left = 0.260156
-anchor_top = 0.260185
-anchor_right = 0.739844
-anchor_bottom = 0.739815
-grow_horizontal = 2
-grow_vertical = 2
+anchor_right = 0.128125
+anchor_bottom = 0.435185
+offset_left = 11.0
+offset_top = 212.0
+offset_right = 11.0
+offset_bottom = 212.0
+grow_horizontal = 1
 
 [node name="PauseMenu" parent="GameManager/GUI" instance=ExtResource("19")]
 visible = false
@@ -111,5 +95,4 @@ visible = false
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]
 
-[connection signal="timeout" from="GameManager/EnemyManager/EnemySpawnClock" to="GameManager/EnemyManager" method="_on_EnemySpawnClock_timeout"]
 [connection signal="timeout" from="GameManager/PlayTimeClock" to="GameManager" method="_on_PlayTimeClock_timeout"]

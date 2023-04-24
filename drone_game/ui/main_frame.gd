@@ -10,17 +10,17 @@ extends Control
 
 func _ready():
 	await get_tree().root.ready
-	var _ok = Global.drone_manager.connect("drone_queue_updated", _on_drone_order_changed)
+	var _ok = DroneManager.connect("drone_queue_updated", _on_drone_order_changed)
 	_ok = Global.game_manager.connect("playtime_updated", Callable(time_display, "update_time"))
 	_ok = Global.game_manager.connect("score_changed", _on_score_changed)
 
 
 func _on_drone_order_changed():
 	drone_queue_view.redraw_queue()
-	if not Global.drone_manager.drone_queue.is_empty():
-		drone_info_view.display_new_drone(Global.drone_manager.drone_queue[0])
+	if not DroneManager.drone_queue.is_empty():
+		drone_info_view.display_new_drone(DroneManager.drone_queue[0])
 	
-	drone_count_display.update_count(Global.drone_manager.drone_queue.size(), Global.drone_manager.max_drones)
+	drone_count_display.update_count(DroneManager.drone_queue.size(), DroneManager.max_drones)
 
 
 func _on_score_changed(curr_exp:int, score:int):

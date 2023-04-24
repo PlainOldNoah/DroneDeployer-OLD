@@ -17,7 +17,7 @@ signal core_freed()
 @onready var pause_led := $MarginContainer/HBoxContainer/LeftVBox/LabelMargins/PauseLED
 @onready var repeat_led := $MarginContainer/HBoxContainer/LeftVBox/LabelMargins/RepeatLED
 @onready var locked_led := $MarginContainer/HBoxContainer/LeftVBox/LabelMargins/LockedLED
-@onready var x_texture := preload("res://assets/visual/menu/red_x_128.png")
+@onready var x_texture := preload("res://assets/visual/menu/icons/red_x_128.png")
 
 var item_ref:Dictionary = {}
 var elapsed_craft_time:float = 0.0
@@ -61,11 +61,11 @@ func update_progress():
 func complete_craft_sequence():
 	match item_ref["id"]:
 		"drone":
-			Global.drone_manager.increment_max_drones(1)
+			DroneManager.increment_max_drones(1)
 		"health":
 			Global.game_manager.modify_health(1)
 		"mod":
-			Global.mod_manager.generate_rand_enhancement()
+			ModManager.generate_rand_enhancement()
 		_:
 			print_debug("ERROR: <", item_ref, "> was not able to be crafted")
 	

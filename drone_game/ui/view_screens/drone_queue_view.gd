@@ -4,7 +4,7 @@ extends Control
 #$"../../../InfoBoxes/DroneInfoView"
 
 #func _ready():
-#	var _ok = Global.drone_manager.connect("drone_queue_updated", redraw_queue)
+#	var _ok = DroneManager.connect("drone_queue_updated", redraw_queue)
 
 
 func redraw_queue():
@@ -12,8 +12,8 @@ func redraw_queue():
 	for i in mirror_container.get_child_count():
 		var focused_mirror := mirror_container.get_child(mirror_container.get_child_count() - i - 1)
 		
-		if Global.drone_manager.drone_queue.size() > i:
-			focused_mirror.set_drone(Global.drone_manager.drone_queue[i])
+		if DroneManager.drone_queue.size() > i:
+			focused_mirror.set_drone(DroneManager.drone_queue[i])
 			focused_mirror.modulate.a = 1.0
 		else:
 			focused_mirror.reset()

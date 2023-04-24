@@ -67,19 +67,19 @@ func rotate_arrow_smooth():
 # Retrieves the first drone from the queue and deploys it
 func deploy_drone():
 	can_deploy = false
-	Global.drone_manager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
+	DroneManager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
 	deploy_cooldown.start(1)
 
 
 func skip_drone():
 	can_skip = false
-	Global.drone_manager.skip_up_next()
+	DroneManager.skip_up_next()
 	skip_cooldown.start(0.25)
 
 
 # Handles drone given in parameter
 func collect_drone(drone:Drone):
-	Global.drone_manager.collect_drone(drone)
+	DroneManager.collect_drone(drone)
 
 
 # Limits drone spamming
