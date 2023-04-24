@@ -47,6 +47,11 @@ text = "Spawn Slug"
 layout_mode = 2
 text = "Create Enhancement"
 
+[node name="AddScrap" type="Button" parent="NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Add Scrap"
+
 [connection signal="toggled" from="NinePatchRect/MarginContainer/GridContainer/ToggleInvincible" to="." method="_on_ToggleInvincible_toggled"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/GridContainer/SpawnSlug" to="." method="_on_SpawnSlug_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/GridContainer/CreateEnhancement" to="." method="_on_CreateEnhancement_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/GridContainer/AddScrap" to="." method="_on_add_scrap_pressed"]

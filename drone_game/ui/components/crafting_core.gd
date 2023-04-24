@@ -4,7 +4,7 @@ extends PanelContainer
 #enum STATE {RUNNING, IDLE, PAUSED, STOPPED}
 #var state:STATE = STATE.IDLE
 
-const PROGRESS_BAR_SEGMENTS:int = 11
+const PROGRESS_BAR_SEGMENTS:int = 12 # Segments + 1
 const INFO_FORMAT_STRING:String = "%s\n%d Scrap       %d Sec"
 
 signal core_freed()
@@ -22,9 +22,9 @@ signal core_freed()
 var item_ref:Dictionary = {}
 var elapsed_craft_time:float = 0.0
 var available:bool = true
-
 var repeat_sequence:bool = false
 var lock_core:bool = false
+var scrap_for_process:int = 0
 
 
 func _ready():
@@ -35,8 +35,21 @@ func _ready():
 
 # Set values to defaults, option to keep core unavailable
 func reset(unlock_core:bool=true):
+	$Timer.stop()
+	scrap_for_process = 0
+	progress_bar.value = 0
+	elapsed_craft_time = 0
+	info_display.text = INFO_FORMAT_STRING % ["NULL", 0, 0]
+	icon_display.set_icon(null)
+	set_led_colors()
+
 	set_available(unlock_core)
-	cancel_sequence()
+
+
+# Cancels a sequence early and refunds materials
+func abort_sequence():
+	Global.game_manager.add_available_scrap(scrap_for_process)
+	reset(true)
 
 
 # Sets the core to begin crafting a new item
@@ -45,8 +58,14 @@ func start_new_sequence(item:String):
 	item_ref = CraftOpt.fabricator_items[item]
 	info_display.text = INFO_FORMAT_STRING % [item_ref.name, item_ref.craft_cost, item_ref.craft_time]
 	icon_display.set_icon(load(item_ref.icon))
+	$Timer.set_wait_time(item_ref["craft_time"] / float(PROGRESS_BAR_SEGMENTS))
+	
 	$Timer.start()
 	set_led_colors()
+
+	if Global.debug["USE_SCRAP"]:
+		scrap_for_process = item_ref["craft_cost"]
+		Global.game_manager.add_available_scrap(-1 * scrap_for_process)
 
 
 # Fills the progress bar and checks if the crafting operation should be finished
@@ -59,6 +78,8 @@ func update_progress():
 
 # Handles the actual result of crafting an item
 func complete_craft_sequence():
+	Global.game_manager.add_spent_scrap(scrap_for_process)
+	
 	match item_ref["id"]:
 		"drone":
 			DroneManager.increment_max_drones(1)
@@ -139,16 +160,6 @@ func toggle_lock_core():
 	else:
 		set_available(false)
 	
-	set_led_colors()
-
-
-# Stops the current sequence and refunds materials
-func cancel_sequence():
-	$Timer.stop()
-	progress_bar.value = 0
-	elapsed_craft_time = 0
-	info_display.text = INFO_FORMAT_STRING % ["NULL", 0, 0]
-	icon_display.set_icon(null)
 	set_led_colors()
 
 

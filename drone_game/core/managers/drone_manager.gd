@@ -92,11 +92,15 @@ func add_drone_to_queue(drone:Drone):
 func collect_drone(drone:Drone):
 	drone.set_state(drone.STATES.IDLE)
 	
-	Logger.create(self, "drone", drone.name + " collected " + str(drone.exp_held) + " exp")
+	drone.exp_held = floori(drone.exp_held)
 	
-	Global.game_manager.add_exp(drone.exp_held)
+	if drone.exp_held > 0:
+		Logger.create(self, "drone", drone.name + " retrieved " + str(drone.exp_held) + " scrap")
+	
+	Global.game_manager.add_available_scrap(drone.exp_held)
+	Global.game_manager.increase_score(drone.exp_held)
+	
 	drone.exp_held = 0
-	
 	add_drone_to_queue(drone)
 
 

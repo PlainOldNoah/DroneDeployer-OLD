@@ -12,7 +12,8 @@ func _ready():
 	await get_tree().root.ready
 	var _ok = DroneManager.connect("drone_queue_updated", _on_drone_order_changed)
 	_ok = Global.game_manager.connect("playtime_updated", Callable(time_display, "update_time"))
-	_ok = Global.game_manager.connect("score_changed", _on_score_changed)
+	_ok = Global.game_manager.connect("curr_scrap_updated", _on_curr_scrap_changed)
+	_ok = Global.game_manager.connect("score_updated", _on_score_updated)
 
 
 func _on_drone_order_changed():
@@ -23,6 +24,9 @@ func _on_drone_order_changed():
 	drone_count_display.update_count(DroneManager.drone_queue.size(), DroneManager.max_drones)
 
 
-func _on_score_changed(curr_exp:int, score:int):
-	score_display.set_value(curr_exp)
-	scrap_display.set_value(score)
+func _on_curr_scrap_changed(value:int):
+	score_display.set_value(value)
+
+
+func _on_score_updated(value:int):
+	scrap_display.set_value(value)

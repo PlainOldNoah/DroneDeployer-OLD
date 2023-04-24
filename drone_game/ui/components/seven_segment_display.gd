@@ -8,13 +8,18 @@ extends Control
 @onready var foreground_label := $Panel/BackgroundLabel/ForegroundLabel
 
 
+func _ready():
+	set_value(0)
+
+
 # Prepares the labels to hold value number of chars
 func set_digits(value:int):
 	digits = value
 	$Panel/BackgroundLabel.text = ""
+	$Panel/BackgroundLabel/ForegroundLabel.text = ""
 	for i in value:
 		$Panel/BackgroundLabel.text += "8"
-
+		$Panel/BackgroundLabel/ForegroundLabel.text += "0"
 
 func set_font_size(value:int):
 	font_size = value

@@ -20,3 +20,8 @@ func _on_SpawnSlug_pressed():
 # Creates an enhancement
 func _on_CreateEnhancement_pressed():
 	ModManager.create_enhancement("max_battery", 50)
+
+
+# Adds Scrap
+func _on_add_scrap_pressed():
+	Global.game_manager.add_available_scrap(5)

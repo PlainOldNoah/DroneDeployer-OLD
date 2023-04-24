@@ -3,18 +3,23 @@ extends Node
 
 signal health_changed()
 signal playtime_updated()
-signal score_changed()
+signal curr_scrap_updated()
+signal spent_scrap_updated()
+signal score_updated()
 
 @export var max_health:int = 3
 @export var max_drones:int = 1
-@export var deploy_cooldown:float = 0.5
+@export var drone_deploy_cooldown:float = 0.5
+@export var drone_skip_cooldown:float = 0.25
 
 @onready var play_time_clock:Timer = $PlayTimeClock
 
 var running:bool = false
+
 var curr_drone_count:int = 0
 var curr_health:int = 0
-var curr_exp:int = 0
+var curr_scrap:int = 0
+var spent_scrap:int = 0
 var score:int = 0
 var curr_survived_sec:int = 0
 
@@ -74,23 +79,33 @@ func toggle_pause(value:bool):
 	get_tree().paused = value
 
 
-# Adds the value to the current exp/score
-func add_exp(value:int):
-	curr_exp += value
-	score += value
-	emit_signal("score_changed", curr_exp, score)
+# Adds the value to the current available scrap
+func add_available_scrap(value:int):
+	curr_scrap += value
+	emit_signal("curr_scrap_updated", curr_scrap)
 	
-	if curr_exp < 0:
+	if curr_scrap < 0:
 		print_debug("INVALID VALUE: exp is a negative")
+		
 	Global.fabricator.queue_to_core()
+
+
+# Adds the value to the spent scrap total
+func add_spent_scrap(value:int):
+	spent_scrap += value
+	emit_signal("spent_scrap_updated", spent_scrap)
+
+
+# Adds the value to the current score
+func increase_score(value:int):
+	score += value
+	emit_signal("score_updated", score)
 
 
 # Sets exp to 0
 func reset_exp():
-	curr_exp = 0
+	curr_scrap = 0
 	score = 0
-#	Global.stats_bar.update_curr_exp(curr_exp)
-#	Global.stats_bar.update_score(score)
 
 
 # Increases or decreases the current health. + to heal, - to hurt
@@ -117,4 +132,3 @@ func get_playtime() -> int:
 func _on_PlayTimeClock_timeout():
 	curr_survived_sec += 1
 	emit_signal("playtime_updated", get_playtime())
-#	play_time_clock.start()

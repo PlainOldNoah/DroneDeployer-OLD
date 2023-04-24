@@ -1,15 +1,16 @@
+Button
+HBoxContainer
+VBoxContainer
 CollisionShape2D
 Area2D
 Marker2D
 AnimationPlayer
 VisibleOnScreenNotifier2D
-VBoxContainer
 Label
 PanelContainer
 Panel
 Control
 CenterContainer
-HBoxContainer
 MarginContainer
 Line2D
 VSeparator
@@ -26,7 +27,6 @@ TextureRect
 Container
 TextureButton
 AspectRatioContainer
-Button
 AnimatedSprite2D
 Timer
 AudioStreamPlayer

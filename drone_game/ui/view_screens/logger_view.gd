@@ -7,6 +7,7 @@ func _ready():
 	var _ok = Logger.connect("message_created",Callable(self,"add_new_msg"))
 	_ok = Logger.connect("messages_cleared",Callable(self,"clear_messages"))
 
+
 # Creates a new label and adds it to the message container
 func add_new_msg(_sender:Node, _type:String, contents:String):
 	var msg_label:Label = Label.new()

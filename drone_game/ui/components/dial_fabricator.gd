@@ -48,8 +48,8 @@ func follow_mouse_smooth():
 	spinner.rotation_degrees = rad_to_deg(lerp_angle(deg_to_rad(spinner.rotation_degrees), rads, rotation_weight))
 	
 	# NOTE: This statment waits until the dial settles in place
-	if (roundi(spinner.rotation_degrees) % 60) == 0:
-		set_selected_pos((3 * rads) / PI)
+#	if (roundi(spinner.rotation_degrees) % 60) == 0:
+	set_selected_pos((3 * rads) / PI)
 
 
 # Turns on or off the dial depending on need

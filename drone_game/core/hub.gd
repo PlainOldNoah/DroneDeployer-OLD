@@ -15,7 +15,7 @@ signal hit_taken()
 
 var can_deploy:bool = true
 var can_skip:bool = true
-var debug_invincible:bool = false
+var DEBUG_INVINCIBLE:bool = false
 
 
 func _ready():
@@ -68,13 +68,13 @@ func rotate_arrow_smooth():
 func deploy_drone():
 	can_deploy = false
 	DroneManager.deploy_next_up(deploy_point.global_position, deploy_point.global_rotation)
-	deploy_cooldown.start(1)
+	deploy_cooldown.start(Global.game_manager.drone_deploy_cooldown)
 
 
 func skip_drone():
 	can_skip = false
 	DroneManager.skip_up_next()
-	skip_cooldown.start(0.25)
+	skip_cooldown.start(Global.game_manager.drone_deploy_cooldown)
 
 
 # Handles drone given in parameter
@@ -112,5 +112,5 @@ func _on_PickUpZone_body_exited(body):
 
 func _on_Hub_body_entered(body):
 	if body.is_in_group("ENEMY"):
-		if not debug_invincible: emit_signal("hit_taken", 1)
+		if not DEBUG_INVINCIBLE: emit_signal("hit_taken", 1)
 		body.queue_free()

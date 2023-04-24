@@ -24,7 +24,7 @@ func _on_button_pressed(function:String):
 		"lock":
 			craft_core_grid.get_child(focused_core).toggle_lock_core()
 		"cancel":
-			craft_core_grid.get_child(focused_core).cancel_sequence()
+			craft_core_grid.get_child(focused_core).abort_sequence()
 		_:
 			print_debug("ERROR: <", function, "> is not a valid button function")
 			

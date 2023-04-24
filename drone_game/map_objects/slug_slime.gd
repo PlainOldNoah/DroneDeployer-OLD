@@ -4,6 +4,7 @@ extends Area2D
 
 var placer:Node = null
 var size:int = 0
+var scrap_value:float = 0.25
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 

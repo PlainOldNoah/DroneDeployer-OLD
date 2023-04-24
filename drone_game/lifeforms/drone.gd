@@ -21,7 +21,7 @@ const DEFAULT_DRONE_STATS:Dictionary = {
 var stats:Dictionary = {}
 var battery:float = 0.0 # Current battery level
 var display_name:String = "Drone"
-var exp_held:int = 0
+var exp_held:float = 0.0
 var bounce_count:int = 0
 var battery_return_threshold:float = 0.50 #As a percentage
 
@@ -229,4 +229,5 @@ func _on_PickupRange_area_entered(area):
 
 
 func _on_cleaning_range_area_entered(area):
+	exp_held += area.scrap_value
 	area.queue_free()

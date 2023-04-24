@@ -1,7 +1,8 @@
 extends Node
 
-var tile_size:int = 32
+const tile_size:int = 32
 
+# MAIN SCENES REFERENCE
 var game_manager:GameManager = null
 var gui:GUI = null
 var gameboard:Control = null
@@ -9,6 +10,22 @@ var hub_scene:Hub = null
 var engr_menu:Control = null
 var fabricator:Control = null
 
+#var default_game_vars:Dictionary = {
+#	"max_drones":0,
+#	"max_health":3,
+#	"curr_health":0,
+#	"curr_scrap":0,
+#	"spent_scrap":0,
+#	"score":0,
+#	"curr_survived_sec":0,
+#}
+#
+#var game_vars:Dictionary = {}
+
+var debug:Dictionary = {
+	"USE_SCRAP":true,
+	"GOD_MODE":false,
+}
 
 const GROUP_LIST:Array = [
 	"ENEMY","PLAYER",
@@ -16,7 +33,6 @@ const GROUP_LIST:Array = [
 	"EXP", "DEBRIS",
 	"POPUP"
 	]
-
 
 func add_to_groups(caller:Node, groups:Array):
 	for group in groups:

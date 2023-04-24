@@ -14,7 +14,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_hsbac")
 script = ExtResource("2_26p7p")
-font_size = null
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -32,7 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"background"
-text = "888888"
+text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -44,5 +43,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"foreground"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
