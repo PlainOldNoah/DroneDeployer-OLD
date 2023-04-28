@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://b376yjy88das7"]
+
+[ext_resource type="PackedScene" uid="uid://drwpcmj2rotra" path="res://ui/components/button_base_3d.tscn" id="1_yagsy"]
+[ext_resource type="Texture2D" uid="uid://dr541myq76sue" path="res://assets/visual/menu/btn_sqr_3d.png" id="2_n2dkk"]
+[ext_resource type="BitMap" uid="uid://0r1l22eckhid" path="res://assets/visual/menu/btn_sqr_3d_clickmask.png" id="3_ael0n"]
+[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/icons/debug_128.png" id="4_h53c6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y71n"]
+atlas = ExtResource("2_n2dkk")
+region = Rect2(0, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_todfn"]
+resource_local_to_scene = true
+atlas = ExtResource("2_n2dkk")
+region = Rect2(232, 0, 232, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25q8w"]
+atlas = ExtResource("2_n2dkk")
+region = Rect2(232, 0, 232, 232)
+
+[node name="ButtonSquare3d" instance=ExtResource("1_yagsy")]
+
+[node name="ButtonBase" parent="." index="0"]
+texture = SubResource("AtlasTexture_8y71n")
+
+[node name="ButtonTexture" parent="ButtonBase" index="0"]
+texture = SubResource("AtlasTexture_todfn")
+
+[node name="ClickMask" parent="ButtonBase" index="1"]
+texture_normal = SubResource("AtlasTexture_25q8w")
+texture_click_mask = ExtResource("3_ael0n")
+
+[node name="IconTextureRect" parent="ButtonBase" index="2"]
+texture = ExtResource("4_h53c6")

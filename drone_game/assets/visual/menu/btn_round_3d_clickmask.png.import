@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cqfoxxpe3xtn1"
+path="res://.godot/imported/btn_round_3d_clickmask.png-b4752c60bf601c007b6cca5b20dbaf2d.res"
+
+[deps]
+
+source_file="res://assets/visual/menu/btn_round_3d_clickmask.png"
+dest_files=["res://.godot/imported/btn_round_3d_clickmask.png-b4752c60bf601c007b6cca5b20dbaf2d.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -8,7 +8,8 @@ var difficulty:int = 0
 
 func _ready():
 	await get_tree().root.ready
-	var _ok := Global.game_manager.play_time_clock.connect("timeout",Callable(self,"calculate_difficulty"))
+	if is_instance_valid(Global.game_manager):
+		var _ok := Global.game_manager.play_time_clock.connect("timeout",Callable(self,"calculate_difficulty"))
 
 
 # Sets the difficulty

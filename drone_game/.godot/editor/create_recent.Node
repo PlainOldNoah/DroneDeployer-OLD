@@ -1,8 +1,10 @@
+CollisionPolygon2D
+Area2D
 Button
+AspectRatioContainer
 HBoxContainer
 VBoxContainer
 CollisionShape2D
-Area2D
 Marker2D
 AnimationPlayer
 VisibleOnScreenNotifier2D
@@ -19,14 +21,12 @@ TextureProgressBar
 ProgressBar
 Node2D
 ReferenceRect
-CollisionPolygon2D
 TileMap
 StaticBody2D
 GridContainer
 TextureRect
 Container
 TextureButton
-AspectRatioContainer
 AnimatedSprite2D
 Timer
 AudioStreamPlayer

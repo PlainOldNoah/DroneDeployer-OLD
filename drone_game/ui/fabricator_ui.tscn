@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bka8i06teltq"]
+[gd_scene load_steps=21 format=3 uid="uid://bka8i06teltq"]
 
 [ext_resource type="Theme" uid="uid://b8ho3617jr42y" path="res://assets/themes/ui_white_outline.tres" id="1_82sv1"]
 [ext_resource type="Script" path="res://ui/fabricator_menu.gd" id="1_vtbve"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b05wd0ueju45r" path="res://assets/visual/menu/icons/health_plus_128.png" id="5_yj6ow"]
 [ext_resource type="PackedScene" uid="uid://cvuq5w8k1v1tn" path="res://ui/components/crafting_core.tscn" id="6_lxrv1"]
 [ext_resource type="Texture2D" uid="uid://bc43eukry8d4v" path="res://assets/visual/menu/icons/pcb_circle_plus_128.png" id="6_sv8ck"]
+[ext_resource type="PackedScene" uid="uid://b4nu635d2acp2" path="res://ui/components/button_round_3d.tscn" id="7_aa2pf"]
 [ext_resource type="PackedScene" path="res://ui/components/craft_queue_item.tscn" id="9_em06k"]
 [ext_resource type="PackedScene" uid="uid://djk15r2dcqo84" path="res://ui/components/seven_segment_display.tscn" id="9_liwhn"]
 [ext_resource type="Script" path="res://ui/crafting_core_controller.gd" id="10_4t8ur"]
@@ -110,38 +111,95 @@ icon = ExtResource("6_sv8ck")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Buttons" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.66
+mouse_filter = 2
+
+[node name="ButtonRound3D" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+
+[node name="ButtonRound3D2" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D3" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D4" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D5" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D6" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D7" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D8" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3D9" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_aa2pf")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="CircleButton" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton2" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton3" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton4" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton5" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton6" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton7" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton8" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="CircleButton9" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("3")]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]

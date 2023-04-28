@@ -1,21 +1,47 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dqijbyes4wgs"]
 
-[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/icons/debug_128.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://bb3gnl0sd4foa" path="res://ui/components/NEW_button_round_3d.tscn" id="1_b7shu"]
+[ext_resource type="PackedScene" uid="uid://b376yjy88das7" path="res://ui/components/NEW_button_square_3d.tscn" id="2_kc2u3"]
 
 [node name="Control" type="Control"]
-anchor_right = 0.00833333
-anchor_bottom = 0.0148148
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 6
+
+[node name="ButtonRound3d" parent="." instance=ExtResource("1_b7shu")]
+editor_description = ""
+layout_mode = 1
+anchor_right = 0.275
+anchor_bottom = 0.488889
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3d2" parent="." instance=ExtResource("1_b7shu")]
+editor_description = ""
+layout_mode = 1
+anchor_left = 0.423958
+anchor_top = 0.00277778
+anchor_right = 0.714583
+anchor_bottom = 0.519444
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonRound3d3" parent="." instance=ExtResource("1_b7shu")]
+editor_description = ""
+layout_mode = 1
+anchor_left = 0.040625
+anchor_top = 0.610185
+anchor_right = 0.18125
+anchor_bottom = 0.860185
+
+[node name="ButtonSquare3d" parent="." instance=ExtResource("2_kc2u3")]
+layout_mode = 1
+anchor_left = 0.694792
+anchor_top = 0.441667
+anchor_right = 0.975
+anchor_bottom = 0.939815

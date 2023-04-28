@@ -1,4 +1,4 @@
-extends AspectRatioContainer
+extends "res://ui/components/button_base_3d.gd"
 
 
 # Called when the node enters the scene tree for the first time.

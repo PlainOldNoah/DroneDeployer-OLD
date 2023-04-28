@@ -1,16 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4nu635d2acp2"]
+[gd_scene load_steps=7 format=3 uid="uid://drwpcmj2rotra"]
 
-[ext_resource type="Script" path="res://ui/components/button_round_3d.gd" id="1_68x0w"]
-[ext_resource type="Texture2D" uid="uid://dqq4ro0rblu8k" path="res://assets/visual/menu/btn_round_3d.png" id="2_fjf21"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxpuu"]
-atlas = ExtResource("2_fjf21")
-region = Rect2(0, 0, 232, 232)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qskk2"]
-resource_local_to_scene = true
-atlas = ExtResource("2_fjf21")
-region = Rect2(232, 0, 232, 232)
+[ext_resource type="Script" path="res://ui/components/button_base_3d.gd" id="1_f84mu"]
 
 [sub_resource type="Animation" id="Animation_7r5wr"]
 length = 0.001
@@ -25,6 +15,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Rect2(232, 0, 232, 232)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/IconTextureRect:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0781245]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/IconTextureRect:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.765625]
 }
 
 [sub_resource type="Animation" id="Animation_cfe04"]
@@ -43,6 +57,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [Rect2(232, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(928, 0, 232, 232)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/IconTextureRect:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0781245, 0.15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/IconTextureRect:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.765625, 0.837501]
+}
 
 [sub_resource type="Animation" id="Animation_qod1d"]
 resource_name = "button_hover"
@@ -57,7 +95,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.01),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
 "values": [Rect2(232, 0, 232, 232), Rect2(1160, 0, 232, 232)]
 }
 
@@ -77,6 +115,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [Rect2(928, 0, 232, 232), Rect2(696, 0, 232, 232), Rect2(464, 0, 232, 232), Rect2(232, 0, 232, 232)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonBase/IconTextureRect:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.15, 0.0781245]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonBase/IconTextureRect:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.838, 0.765625]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_676r3"]
 _data = {
@@ -86,16 +148,16 @@ _data = {
 "button_up": SubResource("Animation_nu35i")
 }
 
-[node name="ButtonRound3D" type="AspectRatioContainer"]
+[node name="ButtonBase3D" type="AspectRatioContainer"]
+editor_description = "Template for a 3d Button. Button Base can be a shared res. Button Texture needs to be made local to scene. Click mask requires both a click mask and normal texture. Click mask alpha should be set to 0 to stop it from affecting anything."
 anchors_preset = -1
 anchor_right = 0.0208333
 anchor_bottom = 0.037037
-script = ExtResource("1_68x0w")
+script = ExtResource("1_f84mu")
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonBase" type="TextureRect" parent="."]
 layout_mode = 2
-texture = SubResource("AtlasTexture_cxpuu")
 expand_mode = 1
 stretch_mode = 5
 
@@ -106,25 +168,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_qskk2")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ClickArea" type="TextureButton" parent="ButtonBase"]
+[node name="ClickMask" type="TextureButton" parent="ButtonBase"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="IconTextureRect" type="TextureRect" parent="ButtonBase"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.0781245
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.765625
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
@@ -132,3 +198,7 @@ stretch_mode = 5
 libraries = {
 "": SubResource("AnimationLibrary_676r3")
 }
+
+[connection signal="mouse_entered" from="ButtonBase/ClickMask" to="." method="_on_click_mask_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonBase/ClickMask" to="." method="_on_click_mask_mouse_exited"]
+[connection signal="pressed" from="ButtonBase/ClickMask" to="." method="_on_click_mask_pressed"]
