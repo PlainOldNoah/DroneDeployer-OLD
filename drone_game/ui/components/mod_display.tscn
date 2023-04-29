@@ -1,35 +1,34 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://d0n1x08fjps5e"]
 
 [ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/icons/debug_128.png" id="1"]
 [ext_resource type="Script" path="res://ui/components/mod_display.gd" id="3"]
 
 [node name="ModDisplay" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
 anchor_right = 0.0333333
 anchor_bottom = 0.0592593
-custom_minimum_size = Vector2( 64, 64 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+script = ExtResource("3")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 1 )
-expand = true
+texture = ExtResource("1")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 flat = true
 
 [node name="TEMP_NAME" type="Label" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-align = 1
-valign = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

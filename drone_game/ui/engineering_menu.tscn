@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://b4v4q5yc6oa2w"]
 
 [ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/icons/debug_128.png" id="1"]
 [ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="2"]
 [ext_resource type="Script" path="res://ui/engineering_menu.gd" id="3"]
-[ext_resource type="PackedScene" path="res://ui/view_screens/mod_panel.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://3htdnqwcokn3" path="res://ui/components/circle_button.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://d3ysg23ftu8i" path="res://ui/view_screens/mod_panel.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://gf3use3xb7t2" path="res://ui/components/circle_button_flat.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c26pbew3x3h0d" path="res://ui/view_screens/scrolling_grid_terminal.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="9"]
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2tlwobww834t"]
+[gd_scene load_steps=13 format=3 uid="uid://c2y58gy15gxjr"]
 
 [ext_resource type="Script" path="res://ui/main_frame.gd" id="1_8rpna"]
 [ext_resource type="PackedScene" uid="uid://ba37xwhrt56du" path="res://ui/components/specialized/gameboard.tscn" id="1_608yw"]
-[ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="2_xrrg3"]
-[ext_resource type="Texture2D" uid="uid://behoahm2y2lie" path="res://assets/visual/menu/simple_icons.png" id="3_s8774"]
+[ext_resource type="PackedScene" uid="uid://b376yjy88das7" path="res://ui/components/button_square_3d.tscn" id="3_i3nog"]
 [ext_resource type="PackedScene" uid="uid://diftsrkqgtckr" path="res://ui/view_screens/logger_view.tscn" id="4_kxvki"]
 [ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="5_3mto4"]
 [ext_resource type="PackedScene" uid="uid://c3p6sm608p8rc" path="res://ui/view_screens/drone_queue_view.tscn" id="5_rkv3r"]
@@ -12,10 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://djk15r2dcqo84" path="res://ui/components/seven_segment_display.tscn" id="7_pp7y4"]
 [ext_resource type="PackedScene" uid="uid://nbmhffvjq6fs" path="res://ui/components/specialized/time_display.tscn" id="8_rh4xb"]
 [ext_resource type="PackedScene" uid="uid://cv8m4ksfpokbj" path="res://ui/components/specialized/drone_count_display.tscn" id="9_3cc8a"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_651jk"]
-atlas = ExtResource("3_s8774")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0onq"]
 draw_center = false
@@ -81,18 +76,26 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="PauseBtn" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+[node name="ButtonSquare3d" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("3_i3nog")]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-icon = SubResource("AtlasTexture_651jk")
+size_flags_horizontal = 1
+size_flags_vertical = 1
+wait_for_btn_up = false
 
-[node name="ButtonSquare3D2" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+[node name="ButtonSquare3d2" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("3_i3nog")]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+wait_for_btn_up = false
 
-[node name="ButtonSquare3D3" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
+[node name="ButtonSquare3d3" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("3_i3nog")]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-
-[node name="ButtonSquare3D4" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("2_xrrg3")]
-layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+wait_for_btn_up = false
 
 [node name="DroneQueueView" parent="MarginContainer/VBoxContainer/LeftSection/Buttons" instance=ExtResource("5_rkv3r")]
 layout_mode = 2

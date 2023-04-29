@@ -1,14 +1,14 @@
+Label
+VBoxContainer
+HBoxContainer
 CollisionPolygon2D
 Area2D
 Button
 AspectRatioContainer
-HBoxContainer
-VBoxContainer
 CollisionShape2D
 Marker2D
 AnimationPlayer
 VisibleOnScreenNotifier2D
-Label
 PanelContainer
 Panel
 Control

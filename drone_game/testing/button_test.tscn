@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://dby6rxrovici8"]
+
+[ext_resource type="PackedScene" uid="uid://bb3gnl0sd4foa" path="res://ui/components/button_round_3d.tscn" id="1_fvl1m"]
+[ext_resource type="PackedScene" uid="uid://b376yjy88das7" path="res://ui/components/button_square_3d.tscn" id="2_68kjv"]
+
+[node name="button_test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonRound3d" parent="." instance=ExtResource("1_fvl1m")]
+layout_mode = 1
+anchor_left = 0.0317168
+anchor_top = 0.165267
+anchor_right = 0.0525501
+anchor_bottom = 0.202304
+
+[node name="ButtonSquare3d" parent="." instance=ExtResource("2_68kjv")]
+layout_mode = 1
+anchor_left = 0.059985
+anchor_top = 0.0453371
+anchor_right = 0.128214
+anchor_bottom = 0.139782
+
+[node name="ButtonRound3d2" parent="." instance=ExtResource("1_fvl1m")]
+layout_mode = 1
+anchor_left = 0.0584026
+anchor_top = 0.165267
+anchor_right = 0.0792359
+anchor_bottom = 0.202304
+
+[node name="ButtonSquare3d2" parent="." instance=ExtResource("2_68kjv")]
+layout_mode = 1
+anchor_left = 0.125521
+anchor_top = 0.0444444
+anchor_right = 0.186458
+anchor_bottom = 0.140741
+
+[node name="ButtonRound3d3" parent="." instance=ExtResource("1_fvl1m")]
+layout_mode = 1
+anchor_left = 0.0877132
+anchor_top = 0.163323
+anchor_right = 0.108547
+anchor_bottom = 0.20036
+
+[node name="ButtonSquare3d3" parent="." instance=ExtResource("2_68kjv")]
+layout_mode = 1
+anchor_left = 0.00416667
+anchor_top = 0.0490741
+anchor_right = 0.0635417
+anchor_bottom = 0.138889

@@ -1,5 +1,6 @@
 extends Control
 
+@onready var start_btn := $MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer/StartBtn
 
 func _on_start_btn_pressed():
 	Global.gui.dismiss_menu()

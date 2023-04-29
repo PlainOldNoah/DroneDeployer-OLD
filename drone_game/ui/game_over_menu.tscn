@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnvciwcg61ydl"]
+[gd_scene load_steps=6 format=3 uid="uid://35o8ai72lm1g"]
 
 [ext_resource type="Script" path="res://ui/game_over_menu.gd" id="1"]
 [ext_resource type="Theme" uid="uid://c4j8s0dbvnss1" path="res://assets/themes/title_label.tres" id="2"]
-[ext_resource type="PackedScene" uid="uid://diy3v76agoevs" path="res://ui/components/button_sqr_3d.tscn" id="3_25l6e"]
+[ext_resource type="PackedScene" uid="uid://b376yjy88das7" path="res://ui/components/button_square_3d.tscn" id="3_dc16p"]
 [ext_resource type="Texture2D" uid="uid://dwt3qn76psghy" path="res://assets/visual/menu/icons/redo_128.png" id="4_tw1fu"]
 [ext_resource type="Texture2D" uid="uid://7c060shf1iuu" path="res://assets/visual/menu/icons/red_x_128.png" id="5_7eeb7"]
 
@@ -34,17 +34,12 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RetryBtn" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_25l6e")]
+[node name="RetryBtn" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_dc16p")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 1
 icon = ExtResource("4_tw1fu")
 
-[node name="MainMenuBtn" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_25l6e")]
+[node name="MainMenuBtn" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_dc16p")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 1
 icon = ExtResource("5_7eeb7")
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/RetryBtn" to="." method="_on_retry_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
