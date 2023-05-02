@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba37xwhrt56du"]
+[gd_scene load_steps=10 format=3 uid="uid://ba37xwhrt56du"]
 
 [ext_resource type="PackedScene" uid="uid://c7qynj1hx3g86" path="res://core/hub.tscn" id="1_67ypw"]
 [ext_resource type="Script" path="res://ui/components/specialized/gameboard.gd" id="1_367n6"]
 [ext_resource type="TileSet" uid="uid://bnict46ngcgau" path="res://assets/tile_sets/ruin_tileset.tres" id="1_ucxch"]
+[ext_resource type="Texture2D" uid="uid://bm0imcdkby8d4" path="res://assets/visual/menu/terminal_9box_full.png" id="4_2oily"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wagu2"]
-size = Vector2(1920, 1080)
+size = Vector2(1890, 1050)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xkst6"]
 
@@ -17,43 +18,55 @@ size = Vector2(1920, 1080)
 
 [node name="Gameboard" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = -0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
 script = ExtResource("1_367n6")
 metadata/_edit_use_anchors_ = true
 
-[node name="Centerer" type="Control" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="TileMap" type="TileMap" parent="Centerer"]
+[node name="Centerer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TileMap" type="TileMap" parent="MarginContainer/Centerer"]
+position = Vector2(945, 525)
 tile_set = ExtResource("1_ucxch")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 0, 0, 65537, 0, 0, 65538, 131072, 0, 131075, 0, 0, 131076, 0, 0, 196613, 0, 0, 196614, 0, 0, 262151, 0, 0, -65536, 131072, 0, -131071, 0, 0, -131070, 0, 0, -196605, 0, 0, -196604, 0, 0, -262139, 0, 0, -262138, 131072, 0, -327673, 0, 0, -1, 0, 0, -65538, 65536, 0, -65539, 0, 0, -131076, 131072, 0, -131077, 0, 0, -196614, 0, 0, -196615, 65536, 0, -262152, 0, 0, 65535, 0, 0, 131070, 65536, 0, 131069, 0, 0, 196604, 0, 0, 196603, 131072, 0, 262138, 65536, 0, 262137, 131072, 0, 327672, 0, 0, 65534, 0, 0, -65535, 0, 0, -196616, 0, 0, -131080, 65536, 0, -65544, 0, 0, -8, 0, 0, 65528, 0, 0, 131064, 65536, 0, 196600, 0, 0, 262136, 0, 0, -262151, 0, 0, -131079, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, 131065, 0, 0, 196601, 0, 0, 327673, 0, 0, -262150, 0, 0, -131078, 0, 0, -65542, 0, 0, -6, 131072, 0, 65530, 0, 0, 131066, 0, 0, 196602, 131072, 0, 327674, 0, 0, -262149, 0, 0, -196613, 131072, 0, -65541, 0, 0, -5, 0, 0, 65531, 0, 0, 131067, 0, 0, 262139, 0, 0, 327675, 65536, 0, -262148, 0, 0, -196612, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 0, 262140, 0, 0, 327676, 0, 0, -262147, 0, 0, -196611, 0, 0, -131075, 0, 0, -3, 0, 0, 65533, 0, 0, 196605, 0, 0, 262141, 65536, 0, 327677, 0, 0, -262146, 131072, 0, -196610, 65536, 0, -131074, 0, 0, -2, 0, 0, 196606, 0, 0, 262142, 0, 0, 327678, 0, 0, -262145, 0, 0, -196609, 0, 0, -131073, 0, 0, -65537, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 327679, 0, 0, -327680, 0, 0, -262144, 0, 0, -196608, 0, 0, -131072, 0, 0, 65536, 131072, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, -327679, 0, 0, -262143, 0, 0, -196607, 0, 0, 1, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 131072, 0, -327678, 0, 0, -262142, 65536, 0, -196606, 0, 0, -65534, 0, 0, 2, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 131072, 0, -327677, 0, 0, -262141, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 65536, 0, 65539, 0, 0, 196611, 0, 0, 262147, 0, 0, -327676, 0, 0, -262140, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 131072, 0, 196612, 0, 0, 262148, 0, 0, -327675, 0, 0, -196603, 131072, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 262149, 0, 0, -327674, 0, 0, -196602, 0, 0, -131066, 0, 0, -65530, 0, 0, 6, 131072, 0, 65542, 0, 0, 131078, 0, 0, 262150, 0, 0, -262137, 0, 0, -196601, 65536, 0, -131065, 0, 0, -65529, 0, 0, 7, 131072, 0, 65543, 0, 0, 131079, 0, 0, 196615, 0, 0)
 
-[node name="Hub" parent="Centerer" instance=ExtResource("1_67ypw")]
+[node name="Hub" parent="MarginContainer/Centerer" instance=ExtResource("1_67ypw")]
+position = Vector2(945, 525)
 scale = Vector2(0.25, 0.25)
 
-[node name="GameboardArea" type="Area2D" parent="Centerer"]
+[node name="GameboardArea" type="Area2D" parent="MarginContainer/Centerer"]
 visible = false
+position = Vector2(945, 525)
 collision_layer = 64
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Centerer/GameboardArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MarginContainer/Centerer/GameboardArea"]
 shape = SubResource("RectangleShape2D_wagu2")
+
+[node name="MidPoint" type="Control" parent="MarginContainer/Centerer"]
+layout_mode = 2
 
 [node name="LevelObjects" type="Node2D" parent="."]
 editor_description = "Storage for drones, enemies, xp, and other objects that may be on a given level"
@@ -77,6 +90,22 @@ shape = SubResource("WorldBoundaryShape2D_vyqv6")
 position = Vector2(1920, 0)
 rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_65jow")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_2oily")
+region_rect = Rect2(4, 4, 48, 48)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,0 +1,360 @@
+[gd_scene load_steps=19 format=3 uid="uid://bbkun8330f86n"]
+
+[ext_resource type="Theme" uid="uid://b8ho3617jr42y" path="res://assets/themes/ui_white_outline.tres" id="1_82sv1"]
+[ext_resource type="Script" path="res://ui/menus/fabricator_menu.gd" id="1_vtbve"]
+[ext_resource type="PackedScene" uid="uid://b376yjy88das7" path="res://ui/components/button_square_3d.tscn" id="3_didqa"]
+[ext_resource type="Texture2D" uid="uid://do0372plufkwh" path="res://assets/visual/menu/icons/drone_plus_128.png" id="4_lxikh"]
+[ext_resource type="Texture2D" uid="uid://b05wd0ueju45r" path="res://assets/visual/menu/icons/health_plus_128.png" id="5_yj6ow"]
+[ext_resource type="PackedScene" uid="uid://cvuq5w8k1v1tn" path="res://ui/components/crafting_core.tscn" id="6_lxrv1"]
+[ext_resource type="Texture2D" uid="uid://bc43eukry8d4v" path="res://assets/visual/menu/icons/pcb_circle_plus_128.png" id="6_sv8ck"]
+[ext_resource type="PackedScene" uid="uid://bb3gnl0sd4foa" path="res://ui/components/button_round_3d.tscn" id="7_ak75u"]
+[ext_resource type="PackedScene" path="res://ui/components/craft_queue_item.tscn" id="9_em06k"]
+[ext_resource type="PackedScene" uid="uid://djk15r2dcqo84" path="res://ui/components/seven_segment_display.tscn" id="9_liwhn"]
+[ext_resource type="Script" path="res://ui/crafting_core_controller.gd" id="10_4t8ur"]
+[ext_resource type="PackedScene" uid="uid://cetk4igygusq6" path="res://ui/components/dial.tscn" id="11_mkwp3"]
+[ext_resource type="Script" path="res://ui/components/dial_fabricator.gd" id="12_mclxs"]
+[ext_resource type="Texture2D" uid="uid://behoahm2y2lie" path="res://assets/visual/menu/icons/simple_icons.png" id="15_7buvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8fw1"]
+atlas = ExtResource("15_7buvg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc7sw"]
+atlas = ExtResource("15_7buvg")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3j71"]
+atlas = ExtResource("15_7buvg")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j28qe"]
+atlas = ExtResource("15_7buvg")
+region = Rect2(128, 0, 128, 128)
+
+[node name="FabricatorMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vtbve")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.6, 0.615686, 0.627451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.00012207
+offset_bottom = 6.10352e-05
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_82sv1")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.573077
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="CraftingOptions" type="GridContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="NewDroneBtn" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = ExtResource("4_lxikh")
+wait_for_btn_up = false
+
+[node name="RepairBtn" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = ExtResource("5_yj6ow")
+wait_for_btn_up = false
+
+[node name="EnhancementBtn" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = ExtResource("6_sv8ck")
+wait_for_btn_up = false
+
+[node name="CraftingQueue" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Buttons" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.66
+mouse_filter = 2
+
+[node name="CraftQueueBtn" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn2" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn3" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn4" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn5" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn6" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn7" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn8" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="CraftQueueBtn9" parent="MarginContainer/HBoxContainer/CraftingQueue/Buttons" instance=ExtResource("7_ak75u")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/CraftingQueue"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="QueueItemContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer"]
+layout_mode = 2
+
+[node name="CraftQueueItem" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem2" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem3" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem4" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem5" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem6" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem7" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem8" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftQueueItem9" parent="MarginContainer/HBoxContainer/CraftingQueue/MarginContainer/QueueItemContainer" instance=ExtResource("9_em06k")]
+layout_mode = 2
+
+[node name="CraftingCores" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.18
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="AvailableScrapSSD" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer/HBoxContainer" instance=ExtResource("9_liwhn")]
+layout_mode = 2
+digits = 6
+
+[node name="SpentScrapSSD" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer/HBoxContainer" instance=ExtResource("9_liwhn")]
+layout_mode = 2
+digits = 6
+
+[node name="LifetimeScrapSSD" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer/HBoxContainer" instance=ExtResource("9_liwhn")]
+layout_mode = 2
+digits = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="completed_sequences_ssd" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer/HBoxContainer2" instance=ExtResource("9_liwhn")]
+layout_mode = 2
+digits = 6
+
+[node name="seven_segment_display2" parent="MarginContainer/HBoxContainer/CraftingCores/VBoxContainer/HBoxContainer2" instance=ExtResource("9_liwhn")]
+layout_mode = 2
+digits = 2
+
+[node name="CraftingCorePanel" type="Panel" parent="MarginContainer/HBoxContainer/CraftingCores"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.4
+theme = ExtResource("1_82sv1")
+script = ExtResource("10_4t8ur")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CraftCoreInnerMargin" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CraftingCoreGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="CraftingCore" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CraftingCoreGrid" instance=ExtResource("6_lxrv1")]
+layout_mode = 2
+core_number = 1
+
+[node name="CraftingCore2" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CraftingCoreGrid" instance=ExtResource("6_lxrv1")]
+layout_mode = 2
+core_number = 2
+
+[node name="CraftingCore3" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CraftingCoreGrid" instance=ExtResource("6_lxrv1")]
+layout_mode = 2
+core_number = 3
+
+[node name="CraftingCore4" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CraftingCoreGrid" instance=ExtResource("6_lxrv1")]
+layout_mode = 2
+core_number = 4
+
+[node name="CoreControls" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="CoreSelector" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls"]
+layout_mode = 2
+mouse_default_cursor_shape = 3
+
+[node name="LeftSection" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="C1Label" type="Label" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/LeftSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "C1"
+
+[node name="Dial" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/LeftSection" instance=ExtResource("11_mkwp3")]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("12_mclxs")
+mouse_active_zone = NodePath("../..")
+
+[node name="C4Label" type="Label" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/LeftSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "C4"
+
+[node name="RightSection" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = -50
+
+[node name="C2Label" type="Label" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/RightSection"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+text = "C2"
+
+[node name="C3Label" type="Label" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/RightSection"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+text = "C3"
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="PauseBtn" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = SubResource("AtlasTexture_s8fw1")
+wait_for_btn_up = false
+
+[node name="RepeatBtn" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = SubResource("AtlasTexture_yc7sw")
+wait_for_btn_up = false
+
+[node name="LockBtn" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = SubResource("AtlasTexture_q3j71")
+wait_for_btn_up = false
+
+[node name="CancelBtn" parent="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons" instance=ExtResource("3_didqa")]
+layout_mode = 2
+icon = SubResource("AtlasTexture_j28qe")
+wait_for_btn_up = false
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/NewDroneBtn" to="." method="_on_craft_btn_pressed" binds= ["drone"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/RepairBtn" to="." method="_on_craft_btn_pressed" binds= ["health"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Panel/MarginContainer/CraftingOptions/EnhancementBtn" to="." method="_on_craft_btn_pressed" binds= ["mod"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn" to="." method="_on_craft_queue_btn_pressed" binds= [0]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn2" to="." method="_on_craft_queue_btn_pressed" binds= [1]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn3" to="." method="_on_craft_queue_btn_pressed" binds= [2]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn4" to="." method="_on_craft_queue_btn_pressed" binds= [3]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn5" to="." method="_on_craft_queue_btn_pressed" binds= [4]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn6" to="." method="_on_craft_queue_btn_pressed" binds= [5]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn7" to="." method="_on_craft_queue_btn_pressed" binds= [6]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn8" to="." method="_on_craft_queue_btn_pressed" binds= [7]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingQueue/Buttons/CraftQueueBtn9" to="." method="_on_craft_queue_btn_pressed" binds= [8]]
+[connection signal="visibility_changed" from="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/LeftSection/Dial" to="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/CoreSelector/LeftSection/Dial" method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons/PauseBtn" to="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel" method="_on_button_pressed" binds= ["pause"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons/RepeatBtn" to="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel" method="_on_button_pressed" binds= ["repeat"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons/LockBtn" to="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel" method="_on_button_pressed" binds= ["lock"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel/MarginContainer/CraftCoreInnerMargin/CoreControls/Buttons/CancelBtn" to="MarginContainer/HBoxContainer/CraftingCores/CraftingCorePanel" method="_on_button_pressed" binds= ["cancel"]]

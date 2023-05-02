@@ -1,3 +1,5 @@
+res://ui/view_screens
+res://ui
 res://ui/components
 res://core/managers
 res://lifeforms
@@ -5,6 +7,4 @@ C:/Users/plain/Noah's Things/Computer Projects/Projects/Drone Game/Drone Game Re
 res://
 res://assets/themes
 res://ui/components/specialized
-res://ui/view_screens
-res://ui
 res://testing

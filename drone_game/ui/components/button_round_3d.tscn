@@ -19,7 +19,6 @@ atlas = ExtResource("2_al537")
 region = Rect2(232, 0, 232, 232)
 
 [node name="ButtonRound3d" instance=ExtResource("1_n1wgu")]
-wait_for_btn_up = null
 
 [node name="ButtonBase" parent="." index="0"]
 texture = SubResource("AtlasTexture_r4112")

@@ -1,0 +1,446 @@
+[gd_scene load_steps=11 format=3 uid="uid://bacbs85btd1t8"]
+
+[ext_resource type="Script" path="res://ui/cursor_drone_info.gd" id="1_2tq3u"]
+[ext_resource type="Texture2D" uid="uid://b1t0lx6s2m4ic" path="res://assets/visual/menu/cursor_drone_info.png" id="1_ctlfc"]
+[ext_resource type="FontFile" uid="uid://d1yweriefyp58" path="res://assets/fonts/data-control/data-latin.ttf" id="2_50ks4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcxjg"]
+atlas = ExtResource("1_ctlfc")
+region = Rect2(416, 0, 208, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndmg7"]
+atlas = ExtResource("1_ctlfc")
+region = Rect2(208, 0, 208, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i716o"]
+atlas = ExtResource("1_ctlfc")
+region = Rect2(416, 0, 208, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiyxt"]
+atlas = ExtResource("1_ctlfc")
+region = Rect2(0, 0, 208, 208)
+
+[sub_resource type="Animation" id="Animation_d6avf"]
+resource_name = "hide_info"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NumLabels/HBoxContainer/Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NumLabels/HBoxContainer2/Label3:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NumLabels/HBoxContainer/Label2:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NumLabels/HBoxContainer2/Label4:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fltqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NumLabels/HBoxContainer/Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NumLabels/HBoxContainer2/Label3:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NumLabels/HBoxContainer/Label2:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NumLabels/HBoxContainer2/Label4:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vfcw8"]
+_data = {
+"RESET": SubResource("Animation_fltqy"),
+"hide_info": SubResource("Animation_d6avf")
+}
+
+[node name="CursorDroneInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+script = ExtResource("1_2tq3u")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -104.0
+offset_right = 104.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(104, 104)
+mouse_filter = 2
+value = 50.0
+fill_mode = 4
+texture_under = SubResource("AtlasTexture_lcxjg")
+texture_over = SubResource("AtlasTexture_ndmg7")
+texture_progress = SubResource("AtlasTexture_i716o")
+tint_under = Color(0.6, 0.615686, 0.627451, 1)
+tint_progress = Color(0, 0.658824, 0.0627451, 1)
+radial_initial_angle = 274.0
+radial_fill_degrees = 172.0
+radial_center_offset = Vector2(0, -31)
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -104.0
+offset_right = 104.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.14159
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(104, 104)
+mouse_filter = 2
+value = 50.0
+fill_mode = 5
+texture_under = SubResource("AtlasTexture_lcxjg")
+texture_over = SubResource("AtlasTexture_ndmg7")
+texture_progress = SubResource("AtlasTexture_i716o")
+tint_under = Color(0.6, 0.615686, 0.627451, 1)
+tint_progress = Color(0, 0.658824, 0.0627451, 1)
+radial_initial_angle = 86.0
+radial_fill_degrees = 172.0
+radial_center_offset = Vector2(0, -31)
+
+[node name="Crosshair" type="TextureRect" parent="."]
+self_modulate = Color(0.65098, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -104.0
+offset_right = 104.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(104, 104)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_jiyxt")
+
+[node name="NumLabels" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -19.0
+offset_right = 103.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NumLabels"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 128
+
+[node name="Label" type="Label" parent="NumLabels/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 32
+text = "194"
+
+[node name="Label2" type="Label" parent="NumLabels/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 32
+text = "194"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NumLabels"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 72
+
+[node name="Label3" type="Label" parent="NumLabels/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 32
+text = "194"
+
+[node name="Label4" type="Label" parent="NumLabels/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 32
+text = "194"
+
+[node name="NumLabels2" type="GridContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 89
+theme_override_constants/v_separation = -2
+columns = 2
+
+[node name="Label" type="Label" parent="NumLabels2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "194"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="NumLabels2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "194"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="NumLabels2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "194"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="NumLabels2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "194"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumLabels3" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="NumLabels3"]
+offset_left = -34.0
+offset_top = -108.0
+offset_right = 36.0
+offset_bottom = -73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "DRONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="NumLabels3"]
+offset_left = 54.0
+offset_top = -88.0
+offset_right = 96.0
+offset_bottom = -53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="NumLabels3"]
+offset_left = -96.0
+offset_top = -88.0
+offset_right = -54.0
+offset_bottom = -53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="NumLabels3"]
+offset_left = -96.0
+offset_top = 54.0
+offset_right = -54.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="NumLabels3"]
+offset_left = -34.0
+offset_top = 70.0
+offset_right = 36.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "DRONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="NumLabels3"]
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 96.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_50ks4")
+theme_override_font_sizes/font_size = 28
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vfcw8")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+visible = false
+rotation = 0.785398
+gizmo_extents = 154.0

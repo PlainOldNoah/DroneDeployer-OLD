@@ -18,7 +18,7 @@ func _ready():
 
 func _on_drone_order_changed():
 	drone_queue_view.redraw_queue()
-	if not DroneManager.drone_queue.is_empty():
+	if not DroneManager.get_drone_queue().is_empty():
 		drone_info_view.display_new_drone(DroneManager.drone_queue[0])
 	
 	drone_count_display.update_count(DroneManager.drone_queue.size(), DroneManager.max_drones)

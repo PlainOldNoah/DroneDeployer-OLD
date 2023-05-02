@@ -1,7 +1,7 @@
 class_name Drone
 extends CharacterBody2D
 
-signal stats_updated() #stats_updated(self, stat)
+signal stats_updated(drone:Drone, stat:String) #stats_updated(self, stat)
 
 enum STATES {ACTIVE, IDLE, SPAWNING, STOPPED}
 var state:int = STATES.IDLE
@@ -121,7 +121,7 @@ func calculate_stats():
 	if battery > stats.max_battery:
 		battery = stats.max_battery
 	
-	emit_signal("stats_updated", self) # Update all stats
+	emit_signal("stats_updated", self, "") # Update all stats
 
 
 # Controller for when the drone bumps into something

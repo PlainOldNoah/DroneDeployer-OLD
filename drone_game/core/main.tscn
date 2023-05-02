@@ -1,16 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://ryck6iemcpi2"]
+[gd_scene load_steps=12 format=3 uid="uid://3awuiv2oea6t"]
 
 [ext_resource type="Script" path="res://core/main.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://drmy1qwvh8v38" path="res://ui/debug_menu.tscn" id="3"]
 [ext_resource type="Script" path="res://ui/gui.gd" id="5"]
 [ext_resource type="Script" path="res://core/managers/game_manager.gd" id="6"]
-[ext_resource type="PackedScene" uid="uid://b4v4q5yc6oa2w" path="res://ui/engineering_menu.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://ui/menus/engineering_menu.tscn" id="6_q45tk"]
+[ext_resource type="PackedScene" uid="uid://bbkun8330f86n" path="res://ui/menus/fabricator_menu.tscn" id="7_e4nre"]
+[ext_resource type="PackedScene" uid="uid://dh55ravtkfott" path="res://ui/menus/debug_menu.tscn" id="8_0mksc"]
+[ext_resource type="PackedScene" path="res://ui/menus/pause_menu.tscn" id="9_ika8f"]
+[ext_resource type="PackedScene" uid="uid://ct1lxch1vm65m" path="res://ui/menus/game_over_menu.tscn" id="10_g6o4k"]
+[ext_resource type="PackedScene" uid="uid://blerbigm3fbkc" path="res://ui/menus/main_menu.tscn" id="11_v0mx5"]
 [ext_resource type="PackedScene" uid="uid://c2y58gy15gxjr" path="res://ui/main_frame.tscn" id="13_sodfw"]
-[ext_resource type="PackedScene" uid="uid://blsrj7hdvr2km" path="res://ui/fabricator_ui.tscn" id="14_lwyhh"]
 [ext_resource type="Texture2D" uid="uid://cwpjdqyo2is4i" path="res://assets/visual/menu/steel_sheet_2_128.png" id="15"]
-[ext_resource type="PackedScene" uid="uid://35o8ai72lm1g" path="res://ui/game_over_menu.tscn" id="17"]
-[ext_resource type="PackedScene" uid="uid://b2tsd56sktkre" path="res://ui/main_menu.tscn" id="18_51jau"]
-[ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1")
@@ -25,7 +25,6 @@ process_mode = 3
 script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="GameManager/GUI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,47 +50,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.392157)
 
-[node name="EngineeringMenu" parent="GameManager/GUI" instance=ExtResource("8")]
+[node name="EngineeringMenu" parent="GameManager/GUI" instance=ExtResource("6_q45tk")]
 visible = false
 
-[node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("14_lwyhh")]
+[node name="FabricatorMenu" parent="GameManager/GUI" instance=ExtResource("7_e4nre")]
 visible = false
 
-[node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource("3")]
+[node name="DebugMenu" parent="GameManager/GUI" instance=ExtResource("8_0mksc")]
 visible = false
 anchors_preset = -1
-anchor_left = 0.158333
-anchor_top = 0.158333
-anchor_right = 0.841667
-anchor_bottom = 0.841667
+anchor_left = 0.00520833
+anchor_top = 0.115741
+anchor_right = 0.841146
+anchor_bottom = 0.991667
+metadata/_edit_use_anchors_ = true
 
-[node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource("17")]
+[node name="PauseMenu" parent="GameManager/GUI" instance=ExtResource("9_ika8f")]
 visible = false
-anchors_preset = -1
-anchor_right = 0.128125
-anchor_bottom = 0.435185
-offset_left = 11.0
-offset_top = 212.0
-offset_right = 11.0
-offset_bottom = 212.0
-grow_horizontal = 1
-
-[node name="PauseMenu" parent="GameManager/GUI" instance=ExtResource("19")]
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -718.5
-offset_top = -404.0
-offset_right = 718.5
-offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource("18_51jau")]
+[node name="GameOverMenu" parent="GameManager/GUI" instance=ExtResource("10_g6o4k")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.00520833
+anchor_top = 0.00925926
+anchor_right = 0.841146
+anchor_bottom = 0.884259
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenu" parent="GameManager/GUI" instance=ExtResource("11_v0mx5")]
 visible = false
 
 [node name="PlayTimeClock" type="Timer" parent="GameManager"]

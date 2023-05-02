@@ -1,9 +1,11 @@
 extends Control
 
-@onready var current_map := $Centerer/TileMap
+@onready var centerer := $MarginContainer/Centerer
+@onready var mid_pt := $MarginContainer/Centerer/MidPoint
+@onready var current_map := $MarginContainer/Centerer/TileMap
 @onready var level_objects := $LevelObjects
-@onready var hub:Hub = $Centerer/Hub
-@onready var gameboard_area := $Centerer/GameboardArea/CollisionShape2D
+@onready var hub:Hub = $MarginContainer/Centerer/Hub
+@onready var gameboard_area := $MarginContainer/Centerer/GameboardArea/CollisionShape2D
 
 @onready var top_bound := $LevelBoundries/Top
 @onready var bottom_bound := $LevelBoundries/Bottom
@@ -18,19 +20,21 @@ var rng := RandomNumberGenerator.new()
 func _ready():
 	Global.gameboard = self
 	await get_tree().process_frame # Wait one frame for size to settle
-	set_bounds()
-#	for i in 100:
-#		print(get_spawn_group_position(Vector2i(0,0), 100, 5))
-#	Input.set_custom_mouse_cursor(arrow, Input.CURSOR_ARROW, Vector2(64, 64))
+	set_positions()
 
 
 # Moves the level barriers to be flush with gameboard size
-func set_bounds():
-	top_bound.position = Vector2i.ZERO
-	bottom_bound.position = size
-	left_bound.position = Vector2i.ZERO
-	right_bound.position = size
-	gameboard_area.shape.size = size
+func set_positions():
+	gameboard_area.shape.size = centerer.size
+	
+	top_bound.position = centerer.position
+	bottom_bound.position = centerer.size + centerer.position
+	left_bound.position = centerer.position
+	right_bound.position = centerer.size + centerer.position
+	
+	current_map.global_position = mid_pt.global_position
+	gameboard_area.global_position = mid_pt.global_position
+	hub.global_position = mid_pt.global_position
 
 
 # Returns a random point along the left and right sides of the gameboard

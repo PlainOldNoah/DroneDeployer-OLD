@@ -15,7 +15,7 @@ func set_focused_core(num:int):
 
 
 # Central func for crafting core buttons
-func _on_button_pressed(function:String):
+func _on_button_pressed(_click_action:String, function:String):
 	match function:
 		"pause":
 			craft_core_grid.get_child(focused_core).toggle_pause_sequence()

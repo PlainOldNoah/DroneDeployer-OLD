@@ -1,7 +1,7 @@
 @tool
 extends AspectRatioContainer
 
-signal pressed()
+signal pressed(click_action:String)
 
 @export var icon:Texture = null : set = set_icon
 @export var wait_for_btn_up:bool = false # Emits the pressed signal after button goes back up
@@ -11,6 +11,7 @@ signal pressed()
 
 var mouse_hovering:bool = false
 var available:bool = true
+
 
 func _ready():
 	animation_player.play("RESET")
@@ -22,16 +23,16 @@ func set_icon(new_icon):
 
 
 # Play the button down and then up animation, then check for mouse hover
-func play_animation():
+func play_animation(click_action:String):
 	animation_player.play("button_down")
 	button_press_sound.play()
 	
 	if wait_for_btn_up:
 		animation_player.queue("button_up")
 		await animation_player.animation_finished
-		emit_signal("pressed")
+		emit_signal("pressed", click_action)
 	else:
-		emit_signal("pressed")
+		emit_signal("pressed", click_action)
 		animation_player.queue("button_up")
 		await animation_player.animation_finished
 		
@@ -51,11 +52,6 @@ func toggle_ready(state:bool):
 	available = state
 
 
-func _on_click_mask_pressed():
-	if available:
-		play_animation()
-
-
 func _on_click_mask_mouse_entered():
 	mouse_hovering = true
 	update_hover_texture()
@@ -64,3 +60,10 @@ func _on_click_mask_mouse_entered():
 func _on_click_mask_mouse_exited():
 	mouse_hovering = false
 	update_hover_texture()
+
+
+func _on_click_mask_gui_input(event):
+	if event.is_action_pressed("left_mouse"):
+		play_animation("left_mouse")
+	elif event.is_action_pressed("right_mouse"):
+		play_animation("right_mouse")

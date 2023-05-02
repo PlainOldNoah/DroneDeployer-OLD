@@ -30,5 +30,6 @@ Label/constants/line_spacing = 0
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 0
+Label/font_sizes/font_size = 100
 Label/fonts/font = SubResource("1")
 Label/styles/normal = null

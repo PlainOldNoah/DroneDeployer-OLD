@@ -24,7 +24,7 @@ func _ready():
 
 func _input(event):
 	if menu_lockout:
-		if event.is_action_pressed("pause"): # Lets pause work without allowing others
+		if event.is_action_pressed("pause") and current_menu == MENUS.PAUSE: # Allows toggle only pause when paused
 			dismiss_menu()
 		return
 	
@@ -45,15 +45,14 @@ func _input(event):
 			dismiss_menu()
 		else:
 			request_menu(MENUS.ENGR)
-	
+			
 	elif event.is_action_pressed("pause"):
-		print("pause event")
 		if current_menu == MENUS.NONE:
 			request_menu(MENUS.PAUSE)
 		else:
 			dismiss_menu()
 		
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("ui_cancel") and menu_lockout == false:
 		dismiss_menu()
 
 

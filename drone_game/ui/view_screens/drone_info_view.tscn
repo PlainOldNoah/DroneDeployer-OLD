@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://ui/view_screens/drone_info_view.gd" id="2"]
 
 [node name="DroneInfoView" instance=ExtResource("1")]
-custom_minimum_size = Vector2(260, 245)
+custom_minimum_size = Vector2(260, 240)
 anchors_preset = -1
 anchor_right = 0.144271
-anchor_bottom = 0.226852
+anchor_bottom = 0.222222
 offset_right = -17.0
 size_flags_horizontal = 1
 size_flags_vertical = 1

@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bett44e3x751k" path="res://assets/visual/menu/icons/debug_128.png" id="1"]
+[ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="2"]
+[ext_resource type="Script" path="res://ui/menus/engineering_menu.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://d3ysg23ftu8i" path="res://ui/view_screens/mod_panel.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://gf3use3xb7t2" path="res://ui/components/circle_button_flat.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://c26pbew3x3h0d" path="res://ui/view_screens/scrolling_grid_terminal.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://crlao8m6rllnh" path="res://ui/view_screens/drone_info_view.tscn" id="9"]
+
+[node name="EngineeringMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+script = ExtResource("3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.6, 0.615686, 0.627451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.00012207
+mouse_filter = 2
+
+[node name="MainTrifold" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="DroneDisplay" type="VBoxContainer" parent="MarginContainer/MainTrifold"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+mouse_filter = 2
+
+[node name="DroneDisplay" parent="MarginContainer/MainTrifold/DroneDisplay" instance=ExtResource("6")]
+layout_mode = 2
+
+[node name="TEMP_DIAL" type="TextureRect" parent="MarginContainer/MainTrifold/DroneDisplay"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1")
+stretch_mode = 6
+
+[node name="SelectionDisplay" type="VBoxContainer" parent="MarginContainer/MainTrifold"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DroneInfoView" parent="MarginContainer/MainTrifold/SelectionDisplay" instance=ExtResource("9")]
+layout_mode = 2
+size_flags_stretch_ratio = 0.7
+
+[node name="ButtonPanel" type="VBoxContainer" parent="MarginContainer/MainTrifold/SelectionDisplay"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="CircleButton" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel/GridContainer" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="CircleButton2" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel/GridContainer" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="CircleButton3" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel/GridContainer" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="CircleButton4" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel/GridContainer" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="CircleButton" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="TEMP_DIAL" type="TextureRect" parent="MarginContainer/MainTrifold/SelectionDisplay/ButtonPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1")
+stretch_mode = 6
+
+[node name="AvailableModDisplay" type="VBoxContainer" parent="MarginContainer/MainTrifold"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainTrifold/AvailableModDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ModPanel" parent="MarginContainer/MainTrifold/AvailableModDisplay/HBoxContainer" instance=ExtResource("4")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MainTrifold/AvailableModDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="visibility_changed" from="." to="." method="_on_EngineeringMenu_visibility_changed"]

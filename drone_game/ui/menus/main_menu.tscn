@@ -1,0 +1,159 @@
+[gd_scene load_steps=7 format=3 uid="uid://blerbigm3fbkc"]
+
+[ext_resource type="Theme" uid="uid://cyhvn15bum0yy" path="res://assets/themes/main_theme.tres" id="1_j3qbo"]
+[ext_resource type="Script" path="res://ui/menus/main_menu.gd" id="3"]
+[ext_resource type="Theme" uid="uid://c4j8s0dbvnss1" path="res://assets/themes/title_label.tres" id="3_wagmu"]
+[ext_resource type="Theme" uid="uid://b8ho3617jr42y" path="res://assets/themes/ui_white_outline.tres" id="4_760lb"]
+[ext_resource type="PackedScene" uid="uid://klkxp23xv1ue" path="res://ui/view_screens/blank_terminal.tscn" id="4_c8jg5"]
+[ext_resource type="PackedScene" uid="uid://bb3gnl0sd4foa" path="res://ui/components/button_round_3d.tscn" id="6_vpp7g"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j3qbo")
+script = ExtResource("3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.615686, 0.627451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_wagmu")
+text = "Drone Deployer"
+
+[node name="LRDivide" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="LeftSegment" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LRDivide"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ButtonControlOutline" type="Panel" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_760lb")
+theme_type_variation = &"main_menu"
+
+[node name="ButtonControlMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="StartBtn" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer" instance=ExtResource("6_vpp7g")]
+layout_mode = 2
+wait_for_btn_up = true
+
+[node name="TutorialBtn" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer" instance=ExtResource("6_vpp7g")]
+layout_mode = 2
+
+[node name="SettingsBtn" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer" instance=ExtResource("6_vpp7g")]
+layout_mode = 2
+
+[node name="ScoresBtn" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer" instance=ExtResource("6_vpp7g")]
+layout_mode = 2
+
+[node name="CreditsBtn" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer" instance=ExtResource("6_vpp7g")]
+layout_mode = 2
+
+[node name="QuitBtn" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer" instance=ExtResource("6_vpp7g")]
+layout_mode = 2
+wait_for_btn_up = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.34
+theme_override_constants/separation = 10
+
+[node name="StartLabel" type="Label" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Start"
+vertical_alignment = 1
+
+[node name="TutorialLabel" type="Label" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Tutorial"
+vertical_alignment = 1
+
+[node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+vertical_alignment = 1
+
+[node name="ScoresLabel" type="Label" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Scores"
+vertical_alignment = 1
+
+[node name="CreditsLabel" type="Label" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Credits"
+vertical_alignment = 1
+
+[node name="QuitLabel" type="Label" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+vertical_alignment = 1
+
+[node name="TODO_buttons" type="ColorRect" parent="MarginContainer/VBoxContainer/LRDivide/LeftSegment"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="BlankTerminal" parent="MarginContainer/VBoxContainer/LRDivide" instance=ExtResource("4_c8jg5")]
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LRDivide/LeftSegment/ButtonControlOutline/ButtonControlMargin/HBoxContainer/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
